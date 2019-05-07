@@ -1,0 +1,64 @@
+\documentclass[10pt]{article}
+\usepackage{pgf,tikz,pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+ 
+%<<<<<<<WARNING>>>>>>>
+% PGF/Tikz doesn't support the following mathematical functions:
+% cosh, acosh, sinh, asinh, tanh, atanh,
+% x^r with r not integer
+
+% Plotting will be done using GNUPLOT
+% GNUPLOT must be installed and you must allow Latex to call external
+% programs by adding the following option to your compiler
+% shell-escape    OR    enable-write18 
+% Example: pdflatex --shell-escape file.tex 
+
+\begin{document}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+x=1cm,y=1cm,
+axis lines=middle,
+xmin=-2.6917822468030876,
+xmax=11.076160098008533,
+ymin=-4.410578052221155,
+ymax=7.145933138760622,
+xtick={-2,-1,...,11},
+ytick={-4,-3,...,7},]
+\clip(-2.6917822468030876,-4.410578052221155) rectangle (11.076160098008533,7.145933138760622);
+\fill[line width=2pt,color=zzttqq,fill=zzttqq,fill opacity=0.10000000149011612] (0,0) -- (6.283185307179586,0) -- (6.283185307179586,3.141592653589793) -- (0,3.141592653589793) -- cycle;
+\draw [line width=2pt,color=zzttqq] (0,0)-- (6.283185307179586,0);
+\draw [line width=2pt,color=zzttqq] (6.283185307179586,0)-- (6.283185307179586,3.141592653589793);
+\draw [line width=2pt,color=zzttqq] (6.283185307179586,3.141592653589793)-- (0,3.141592653589793);
+\draw [line width=2pt,color=zzttqq] (0,3.141592653589793)-- (0,0);
+% WARNING: You have to use the special variable t in parametric plot\draw[line width=2pt, smooth,samples=100,domain=-1:1] plot[parametric] function{rad(acos(sqrt(1-z**(2)-0.074**(2))/sqrt(1-z**(2))))+3.141592653589793,rad(acos(z))};
+% WARNING: You have to use the special variable t in parametric plot\draw[line width=2pt, smooth,samples=100,domain=-1:1] plot[parametric] function{rad(acos((-sqrt(1-z**(2)-0.074**(2)))/sqrt(1-z**(2))))+3.141592653589793,rad(acos(z))};
+% WARNING: You have to use the special variable t in parametric plot\draw[line width=2pt, smooth,samples=100,domain=-1:1] plot[parametric] function{rad(acos(z/sqrt(0.074**(2)+z**(2)))),rad(acos(sqrt(1-z**(2)-0.074**(2))))};
+% WARNING: You have to use the special variable t in parametric plot\draw[line width=2pt, smooth,samples=100,domain=-1:1] plot[parametric] function{rad(acos(z/sqrt(0.074**(2)+z**(2)))),rad(acos(-sqrt(1-z**(2)-0.074**(2))))};
+\begin{scriptsize}
+\draw [fill=uuuuuu] (0,0) circle (2pt);
+\draw[color=uuuuuu] (0.09034081769252457,0.23223842934096853) node {$A$};
+\draw [fill=ududff] (6.283185307179586,3.141592653589793) circle (2.5pt);
+\draw[color=ududff] (6.379841249821495,3.3948227676137592) node {$C$};
+\draw [fill=ududff] (0,3.141592653589793) circle (2.5pt);
+\draw[color=ududff] (0.09034081769252457,3.3948227676137592) node {$D$};
+\draw [fill=xdxdff] (6.283185307179586,0) circle (2.5pt);
+\draw[color=xdxdff] (6.379841249821495,0.25601725895204214) node {$B$};
+\draw[color=zzttqq] (3.181588667132094,-0.053107525991914845) node {$a$};
+\draw[color=zzttqq] (6.5106248126824,1.7184152800330692) node {$b$};
+\draw[color=zzttqq] (3.181588667132094,3.478048671252517) node {$c$};
+\draw[color=zzttqq] (-0.14744747841821151,1.7184152800330692) node {$d$};
+\draw[color=black] (4.786659665879562,3.026250908642118) node {$g$};
+\draw[color=black] (4.953111473157078,3.026250908642118) node {$h$};
+\draw[color=black] (3.229146326354241,1.433069324700186) node {$e$};
+\draw[color=black] (3.229146326354241,1.6351893763943117) node {$f$};
+\end{scriptsize}
+\end{axis}
+\end{tikzpicture}
+\end{document}

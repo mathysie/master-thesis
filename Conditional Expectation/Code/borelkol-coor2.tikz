@@ -1,0 +1,50 @@
+\begin{tikzpicture}[scale=1.5,line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+	x=1cm,y=1cm,
+	axis lines=middle,
+	xmin=-0.5,
+	xmax=7,
+	ymin=-0.5,
+	ymax=4,
+	xtick={1,2,...,6},
+	ytick={1,2,3},
+	xlabel={$\phi$},
+	x label style={anchor=north},
+	ylabel={$\psi$},
+	y label style={anchor=east}
+]
+
+\draw [fill=red, opacity=0.1] (2.93146682,0.5) -- (3.3,0.5) -- (3.3,2.5) -- (2.93146682,2.5) -- cycle;
+
+\addplot [smooth, fill=white, samples=100, domain=-0.9949874:0.9949874] ({acos(x/sqrt(0.1^2+x^2))*pi/180},{acos(sqrt(1-x^2-0.1^2))*pi/180});
+\addplot [smooth, fill=white, samples=100, domain=-0.9949874:0.9949874] ({acos(x/sqrt(0.1^2+x^2))*pi/180},{acos(-sqrt(1-x^2-0.1^2))*pi/180});
+
+\addplot [smooth, fill=white, samples=100, domain=-0.9949874:0.9949874] ({acos(x/sqrt(0.1^2+x^2))*pi/180+pi},{acos(sqrt(1-x^2-0.1^2))*pi/180});
+\addplot [smooth, fill=white, samples=100, domain=-0.9949874:0.9949874] ({acos(x/sqrt(0.1^2+x^2))*pi/180+pi},{acos(-sqrt(1-x^2-0.1^2))*pi/180});
+
+\draw [color=red] (0.5*pi,0.5) -- (1.5*pi,0.5) -- (1.5*pi,2.5) -- (0.5*pi,2.5) -- cycle;
+
+\draw [color=blue] (0.5*pi,0.5) -- (2.93146682,0.5);
+\draw [color=blue] (0.5*pi,2.5) -- (2.96,2.5);
+\draw [color=blue] (0.5*pi,0.5) -- (0.5*pi,1.5);
+\draw [color=blue, ->] (0.5*pi,2.5) -- (0.5*pi,1.5);
+
+\addplot [smooth, color=blue, samples=10, domain=-0.9949874:-0.46888] ({acos(x/sqrt(0.1^2+x^2))*pi/180},{acos(sqrt(1-x^2-0.1^2))*pi/180});
+\addplot [smooth, color=blue, samples=10, domain=-0.9949874:-0.59] ({acos(x/sqrt(0.1^2+x^2))*pi/180},{acos(-sqrt(1-x^2-0.1^2))*pi/180});
+
+\draw (2,2.5) [above] node {$r_1$};
+\draw (0.5*pi,0.5*pi) [left] node {$r_2$};
+\draw (2,0.5) [below] node {$r_3$};
+\draw (3,2) [left] node {$r_-$};
+\draw (3,1) [left] node {$r_+$};
+
+\draw [color=blue] (2.25,0.5*pi) node {$S_\epsilon$};
+\draw [color=red] (4,0.5*pi) node {$S'$};
+
+\draw [line width=0mm] (-2pt,0.5) -- (2pt,0.5);
+\draw (0,0.5) node [left] {$a$};
+\draw [line width=0mm] (-2pt,2.5) -- (2pt,2.5);
+\draw (-2pt,2.5) node [left] {$b$};
+]
+\end{axis}
+\end{tikzpicture}

@@ -1,0 +1,30 @@
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\begin{axis}[
+	x=1cm,y=1cm,
+	axis lines=middle,
+	xmin=-0.5,
+	xmax=7,
+	ymin=-0.5,
+	ymax=4,
+	xtick={1,2,...,6},
+	ytick={1,2,3},
+	xlabel={$\phi$},
+	x label style={anchor=north},
+	ylabel={$\psi$},
+	y label style={anchor=east}
+]
+
+\draw [color=red] (0,0) -- (2*pi,0) -- (2*pi,pi) -- (0,pi) -- cycle;
+\draw [fill=red, opacity=0.1] (0,0) -- (2*pi,0) -- (2*pi,pi) -- (0,pi) -- cycle;
+
+\addplot [smooth, fill=white, samples=100, domain=-0.9949874:0.9949874] ({acos(x/sqrt(0.1^2+x^2))*pi/180},{acos(sqrt(1-x^2-0.1^2))*pi/180});
+\addplot [smooth, fill=white, samples=100, domain=-0.9949874:0.9949874] ({acos(x/sqrt(0.1^2+x^2))*pi/180},{acos(-sqrt(1-x^2-0.1^2))*pi/180});
+
+\addplot [smooth, fill=white, samples=100, domain=-0.9949874:0.9949874] ({acos(x/sqrt(0.1^2+x^2))*pi/180+pi},{acos(sqrt(1-x^2-0.1^2))*pi/180});
+\addplot [smooth, fill=white, samples=100, domain=-0.9949874:0.9949874] ({acos(x/sqrt(0.1^2+x^2))*pi/180+pi},{acos(-sqrt(1-x^2-0.1^2))*pi/180});
+
+\draw (0.5*pi,0.5*pi) node {$R_\epsilon$};
+\draw (1.5*pi,0.5*pi) node {$R'_\epsilon$};
+]
+\end{axis}
+\end{tikzpicture}
