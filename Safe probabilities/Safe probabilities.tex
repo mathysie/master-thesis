@@ -133,8 +133,11 @@
 Conditioning probabilities is one of the fundamental aspects of probability theory, yet results can become counter-intuitive. One example is the Monty~Hall's three door problem, where there is a vast debate which strategy the user should take. Peter Grünwald \cite{Grunwald16} formalized probability distributions in order to make reliable predictions on partial domains. We apply this reformalization on various known paradoxes, such as Monty~Hall's problem and the two envelope problem.
 \end{abstract}
 
+\newpage
+
 \tableofcontents
 
+\newpage
 
 \section{Discrete safe probabilities}
 This whole section is taken from \cite{Grunwald16}. Here we'll define discrete safe probabilities and state some relevant properties and theorems. All random variables in this section are discrete.
@@ -922,12 +925,86 @@ When $\sum_{u\in\Y'}p_u=\frac{1}{2}$ holds, we have $\P[\GeneralGenIndSafe=1]=\f
 \section{Borel-Kolmogorov}
 The Borel-Kolmogorov phenomenon cannot be explored using safe probabilities as when using continuous random variables, a $\sigma$-algebra must be specified. The crux of the Borel-Kolmogorov phenomenon is that conditioning on null sets using different $\sigma$-algebras yields different results. Safe probability does not give an extra insight as the conditional distributions of \cite{Gyenis17} are well-defined and safe probability does not extend between $\sigma$-algebras.
 
+\section{Sleeping Beauty problem}
+The Sleeping~Beauty problem is a still unsolved problem. The problem is stated as the following. Sleeping~Beauty is willing to undergo an experiment. The experiment starts on Sunday, when she will be put to sleep. A fair coin is tossed and when it is heads she will be woken on Monday and when it is tails she will be woken on Monday and Tuesday. On Wednesday she will be woken and the experiment ends. If she wakes up on Monday or Tuesday, the scientist asks her what degree of belief is that the coin turned up heads. After answering the question, she will be put to sleep using an amnesia-inducing drug making her forget that she had woken up. Sleeping~Beauty receives this explanation before the experiment. The question is: what should Sleeping~Beauty answer to the scientists question?
+
+One possible answer is that the probability of the coin turning heads is $\frac{1}{2}$, as it is a fair coin. When Sleeping~Beauty wakes up, she does not know if it is Monday or Tuesday and she does not know if she was awake before. She has no additional information to rely on, therefore her best guess is that the probability of the coin giving heads is $\frac{1}{2}$.
+
+A second explanation is that the probability of the coin turning heads is $\frac{1}{3}$. There are three possible events for Sleeping~Beauty: coin lands heads and she wakes on Monday, coin lands tails and she wakes on Monday or coin lands tails and she wakes on Tuesday. One of the three events is that the coin lands heads and she does not know which of the three events she experiences. Therefore the probability of attending the event with the coin landing heads is $\frac{1}{3}$ and she state that the probability of the coin landing heads is $\frac{1}{3}$.
+
+Both answers have sound logic, however they cannot both be equal. My proposal for a solution is that the halfers, the people that state $\frac{1}{2}$ is the correct answer, and the thirders, the people that state $\frac{1}{3}$ is correct, both answer a subtly different question. The halfers answer the question `what is the probability distribution of the coin given you have waken up' and the thirders answer the question `if Sleeping~Beauty must correctly guess the value of the coin, what should she guess?'. I will now give my reasoning for my answer on both parties.
+
+First we must establish a mathematical background. Let $\X=\{m,t\}$ be our outcome space and let $\Y=\{0,1\}$ be our observation space. Let $U$ be a random variable on $\Y$ where $U=1$ is the event of the coin turning up heads and let $V$ be a random variable on $\X$ where $V=m$ denotes Sleeping~Beauty waking on Monday and $V=t$ is waking on Tuesday. The model $\Pmod$ differs between the interpretations of the halfers and the thirders
+
+\subsection{The halfers}
+We will start with the halfers position. Our model $\Pmod_{\frac{1}{2}}$ contains a single probability distribution $\P$ here, where $\P$ is distributed evenly on $U$, $\P[V=m|U=1]=1$ holds as Sleeping~Beauty must wake on Monday only when coin gives heads and $\P[V=m|U=0]=\frac{1}{2}$ holds as Sleeping~Beauty wakes on Monday and Tuesday when the coin gives tails. If Sleeping~Beauty knows she woke up with a coin giving tails, she knows that she wakes on Monday with probability~$\frac{1}{2}$. This $\P$ dictates a full probability distribution on $\mathcal{Z}=\X\times\Y$, therefore $\Pmod_{\frac{1}{2}}=\{\P\}$.
+
+Sleeping~Beauty is woken on Monday or Tuesday and she is asked what the distribution of the coin is. The distribution of the coin is the same as the distribution on $U$, which is (essentially) the same as the distribution on $\1_{\{U=0\}}$. Note that when she wakes up on Monday, the coin could have tossed $1$ or $0$, however when she wakes up on Tuesday the coin must have tossed $0$. As $0$ is a member of both ranges, we can get a safe distribution on $\1_{\{U=0\}}$ using theorem~\ref{thm:DiscSafe}.
+
+\begin{proposition}
+Let $\X$, $\Y$, $U$, $V$ and $\Pmod_{\frac{1}{2}}$ be as before. A distribution $\Psafe$ is safe for $\1_{\{U=0\}}|[V]$ if and only if for all $v\in\X$ we have \[\Psafe[U=0|V=v]=\frac{1}{2}.\]
+\end{proposition}
+\begin{proof}
+This proof is a mere checking of theorem~\ref{thm:DiscSafe}. The model $\Pmod_{\frac{1}{2}}$ consists of a single $\P$, thus take this one. For this $\P$ we have $p_0=\P[U=0]=\frac{1}{2}$. Furthermore, we have
+\begin{align*}
+\range_{\P}(U|V=m)&=\{0,1\},&\range_{\P}(U|V=t)&=\{0\},
+\end{align*}
+thus take $u'=0$. Then theorem~\ref{thm:DiscSafe} tells us that $\Psafe$ with 
+\[\Psafe[U=0|V=v]=p_0=\frac{1}{2}\]
+is safe for $\1_{\{U=0\}}|[V]$.
+
+Furthermore, we have $\range_{\P}(V)=\{m,t\}=\X$ as we have $\P[V=m|U=1]=1$ and $\P[V=t|U=0]=\frac{1}{2}$. Thus theorem~\ref{thm:DiscSafe} tells us that the condition on $\Psafe$ is necessary, proving the only if part.
+\end{proof}
+
+The distribution $\Psafe$ with $\Psafe[U=0|V=v]=\frac{1}{2}$ for all $v\in\X$ is logical, as Sleeping~Beauty does not know which day it is when she wakes up. Thus she should not differ her guess conditioning on Monday or Tuesday. Therefore if Sleeping~Beauty should guess the probability distribution on the coin, she should guess that the coin is fair from a safe probability viewpoint.
+
+\subsection{The thirders}
+The thirders consider a different model. Their statement is that Sleeping~Beauty does not know what day it is or what the toss of the coin is when she wakes up. Therefore they state that 
+\[\P[U=1,V=m]=\P[U=0,V=m]=\P[U=0,V=t]=\frac{1}{3},\]
+as there are three events Sleeping~Beauty can experience and there is no preferred event as Sleeping~Beauty has no information when answering the question. Let $\Pmod_{\frac{1}{3}}=\{\P\}$ be the model containing this probability. From here we can calculate that
+\[\P[U=1]=\P[U=1,V=m]+\P[U=1,V=t]=\frac{1}{3}+0=\frac{1}{3},\]
+thus the probability of the coin tossing heads is $\frac{1}{3}$.
+
+Note that Sleeping~Beauty knows during the experiment that the coin is fair, thus she would reject model $\Pmod_{\frac{1}{3}}$. However, suppose she must guess the value of the coin, thus the value of $U$. When the coin lands heads, she has only one guess. If the coin lands tails, she has two guesses. What should her guess be to optimize the probability of a correct guess per experiment?
+
+Let $U^*$ be a guess of the value of $U$. Let $q\in[0,1]$ and suppose Sleeping~Beauty guesses $U^*=1$ with probability $q$. Let $W$ be the number of correct guesses during the whole experiment. Note that $\mathcal{Z}$ needs to be extended to support $U^*$ and $W$, but the extension does not give additional insight and therefore we will leave it as an exercise.
+
+\begin{proposition}\label{prop:SleepingBeautyCorrect}
+Let $U$, $V$, $\X$ and $\Y$ be as before. Let $U^*$ be a guess of $U$ where $\P[U^*=1]=q$ with $q\in[0,1]$. Then model $\Pmod_{\frac{1}{3}}$ can be used to calculate that
+\[\P[U^*=U]=\frac{2-q}{3}.\]
+This probability is maximal when $q=0$.
+\end{proposition}
+\begin{proof}
+When you wake up, there are three possibilities: $U=1$ and $V=m$, $U=0$ and $V=m$ or $U=0$ and $V=t$. Those possibilities appear with equal probability, thus model $\Pmod_{\frac{1}{3}}$ must be used. Using conditional probability gives
+\begin{align*}
+\P[U^*=U]&=\sum_{i=0}^1\P[U^*=U|U=i]\P[U=i]\\
+&=\frac{2}{3}(1-q)+\frac{1}{3}q=\frac{2-q}{3}.
+\end{align*}
+This probability is strictly decreasing in $q$, thus $q=0$ maximizes $\P[U^*=U]$.
+\end{proof}
+
+Proposition~\ref{prop:SleepingBeautyCorrect} is simulated in figure~\ref{fig:SleepingBeautySim} and the code is in appendix~\ref{app:SleepingBeautySim}. It is clear that the empirical probabilities line up nicely with the theoretical red line in figure~\ref{fig:SleepingBeautySim}. This is an argument for using model $\Pmod_{\frac{1}{3}}$, as it can be used to get the most accurate prediction of $U$. Note that if always heads is guessed, proposition~\ref{prop:SleepingBeautyCorrect} can be used with $q=1$ to get a probability of being correct of $\frac{1}{3}$. This can however not be used to claim that the coin lands heads with probability $\frac{1}{3}$, as when the coin lands tails the player can guess twice. The value of the coin influences the amount of guesses, thus the accuracy of the guess cannot be used to determine the distribution of the coin.
+
+\begin{figure}
+\includegraphics[width=\linewidth]{Figures/SleepingBeauty.pdf}
+\caption{Simulation of the Sleeping Beauty experiment. The horizontal axis is the probability of the player guessing heads and the vertical axis is the empirical probability of guessing correctly. The red line is the theoretic probability from proposition~\ref{prop:SleepingBeautyCorrect}, $\P[U^*=U]=\frac{2-q}{3}$. 10000 experiments are simulated per probability.}
+\label{fig:SleepingBeautySim}
+\end{figure}
+
+\subsection{Conclusion}
+It must be obvious that $\Pmod_{\frac{1}{2}}\neq\Pmod_{\frac{1}{3}}$ holds. The problem here is that the two sides use a different model to calculate the same probability. This difference in model is the sole reason why two different answers with both sound explanation exists. 
+
+Since Sleeping~Beauty knows that the coin is tossed fairly when waking up, I prefer model $\Pmod_{\frac{1}{2}}$ as it really answers the question `what is the probability distribution of the coin given you have waken up'.
+
+Model $\Pmod_{\frac{1}{3}}$ can be used to answer the question `what should Sleeping~Beauty guess as the value of the coin'. If Sleeping~Beauty guesses always heads, then she is correct with probability $\frac{1}{3}$. However this does not mean the probability of heads if $\frac{1}{3}$, as she can guess twice when the coin lands tails. This does not answer the original question of the probability of the coin, therefore the explanation of the thirders is reasonable, but in my opinion incorrect.
+
 \bibliographystyle{alpha}
 \bibliography{../Referenties/Referenties}
 
 \newpage
 \appendix
-\section{Monty~Hall simulation}\label{app:MontyHallSim}
+\section{Code}
+\subsection{Monty~Hall simulation}\label{app:MontyHallSim}
 The following code is used in the simulation of the Monty~Hall-games and the production of figure~\ref{fig:MontyHall}.
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
@@ -1007,6 +1084,47 @@ The following code is used in the simulation of the Monty~Hall-games and the pro
 \hlkwd{abline}\hlstd{(}\hlkwc{h}\hlstd{=}\hlnum{5}\hlopt{/}\hlnum{9}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{'red'}\hlstd{)}
 \hlkwd{abline}\hlstd{(}\hlnum{1}\hlopt{/}\hlnum{2}\hlstd{,}\hlnum{1}\hlopt{/}\hlnum{6}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{'blue'}\hlstd{)}
 \hlkwd{abline}\hlstd{(}\hlkwc{h}\hlstd{=}\hlnum{2}\hlopt{/}\hlnum{3}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{'orange'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\newpage
+\subsection{Sleeping Beauty simulation}\label{app:SleepingBeautySim}
+The following code is used to model the results of proposition~\ref{prop:SleepingBeautyCorrect} and the production of figure~\ref{fig:SleepingBeautySim}.
+
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{SleepingBeauty} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{p}\hlstd{) \{}
+  \hlstd{a} \hlkwb{<-} \hlnum{0}
+
+  \hlstd{heads} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{1}\hlstd{), c1,} \hlnum{TRUE}\hlstd{,} \hlkwd{c}\hlstd{(}\hlnum{1}\hlopt{-}\hlstd{p,p))}
+  \hlstd{a} \hlkwb{<-} \hlstd{a} \hlopt{+} \hlkwd{sum}\hlstd{(heads)}
+
+  \hlstd{heads} \hlkwb{<-} \hlkwd{sample}\hlstd{(}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{1}\hlstd{),} \hlnum{2}\hlopt{*}\hlstd{c2,} \hlnum{TRUE}\hlstd{,} \hlkwd{c}\hlstd{(}\hlnum{1}\hlopt{-}\hlstd{p,p))}
+  \hlstd{a} \hlkwb{<-} \hlstd{a} \hlopt{+} \hlnum{2}\hlopt{*}\hlstd{c2}\hlopt{-}\hlkwd{sum}\hlstd{(heads)}
+
+  \hlkwd{return}\hlstd{(a)}
+\hlstd{\}}
+
+\hlstd{N} \hlkwb{<-} \hlnum{10000} \hlcom{# Number of experiments}
+\hlstd{M} \hlkwb{<-} \hlnum{100}   \hlcom{# Number of tested probabilities}
+
+\hlstd{res} \hlkwb{<-} \hlkwd{vector}\hlstd{(}\hlkwc{length}\hlstd{=M}\hlopt{+}\hlnum{1}\hlstd{)}
+\hlstd{coins} \hlkwb{<-} \hlkwd{sort}\hlstd{(}\hlkwd{sample}\hlstd{(}\hlkwd{c}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{1}\hlstd{), N,} \hlnum{TRUE}\hlstd{))}
+\hlstd{c1} \hlkwb{<-} \hlkwd{sum}\hlstd{(coins)}
+\hlstd{c2} \hlkwb{<-} \hlstd{N} \hlopt{-} \hlstd{c1}
+
+\hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{(M}\hlopt{+}\hlnum{1}\hlstd{)) \{}
+  \hlstd{res[i]} \hlkwb{<-} \hlkwd{SleepingBeauty}\hlstd{((i}\hlopt{-}\hlnum{1}\hlstd{)}\hlopt{/}\hlstd{M)}
+\hlstd{\}}
+
+\hlcom{# Average probability of correct guess}
+\hlstd{resProb} \hlkwb{<-} \hlstd{res} \hlopt{/} \hlstd{(c1} \hlopt{+} \hlnum{2}\hlopt{*}\hlstd{c2)}
+
+\hlkwd{plot}\hlstd{(}\hlkwd{seq}\hlstd{(}\hlnum{0}\hlstd{,}\hlnum{1}\hlstd{,}\hlnum{1}\hlopt{/}\hlstd{M), resProb,} \hlkwc{xlab}\hlstd{=}\hlstr{'Probability of guessing heads'}\hlstd{,}
+     \hlkwc{ylab}\hlstd{=}\hlstr{'Probability of guessing correctly'}\hlstd{,}
+     \hlkwc{main}\hlstd{=}\hlstr{'Probability of guessing correctly in Sleeping Beauty'}\hlstd{)}
+\hlkwd{abline}\hlstd{(}\hlnum{2}\hlopt{/}\hlnum{3}\hlstd{,}\hlopt{-}\hlnum{1}\hlopt{/}\hlnum{3}\hlstd{,} \hlkwc{col}\hlstd{=}\hlstr{'red'}\hlstd{)}
 \end{alltt}
 \end{kframe}
 \end{knitrout}
