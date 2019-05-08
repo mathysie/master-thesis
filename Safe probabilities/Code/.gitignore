@@ -1,4 +1,4 @@
 *.log
 *.synctex.gz
-MontyHall-concordance.tex
+*-concordance.tex
 .Rhistory
