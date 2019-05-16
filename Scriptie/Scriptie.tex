@@ -1,6 +1,7 @@
 %!TEX program = xelatex
 \documentclass[twoside,a4paper]{report}
-\usepackage[english]{babel}
+\usepackage[ngerman, english]{babel}
+\usepackage{csquotes}
 \usepackage{amsmath,amsfonts,amssymb,amsthm,bbm,mathrsfs}
 \usepackage{hyperref}
 \usepackage{listings}
@@ -14,6 +15,7 @@
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -92,17 +94,58 @@
 \newpage
 
 \chapter{Introduction}
+Probability theory is one of the most important and most researched fields in mathematics. It is entirely based on three axioms first stated by Andrey Kolmogorov \cite{Kolmogorov33}, namely that the probability of an event is non-negative, the probability measure is a unit measure and the probability measure is countably additive on disjoint sets. These three axioms however do not prevent the existence of certain paradoxes, like the Borel-Kolmogorov paradox, Monty Hall's problem and the Sleeping Beauty problem. Some paradoxes arise from wrongly using probability theory, others are a misinterpretation of results.
 
+This thesis focuses mainly paradoxes arising from conditional probability, such as the Borel-Kolmogorov paradox, Monty Hall's problem, the two envelope problem and the Sleeping Beauty problem. We study these problems and deduce ways to resolve their paradoxical statements.
 
-\chapter{The Borel-Kolmogorov paradox}
+Take a look at the Borel-Kolmogorov paradox first. A sphere is given with unit probability measure. The information that a point exists on a great circle of the sphere, however you do not know where that point is. Is there a probability distribution on the great circle for that point? If one models this problem using longitudes, then the conditional distribution on the great circle is uniform. However, if one models this problem using meridians, the conditional distribution is a cosine. Borel \cite{Borel09} and Kolmogorov \cite{Kolmogorov33} both looked at this problem and Kolmogorov gave the following answer:
 
-\chapter{Safe probability}
+\foreignblockquote{ngerman}[A. Kolmogoroff, \cite{Kolmogorov33}]{Dieser Umstand zeigt, daß der Begriff der bedingten Wahrscheinlichkeit in bezug auf eine isoliert gegebene Hypothese, deren Wahrscheinlichkeit gleich Null ist, unzulässig ist: nur dann erhält man auf einem Meridiankreis eine Wahrscheinlichkeitsverteilung für [Breite] Theta, wenn dieser Meridiankreis als Element der Zerlegung der ganzen Kugelfläche in Meridiankreise mit den gegebenen Polen betrachtet wird.}
 
-\chapter{Discrete paradoxes}
+Kolmogorov states that the concept of conditional probability is inadmissible, since the event that the point lies on a great circle of the sphere has zero measure. Furthermore, the sole reason of a cosine distribution on a great circle arising when considering meridians is that such meridian circle serves as an element of the decomposition of the whole spherical surface in meridian circles with the poles considered. 
 
-\chapter{The two envelopes problem}
+Despite Kolmogorov's explanation this problem is still upon debate with \cite{Gyenis17} giving more insight and depth to the problem, but eventually draws the same conclusion as Kolmogorov. This problem is more elaborately discussed in chapter~\ref{chap:BorelKolmogorov}.
 
-\chapter{The Sleeping Beauty problem}
+Another paradox arising from conditional probability is Monty Hall's problem. In Monty Hall's problem, a player is facing three doors, doors $a$, $b$ and $c$. One door contains a car, the other two have goats. Suppose the player initially chooses door $a$. The game master then opens either door $b$ or $c$, but always a door with a goat. The player now faces two doors and is asked if he wants to switch. One possible solution is that the player faces two doors without any preference for either door, thus the probability is 50\%. Another possible solution is that first the player had a 33\% chance of correctly guessing the door with the car. If for example door $c$ is over, door $b$ remains with a conditional probability of 67\% of having the car. Which solution is correct?
+
+Let $\X=\{a,b,c\}$ be the set of doors and $U$ the random variable denoting the location of the car. Conditional probability then states
+\begin{equation}\label{eq:IntMonty}
+\P[U=b\mid U\in\{a,b\}]=\frac{\P[U=b,U\in\{a,b\}]}{\P[U\in\{a,b\}]}=\frac{\frac{1}{3}}{\frac{2}{3}}=\frac{1}{2},
+\end{equation}
+supporting the claim that that a probability of 50\% is the correct answer. However, the space conditioned on door $c$ is opened is $\{a,b\}$ and the space conditioned on door $b$ is opened is $\{a,c\}$. If door $a$ has the car, the game master can open either door and the set of events we must condition on is $\{\{a,b\},\{a,c\}\}$. These two events do not form a partition, preventing us from using conditional probability.
+
+Thus in addition to Kolmogorov's statement, we must not only be wary for conditioning on events with measure 0, but we must not condition on events at all. When using conditional probability, one must provide a pair of a sub-$\sigma$-algebra and the event to condition on. The event must be a member of the sub-$\sigma$-algebra. There is no $\sigma$-algebra on $\{a,b,c\}$ such that equation~\eqref{eq:IntMonty} still holds. In the case of the Borel-Kolmogorov paradox we can provide underlying sub-$\sigma$-algebras.
+
+The crux of the Monty Hall problem is that the initial distribution of the car is unknown and the player does not know with which probability door $b$ is opened given the car is behind door $a$. Thus there is a model of probability distributions that can all be the correct distribution, but we do not know which one is correct. Using the theory of safe probability we can obtain predictions that give equal results for all distributions in the model. This theory is introduced by \cite{Grunwald18} and in chapter~\ref{chap:SafeProp}. We will study safe probability more in-depth in chapter~\ref{chap:DiscPara}, using it to make safe predictions on problems as Monty Hall and on the two envelope problem in chapter~\ref{chap:TwoEnvelope} as well. 
+
+In chapter~\ref{chap:DiscPara} the results of the analysis of Monty Hall's problem are generalized to a theorem, which can be used to provide predictions for other problems like the boy or girl problem.
+\begin{theorem*}
+Let $\X$ and $\Y$ be countable. Let $U$ be a random variable on $\Y$ and $V$ be a random variable on $\X$. Let $p_u\in[0,1]$ with $\sum_{u\in\Y}p_u=1$ and let $\Pmod\subseteq\{\P\mid\forall u\in\Y:\P[U=u]=p_u\}$ be our model of probability distributions on $\X\times\Y$. Suppose there is a \[u'\in\bigcap_{\P\in\Pmod}\bigcap_{v\in\range_{\P}(V)}\range_{\P}(U|V=v).\]Let $\Psafe$ be a distribution on $\X\times\Y$ with
+\[\Psafe[U=u'|V=v]=p_{u'}\]
+for all $v\in\X$. This $\Psafe$ is safe for $\GeneralInd|[V]$.
+
+If for all $v\in\X$ a $\P\in\Pmod$ exists such that $v\in\range_{\P}(V)$ holds, then this requirement on $\Psafe$ is necessary for safety for $\langle\GeneralInd\rangle|\langle V\rangle$.
+\end{theorem*}
+This theorem will be explained, proven and applied in chapter~\ref{chap:DiscPara}, but it essentially states that in the case of the Monty Hall problem if one assumes the car is initially distributed evenly between the doors, the probability of the car being behind the originally chosen door $a$ can be modelled as $\frac{1}{3}$.
+
+A third still unsolved problem is the Sleeping Beauty problem. In this problem Sleeping Beauty is willing to do an experiment. At Sunday she goes to sleep. A fair coin is tossed with the following results: Sleeping Beauty wakes on Monday with heads and wakes on Monday and Tuesday with tails. If she is awake, she must state her credence of the coin giving heads. After the question, she goes to sleep using an amnesia-inducing drug which makes her forget that she has waken before. At Wednesday she wakes and the experiment is over.
+
+A first argument of the probability distribution of the coin is given by the halfers. When Sleeping Beauty wakes, she has no clue what day it is. She knows that the coin is fair and has no reason guess otherwise, thus she must say the the coin is still fair.\\
+Another argument is given by the thirders. Namely that there are three possible events, namely awake on Monday and coin has heads, awake on Monday and coin has tails and as last awake on Tuesday and coin has tails. She does not know which event she attends, thus the events happen with uniform probability. There is one event with the coin giving heads, thus the probability of the coin having heads is 33\$.
+
+I propose a solution that the thirders use a different model than the halfers. The question concerns the probability distribution of the coin, which remains 50\%. The thirders answer the question `what is the probability of guessing correctly if I guess that the coin landed heads', which is 33\%. This solution will be discussed with more depth in chapter~\ref{chap:SleepingBeauty}.
+
+Every problem has a different reason for getting paradoxical results. There is one recurring theme with all paradoxes, namely when analysing these problems most of the times the underlying $\sigma$-algebra taken into account. This yields to various results, as conditioning on events that cannot be conditioned on to not recognizing that multiple probability distributions are possible. The theme of is thesis is therefore that when doing probability theory, the underlying probability space and $\sigma$-algebra must never be ignored and not providing a $\sigma$-algebra with a conditional distribution must become a bad habit instead of an accepted practice.a
+
+\chapter{The Borel-Kolmogorov paradox}\label{chap:BorelKolmogorov}
+
+\chapter{Safe probability}\label{chap:SafeProp}
+
+\chapter{Discrete paradoxes}\label{chap:DiscPara}
+
+\chapter{The two envelopes problem}\label{chap:TwoEnvelope}
+
+\chapter{The Sleeping Beauty problem}\label{chap:SleepingBeauty}
 
 \bibliographystyle{alpha}
 \bibliography{../Referenties/Referenties}
