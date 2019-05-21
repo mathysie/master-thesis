@@ -190,7 +190,7 @@ g(y)=\int_\R x\frac{f_{X,Y}(x,y)}{f_Y(y)}dx,
 \end{equation}
 then $g(Y)$ is a version of $\E[X|Y]$. The proof and a more general statement can be found in section~9.6 of \cite{Williams91}.
 
-Definition~\ref{def:conexp} extends very nicely to the definition of conditional probability. For an $F\in\F$ we have $\E_[\1_F]=\P[F]$, which carries over to conditional expectations as well.
+Definition~\ref{def:conexp} extends very nicely to the definition of conditional probability. For an $F\in\F$ we have $\E[\1_F]=\P[F]$, which carries over to conditional expectations as well.
 
 \begin{definition}[Conditional probability]
 If $\G$ is a sub-$\sigma$-algebra of $\F$ and $F\in\F$, then the \emph{conditional probability} $\P[F|\G]$ is a version of $\E[\1_F|\G]$.
@@ -424,7 +424,7 @@ where $\P'$ is the probability measure taking $1$ on $F$ and $\E[\cdot|\G]$ is a
 
 If conjecture~\ref{con:BorelConjecture} is true, then all conditional probabilities on null sets can be computed by limiting Bayesian conditional probabilities. It however is false, but it is interesting to search for a slightly different conjecture that is true. Note that conjecture~\ref{con:BorelConjecture} holds in the some cases for the Borel-Kolmogorov paradox. When considering longitudes we have $\F=\B$ and $\G=\mathfrak{C}$ and when considering meridians we have $\F=\B$ and $\G=\mathfrak{M}$.
 
-\begin{proposition}
+\begin{proposition}\label{prop:BorelConFalse}
 Conjecture~\ref{con:BorelConjecture} is false.
 \end{proposition}
 \begin{proof}
@@ -497,6 +497,14 @@ Now it should be clear why the conditional distribution on the longitudes and me
 
 
 \section{Conclusion}
+What are the conclusions we can take after analysing the Borel-Kolmogorov paradox? The first and most important one is that when conditioning, especially on a set $F$ of measure zero, one needs to give the accompanying sub-$\sigma$-algebra with the event that is conditioned on. Otherwise the Borel-Kolmogorov phenomenon appears, where one can give different sub-$\sigma$-algebras containing $F$ such that the resulting conditional probability distribution is not uniquely defined.
+
+Secondly, we must accept that conditional probability on sets of measure zero are not uniquely defined. That uniqueness only appears when conditioning on sets of positive measure, as then the classical rule $\P[E|F]=\frac{\P[E\cap F]}{\P[F]}$ gives a version of the conditional probability. If a sub-$\sigma$-algebra can be used to model the entire sample space, for example the $\sigma$-algebra of longitudes with the sphere as sample space, then applying the conditional probability measure on all sets of measure zero should give back the original probability distribution. For example providing the uniform distribution on all longitudes gives back the uniform distribution on the sphere, as well as providing the cosine distribution on the meridians results into the uniform distribution on the sphere.
+
+Thirdly, a conditional distribution on a zero set must be calculated using the measure-theoretic conditional expectation. Conjecture~\ref{con:BorelConjecture} can help with finding the correct conditional expectation, however proposition~\ref{prop:BorelConFalse} proves that the resulting conditional probability does not need to be unique. Therefore conjecture~\ref{con:BorelConjecture} cannot be used to calculate a conditional probability and call it a day.
+
+At last, as Kolmogorov \cite{Kolmogorov33} already stated in his work, there is nothing paradoxical going on in the Borel-Kolmogorov paradox. The measure-theoretic conditional expectation is not uniquely defined on sets of measure zero and here we have reaffirmed that. These results are thus as expected and we should really give the sub-$\sigma$-algebra when conditioning on sets of measure zero.
+
 
 \chapter{Safe probability}\label{chap:SafeProp}
 
