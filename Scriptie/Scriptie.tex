@@ -148,32 +148,34 @@ I propose a solution that the thirders use a different model than the halfers. T
 
 Every problem has a different reason for getting paradoxical results. There is one recurring theme with all paradoxes, namely when analysing these problems most of the times the underlying $\sigma$-algebra is not taken into account. This yields to various conflicting results, as conditioning on events that cannot be conditioned on to not recognizing that multiple probability distributions are possible. The theme of is thesis this therefore that when doing probability theory, the underlying probability space and $\sigma$-algebra must never be ignored and not providing a sub-$\sigma$-algebra with a conditional distribution must become a bad habit instead of an accepted practice.
 
+
+
 \chapter{The Borel-Kolmogorov paradox}\label{chap:BorelKolmogorov}
-The first paradox we will study in more detail is the Borel-Kolmogorov paradox. It is first study by Borel \cite{Borel09} and Kolmogorov \cite{Kolmogorov33} and has sparked debate over the centuries afterwards\footnote{Bronnen lezen en invoeren.}. We will take a look the following version of the paradox.
+The first paradox we will study in more detail is the Borel-Kolmogorov paradox. It is first studied by Borel \cite{Borel09} and Kolmogorov \cite{Kolmogorov33} and has sparked debate over the centuries afterwards\footnote{Bronnen lezen en invoeren.}. We will take a look the following version of the paradox.
 
-Suppose a random variable has a uniform probability distribution on the unit sphere. If one conditions on a great circle, what will be the resulting conditional distribution? If the great circle is viewed as a longitude, the conditional distribution will be uniform as well. However, if the great circle is viewed as a meridian, the conditional distribution has a cosine as density function. We have two different conditional distributions on the same set, thus which one is correct?
+Suppose a random variable has a uniform probability distribution on the unit sphere. If one conditions on a great circle, what will the resulting conditional distribution be? If the great circle is viewed as a longitude, the conditional distribution will be uniform as well. However, if the great circle is modelled as a meridian, the conditional distribution has a cosine as density function. We have two different conditional distributions on the same set, thus which one is correct?
 
-As Kolmogorov \cite{Kolmogorov33} points out, the great circle has zero measure and therefore conditioning on a great circle must not be allowed. Our analysis will follow \cite{Gyenis17}, who comes to the same conclusion as Kolmogorov with a more elaborate explanation.
+As Kolmogorov \cite{Kolmogorov33} pointed out, the great circle has zero measure and therefore conditioning on a great circle must not be allowed. Our analysis will concern conditioning on zero sets using measure-theoretic conditional expectations as such conditioning is defined in that setting. The article of Gyenis, Hofer-Szabó and Rédei \cite{Gyenis17} is followed to compute the conditional distributions, who come to the same conclusion as Kolmogorov but with a more elaborate explanation.
 
-Before we can start with the analysis, we need to define conditional expectations in the measure-theoretic setting. We will then prove that the conditional distributions on a great circle can differ and conclude from the results that conditioning on zero sets cannot be admissible. The Borel-Kolmogorov paradox will then be renamed to \emph{the Borel-Kolmogorov phenomenon}, as it is more an example on why you should not condition on zero sets than it is a paradox.
+Before we can start with the analysis, we need to define conditional expectations in the measure-theoretic setting. We will then prove that the conditional distributions on a great circle can differ and conclude from the results that conditioning on zero sets cannot be admissible. The Borel-Kolmogorov paradox will then be renamed to the \emph{Borel-Kolmogorov phenomenon}, as it is more an example on why you should not condition on zero sets than it is a paradox.
 
 \section{Conditional expectation}
 First we need to define conditional expectations. We will use the definitions given by David Williams \cite{Williams91}.
 
-Let $\Omega$ be an arbitrary space and let $\mathcal{F}$ be a $\sigma$-algebra on $\Omega$. The indicator function $\1_A$ on a set $A$ is defined as
+Let $\Omega$ be an arbitrary sample space and let $\mathcal{F}$ be a $\sigma$-algebra on $\Omega$. The indicator function $\1_A$ on a set $A$ is defined as
 \begin{equation}
 \1_A(x)=\begin{cases}1,&x\in A,\\0,&x\not\in A.\end{cases}
 \end{equation}
-Lastly, let $\B(A)$ be the $\sigma$-algebra of all Borel-measurable sets on $A\subseteq\R^n$. We will first define a random variable.
+Let $\B(A)$ be the $\sigma$-algebra of all Borel-measurable sets on $A\subseteq\R^n$. We will start with the definition of a random variable.
 
 \begin{definition}[Random variable]
-A function $X\colon\Omega\to\R$ is a \emph{random variable} if it is $\F$-measurable, thus if $X^{-1}(A)\in\F$ holds for all $A\in\B$ where $\B$ is the Borel $\sigma$-algebra on $\R$.
+Let $\X$ be a measurable space. A function $X\colon\Omega\to\X$ is an \emph{$\X$-valued random variable} if it is $\F$-measurable, thus if $X^{-1}(A)\in\F$ holds for all $A\in\G$ where $\G$ is a $\sigma$-algebra on $\X$.
 \end{definition}
 
-We can now define the conditional expectation.
+We can now define the conditional expectation as definition 9.2 of \cite{Williams91}.
 
 \begin{definition}[Conditional expectation]\label{def:conexp}
-Let $X$ be an $\F$-measurable random variable with finite $\E[|X|]$. Let $\G$ be a sub-$\sigma$-algebra of $\F$. Then there exists a random variable $Y$ such that 
+Let $X$ be an $\F$-measurable random variable with finite $\E[|X|]$. Let $\G$ be a sub-$\sigma$-algebra of $\F$. There exists a random variable $Y$ such that 
 \begin{enumerate}
 \item $Y$ is $\G$-measurable,
 \item $\E[|Y|]$ is finite,
@@ -191,32 +193,17 @@ The traditional definition of conditional expectation is that when $X$ and $Y$ a
 \begin{equation}
 \E[X|Y=y]=\int_\R x\frac{f_{X,Y}(x,y)}{f_Y(y)}dx.
 \end{equation}
-Definition~\ref{def:conexp} agrees on this traditional usage. Take $\G=\sigma(\{Y=y\})$, the smallest $\sigma$-algebra generated by all $\omega\in\R$ such that $Y(\omega)=y$, and define
+Definition~\ref{def:conexp} agrees on this traditional usage. Take $\G=\sigma(\{Y=y\})$. The smallest $\sigma$-algebra generated by all $\omega\in\R$ such that $Y(\omega)=y$ and define
 \begin{equation}
 g(y)=\int_\R x\frac{f_{X,Y}(x,y)}{f_Y(y)}dx,
 \end{equation}
 then $g(Y)$ is a version of $\E[X|Y]$. The proof and a more general statement can be found in section~9.6 of \cite{Williams91}.
 
-Definition~\ref{def:conexp} extends very nicely to the definition of conditional probability. For an $F\in\F$ we have $\E[\1_F]=\P[F]$, which carries over to conditional expectations as well.
+Definition~\ref{def:conexp} extends very nicely to the definition of conditional probability. Note that $\E[\1_F]=\P[F]$ holds for all $F\in\F$ and this carries over to conditional probabilities.
 
 \begin{definition}[Conditional probability]
 If $\G$ is a sub-$\sigma$-algebra of $\F$ and $F\in\F$, then the \emph{conditional probability} $\P[F|\G]$ is a version of $\E[\1_F|\G]$.
 \end{definition}
-
-We conclude this section with a list of useful properties of conditional expectation, taken from section~9.7 of \cite{Williams91}.
-
-\begin{property}\label{property:expcon}
-Let $X$ be a random variable, $\G,\H$ be a sub-$\sigma$-algebra of $\F$, then:
-\begin{enumerate}
-\item If $Y$ is a version of $\E[X|\G]$, then $\E[Y]=\E[X]$.
-\item If $X$ is $\G$-measuarable, then $\E[X|\G]=\E[X]$ almost surely.
-\item $\E[X|\G]$ is almost surely linear in $X$.
-\item If $X\geq 0$, then $\E[X|G]\geq 0$.
-\item If $\H$ is a sub-$\sigma$-algebra of $\G$, then $\E[\E[X|\G]|\H]=\E[X|\H]$ almost surely.
-\item If $Z$ is $\G$-measurable and bounded, then $\E[ZX|\G]=Z\E[X|\G]$ almost surely.
-\item If $\H$ is independent of $\sigma(\sigma(X),\G)$, then $\E[X|\sigma(\G,\H)]=\E[X|\G]$ almost surely. If $X$ is independent of $\H$, then $\E[X|\H]=\E[X]$ almost surely.
-\end{enumerate}
-\end{property}
 
 \section{Formal description of the Borel-Kolmogorov paradox}
 To analyse the Borel-Kolmogorov paradox, we need a formal version of the problem. Let $S$ be the unit sphere. For easier calculations, we equip $S$ with polar coordinates. Define $S=[0,2\pi)\times[0,\pi]$, then $S$ is described in the Euclidean space with the function
@@ -225,9 +212,9 @@ S\to\R^3:(\phi,\psi)\mapsto(\cos\phi\sin\psi,\sin\phi\sin\psi,\cos\psi).
 \end{equation}
 Let $\B=\B(S)$ be the Borel-$\sigma$-algebra on $S$. The uniform distribution on $S$ is defined as
 \begin{equation}
-\P[B]=\frac{1}{4\pi}\iint_B\sin\psi d\psi d\phi.
+\P[B]=\frac{1}{4\pi}\iint_B\sin\psi d\psi d\phi
 \end{equation}
-The triple $(S,\B,\P)$ form a probability space.
+for a $B\in\B$. The triple $(S,\B,\P)$ form a probability space.
 
 The set of longitudes is described by 
 \begin{equation}
@@ -235,32 +222,32 @@ The set of longitudes is described by
 \end{equation}
 and the set of meridians is described by
 \begin{equation}
-\mathcal{M}=\{\{\phi,\phi+\pi\}\times[0,\pi]\mid\phi\in[0,\pi]\}.
+\mathcal{M}=\{\{\phi,\phi+\pi\}\times[0,\pi]\mid\phi\in[0,\pi)\}.
 \end{equation}
 
-Note that the function in \eqref{eq:BorelPolar} is not a bijection, however the image of $S$ coincides on a null set which will not cause any problems in our case. The meridians $\{0,\pi\}\times[0,\pi]$ and $\{\pi,2\pi\}\times[0,\pi]$ in $\mathcal{M}$ also define the same meridian on $S$, but this will also not cause any concerns. The reason why for example \eqref{eq:BorelPolar} is not a formal bijection is that it eases notation where there is no explicit need to make \eqref{eq:BorelPolar} a bijection.
+Note that the function in \eqref{eq:BorelPolar} is not a bijection. The image of $S$ is not one-to-one on the north and south pole, but this is a null set and will not cause any problems in our case. The reason why \eqref{eq:BorelPolar} is not made a formal bijection is that it eases notation.
 
 \section{Conditional distributions}
 We will now explore various ways to describe the conditional distribution on a great circle.
 \subsection{Naive conditional probability}\label{sec:BorelNaive}
-The first method is the naive method using traditional conditional probability. The probability space here is $(S,\B,\P)$. Let $B\in\B$ be a great circle.
+The first method is the naive method using traditional conditional probability. The probability space here is $(S,\B,\P)$. Let $F\in\B$ be a great circle.
 
-Note that $\P[B]=0$, as a great circle always has zero measure. To be precise, let $f\colon S\to\R^3$ be the coordinate transformation of \eqref{eq:BorelPolar}. All great circles $B'$ have a rotation $O\colon\R^3\to\R^3$ such that $(f^{-1}\circ O\circ f)(B')=[0,2\pi)\times\left\{\frac{\pi}{2}\right\}$. Rotations are orthogonal and have determinant $1$, thus
+Note that $\P[F]=0$, as a great circle always has zero measure. To be precise, let $f\colon S\to\R^3$ be the coordinate transformation of \eqref{eq:BorelPolar}. All great circles $F'$ have a rotation $O\colon\R^3\to\R^3$ such that $(f^{-1}\circ O\circ f)(F')=[0,2\pi)\times\left\{\frac{\pi}{2}\right\}$. Rotations are orthogonal and have determinant $1$, thus
 \begin{align}
-\P[B]&=\frac{1}{4\pi}\iint_B\sin\psi d\psi d\phi\\
+\P[F]&=\frac{1}{4\pi}\iint_F\sin\psi d\psi d\phi\\
 &=\frac{1}{4\pi}\int_0^{2\pi}\int_{\frac{1}{2}\pi}^{\frac{1}{2}\pi}\sin\psi \det(f^{-1}\circ O\circ f)d\psi d\phi\\
 &=\frac{1}{4\pi}\int_0^{2\pi}\int_{\frac{1}{2}\pi}^{\frac{1}{2}\pi}\sin\psi d\psi d\phi=0.
 \end{align}
-The inverse $f^{-1}$ is well-defined here since $f$ is a bijection locally around the circle $[0,2\pi)\times\left\{\frac{\pi}{2}\right\}$. Let $F\subset B$ be a measurable subset of $B$, then the conditional probability of $F$ given $B$ equals
+The inverse $f^{-1}$ is well-defined here since $f$ is a bijection locally around the circle $[0,2\pi)\times\left\{\frac{\pi}{2}\right\}$. Let $E\subset F$ be a measurable subset of $F$, then the conditional probability of $E$ given $F$ equals
 \begin{equation}
-\P[F|B]=\frac{\P[F\cap B]}{\P[B]},
+\P[E|F]=\frac{\P[E\cap F]}{\P[F]},
 \end{equation}
-which is not defined as $\P[B]=0$.
+which is not defined as $\P[F]=0$.
 
 Thus classical Bayesian interpretation of conditional probability will not give an answer. Furthermore, a single great circle does not yield enough information to compute any conditional probability. In terms of definition~\ref{def:conexp} the sub-$\sigma$-algebra considered here is $\G=\{\emptyset,S,B,S\setminus B\}$, which turns out to be too small.
 
 \subsection{Conditional probability on longitudes}\label{sec:BorelLong}
-Since four-element sub-$\sigma$-algebras are too small, we need to condition on bigger sub-$\sigma$-algebras. One option is the $\sigma$-algebra of longitudes. Let
+Since four-element sub-$\sigma$-algebras are too small, we need to condition on larger sub-$\sigma$-algebras. One option is the $\sigma$-algebra of longitudes. Let
 \begin{equation}
 \mathfrak{C}=\sigma\left(\left\{[0,2\pi)\times A\mid A\in\B([0,\pi])\right\}\right)
 \end{equation}
@@ -292,7 +279,7 @@ Filling in $\E[X|\mathfrak{C}]$ and rewriting yields
 Note that $\mathfrak{C}$ is generated by sets like $C$, thus $\E[X|\mathfrak{C}]$ is a well-defined version of the $\mathfrak{C}$-conditional expectation of $X$.
 \end{proof}
 
-This derivation is slightly different from the one in \cite{Gyenis17}. There they claim that the volume of the unit sphere is $2\pi$, whereas they actually meant the surface area of the unit sphere which is $4\pi$. Luckily this constant is not actually used in the computations, thus their mistake has no impact on the rest of their article.
+This derivation is slightly different from the one in \cite{Gyenis17}. There they claim that the volume of the unit sphere is $2\pi$, whereas they should have claimed that the surface area of the unit sphere is $4\pi$. Luckily this constant is not actually used in the computations, thus their mistake has no impact on the rest of their article.
 
 As we now have a $\mathfrak{C}$-conditional expectation, we can look at the measure space $(S,\mathfrak{C})$. Let $\psi'\in(0,\pi)$ be arbitrary, then from $\mathfrak{C}$ we can take a longitude $C=[0,2\pi)\times\{\psi'\}$ and a measurable arc $A=[\phi_1,\phi_2]\times\{\psi'\}\subset C$. Let $\P'$ be the probability measure taking $1$ on $C$ and $0$ on $C^c$, then the conditional probability $\bar{\P}$ of points being on $A$ given there is a point on $C$ is
 \begin{align}
@@ -303,11 +290,11 @@ As we now have a $\mathfrak{C}$-conditional expectation, we can look at the meas
 Thus the conditional probability distribution on $C$ is uniform, resulting in all longitudes having uniform conditional probability measure.
 
 \subsection{Conditional probability on meridians}\label{sec:BorelMer}
-A great circle can not only be described as a longitude, but as a meridian as well. Therefore we would like to see whether describing great circles as meridians yield to the same conditional distribution. Let 
+A great circle can not only be described as a longitude, but also as a meridian. Therefore it is interesting whether describing great circles as meridians yield to the same conditional distribution. Let 
 \begin{equation}
 \mathfrak{M}=\sigma(\{A\times[0,\pi]\mid A\in\B([0,2\pi))\})
 \end{equation}
-be the $\sigma$-algebra of measurable subsets of meridians. We can now calculate the conditional expectation of $\E[X|\mathfrak{M}]$.
+be the $\sigma$-algebra of measurable subsets of meridians. We can now calculate the conditional expectation $\E[X|\mathfrak{M}]$.
 \begin{proposition}
 Let $X$ be $\B$-measurable. The conditional expectation of $\E[X|\mathfrak{M}]$ is given by
 \begin{equation}
@@ -328,25 +315,25 @@ The proof is largely taken from \cite{Gyenis17}. Let $A\in\B([0,2\pi))$ be measu
 Note that $\mathfrak{M}$ is generated by sets like $M$, thus $\E[X|\mathfrak{M}]$ is a well-defined version of the $\mathfrak{M}$-conditional expectation of $X$.
 \end{proof}
 
-Note that this representation is different from equations (81) and (112) of \cite{Gyenis17}, namely
+Note that this representation is different from equations (81) and (112) of \cite{Gyenis17}, where equation 81 is
 \begin{equation}
 \E[X|\mathfrak{M}](\phi,\psi)=\frac{1}{2}\int_0^{2\pi}X(\phi,\psi')|\sin\psi'|d\psi'
 \end{equation}
-and 
+and equation 112 is
 \begin{equation}
 \E[X|\mathfrak{M}](\phi,\psi)=\int_0^{\pi}X(\phi,\psi')\sin\psi'd\psi',
 \end{equation}
-as those versions wrong for the following reasons:
+as those versions are wrong for the following reasons:
 \begin{enumerate}
 \item In the verification \cite{Gyenis17} claims that $\int_0^\pi\sin\theta d\theta=1$ holds between equations (107) and (108) and between equations (115) and (116), while that integral actually has value $2$.
 \item The conditional distribution of \cite{Gyenis17} is verified on a half meridian arc on page 2614, while this distribution must be verified on a full circle in order to be compared with the longitudes. Verification on a full meridian, e.g.~computation of $q(C)$ in formula (85), quickly reveals that the conditional distribution of \cite{Gyenis17} integrates to $2$.
-\item Between equations (105) and (106) of \cite{Gyenis17}, they implicitly claim that the identity $X(\phi,\theta)=X(\phi,\theta+\pi)$ holds for all $\F$-measurable $X$, where now notation of \cite{Gyenis17} is used. This is most certainly false without any more restrictions on $X$.
 \item The random variable $X$ is integrated on the domain $[0,2\pi)$, while $X$ is only defined on $[0,2\pi)\times[0,\pi]\in\mathfrak{M}$. The set $A\times[0,2\pi)$ is not an element of $\mathfrak{M}$.
+\item Between equations (105) and (106) of \cite{Gyenis17}, they implicitly claim that the identity $X(\phi,\theta)=X(\phi,\theta+\pi)$ holds for all $\F$-measurable $X$, where now notation of \cite{Gyenis17} is used. This is most certainly false without any more restrictions on $X$.
 \item Before equation (85) a measure $q_\mathcal{M}$ is defined on a whole meridian. Since the integral is taken from $\psi=0$ to $\psi=2\pi$, the integral of $q_\mathcal{M}$ over $S$ becomes $1$. However, as pointed out earlier, $\psi>\pi$ is not in our domain. Thus the integral must be split up in two arcs with $q_{\mathcal{M}}$ taking value $\frac{1}{2}$ on each arc.
 \item The normalization constant is used in equation (103) of \cite{Gyenis17} is $2\pi$, where it must be $4\pi$. This does however not impact further calculations, like the same mistake made from equation (109) to (110) in the section of longitudes.
 \end{enumerate}
 
-We can verify that our version is the correct one. Take first the meridian $M=\{\phi',\phi'+\pi\}\times[0,\pi]\in\mathfrak{M}$ with $\phi'\in[0,\pi]$. Let $\psi_1^*,\psi_2^*\in\R$ be arbitrary with $\psi_2^*-2\pi\leq\psi_1^*\leq\psi_2^*$, define the angles $\psi_1=\psi_1^*\mod2\pi$ and $\psi_2=\psi_2^*\mod2\pi$ and define arc $A\subseteq M$ as
+We can verify that our version is the correct one. Take first the meridian $M=\{\phi',\phi'+\pi\}\times[0,\pi]\in\mathfrak{M}$ with $\phi'\in[0,\pi)$. Let $\psi_1^*,\psi_2^*\in\R$ be arbitrary with $\psi_2^*-2\pi\leq\psi_1^*\leq\psi_2^*$, define the angles $\psi_1=\psi_1^*\mod2\pi$ and $\psi_2=\psi_2^*\mod2\pi$ and define arc $A\subseteq M$ as
 \begin{equation}
 A=\begin{cases}
 \{\phi'\}\times[\psi_1,\psi_2],&\psi_1,\psi_2\leq\pi,\\
@@ -355,7 +342,7 @@ A=\begin{cases}
 \{\phi'\}\times[0,\psi_1]\cup\{\phi'+\pi\}\times[0,\psi_2-\pi],&\psi_2\leq\pi,\psi_1>\pi.
 \end{cases}
 \end{equation}
-This definition is exhaustive, yet it provides all possible arcs on a meridian while restricting ourselves to the domain $[0,2\pi)\times[0,\pi]$. Now, analogous to the longitudes, let $\P'$ be the  measure taking $1$ on meridian $M$ and $0$ on $M^c$, then the conditional probability of $\hat{\P}$ of points being on $A$ with $\psi_1,\psi_2\leq\pi$ given there is a point on $M$ is given by
+This definition is exhaustive, yet it provides all possible arcs on a meridian while restricting ourselves to the domain $[0,2\pi)\times[0,\pi]$. Now, analogous to the longitudes, let $\P'$ be the uniform measure taking $1$ on meridian $M$ and $0$ on $M^c$. The conditional probability of $\hat{\P}$ of points being on $A$ with $\psi_1,\psi_2\leq\pi$ given there is a point on $M$ is given by
 \begin{align}
 \hat{\P}[A]&=\int_S\P[A|\mathfrak{M}]d\P'=\frac{1}{2}\int_S\int_0^\pi\1_A(\phi,\psi')\sin\psi'd\psi'd\P'(\phi,\psi)\\
 &=\frac{1}{2}\left(\int_{S\setminus M}\int_{\phi_1}^{\phi_2}0d\psi'd\P'+\int_{M}\1_{\{\phi'\}\times[0,\pi]}\int_{\phi_1}^{\phi_2}\sin\psi'd\psi'd\P'\right)\\
@@ -375,18 +362,18 @@ Now one can immediately check that $\hat{\P}$ is well-defined on $M$ as
 \hat{\P}[M]=\int_S\P[A|\mathfrak{M}]d\P'=\frac{1}{2}\int_M\int_0^\pi\sin\psi'd\psi'd\P'=-\frac{1}{2}\left(\cos\pi-\cos0\right)=1.
 \end{equation}
 
-Clearly this conditional distribution on meridians is not uniform. However, one should expect they are, as a meridian is just a rotation of a longitude and the points on the sphere where spread uniformly.
+Clearly this conditional distribution on meridians is not uniform. However, one should expect they are, as a meridian is just a rotation of a longitude and the points on the sphere are spread uniformly. An explanation of this difference is given in section~\ref{sec:BorelExplained}.
 
 \subsection{Combining longitudes and meridians}
-Another question one could ask is the following: if I define $\Sigma=\sigma(\mathfrak{C},\mathfrak{M})$ as the smallest $\sigma$-algebra containing both measurable subsets of meridians and longitudes, what would the conditional probability distribution on a great circle be given $\Sigma$? The answer is that in this approach the distributions in sections~\ref{sec:BorelLong} and~\ref{sec:BorelMer} can be recovered as limiting distributions of a sequence of Bayesian conditional probabilities defined in section~\ref{sec:BorelNaive}.
+Another question one could ask is the following: if I define $\Sigma=\sigma(\mathfrak{C},\mathfrak{M})$ as the smallest $\sigma$-algebra containing both measurable subsets of meridians and longitudes, what is then the conditional probability distribution on a great circle given $\Sigma$? The answer is that in this approach the distributions in sections~\ref{sec:BorelLong} and~\ref{sec:BorelMer} can be recovered as limiting distributions of a sequence of Bayesian conditional probabilities defined in section~\ref{sec:BorelNaive}.
 
-First we'll further analyze the new $\sigma$-algebra $\Sigma$. Consider an arbitrary rectangle $(a,b)\times(c,d)\subset[0,2\pi)\times[0,\pi]$. Since by definition $(a,b)\times[0,\pi]\in\mathfrak{M}$ and $[0,2\pi)\times(c,d)\in\mathfrak{C}$, we have
+First we'll further analyse the new $\sigma$-algebra $\Sigma$. Consider an arbitrary rectangle $(a,b)\times(c,d)\subset[0,2\pi)\times[0,\pi]$. Since by definition $(a,b)\times[0,\pi]\in\mathfrak{M}$ and $[0,2\pi)\times(c,d)\in\mathfrak{C}$, we have
 \[(a,b)\times(c,d)=\left((a,b)\times[0,\pi]\right)\cap\left([0,2\pi)\times(c,d)\right)\in\Sigma.\]
-Thus we have proven that all Borel-measurable sets on our sphere are contained in $\Sigma$. Furthermore, as $\mathfrak{C}$ and $\mathfrak{M}$ contain only Borel-measurable sets, $\Sigma=\sigma(\mathfrak{C},\mathfrak{M})$ can only have Borel-measurable sets. Thus $\Sigma=\B$ is the set of Borel-measurable sets on the sphere.
+Thus all Borel-measurable sets on our sphere are contained in $\Sigma$. Furthermore, as $\mathfrak{C}$ and $\mathfrak{M}$ contain only Borel-measurable sets, $\Sigma=\sigma(\mathfrak{C},\mathfrak{M})$ can only have Borel-measurable sets. Therefore $\Sigma=\B$ is the $\sigma$-algebra of Borel-measurable sets on the sphere.
 
-Now take the following approach. Pick $x\in(0,\pi)$. Define the two rectangles $C_\epsilon=[0,2\pi)\times[x-\epsilon,x+\epsilon]$ and $R_\epsilon=(a,b)\times[x-\epsilon,x+\epsilon]\subseteq C_\epsilon$ for all ${\epsilon\in(0,\min\{\pi-x,x\})}$, then what is the limiting conditional probability of $R_0$ given $C_0$? The conditional probability of $R_0$ given $C_0$ can be modeled as the limit of the sequence $\P[R_\epsilon|C_\epsilon]$ with $\epsilon\to0$, which will take on the uniform distribution on $C_0$ as calculated in equation~\eqref{eq:BorelLongConProb}.
+Now take the following approach. Pick $x\in(0,\pi)$. Define the two rectangles $C_\epsilon=[0,2\pi)\times[x-\epsilon,x+\epsilon]$ and $R_\epsilon=[a,b]\times[x-\epsilon,x+\epsilon]\subseteq C_\epsilon$ for all ${\epsilon\in(0,\min\{\pi-x,x\})}$, then what is the limiting conditional probability of $R_0$ given $C_0$? The conditional probability of $R_0$ given $C_0$ can be modeled as the limit of the sequence $\P[R_\epsilon|C_\epsilon]$ with $\epsilon\to0$, which will take on the uniform distribution on $C_0$ as calculated in equation~\ref{eq:BorelLongConProb}.
 \begin{proposition}\label{prop:BorelLongBayes}
-Define the two rectangles $R_\epsilon=[a,b]\times[x-\epsilon,x+\epsilon]$ and $C_\epsilon=[0,2\pi)\times[x-\epsilon,x+\epsilon]$ for all $\epsilon\in(0,\min\{\pi-x,x\})$ with $x\in(0,\pi)$. The limiting conditional probability of $R_0$ given $C_0$ equals
+Define the two rectangles $C_\epsilon=[0,2\pi)\times[x-\epsilon,x+\epsilon]$ and $R_\epsilon=[a,b]\times[x-\epsilon,x+\epsilon]\subset C_\epsilon$ for all $\epsilon\in(0,\min\{\pi-x,x\})$ with $x\in(0,\pi)$. The limiting conditional probability of $R_0$ given $C_0$ equals
 \begin{equation}
 \P[R_0|C_0]=\lim_{\epsilon\downarrow0}\P[R_\epsilon|C_\epsilon]=\frac{b-a}{2\pi}.
 \end{equation}
@@ -418,42 +405,41 @@ The conditional probability $\P[R_\epsilon|M_\epsilon]$ equals
 The limit of $\epsilon\downarrow0$ remains $\P[R_0|M_0]=\frac{1}{2}\left(\cos a-\cos b\right)$.
 \end{proof}
 
-Therefore the limit is $\P[R_0|M_0]=\frac{1}{2}\left(\cos a-\cos b\right)$, which is the same probability as in equation~\ref{eq:BorelMerConProb}. Note that this probability has a normalization factor of $\frac{1}{2}$ instead of $\frac{1}{4}$, as $M_\epsilon$ converges to only a half meridian. By symmetry the distribution on the whole meridian follows the absolute cosine function.
+Note that the probability in proposition~\ref{prop:BorelMerBayes} has $\frac{1}{2}$ as normalization factor instead of $\frac{1}{4}$, as $M_\epsilon$ converges to only a half meridian. By symmetry the distribution on the whole meridian follows the absolute cosine function.
 
-The conditional probabilities on $\mathfrak{C}$ and $\mathfrak{M}$ therefore can be approached by Bayesian conditional probabilities on $\Sigma$. This gives rise to the following conjecture.
+The conditional probabilities on $\mathfrak{C}$ and $\mathfrak{M}$ therefore can be approached by Bayesian conditional probabilities on $\B$. This gives rise to the following conjecture.
 \begin{conjecture}\label{con:BorelConjecture}
-Let $(X,\F,\P)$ be a probability space. Let $F\in\mathcal{F}$ have zero measure and let $E\subseteq F$ be measurable. Let $\G\subset\F$ be a sub-$\sigma$-algebra with $\G\neq\F$ containing $E$ and $F$. Let $\{F_n\}_{n\in\N}\subset\G$ be a sequence converging to $F$ and $\{E_n\}_{n\in\N}\subset\G$ be a sequence converging to $E$ with $\P[F_n]>0$, $\P[E_n]>0$ and $E_n\subseteq F_n$ for all $n\in\N$ and with existing limit $\lim_{n\to\infty}\P[E_n|F_n]$. Then
+Let $(X,\F,\P)$ be a probability space. Let $F\in\mathcal{F}$ have zero measure and let $E\subseteq F$ be measurable. Let $\G\subset\F$ be a sub-$\sigma$-algebra containing $E$ and $F$ with $\G\neq\F$. Let $\{F_n\}_{n\in\N}\subset\G$ be a sequence converging to $F$ and $\{E_n\}_{n\in\N}\subset\G$ be a sequence converging to $E$ with for all $n\in\N$ the sets $E_n$ and $F_n$ have positive measure, $E_n\subseteq F_n$ holds and the limit $\lim_{n\to\infty}\P[E_n|F_n]$ exists. Then
 \begin{equation}
 \P[E|F]:=\lim_{n\to\infty}\P[E_n|F_n]=\int_X\E[\1_F|\mathcal{G}]d\P'(E)
 \end{equation}
 where $\P'$ is the probability measure taking $1$ on $F$ and $\E[\cdot|\G]$ is a version of the conditional expectation on $\G$.
 \end{conjecture}
 
-If conjecture~\ref{con:BorelConjecture} is true, then all conditional probabilities on null sets can be computed by limiting Bayesian conditional probabilities. It however is false, but it is interesting to search for a slightly different conjecture that is true. Note that conjecture~\ref{con:BorelConjecture} holds in the some cases for the Borel-Kolmogorov paradox. When considering longitudes we have $\F=\B$ and $\G=\mathfrak{C}$ and when considering meridians we have $\F=\B$ and $\G=\mathfrak{M}$.
+If conjecture~\ref{con:BorelConjecture} is true, then all conditional probabilities on null sets can be computed by limiting Bayesian conditional probabilities. It seems to hold as for the Borel-Kolmogorov paradox when considering longitudes we can take $\F=\B$ and $\G=\mathfrak{C}$ and when considering meridians we can take $\F=\B$ and $\G=\mathfrak{M}$. It however is false as the following proposition will point out.
 
 \begin{proposition}\label{prop:BorelConFalse}
 Conjecture~\ref{con:BorelConjecture} is false.
 \end{proposition}
 \begin{proof}
-In sections \ref{sec:BorelLong} and \ref{sec:BorelMer} we have seen thatthe parametrization using longitudes gave the uniform distribution and the parametrization using meridians gave a cosine. However, in section~\ref{sec:BorelLong} the set $\{0,2\pi\}\times\left\{\frac{\pi}{2}\right\}$ is considered, where section~\ref{sec:BorelMer} treads the set $\{0,\pi\}\times[0,\pi]$, which is different. We can let these sets overlap using a rotation.
+In sections \ref{sec:BorelLong} and \ref{sec:BorelMer} we have seen that the parametrization using longitudes gave the uniform distribution and the parametrization using meridians gave a cosine. However, in section~\ref{sec:BorelLong} the set $\{0,2\pi\}\times\left\{\frac{\pi}{2}\right\}$ is considered, where section~\ref{sec:BorelMer} treats the set $\{0,\pi\}\times[0,\pi]$. Those sets differer, however we can find a set which has two different probabilities using a rotation.
 
 Call $f$ the transformation from polar to Euclidean coordinates from equation~\ref{eq:BorelPolar}. Let $O$ be a rotation such that
 \begin{equation}
 (f^{-1}\circ O\circ f)\left([0,\pi]\times\left\{\frac{\pi}{2}\right\}\right)=\{\pi\}\times[0,\pi],
 \end{equation}
-thus where the largest longitude is rotated to a meridian. Recall that $\mathfrak{C}$ is the $\sigma$-algebra of longitudes. We now rotate those longitudes to get the following $\sigma$-algebra:
+thus where the largest half longitude is rotated to a half meridian. Recall that $\mathfrak{C}$ is the $\sigma$-algebra of longitudes. We now rotate those longitudes to get the following $\sigma$-algebra:
 \begin{equation}
-\mathfrak{C}'=\left\{F\in\B:\left(f^{-1}\circ O^{-1}\circ f\right)(F),F\in\mathfrak{C}\right\}.
+\mathfrak{C}'=\left\{F'\in\B\mid F'=\left(f^{-1}\circ O^{-1}\circ f\right)(F),F\in\mathfrak{C}\right\}.
 \end{equation}
-Now $F=\{\pi\}\times[0,\pi]$ lies both in $\mathfrak{C}'$ and $\mathfrak{M}$. We will prove that different methods of converging to $F$ yield to different $\P[E|F]$ for a measurable $E$. We will take the set $E=\{\pi\}\times\left[\frac{1}{4}\pi,\frac{3}{4}\pi\right]$.
+Now $F=\{\pi\}\times[0,\pi]$ is an element of both $\mathfrak{C}'$ and $\mathfrak{M}$. We will prove that different methods of converging to $F$ yield to different $\P[E|F]$ for a measurable $E$. We will take the set $E=\{\pi\}\times\left[\frac{1}{4}\pi,\frac{3}{4}\pi\right]$ as our example.
 
-First take a look at $\mathfrak{C}'$. Let $\epsilon\in\left(0,\frac{\pi}{2}\right)$ be arbitrary and consider the sets $C_\epsilon=[0,\pi]\times\left[\frac{\pi}{2}-\epsilon,\frac{\pi}{2}+\epsilon\right]$ and $R_\epsilon=\left[\frac{1}{4}\pi,\frac{3}{4}\pi\right]\times\left[\frac{\pi}{2}-\epsilon,\frac{\pi}{2}+\epsilon\right]$. The proof of proposition~\ref{prop:BorelLongBayes} can be followed to prove that $\P[R_\epsilon|C_\epsilon]=\frac{1}{2}$, thus $\P[R_0|C_0]=\frac{1}{2}$ as well.\\
-Let $\{R'_{n^{-1}}\}_{n\in\N}$ be with $R'_{n^{-1}}=(f^{-1}\circ O^{-1}\circ f)(R_{n^{-1}})$ and let $\{C'_{n^{-1}}\}_{n\in\N}$ be with $C'_{n^{-1}}=(f^{-1}\circ O^{-1}\circ f)(C_{n^{-1}})$. Since $R_{n^{-1}},C_{n^{-1}}\in\mathfrak{\C}$ holds for all $n\in\N$, we get $\{R'_{n^{-1}}\}_{n\in\N},\{C'_{n^{-1}}\}_{n\in\N}\subset\mathfrak{C'}$. Furthermore, $f^{-1}\circ O^{-1}\circ f$ has determinant $1$ since $O$ is a rotation and $f$ is almost surely a bijection on $F$, we get
+First take a look at $\mathfrak{C}'$. Let $\epsilon\in\left(0,\frac{\pi}{2}\right)$ be arbitrary and consider the sets $C_\epsilon=[0,\pi]\times\left[\frac{\pi}{2}-\epsilon,\frac{\pi}{2}+\epsilon\right]$ and $R_\epsilon=\left[\frac{1}{4}\pi,\frac{3}{4}\pi\right]\times\left[\frac{\pi}{2}-\epsilon,\frac{\pi}{2}+\epsilon\right]$. Let $\{R'_{n^{-1}}\}_{n\in\N}$ be with $R'_{n^{-1}}=(f^{-1}\circ O^{-1}\circ f)(R_{n^{-1}})$ and let the sequence $\{C'_{n^{-1}}\}_{n\in\N}$ be with $C'_{n^{-1}}=(f^{-1}\circ O^{-1}\circ f)(C_{n^{-1}})$. Since $R_{n^{-1}},C_{n^{-1}}\in\mathfrak{C}$ holds for all $n\in\N$, we get $\{R'_{n^{-1}}\}_{n\in\N},\{C'_{n^{-1}}\}_{n\in\N}\subset\mathfrak{C'}$. Furthermore, $f^{-1}\circ O^{-1}\circ f$ has determinant $1$ since $O$ is a rotation and $f$ is almost surely a bijection on $F$, resulting to
 \begin{align}
 \P[R'_\epsilon|C'_\epsilon]&=\frac{\P[R'_\epsilon]}{\P[C'_\epsilon]}=\frac{\iint_{R'_\epsilon}\sin\psi d\psi d\phi}{\iint_{C'_\epsilon} \sin\psi d\psi d\phi}=\frac{\iint_{R_\epsilon}g(\sin\psi)\cdot1 d\psi d\phi}{\iint_{C_\epsilon}g(\sin\psi)\cdot1d\psi d\phi}\\
 &=\frac{\int_{\frac{1}{4}\pi}^{\frac{3}{4}\pi}\int_{\frac{\pi}{2}-\epsilon}^{\frac{\pi}{2}+\epsilon}g(\sin\psi)\cdot1 d\psi d\phi}{\int_{0}^{\pi}\int_{\frac{\pi}{2}-\epsilon}^{\frac{\pi}{2}+\epsilon}g(\sin\psi)\cdot1d\psi d\phi}=\frac{\frac{3}{4}\pi-\frac{1}{4}\pi}{\pi}=\frac{1}{2}
 \end{align}
-where $g(x)$ is the result of the transformation $f^{-1}\circ O^{-1}\circ f$ on the integrand. The function $g$ is not written out explicitly, as the integral can be split up using Fubini's theorem and the resulting integrals in the numerator en denominator with $g$ in the integrand are equal, thus cancel out. The result is $\P[R'_0|C'_0]=\frac{1}{2}$, as $\P[R'_\epsilon|C'_\epsilon]$ is constant in $\epsilon$. The sequence $\{R'_{n^{-1}}\}_{n\in\N}$ converges to $E$ and the sequence $\{C'_{n^{-1}}\}_{n\in\N}$ converges to $F$, thus we have $\P[E|F]=\frac{1}{2}$ as well.
+where $g(x)$ is the result of the transformation $f^{-1}\circ O^{-1}\circ f$ on the integrand. The function $g$ is not written out explicitly, as the integral can be split up as a multiplication of integrals and the resulting integrals in the numerator en denominator with $g$ in the integrand are equal, thus cancel out. The result is $\P[R'_0|C'_0]=\frac{1}{2}$, as $\P[R'_\epsilon|C'_\epsilon]$ is constant in $\epsilon$. The sequence $\{R'_{n^{-1}}\}_{n\in\N}$ converges to $E$ and the sequence $\{C'_{n^{-1}}\}_{n\in\N}$ converges to $F$, thus we have $\P[E|F]=\frac{1}{2}$ as well.
 
 For $\mathfrak{M}$ we will use proposition~\ref{prop:BorelMerBayes}. Let $x=\pi$ and $\epsilon\in(0,\pi)$, then we have $M_\epsilon\in\mathfrak{M}$ and $R_\epsilon=[\pi-\epsilon,\pi+\epsilon]\times\left[\frac{1}{4}\pi,\frac{3}{4}\pi\right]\subset M_\epsilon$. Furthermore, the sequence $\{M_{n^{-1}}\}_{n\in\N}$ converges to $F$ and $\{R_{n^{-1}}\}_{n\in\N}$ converges to $E$, thus proposition~\ref{prop:BorelMerBayes} states that
 \begin{equation}
@@ -465,7 +451,7 @@ We now have both $\P[E|F]=\frac{1}{2}$ and $\P[E|F]=\frac{1}{2}\sqrt{2}$, which 
 
 This demonstrates that when having an $F\in\F$ with zero measure, one cannot uniquely define $\P[E|F]$. A conditional expectation needs to be accompanied by a sub-$\sigma$-algebra, otherwise contradicting results can arise.
 
-Conjecture~\ref{con:BorelConjecture} can be used to guess the a conditional expectation. The measure-theoretic definition of conditional expectation is only a list of properties, not a constructive definition. Looking at proposition~\ref{prop:BorelLongBayes} and its proof, the resulting probability is $\frac{b-a}{2\pi}$, thus uniform. Furthermore, $\phi$ is the only variable that is integrated, thus one can guess $\phi$ is the only needed variable. Therefore one can suspect that
+Conjecture~\ref{con:BorelConjecture} can be used to guess a conditional expectation. The measure-theoretic definition of conditional expectation is only a list of properties, not a constructive definition. In the case of a $\mathfrak{C}$-conditional expectation, looking at proposition~\ref{prop:BorelLongBayes} and its proof we observe that the resulting probability is $\frac{b-a}{2\pi}$, thus uniform. Furthermore, $\phi$ is the only variable that is integrated, thus one can guess $\phi$ is the only needed variable. Therefore one can suspect that
 \begin{equation}
 \E\left[\1_{[a,b]\times\left\{\frac{\pi}{2}\right\}}\middle|\mathfrak{C}\right](\phi,\psi)=\frac{1}{2\pi}\int_0^{2\pi}\1_{[a,b]\times\left\{\frac{\pi}{2}\right\}}(\phi',\psi)d\phi'=\frac{b-a}{2\pi}\1_{\left\{\frac{\pi}{2}\right\}}(\psi)
 \end{equation}
@@ -475,22 +461,24 @@ holds and the guess can be generalized to
 \end{equation}
 This is in fact the same $\mathfrak{C}$-conditional expectation of $X$ by proposition~\ref{prop:BorelLongBayes}. The same steps can be taken to guess $\E[X|\mathfrak{M}]$ using proposition~\ref{prop:BorelMerBayes}. 
 
-Thus we can conclude that it is wise to look at a converging sequence of Bayesian conditional probabilities for a potential conditional expectation when conditioning on zero sets. However, it must be noted that the resulting conditional probability is not uniquely defined and depends on the chosen sub-$\sigma$-algebra.
+Thus we can conclude that it is wise to look at a converging sequence of Bayesian conditional probabilities for a potential conditional expectation when conditioning on zero sets. However, it must be noted that the resulting conditional probability is not uniquely defined, must be checked whether it complies to the actual definition of conditional probability and depends on the chosen sub-$\sigma$-algebra.
 
-\section{The Borel-Kolmogorov paradox explained}
-Following the arguments of \cite{Gyenis17} we will argue that the difference in conditional distribution is no paradox, but a misinterpretation of conditional probability. Therefore we will rename the Borel-Kolmogorov paradox to the Borel-Kolmogorov phenomenon.
+\section{The Borel-Kolmogorov paradox explained}\label{sec:BorelExplained}
+Following the arguments of \cite{Gyenis17} we will argue that the difference in conditional distribution is no paradox, but a misinterpretation of conditional probability.
 
-We will first take the intuitive approach. All meridians intersect at the north and south pole of the sphere, whereas longitudes do not intersect. Therefore $\sigma$-algebras $\mathfrak{M}$ and $\mathfrak{C}$ are vastly different. If points are spread uniformly on the meridians, the distribution of mass on the whole sphere will not be uniform and the density of mass will be highest at the poles. This is simulated by \cite{Weisstein} and his simulations support this statement.
+A first explanation is quite intuitive. All meridians intersect at the north and south pole of the sphere, whereas longitudes do not intersect. Therefore the $\sigma$-algebras $\mathfrak{M}$ and $\mathfrak{C}$ are vastly different. If points are spread uniformly on the meridians, the distribution of mass on the whole sphere will not be uniform and the density of mass will be highest at the poles. This is simulated by \cite{Weisstein} and his simulations support this statement.
 
-Let $\bar{\P}$ be the conditional probability measure on a longitude, defined by equation~\ref{eq:BorelLongConProb} and let $\hat{\P}$ be the conditional probability measure on a meridian, defined by equation~\ref{eq:BorelMerConProb}. If the spaces $(S, \mathfrak{C}, \bar{\P})$ and $(S, \mathfrak{M}, \hat{\P})$ are isomorphic with a measurable bijection, then $\hat{\P}$ and $\bar{\P}$ must have equal distribution and the results of sections~\ref{sec:BorelLong} and \ref{sec:BorelMer} must be paradoxical and contradictory. If there is a measurable bijection from a meridian to a longitude, their conditional probability distributions need to be equal. This is not the case.
+Let $\bar{\P}$ be the conditional probability measure on a longitude, defined by equation~\ref{eq:BorelLongConProb} and let $\hat{\P}$ be the conditional probability measure on a meridian, defined by equation~\ref{eq:BorelMerConProb}. If the spaces $(S, \mathfrak{C}, \bar{\P})$ and $(S, \mathfrak{M}, \hat{\P})$ are isomorphic with a measurable bijection, then $\hat{\P}$ and $\bar{\P}$ must have equal distribution and the results of sections~\ref{sec:BorelLong} and \ref{sec:BorelMer} must be paradoxical and contradictory. If there is a measurable bijection from a meridian to a longitude, their conditional probability distributions must agree. This is not the case here.
 \begin{theorem}[\cite{Gyenis17}]
 Let $f\colon S\to S$ be a measurable bijection with measurable inverse. There is no Boolean algebra isomorphism $h_f\colon\mathfrak{C}\to\mathfrak{M}$ that is determined by $f$.
 \end{theorem}
 \begin{proof}
-The proof can be found in \cite{Gyenis17}, but we will repeat it here. Suppose such isomorphism $h_f$ exists. All longitudes $C$ in $\mathfrak{C}$ are the only atoms of $\mathfrak{C}$, therefore $h_f(C)$ are the only atoms of $\mathfrak{M}$ as well, making $h_f(C)$ a meridian. We will now prove that $h_f(C)$ cannot be a meridian.
+The proof can be found in \cite{Gyenis17}, but we will repeat it here. Suppose such isomorphism $h_f$ exists. All longitudes $C$ in $\mathfrak{C}$ are the only atoms of $\mathfrak{C}$, therefore $h_f(C)$ are the only atoms of $\mathfrak{M}$ as well, making $h_f(C)$ meridians. We will now prove that $h_f(C)$ cannot be a meridian.
 
-Let $m_0=\{(0,0), (0,\pi)\}$ be the set of north and south poles. Let $c_0\in\mathfrak{C}$ be such that $h_f(c_0)=m_0$. Then $c_0$ also consists of two elements, thus we can choose longitude $C$ such that $C\cap c_0=\emptyset$. Furthermore, let $C$ also not be the north or south pole, then $h_f(C)$ is a meridian. Since $h_f$ is a Boolean algebra isomorphism, we have $h_f(C\cap c_0)=h_f(C)\cap h_f(c_0)$. Lastly, all meridians pass through the north and south pole, thus $m_0\subset h_f(C)$. This all can be combined in the following line
-\[\emptyset=h_f(\emptyset)=h_f(C\cap c_0)=h_f(C)\cap h_f(c_0)=h_f(C)\cap m_0=m_0.\]
+Let $m_0=\{(0,0), (0,\pi)\}$ be the set of north and south poles. Let $c_0\in\mathfrak{C}$ be such that $h_f(c_0)=m_0$. Then $c_0$ consists of two elements as well, thus we can choose longitude $C$ not on the north or south poles such that $C\cap c_0=\emptyset$. Note that $h_f(C)$ is a meridian, thus $m_0\subset h_f(C)$ as all meridians pass through the north and south poles. Since $h_f$ is a Boolean algebra isomorphism, we have $h_f(C\cap c_0)=h_f(C)\cap h_f(c_0)$. This all can be combined in the following line:
+\begin{equation}
+\emptyset=h_f(\emptyset)=h_f(C\cap c_0)=h_f(C)\cap h_f(c_0)=h_f(C)\cap m_0=m_0.
+\end{equation}
 This is clearly a contradiction.
 
 Let $C$ be the north or south pole of the sphere. Since $h_f$ is a bijection, $h_f(C)$ is only a single point as well. Thus $h_f(C)$ cannot be an atom of $\mathfrak{M}$. Therefore there is a contradiction here as well.
@@ -498,19 +486,19 @@ Let $C$ be the north or south pole of the sphere. Since $h_f$ is a bijection, $h
 Thus no single atom of $\mathfrak{C}$ result into an atom of $\mathfrak{M}$ by $h_f$ and therefore function $h_f$ cannot exist.
 \end{proof}
 
-Every measurable bijection between $(S,\mathfrak{C})$ and $(S,\mathfrak{M})$ has thus no Boolean algebra isomorphism $h_f\colon\mathfrak{C}\to\mathfrak{M}$ such that longitudes in $\mathfrak{C}$ are mapped to meridians on $\mathfrak{M}$. This theorem holds on all subalgebras of $\mathfrak{C}$ and $\mathfrak{M}$ as well \cite{Gyenis17}.
+Therefore every measurable bijection between $(S,\mathfrak{C})$ and $(S,\mathfrak{M})$ has no Boolean algebra isomorphism $h_f\colon\mathfrak{C}\to\mathfrak{M}$ such that longitudes in $\mathfrak{C}$ are mapped to meridians on $\mathfrak{M}$. This theorem holds on all subalgebras of $\mathfrak{C}$ and $\mathfrak{M}$ as well, as is proven by \cite{Gyenis17}.
 
-Now it should be clear why the conditional distribution on the longitudes and meridians of the sphere differ, since we are dealing with two entirely different structured spaces. Therefore, the question `why is the conditional distribution on the longitudes different from the conditional distribution on the meridians' is easy to answer; difference in spaces. To verify that two different methods of conditioning on the same set yield to the correct conditional probability, one must ask the following question: `if one models a distribution on the sphere in two ways, namely using the conditional distribution on the longitudes and using the conditional distribution on the meridians, will both methods result into the same distribution on the whole sphere?' As earlier mentioned, Weisstein \cite{Weisstein} demonstrated that the answer to that question is yes. Thus when dealing with different conditional distributions on measure zero sets, one should rather ask a question like the last one, as the answer to that question must always be `yes'. For further reading and more in-depth analysis can be found in \cite{Gyenis17}.
+Now it should be clear why the conditional distribution on the longitudes and meridians of the sphere differ, since we are dealing with two entirely different structured spaces. Therefore, the question `why is the conditional distribution on the longitudes different from the conditional distribution on the meridians' is easy to answer; difference in spaces. To verify that two different methods of conditioning on the same set yield to the correct conditional probability, one must ask the following question: `if one models a distribution on the sample space using conditional expectation on a sub-$\sigma$-algebra, does the resulting conditional probability distribution extend to the original distribution on the whole sample space?' As earlier mentioned, Weisstein \cite{Weisstein} demonstrated that the answer to that question is yes. The uniform distribution on longitudes and the cosine on meridians both extend to the uniform distribution on the whole sphere. Thus when dealing with different conditional distributions on measure zero sets, one should rather ask a question like the last one, as the answer to that question must always be yes. Further reading and a more in-depth analysis can be found in \cite{Gyenis17}.
 
 
 \section{Conclusion}
-What are the conclusions we can take after analysing the Borel-Kolmogorov paradox? The first and most important one is that when conditioning, especially on a set $F$ of measure zero, one needs to give the accompanying sub-$\sigma$-algebra with the event that is conditioned on. Otherwise the Borel-Kolmogorov phenomenon appears, where one can give different sub-$\sigma$-algebras containing $F$ such that the resulting conditional probability distribution is not uniquely defined.
+After analysing the Borel-Kolmogorov paradox, the first and most important conclusion we can take is that when conditioning, especially on a set $F$ of measure zero, one needs to give the accompanying sub-$\sigma$-algebra of the event that is conditioned on. Otherwise the Borel-Kolmogorov phenomenon appears, where one can give different sub-$\sigma$-algebras containing $F$ such that the resulting conditional probability distribution is different.
 
-Secondly, we must accept that conditional probability on sets of measure zero are not uniquely defined. That uniqueness only appears when conditioning on sets of positive measure, as then the classical rule $\P[E|F]=\frac{\P[E\cap F]}{\P[F]}$ gives a version of the conditional probability. If a sub-$\sigma$-algebra can be used to model the entire sample space, for example the $\sigma$-algebra of longitudes with the sphere as sample space, then applying the conditional probability measure on all sets of measure zero should give back the original probability distribution. For example providing the uniform distribution on all longitudes gives back the uniform distribution on the sphere, as well as providing the cosine distribution on the meridians results into the uniform distribution on the sphere.
+Secondly, we must accept that conditional probability on sets of measure zero are not uniquely defined. That uniqueness only appears when conditioning on sets of positive measure, as then the classical rule $\P[E|F]=\frac{\P[E\cap F]}{\P[F]}$ gives a version of the conditional probability. If a sub-$\sigma$-algebra can be used to model the entire sample space, for example the sub-$\sigma$-algebra of longitudes with the sphere as sample space, then the conditional probability must be able to extend to the original probability distribution. For example providing the uniform distribution on all longitudes gives back the uniform distribution on the sphere, as well as applying the cosine distribution on the meridians results into the uniform distribution on the sphere.
 
-Thirdly, a conditional distribution on a zero set must be calculated using the measure-theoretic conditional expectation. Conjecture~\ref{con:BorelConjecture} can help with finding the correct conditional expectation, however proposition~\ref{prop:BorelConFalse} proves that the resulting conditional probability does not need to be unique. Therefore conjecture~\ref{con:BorelConjecture} cannot be used to calculate a conditional probability and call it a day.
+Thirdly, a conditional distribution on a zero set must be calculated using the measure-theoretic conditional expectation. Conjecture~\ref{con:BorelConjecture} can help with finding the correct conditional expectation, however proposition~\ref{prop:BorelConFalse} proves that the resulting conditional probability does not need to be unique. Therefore conjecture~\ref{con:BorelConjecture} cannot be used to calculate a conditional probability and then call it a day, you need to check whether the distribution you found actually satisfies all conditions of conditional probability.
 
-At last, as Kolmogorov \cite{Kolmogorov33} already stated in his work, there is nothing paradoxical going on in the Borel-Kolmogorov paradox. The measure-theoretic conditional expectation is not uniquely defined on sets of measure zero and here we have reaffirmed that. These results are thus as expected and we should really give the sub-$\sigma$-algebra when conditioning on sets of measure zero.
+At last, as Kolmogorov \cite{Kolmogorov33} already stated in his work, there is nothing paradoxical going on in the Borel-Kolmogorov paradox. The space of the sphere with the longitudes as $\sigma$-algebra is not homeomorphic with the space of the sphere and the meridians as $\sigma$-algebra. The not-uniqueness of the conditional probability on a zero set is thus as expected and we must give the sub-$\sigma$-algebra when conditioning on sets of measure zero.
 
 
 \chapter{Safe probability}\label{chap:SafeProp}
