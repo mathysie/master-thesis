@@ -242,10 +242,11 @@ The set of longitudes is described by
 \begin{equation}
 \mathcal{C}=\{[0,2\pi)\times\{\psi\}\mid\psi\in[0,\pi]\}
 \end{equation}
-and the set of meridians is described by
+and will be horizontal lines in the rectangle of figure~\ref{fig:BorelVis}. The set of meridians is described by
 \begin{equation}
-\mathcal{M}=\{\{\phi,\phi+\pi\}\times[0,\pi]\mid\phi\in[0,\pi)\}.
+\mathcal{M}=\{\{\phi,\phi+\pi\}\times[0,\pi]\mid\phi\in[0,\pi)\}
 \end{equation}
+and will be the vertical lines in the rectangle of figure~\ref{fig:BorelVis}.
 
 Note that the function in \eqref{eq:BorelPolar} is not a bijection. The image of $S$ is not one-to-one on the north and south pole, but this is a null set and will not cause any problems in our case. The reason why \eqref{eq:BorelPolar} is not made a formal bijection is that it eases notation.
 
@@ -473,7 +474,7 @@ We now have both $\P[E|F]=\frac{1}{2}$ and $\P[E|F]=\frac{1}{2}\sqrt{2}$, which 
 
 This demonstrates that when having an $F\in\F$ with zero measure, one cannot uniquely define $\P[E|F]$. A conditional expectation needs to be accompanied by a sub-$\sigma$-algebra, otherwise contradicting results can arise.
 
-Conjecture~\ref{con:BorelConjecture} can be used to guess a conditional expectation. The measure-theoretic definition of conditional expectation is only a list of properties, not a constructive definition. In the case of a $\mathfrak{C}$-conditional expectation, looking at proposition~\ref{prop:BorelLongBayes} and its proof we observe that the resulting probability is $\frac{b-a}{2\pi}$, thus uniform. Furthermore, $\phi$ is the only variable that is integrated, thus one can guess $\phi$ is the only needed variable. Therefore one can suspect that
+Conjecture~\ref{con:BorelConjecture} is however useful to guess a conditional expectation. The measure-theoretic definition of conditional expectation is only a list of properties, not a constructive definition. In the case of a $\mathfrak{C}$-conditional expectation, looking at proposition~\ref{prop:BorelLongBayes} and its proof we observe that the resulting probability is $\frac{b-a}{2\pi}$, thus uniform. Furthermore, $\phi$ is the only variable that is integrated, thus one can guess $\phi$ is the only needed variable. Therefore one can suspect that
 \begin{equation}
 \E\left[\1_{[a,b]\times\left\{\frac{\pi}{2}\right\}}\middle|\mathfrak{C}\right](\phi,\psi)=\frac{1}{2\pi}\int_0^{2\pi}\1_{[a,b]\times\left\{\frac{\pi}{2}\right\}}(\phi',\psi)d\phi'=\frac{b-a}{2\pi}\1_{\left\{\frac{\pi}{2}\right\}}(\psi)
 \end{equation}
@@ -528,8 +529,6 @@ At last, as Kolmogorov \cite{Kolmogorov33} already stated in his work, there is 
 \chapter{Discrete paradoxes}\label{chap:DiscPara}
 
 \chapter{The two envelopes problem}\label{chap:TwoEnvelope}
-
-\chapter{The Sleeping Beauty problem}\label{chap:SleepingBeauty}
 
 \bibliographystyle{alpha}
 \bibliography{../Referenties/Referenties}
