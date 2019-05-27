@@ -205,8 +205,16 @@ Definition~\ref{def:conexp} extends very nicely to the definition of conditional
 If $\G$ is a sub-$\sigma$-algebra of $\F$ and $F\in\F$, then the \emph{conditional probability} $\P[F|\G]$ is a version of $\E[\1_F|\G]$.
 \end{definition}
 
-\section{Formal description of the Borel-Kolmogorov paradox}
-To analyse the Borel-Kolmogorov paradox, we need a formal version of the problem. Let $S$ be the unit sphere. For easier calculations, we equip $S$ with polar coordinates. Define $S=[0,2\pi)\times[0,\pi]$, then $S$ is described in the Euclidean space with the function
+\section{Formal description of the probability space}
+\begin{figure}
+\begin{center}
+\input{figures/BorelTransform.tikz}
+\caption{A visualization of coordinate transformation~\eqref{eq:BorelPolar} from Euclidean to spherical coordinates. The rectangle is the set $S$. The horizontal lines in the rectangle like $C$ parametrize the longitudes. The vertical lines in the rectangle like $M$ parametrize the meridians. Note that the two blue vertical lines of $M$ are distance $\pi$ apart, this is needed to fully parametrize a meridian.}
+\label{fig:BorelVis}
+\end{center}
+\end{figure}
+
+To analyse the Borel-Kolmogorov paradox, we need to formalize our probability space. The following construction is visualized in figure~\ref{fig:BorelVis}. Let $S$ be the unit sphere. For easier calculations, we equip $S$ with polar coordinates. Define $S=[0,2\pi)\times[0,\pi]$, then $S$ is described in the Euclidean space with the function
 \begin{equation}\label{eq:BorelPolar}
 S\to\R^3:(\phi,\psi)\mapsto(\cos\phi\sin\psi,\sin\phi\sin\psi,\cos\psi).
 \end{equation}
