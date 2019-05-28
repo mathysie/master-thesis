@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+\node (uv) {$U|V$};
+\node[above right=of uv] (luv) {$\langle U\rangle|V$};
+\node[below right=of uv] (ubv) {$U|[V]$};
+\node[above right=of ubv] (ulv) {$U|\langle V\rangle$};
+\node[below right=of ulv] (lubv) {$\langle U\rangle|[V]$};
+\node[above right=of ulv] (lulv) {$\langle U\rangle|\langle V\rangle$};
+
+\path
+    (uv) edge [->, thick] node {} (luv)
+    (uv) edge [->, thick] node {} (ubv)
+    (luv) edge [->, thick] node {} (lulv)
+    (ubv) edge [->, thick] node {} (ulv)
+    (ubv) edge [->, thick] node {} (lubv)
+    (ulv) edge [->, thick] node {} (lulv)
+    (lubv) edge [->, thick] node {} (lulv);
+\end{tikzpicture}

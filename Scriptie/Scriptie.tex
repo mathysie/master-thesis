@@ -10,7 +10,7 @@
 \usepackage{makeidx}
 \usepackage{showidx}
 \usepackage{pgf,tikz,pgfplots}
-\usetikzlibrary{arrows}
+\usetikzlibrary{arrows, positioning}
 \pgfplotsset{compat=1.16}
 \makeindex
 
@@ -67,7 +67,7 @@
 \newcommand{\Usafe}{\tilde{U}}
 
 \newcommand{\EnvIndSafe}{\1_{\{B=2A\}}}
-\newcommand{\DieInd}{\1_{\{Y=3\}}}
+\newcommand{\DieInd}{\1_{\{U=3\}}}
 \newcommand{\DieIndSafe}{\tilde{\1}_{\{Y=3\}}}
 \newcommand{\ChildInd}{\1_{\{U=bg\}}}
 \newcommand{\ChildIndSafe}{\tilde{\1}_{\{U=bg\}}}
@@ -525,8 +525,268 @@ At last, as Kolmogorov \cite{Kolmogorov33} already stated in his work, there is 
 
 
 \chapter{Safe probability}\label{chap:SafeProp}
+To introduce safe probability, take a look at a game of dice. This game is devised by Grunwald \cite{Grunwald13}. A player and game master are present and the game master casts a fair die. He peeks the value of the die and must either state that the value is 4 or lower or state that the value is 3 or higher. The game master is not able to lie. Upon hearing the game master's advice, what is the probability the die has landed 4?\\
+Suppose an alternative game is considered, where the game master can only say that the value is either from 1 to and including 4 or the value is 5 or 6. The question of the probability of the die having 4 becomes easy to answer. When 5 or 6 is revealed, the answer is 0 and when 1 to 4 is revealed, Bayes gives us that the probability is 25\%.\\
+However, when either `4 and lower' or `3 and higher' is stated, the game master can choose his statement when 3 or 4 is cast. His method of choosing the statement influences the probability of the die having cast 4 upon hearing the game master's statement.
+
+What can we thus state about the probability of the die having 4? Traditional conditional probability will not suffice hear. If we loose our notion of conditional probability, we can resort to \emph{safe probability}. Safe probability is introduced by Grunwald in 2018 \cite{Grunwald18}.\\
+Suppose there are two random variables, $U$ and $V$, and we want to use the distribution $U|V$, but there is no method of finding this distribution. Then one creates a model of all possible probability distributions containing hopefully the correct distribution as well. A new conditional distribution is created, not necessarily one from our model, which gives a safe probability of $U$ given $V$ and performs equal for all distributions in our model.\\
+The advantage is that, while not knowing the correct probability distribution, we can use the safe distribution as guess. This guess will perform equal against all distributions in our model. We will make this more precise.
+\section{Definitions}
+Before we will define safe probability, we need to introduce some notation. A set of probability distributions $\Pmod$ will be called our model.
+
+\begin{definition}[Range and support]
+Let $S\colon\X\to\Y$ be a random variable. The \emph{range} of $S$ is
+\begin{equation}
+\range(S)=\{s\in\Y\mid s=S(x),x\in\X\}.
+\end{equation}
+Let $\P$ be a probability distribution on $\X$. The \emph{support} of $S$ under $\P$ is
+\begin{equation}
+\supp_{\P}(S)=\{s\in \Y\mid\P[S=s]>0\}.
+\end{equation}
+\end{definition}
+
+Let $U$ and $V$ be two random variables and let $f$ be a function such that $f(U)=V$. We will then write $U\stackrel{f}{\rightsquigarrow}V$. If a function $f$ exists such that $U\stackrel{f}{\rightsquigarrow}V$, we will write $U\rightsquigarrow V$. Random variable $V$ is then called a \emph{coarsening} of $U$ or equivalently we state that $U$ determines $V$.
+
+Lastly, if we keep $U$ and $V$ as random variables, the distribution of $U$ under $\P$ is written as $\P[U]$. The distribution of $U$ given $V$ under $\P$ is written as $\P[U|V]$.
+
+We are now able to define conditional probability. The following definitions and propositions are all taken from \cite{Grunwald18}.
+
+\begin{definition}[Safe probabilities]\label{def:SafeProp}
+Let $\Omega$ be a sample space and let $\Pmod$ be a set of distributions on $\Omega$. Let $U$ be a real-valued random variable with finite expectation and let $V$ be a random variable on $\Omega$. Let $\Psafe$ be a probability distribution on $\Omega$. Then $\Psafe$ is \emph{safe} for
+\begin{itemize}
+    \item $\langle U\rangle|\langle V\rangle$ if $\E_{\P}[U]=\E_{\P}[\E_{\Psafe}[U|V]]$ holds for all $\P\in\Pmod$. This $\Psafe$ is called \emph{unbiased} for $U|V$.
+    \item $\langle U\rangle|[V]$ if $\E_{\P}[U]=\E_{\Psafe}[U|V=v]$ holds for all $v\in\supp_{\Psafe}(V)$. This $\Psafe$ is called \emph{marginally valid} for $U|V$. 
+\end{itemize}
+\end{definition}
+\begin{definition}[Stronger safety]\label{def:SafeStrongProp}
+Let $\Omega,\Pmod,U,V$ and $\Psafe$ as above. Then $\Psafe$ is \emph{safe} for
+\begin{itemize}
+    \item $U|\langle V\rangle$ if for all random variables $U'$ on $\Omega$ with $U\rightsquigarrow U'$ distribution $\Psafe$ is safe for $\langle U'\rangle|\langle V\rangle$.
+    \item $U|[V]$ if for all random variables $U'$ on $\Omega$ with $U\rightsquigarrow U'$ distribution $\Psafe$ is safe for $\langle U'\rangle|[V]$.
+\end{itemize}
+\end{definition}
+
+Both definitions introduce a lot of new notation. In practice, $\langle V\rangle$ means that $\Psafe$ must be unbiased. More specifically, $\langle V\rangle$ implies that $\E_{\Psafe}[U|V]$ must be an unbiased estimator for $U$ for all $\P\in\Pmod$.\\
+When $[V]$ is considered, the expected value of $U|V=v$ under $\Psafe$ must equal the expected value of $U$ under $\P$ for all $v\in\supp_{\P}(V)$ and $\P\in\Pmod$. On average, when considering $\Psafe$ the outcome of $V$ will not influence the the expectation value of $U$.\\
+Lastly, the difference between $\langle U\rangle$ and $U$ is that for $\langle U\rangle$ the requirement for safety does only have to be met for $U$. When $U$ is considered, the requirement must be met for all coarsenings $V$ of $U$.
+
+When we say that $\Psafe$ is safe for $U|[V]$, we actually mean that `for all $\P\in\Pmod$ we have $\supp_{\P}(V)\subseteq\supp_{\Psafe}(V)$, $\E_{\P}[U]$ is well-defined, $\E_{\Psafe}[U|V=v]$ is well-defined for all $v\in\supp_{\Psafe}(V)$, both expectations are equal and this holds for all $U'$ with $U\rightsquigarrow U'$'. This statement is quite lengthy, therefore we will abbreviate it by stating that $\Psafe$ is safe for $U|[V]$.
+
+Definition~\ref{def:SafeStrongProp} is not easy to work with. The following proposition from \cite{Grunwald18} gives us tools to actually create $\Psafe$ that is safe for $U|\langle V\rangle$ or $U|[V]$.
+
+\begin{proposition}[Basic interpretations of safety]\label{prop:SafeProperties}
+Let $\Omega,\Pmod,U,V$ and $\Psafe$ as above. Then
+\begin{enumerate}
+    \item $\Psafe$ is safe for $U|\langle V\rangle$ if and only if for all $\P\in\Pmod$ there is a distribution $\P'$ on $\Omega$ with $\P'[U=u,V=v]=\Psafe[U=u|V=v]\P[V=v]$ for all $(u,v)\in\range((U,V))$ such that $\P'[U]=\P[U]$.
+    \item $\Psafe$ is safe for $\langle U\rangle|V$ if and only if 
+    \begin{equation}
+    \E_{\P}[U|V]=\E_{\Psafe}[U|V]
+    \end{equation}
+    holds with probability $1$ for all $\P\in\Pmod$. This $\Psafe$ is called \emph{squared error-optimal} for $U|V$.
+    \item $\Psafe$ is safe for $U|V$ if and only if 
+    \begin{equation}
+    \P[U|V]=\Psafe[U|V]
+    \end{equation}
+    holds with probability $1$ for all $\P\in\Pmod$. This $\Psafe$ is called \emph{valid} for $U|V$.
+    \item $\Psafe$ is safe for $U|[V]$ if and only if $\P[U]=\Psafe[U|V=v]$ for all $\P\in\Pmod$ and $v\in\supp_{\Psafe}(V)$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+The proof is in \cite{Grunwald16}, section A.2.
+\end{proof}
+
+It is easy to see that safety for $\langle U\rangle|[V]$ implies safety for $\langle U\rangle|\langle V\rangle$. If we have $\E_{\Psafe}[U|V=v]=\E_{\P}[U]$ for all $v\in\supp_{\Psafe}(V)$, then
+\begin{equation}
+\E_{\P}[\E_{\Psafe}[U|V]]=\E_{\P}[\E_{\P}[U]]=\E_{\P}[U]
+\end{equation}
+must hold. All implications are stated in the following proposition.
+
+\begin{figure}
+\centering{
+\input{figures/SafeDiagram.tikz}
+}
+\caption{A diagram of implications between safe probabilities. If $\Psafe$ is safe for X, then it is safe for all statements that can be reached from X as well.}
+\label{fig:SafeDiagram}
+\end{figure}
+
+\begin{proposition}\label{prop:SafeImply}
+Let $U$, $V$ and $\Psafe$ be as above.
+\begin{enumerate}
+\item If $\Psafe$ is safe for $U|V$, it is safe for $\langle U\rangle|V$ and $U|[V]$.
+\item If $\Psafe$ is safe for $U|[V]$, it is safe for $U|\langle V\rangle$ and $\langle U\rangle|[V]$.
+\item If $\Psafe$ is safe for $\langle U\rangle|V$, $U|\langle V\rangle$ or $\langle U\rangle|[V]$, it is safe for $\langle U\rangle|\langle V\rangle$.
+\end{enumerate}
+All relations are visualised in figure~\ref{fig:SafeDiagram}.
+\end{proposition}
+\begin{proof}
+All implications are found and proven in \cite{Grunwald18}.
+\end{proof}
+
+\section{The dice game}
+Recall the dice game from the introduction of this chapter, introduced by \cite{Grunwald13}. The game master casts a fair die and observes a value. This value is either in the set $\{1,2,3,4\}$ or in the set $\{3,4,5,6\}$. The game master must reveal one of the two sets to the player and cannot lie. The player must then guess the probability that the die has landed on $4$.
+
+It is insufficient to take $\Omega=\{1,2,3,4,5,6\}$ as our sample space. Let $U$ be a random variable denoting the die's value and let $V$ be the statement of the game master, then $\P[U=3|V=\{1,2,3,4\}]$ cannot be calculated. When the die has rolled to a $3$, the game master can choose between $\{1,2,3,4\}$ and $\{3,4,5,6\}$ and this must be taken into account. Furthermore, the $\sigma$-algebra containing both $\{1,2,3,4\}$ and $\{3,4,5,6\}$ is
+\begin{equation}
+\G=\sigma(\{1,2\},\{3,4\},\{5,6\}),
+\end{equation}
+thus $\{3\}$ is no member of $\G$. When adding $\{3\}$ to $\G$, we get $\G'=\sigma(\G\cup\{3\})=2^\Omega$, the power set of $\Omega$. Therefore we cannot condition in $\Omega$ to compute $U=3$ given $V=\{1,2,3,4\}$.
+
+Therefore we need to extend our sample space. We will use the extention of \cite{Grunwald13}. Take $\X=\{1,2,3,4,5,6\}$ and $\Y=\{\{1,2,3,4\},\{3,4,5,6\}\}$ and let our sample space be $\Omega=\X\times\Y$. Let $U$ be an $\X$-valued random variable and let $V$ be a $\Y$-valued random variable. In this space conditioning on $\{1,2,3,4\}$ is valid. Let $\P$ be a probability measure with the uniform distribution on $U$. To model the strategy of the game master, we need $p,q\in[0,1]$ such that 
+\begin{align}
+\P[V=\{3,4,5,6\}|U=3]&=p,&\P[V=\{3,4,5,6\}|U=4]&=q.
+\end{align}
+
+We can now for example calculate the probability of the die landing on $6$ after the game master reveals $\{3,4,5,6\}$. This is done by \cite{Grunwald13} and it states that
+\begin{equation}
+\P[U=6|V=\{3,4,5,6\}]=\frac{1}{p+q+2}.
+\end{equation}
+Thus the conditional probability of rolling $6$ ranges from $\frac{1}{4}$ to $\frac{1}{2}$ depending on the game masters strategy.
+
+Can we create a distribution $\Psafe$ such that the probability of $U=3$ given $V$ is independent of $p$ and $q$? The answer is yes and we need to use safe probability. Consider as model
+\begin{equation}
+\Pmod=\left\{\P\middle|\forall u\in\X:\P[U=u]=\frac{1}{6},\forall v\in\Y:\P[U\in v|V=v]=1\right\}.
+\end{equation}
+As we do not know the strategy of the game master when $3$ or $4$ is rolled. We do know that the die is fair and that the game master is not able to lie, thus we put this information in our model.
+
+For shorthand purposes, we write $y_1=\{1,2,3,4\}$ and $y_2=\{3,4,5,6\}$ such that $\Y=\{y_1,y_2\}$ from now on.
+
+\begin{proposition}
+Let $\X$, $\Y$, $\Omega$, $U$, $V$ and $\Pmod$ be as before. Let 
+\begin{equation}
+\tilde{\mathcal{P}}=\left\{\Psafe\middle|
+\begin{array}{l}
+\Psafe[U=1|V=y_1]=\Psafe[U=2|V=y_1],\\
+\Psafe[U=3|V=y_1]=\frac{1}{2}-5\Psafe[U=1|V=y_1],\\
+\Psafe[U=5|V=y_2]=\Psafe[U=6|V=y_2],\\
+\Psafe[U=3|V=y_2]=3\Psafe[U=5|V=y_2]+\frac{1}{2},\\
+\Psafe[U=1|V=y_1],\Psafe[U=5|V=y_1]\in\left[0,\frac{1}{10}\right]
+\end{array}
+\right\}
+\end{equation}
+be a set of probability distributions on $\Omega$. All $\Psafe\in\Pmod$ are safe for $\langle U\rangle|[V]$.
+
+No distribution from $\tilde{\mathcal{P}}$ is safe for $U|[V]$.
+\end{proposition}
+\begin{proof}
+The proof is by construction. We first consider safety for $\langle U\rangle|\langle V\rangle$, as that will be the easiest method to create $\tilde{\mathcal{P}}$. We will then check the created $\tilde{\mathcal{P}}$ against safety for $\langle U\rangle|[V]$. Let $\Psafe$ be an arbitrary distribution. Let $\P\in\Pmod$ be arbitrary and take $p,q\in[0,1]$ with $\P[V=y_2|U=3]=p$ and $\P[V=y_2|U=4]=q$.
+
+Definition~\ref{def:SafeProp} states that we need $\E_{\P}[\E_{\Psafe}[U|V]]=\E_{\P}[U]$. The right-hand side is easy to compute:
+\begin{equation}
+\E_{\P}[U]=\sum_{u=1}^6 u\P[U=u]=\frac{1+2+3+4+5+6}{6}=\frac{7}{2}.
+\end{equation}
+For $\E_{\P}[\E_{\Psafe}[U|V]]$, we first focus on $\P[V=y_2]$. Conditioning on $U$ yields
+
+\begin{equation}
+\P[V=y_2]=\sum_{u=1}^6\P[V=y_2|U=u]\P[U=u]=\frac{1}{6}\sum_{u=1}^6\P[V=y_2|U=u].
+\end{equation}
+The game master cannot lie, thus $\P[V=y_2|U=5]=\P[V=y_2|U=6]=1$ and $\P[V=y_2|U=1]=\P[V=y_2|U=2]=0$ immediately hold. We further have $\P[V=y_2|U=3]=p$ and $\P[V=y_2|U=4]=q$, thus the value of $\P[V=y_2]$ is
+
+\begin{equation}
+\P[V=y_2]=\frac{1}{6}\sum_{u=1}^6\P[V=y_2|U=u]=\frac{2}{3}+\frac{p+q}{6}.
+\end{equation}
+Since $\Y$ only has two elements, $\P[V=y_1]=\frac{1}{3}-\frac{p+q}{6}$ follows. We can now write out $\E_{\P}[\E_{\Psafe}[U|V]]$, however we must shorten our notation. Let $\Psafe[u|v]$ be shorthand for $\Psafe[U=u|V=v]$ for all $(u,v)\in\Omega$. Writing out yields
+\begin{align}
+\E_{\P}[\E_{\Psafe}[U|V]]&=\E_{\Psafe}[U|V=y_1]\P[V=y_1]+\E_{\Psafe}[U|V=y_2]\P[V=y_2]\\
+&=\left(\Psafe(1|y_1)+2\Psafe(2|y_1)+3\Psafe(3|y_1)+4\Psafe(4|y_1\right)\left(\frac{2}{3}-\frac{p+q}{6}\right)\\
+&\phantom{=}+\left(3\Psafe(3|y_2)+4\Psafe(4|y_2)+5\Psafe(5|y_2)+6\Psafe(6|y_2\right)\left(\frac{1}{3}+\frac{p+q}{6}\right)\\
+&=\frac{p+q}{6}\left(\sum_{u=3}^{6}u\Psafe[u|y_2]-\sum_{u=1}^4y\Psafe[u|y_1]\right)+\sum_{u=1}^4\frac{2u}{3}\Psafe[u|y_1]\\
+&\phantom{=}+\sum_{u=3}^6\frac{u}{3}\Psafe[u|y_2].
+\end{align}
+As we have $\E_{\P}[U]=\frac{7}{2}$, we need to get rid of the dependence on $p+q$. This results into the condition
+\begin{equation}
+\sum_{u=3}^{6}u\Psafe[u|y_2]=\sum_{u=1}^4u\Psafe[u|y_1].
+\end{equation}
+When this condition is satisfied, we need 
+\begin{equation}
+\sum_{u=1}^4\frac{2u}{3}\Psafe[u|y_1]+\sum_{u=3}^6\frac{u}{3}\Psafe[u|y_2]=\frac{7}{2}
+\end{equation}
+for $\Psafe$ to be safe for $\langle U\rangle|\langle V\rangle$. We impose one further assumption on our safe probability to reduce the amount of possible safe probabilities. Suppose the die shows $5$ or $6$, the game master has to tell $y_2$. Thus it is logical to assume that $\Psafe[5|y_2]=\Psafe[6|y_2]$ and $\Psafe[1|y_1]=\Psafe[2|y_1]$, as when an $y_2$ is revealed there is no reason why $5$ is preferred more than $6$. Also as the game master cannot lie, thus
+\begin{equation}
+\Psafe[5|y_1]=\Psafe[6|y_1]=\Psafe[1|y_2]=\Psafe[2|y_2]=0
+\end{equation}
+can be assumed. This all results into the following system of equations:
+\begin{equation}\label{eq:SafeDiceSystem}
+\begin{pmatrix}
+\frac{2}{3}&\frac{4}{3}&2&\frac{8}{3}&1&\frac{4}{3}&\frac{5}{3}&2\\
+-1&-2&-3&-4&3&4&5&6\\
+1&-1&0&0&0&0&0&0\\
+0&0&0&0&0&0&1&-1\\
+1&1&1&1&0&0&0&0\\
+0&0&0&0&1&1&1&1
+\end{pmatrix}\begin{pmatrix}
+\Psafe[1|y_1]\\\Psafe[2|y_1]\\\Psafe[3|y_1]\\\Psafe[4|y_1]\\
+\Psafe[3|y_2]\\\Psafe[4|y_2]\\\Psafe[5|y_2]\\\Psafe[6|y_2]
+\end{pmatrix}=\begin{pmatrix}
+\frac{7}{2}\\0\\0\\0\\1\\1
+\end{pmatrix}.
+\end{equation}
+The set $\tilde{\mathcal{P}}$ is the set of all probability distributions that are solution to this system. As $\Psafe\in\tilde{\mathcal{P}}$ needs to be a valid probability distribution, we need to have $\Psafe[u|v]\in[0,1]$ for all $(u,v)\in\Omega$. Solving \eqref{eq:SafeDiceSystem} gives
+\begin{align}
+\Psafe[3|y_1]&=3\Psafe[1|y_1]+\frac{1}{2},\\
+\Psafe[4|y_1]&=5\Psafe[1|y_1]-\frac{1}{2},
+\end{align}
+thus $\Psafe[3|y_1]\in[0,1]$ holds when $\Psafe[1|y_1]\in\left[0,\frac{1}{6}\right]$ and $\Psafe[4|y_1]\in[0,1]$ holds when $\Psafe[1|y_1]\in\left[0,\frac{1}{10}\right]$. Without loss of generality $\Psafe[5|y_2]\in\left[0,\frac{1}{10}\right]$ must hold as well. This proves the last requirement $\Psafe[1|y_2],\Psafe[5|y_2]\in\left[0,\frac{1}{10}\right]$ from $\tilde{\mathcal{P}}$ and completes our proof that all distributions from $\tilde{\mathcal{P}}$ are safe for $\langle U\rangle|\langle V\rangle$.
+
+We will now focus on safety for $\langle U\rangle|[V]$. Proposition~\ref{prop:SafeImply} implies that a distribution from $\tilde{\mathcal{P}}$ can be safe for $\langle U\rangle|[V]$. Take an arbitrary $\Psafe\in\tilde{\mathcal{P}}$. The requirement
+\begin{equation}
+\E_{\Psafe}[U|V=y_2]=\sum_{u=3}^{6}u\Psafe[u|y_2]=\sum_{u=1}^4u\Psafe[u|y_1]=\E_{\Psafe}[U|V=y_1]
+\end{equation}
+is already satisfied for $\Psafe$, thus we only need to prove that $\E_{\Psafe}[U|V=y_2]=\frac{7}{2}$. Writing out and using properties of $\Psafe$ results to
+\begin{align}
+\E_{\Psafe}[U|V=y_2]&=3\left(3\Psafe[5|y_2]+\frac{1}{2}\right)+4\left(\frac{1}{2}-5\Psafe[5|y_2]\right)+11\Psafe[5|y_2]\\
+&=\frac{7}{2}+20\Psafe[5|y_2]-20\Psafe[5|y_2]=\frac{7}{2},
+\end{align}
+proving that all distributions in $\tilde{\mathcal{P}}$ are safe for $\langle Y\rangle|[X]$ as well.
+
+Lastly we turn to safety for $U|[V]$. Pick $\Psafe\in\tilde{\mathcal{P}}$ arbitrarily. Proposition~\ref{prop:SafeProperties} implies $\Psafe[1|y_1]=\frac{1}{6}$, which is a clear contradiction to $\Psafe[1|y_1]\in\left[0,\frac{1}{10}\right]$. Thus there is no distribution $\Psafe\in\Pmod$ that is safe for $Y|[X]$.
+\end{proof}
+
+Does a distribution exist that is safe for $U|[V]$? Suppose $\Psafe$ is safe for $U|[V]$, then proposition~\ref{prop:SafeProperties} states that for all $v\in\Y$ we must have $\Psafe[U=u|V=v]=\frac{1}{6}$ for all $u\in v$. However, this results to $\Psafe[U\in v|V=v]=\frac{2}{3}$ for both $v\in\Y$. Thus for our safe strategy, we must assume that the game master lies with probability~$\frac{1}{3}$. We will regard such distribution as inadmissible and conclude that no safe distribution for $U|[V]$ exists.
+
+The original question of the dice game did not concern an overall safe probability distribution for the whole die, but rather the probability of rolling $3$. Proposition~\ref{prop:DiceIndSafe} states that a distribution $\Psafe$ is safe for $\langle\DieInd\rangle|\langle V\rangle$ as well as $\DieInd|[V]$ if and only if $\Psafe[U=3|V=v]=\frac{1}{6}$ holds for all $v\in\Y$. It is thus safe to ignore the statement of the game master when guessing the probability of the die rolling $3$ and to state that the probability of rolling $3$ remains $\frac{1}{6}$. 
+
+A safe distribution for $\1_{\{U=1\}}|V$ cannot exist, as the following proposition will prove.
+
+\begin{proposition}
+There is no safe probability distribution for $\langle\1_{\{U=u\}}\rangle|\langle V\rangle$ with $u\in\{1,2,5,6\}$.
+\end{proposition}
+\begin{proof}
+Pick $u=1$. As $V=y_1$ is the only possible option when rolling $1$, we have
+\begin{align}
+\E_{\P}[\E_{\Psafe}[\1_{\{U=1\}}|V]]&=\Psafe[U=1|V=y_1]\P[V=y_1]\\
+&=\Psafe[U=1|V=y_1]\left(\frac{2}{3}-\frac{p+q}{6}\right).
+\end{align}
+We need $\E_{\P}[\E_{\Psafe}[\1_{\{U=1\}}|V]]=\P[U=1]=\frac{1}{6}$, but there is no possible value for $\Psafe[U=1|V=y_1]$ such that 
+\begin{equation}
+\Psafe[U=1|V=y_1]\left(\frac{2}{3}-\frac{p+q}{6}\right)=\frac{1}{6}
+\end{equation}
+holds for all $p,q\in[0,1]$.
+
+This proof applies to all $v\in\{1,2,5,6\}$, where in the case of $v\in\{5,6\}$ we need to condition on $V=y_2$ instead of $V=y_1$. 
+\end{proof}
+
+
+To conclude, in the example of the dice game, we cannot compute a unique distribution for $U|V$. However, we were able to create a set of probability distributions that are all unbiased estimators for $\E_{\P}[U]$ for all $\P\in\Pmod$. When only considering the probability of the die rolling to a specific value, we can create a safe distribution for the values 3 or 4. This distribution is only safe and only an unbiased estimator when the value of $V$ is ignored, such that for example $\Psafe[U=3|V=v]=\frac{1}{3}$ for all $v\in\Y$ holds. A safe distribution for the values $1$, $2$, $5$ and $6$ does not exist.
 
 \chapter{Discrete paradoxes}\label{chap:DiscPara}
+
+\section{The main theorem}
+
+\section{Dice game}
+\begin{proposition}\label{prop:DiceIndSafe}
+Let $\X$, $\Y$, $\Omega$, $U$, $V$ and $\Pmod$ be as before. Let $\Psafe$ be a distribution on $\Omega$. The following statements are equivalent:
+\begin{enumerate}
+\item For all $v\in\Y$ we have $\P[U=3|V=v]=\frac{1}{6}$.
+\item $\Psafe$ is safe for $\langle \DieInd\rangle|\langle V\rangle$.
+\item $\Psafe$ is safe for $\DieInd|[V]$.
+\end{enumerate}
+
+The same holds for $\1_{\{Y=4\}}$ instead of $\1_{\{Y=3\}}$.
+\end{proposition}
+\section{Monty Hall}
+
+\section{Boy or girl problem}
 
 \chapter{The two envelopes problem}\label{chap:TwoEnvelope}
 
