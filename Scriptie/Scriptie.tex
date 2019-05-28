@@ -221,11 +221,11 @@ If $\G$ is a sub-$\sigma$-algebra of $\F$ and $F\in\F$, then the \emph{condition
 
 \section{Formal description of the probability space}
 \begin{figure}
-\begin{center}
+\centering{
 \input{figures/BorelTransform.tikz}
+}
 \caption{A visualization of coordinate transformation~\eqref{eq:BorelPolar} from Euclidean to spherical coordinates. The rectangle is the set $S$. The horizontal lines in the rectangle like $C$ parametrize the longitudes. The vertical lines in the rectangle like $M$ parametrize the meridians. Note that the two blue vertical lines of $M$ are distance $\pi$ apart, this is needed to fully parametrize a meridian.}
 \label{fig:BorelVis}
-\end{center}
 \end{figure}
 
 To analyse the Borel-Kolmogorov paradox, we need to formalize our probability space. The following construction is visualized in figure~\ref{fig:BorelVis}. Let $S$ be the unit sphere. For easier calculations, we equip $S$ with polar coordinates. Define $S=[0,2\pi)\times[0,\pi]$, then $S$ is described in the Euclidean space with the function
@@ -391,7 +391,9 @@ Clearly this conditional distribution on meridians is not uniform. However, one 
 Another question one could ask is the following: if I define $\Sigma=\sigma(\mathfrak{C},\mathfrak{M})$ as the smallest $\sigma$-algebra containing both measurable subsets of meridians and longitudes, what is then the conditional probability distribution on a great circle given $\Sigma$? The answer is that in this approach the distributions in sections~\ref{sec:BorelLong} and~\ref{sec:BorelMer} can be recovered as limiting distributions of a sequence of Bayesian conditional probabilities defined in section~\ref{sec:BorelNaive}.
 
 First we'll further analyse the new $\sigma$-algebra $\Sigma$. Consider an arbitrary rectangle $(a,b)\times(c,d)\subset[0,2\pi)\times[0,\pi]$. Since by definition $(a,b)\times[0,\pi]\in\mathfrak{M}$ and $[0,2\pi)\times(c,d)\in\mathfrak{C}$, we have
-\[(a,b)\times(c,d)=\left((a,b)\times[0,\pi]\right)\cap\left([0,2\pi)\times(c,d)\right)\in\Sigma.\]
+\begin{equation}
+(a,b)\times(c,d)=\left((a,b)\times[0,\pi]\right)\cap\left([0,2\pi)\times(c,d)\right)\in\Sigma.
+\end{equation}
 Thus all Borel-measurable sets on our sphere are contained in $\Sigma$. Furthermore, as $\mathfrak{C}$ and $\mathfrak{M}$ contain only Borel-measurable sets, $\Sigma=\sigma(\mathfrak{C},\mathfrak{M})$ can only have Borel-measurable sets. Therefore $\Sigma=\B$ is the $\sigma$-algebra of Borel-measurable sets on the sphere.
 
 Now take the following approach. Pick $x\in(0,\pi)$. Define the two rectangles $C_\epsilon=[0,2\pi)\times[x-\epsilon,x+\epsilon]$ and $R_\epsilon=[a,b]\times[x-\epsilon,x+\epsilon]\subseteq C_\epsilon$ for all ${\epsilon\in(0,\min\{\pi-x,x\})}$, then what is the limiting conditional probability of $R_0$ given $C_0$? The conditional probability of $R_0$ given $C_0$ can be modeled as the limit of the sequence $\P[R_\epsilon|C_\epsilon]$ with $\epsilon\to0$, which will take on the uniform distribution on $C_0$ as calculated in equation~\ref{eq:BorelLongConProb}.
