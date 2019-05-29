@@ -625,7 +625,7 @@ All relations are visualised in figure~\ref{fig:SafeDiagram}.
 All implications are found and proven in \cite{Grunwald18}.
 \end{proof}
 
-\section{The dice game}
+\section{The dice game}\label{sec:SafeDice}
 Recall the dice game from the introduction of this chapter, introduced by \cite{Grunwald13}. The game master casts a fair die and observes a value. This value is either in the set $\{1,2,3,4\}$ or in the set $\{3,4,5,6\}$. The game master must reveal one of the two sets to the player and cannot lie. The player must then guess the probability that the die has landed on $4$.
 
 It is insufficient to take $\Omega=\{1,2,3,4,5,6\}$ as our sample space. Let $U$ be a random variable denoting the die's value and let $V$ be the statement of the game master, then $\P[U=3|V=\{1,2,3,4\}]$ cannot be calculated. When the die has rolled to a $3$, the game master can choose between $\{1,2,3,4\}$ and $\{3,4,5,6\}$ and this must be taken into account. Furthermore, the $\sigma$-algebra containing both $\{1,2,3,4\}$ and $\{3,4,5,6\}$ is
@@ -640,7 +640,7 @@ Therefore we need to extend our sample space. We will use the extention of \cite
 \end{align}
 
 We can now for example calculate the probability of the die landing on $6$ after the game master reveals $\{3,4,5,6\}$. This is done by \cite{Grunwald13} and it states that
-\begin{equation}
+\begin{equation}\label{eq:SafeDiceCon6}
 \P[U=6|V=\{3,4,5,6\}]=\frac{1}{p+q+2}.
 \end{equation}
 Thus the conditional probability of rolling $6$ ranges from $\frac{1}{4}$ to $\frac{1}{2}$ depending on the game masters strategy.
@@ -771,9 +771,99 @@ This proof applies to all $v\in\{1,2,5,6\}$, where in the case of $v\in\{5,6\}$ 
 
 To conclude, in the example of the dice game, we cannot compute a unique distribution for $U|V$. However, we were able to create a set of probability distributions that are all unbiased estimators for $\E_{\P}[U]$ for all $\P\in\Pmod$. When only considering the probability of the die rolling to a specific value, we can create a safe distribution for the values 3 or 4. This distribution is only safe and only an unbiased estimator when the value of $V$ is ignored, such that for example $\Psafe[U=3|V=v]=\frac{1}{3}$ for all $v\in\Y$ holds. A safe distribution for the values $1$, $2$, $5$ and $6$ does not exist.
 
-\chapter{Discrete paradoxes}\label{chap:DiscPara}
+\chapter{Discrete conditional paradoxes}\label{chap:DiscPara}
+Consider the following three problems:
+\begin{enumerate}
+    \item[Monty Hall:] There are three doors. Two doors open to a goat and one door opens to a car. The player chooses initially a door, say door $a$. The game master then opens either door $b$ or $c$, however he never opens the door with the car. After opening a door, the player is asked if he should switch. Should the player switch to the other door?
+    \item[Boy or girl:] Suppose you encounter a stranger in a bar and you get in conversation. Suddenly, the stranger states that he has two children and at least one is a girl. What is the probability he has two daughters?
+    \item[Dice game:] This game is already introduced in section~\ref{sec:SafeDice}. In short a die is rolled. Only the game master is able to observe the die's value. He then tells you whether the value of the die is in the set $\{1,2,3,4\}$ or in the set $\{3,4,5,6\}$. What is the probability you rolled $3$ given the game master's statement?
+\end{enumerate}
+All three problems essentially have the same structure. There is a finite set of outcomes in each problem. Monty Hall's problem has three doors, the boy or girl problem has three different family compositions and there are six values on a die. The game master must reveal some information, where it is essential that there is at least one outcome that remains possible no matter what the game master reveals. For that outcome the game master is free to choose his revelation. In Monty Hall's problem if door $a$ has the car, the game master can choose to leave doors $a$ and $b$ shut or leave doors $a$ and $c$ shut. If for the boy or girl problem the stranger has one son and one daughter, he is free to choose whether at least one child is a boy or girl. If the die rolled 3 in the dice game, the game master is free to choose $\{1,2,3,4\}$ or $\{3,4,5,6\}$. However, since there is at least one outcome remaining possible no matter which revelation the game master makes, traditional conditional probability does not suffice. This is seen for the dice game in section~\ref{sec:SafeDice} where there is no sub-$\sigma$-algebra on $\{1,2,3,4,5,6\}$ that both contains the sets $\{3\}$ and the subset $\{\{1,2,3,4\},\{3,4,5,6\}$. We cannot simply use Bayes theorem anymore to compute the probability of $3$ given $\{1,2,3,4\}$, as we need to take the probability of the game master stating $\{3,4,5,6\}$ instead into account.
+
+Therefore all three problems can be analysed using the same methods; they are essentially equal. The game master has a choice and therefore is able to employ a strategy. When using traditional conditional probability one sees that such strategy is of influence. Equation~\ref{eq:SafeDiceCon6} states for example that the probability of rolling $6$ given $\{3,4,5,6\}$ dilates from $\frac{1}{4}$ to $\frac{1}{2}$.
+
+To counteract such strategies we need to first model all possible probability distributions. We can then create a pragmatic probability distribution where the decision maker can act on, which on average performs as well as all probability distributions in the model. We can use safe probability here.
+
+In this chapter we first introduce theorem~\ref{thm:DiscMainThm} to create safe probability distributions in the setting of the three introduced problems. Then each problem is treated individually where theorem~\ref{thm:DiscMainThm} is applied and we will discuss the results. We will conclude by stating that there is nothing paradoxical going on with the three problems. The paradoxical statements are just misapplications of conditional probability.
 
 \section{The main theorem}
+In the general setting we consider a set $\X$ of all possible outcomes called the \emph{outcome space} and a set $\Y$ of observations the player can make called the \emph{observation space}. Our sample space then becomes $\Omega=\X\times\Y$. Let $U$ be an $\X$-valued random variable on $\X$ denoting the outcome of the game, e.g.~the door containing the car in Monty Hall or the family composition in the boy or girl problem. Let $V$ be a $\Y$-valued random variable denoting the statement of the game master. Using safe probability we will create a safe distribution for $\1_{\{U=u'\}}|[V]$ for a particular $u'\in\X$.
+
+
+
+We can give a stronger statement.
+\begin{theorem}\label{thm:DiscMainThm}
+Let $\X$ and $\Y$ be countable. Let $U$ be a random variable on $\X$ and $V$ be a random variable on $\Y$. Let $p_u\in[0,1]$ with $\sum_{u\in\X}p_u=1$ and let 
+\begin{equation}
+\Pmod\subseteq\{\P\mid\forall u\in\X:\P[U=u]=p_u,\E_{\P}[U]<\infty\}
+\end{equation}
+be our model of probability distributions on $\X\times\Y$. Suppose there is a
+\begin{equation}
+u'\in\bigcap_{\P\in\Pmod}\bigcap_{v\in\range_{\P}(V)}\range_{\P}(U|V=v).
+\end{equation}
+Let $\Psafe$ be a distribution on $\X\times\Y$. If $\Y=\bigcup_{\P\in\Pmod}\range_{\P}(V)$, then the following are equivalent:
+\begin{enumerate}
+    \item $\Psafe$ is safe for $\GeneralInd|[V]$.
+    \item $\Psafe$ is safe for $\langle\GeneralInd\rangle|\langle V\rangle$.
+    \item For all $v\in\Y$ we have $\Psafe[U=u'|V=v]=p_{u'}$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Consider now safety for $\langle\GeneralInd\rangle|\langle V\rangle$. Let $\P\in\Pmod$ be arbitrary. Take a first look at $\E_{\P}[\GeneralInd]$, then
+\[\E_{\P}[\GeneralInd]=\P[U=u']=p_{u'}.\]
+Let $v\in\range_{\P}(V)$ be arbitrary, then we have
+\[\E_{\Psafe}[\GeneralInd|V=v]=\Psafe[U=u'|V=v].\]
+The expectation $\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]$ can now be expended to
+\begin{align*}
+\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]&=\sum_{v\in\range_{\P}(V)}\E_{\Psafe}[U=u'|V=v]\P[V=v]\\
+&=\sum_{v\in\range_{\P}(V)}\Psafe[U=u'|V=v]\P[V=v].
+\end{align*}
+Filling in $\Psafe[U=u'|V=v]=p_{u'}$ and using $\sum_{v\in\range_{\P}(V)}\P[V=v]=1$ gives us
+\[\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]=p_{u'}\cdot1=\E_{\P}[\GeneralInd],\]
+thus $\Psafe[U=u'|V=v]=p_{u'}$ for all $v\in\X$ is sufficient for safety for $\langle\GeneralInd\rangle|\langle V\rangle$.\\
+Suppose now that for all $v\in\X$ a $\P\in\Pmod$ exists with $v\in\range_{\P}(V)$. We will now prove that $\Psafe[U=u'|V=v]=p_{u'}$ for all $v\in\X$ is a necessary condition. We first need to abbreviate our notation. From now on we will write $\Psafe[u|v]$ instead of $\Psafe[U=u|V=v]$ for all $(v,u)\in\X\times\Y$.\\
+Let $\P\in\Pmod$ be arbitrary and take an $v'\in\range_{\P}(V)$. Let $\X'=\range_{\P}(V)\setminus\{v'\}$. Let $\Psafe$ be an arbitrary distribution on $\X\times\Y$, then we have
+\begin{align*}
+\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]&=\sum_{v\in\X}\Psafe[u'|v']\P[V=v]\\
+&=\sum_{v\in\X'}\Psafe[u'|v]\P[V=v]+\Psafe[u'|v']\P[V=v']\\
+&=\sum_{v\in\X'}\Psafe[u'|v]\P[V=v]+\Psafe[u'|v']\left(1-\sum_{v\in\X'}\P[V=v]\right)\\
+&=\sum_{v\in\X'}\left(\Psafe[u'|v]-\Psafe[u'|v']\right)\P[V=v]+\Psafe[u'|v'].
+\end{align*}
+Two conditions must be satisfied for this expectation to equal $p_{u'}$:
+\[
+\begin{cases}
+\sum_{v\in\X'}\left(\Psafe[u'|v]-\Psafe[u'|v']\right)\P[V=v]=0,\\
+\Psafe[u'|v']=p_{u'}.
+\end{cases}
+\]
+The first condition is because the expectation value should be independent of the chosen $\P\in\Pmod$, thus all terms concerning $\P$ must disappear. The second requirement forces the expectation to be $p_{u'}$. Note that earlier $\P\in\Pmod$ and $v'\in\range_{\P}(V)$  were taken arbitrarily, thus we need $\Psafe[u'|v]=p_{u'}$ for all $v\in\X$ to always meet the second condition. Using this $\Psafe$, the first condition is automatically met:
+\[\sum_{v\in\X'}\left(\Psafe[u'|v]-\Psafe[u'|v']\right)\P[V=v]=\sum_{v\in\X'}\left(p_{u'}-p_{u'}\right)\P[V=v]=0.\]
+Thus if for all $x\in\X$ a $\P\in\Pmod$ exists such that $x\in\range_{\P}(V)$, the condition $\Psafe[u'|v]=p_{u'}$ is necessary for $\Psafe$ to be safe for $\langle\GeneralInd\rangle|\langle V\rangle$.
+\end{proof}
+
+We can make a more loose statement by just applying proposition~\ref{prop:SafeProperties} as safety for $\GeneralInd|[V]$ is easily achieved. We will repeat this in an extra proposition as we will apply the setting of theorem~\ref{thm:DiscMainThm}.
+
+\begin{proposition}\label{prop:DiscSafeMargGen}
+Let $\X$, $\Y$, $U$, $V$, $\{p_{u}\}_{u\in\X}$, $u'$ and $\Pmod$ be as before and let $\Psafe$ be a distribution on $\X\times\Y$. This $\Psafe$ is safe for $\GeneralInd|[V]$ if
+\begin{equation}
+\Psafe[U=u'|V=v]=p_{u'}
+\end{equation}
+holds for all $v\in\Y$.
+\end{proposition}
+\begin{proof}
+Let $\P\in\Pmod$ and $v\in\range_{\P}(V)$ be arbitrary, then we have
+\begin{align*}
+\Psafe[U=u'|V=v]&=p_{u'}=\P[U=u'],\\
+\Psafe[U\neq u'|V=v]&=1-p_{u'}=\sum_{u\in\range_{\P}(U)\setminus\{u'\}}\P[U=u]=\P[U\neq u'].
+\end{align*}
+Proposition~\ref{prop:SafeProperties} states that $\Psafe$ is safe for $\GeneralInd|[V]$.
+\end{proof}
+
+If we follow the same procedure as in the proof of proposition~\ref{prop:DiscSafeMargGen} for a 
+\begin{equation}
+u^*\in\X\setminus\bigcap_{\P\in\Pmod}\bigcap_{v\in\range_{\P}(V)}\range_{\P}(U|V=v)
+\end{equation}
+with $p_{u^*}>0$, then there is a $\P\in\Pmod$ with $\P[U=u^*|V=v]=0$. The safe distribution for $\1_{\{U=u^*\}}|[V]$ is now dictated by $\Psafe[U=u^*|V=v]=p_{u^*}$ according to proposition~\ref{prop:SafeProperties}, but not many will accept this as an `acceptable' safe distribution since $p_{u^*}>0$. This is why in proposition~\ref{prop:DiscSafeMargGen} we still need to pick $u'$ as in theorem~\ref{thm:DiscMainThm}.
 
 \section{Dice game}
 \begin{proposition}\label{prop:DiceIndSafe}
