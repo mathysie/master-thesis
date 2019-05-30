@@ -74,8 +74,8 @@
 \newcommand{\ChildTwoInd}{\1_{\{U=bb\}}}
 \newcommand{\ChildTwoIndSafe}{\tilde{\1}_{\{U=bb\}}}
 \newcommand{\GeneralInd}{\1_{\{U=u'\}}}
-\newcommand{\GeneralGenInd}{\1_{\{U\in\Y'\}}}
-\newcommand{\GeneralGenIndSafe}{\tilde{\1}_{\{U\in\Y'\}}}
+\newcommand{\GeneralGenInd}{\1_{\{U\in\X'\}}}
+\newcommand{\GeneralGenIndSafe}{\tilde{\1}_{\{U\in\X'\}}}
 
 \title{Thesis}
 \author{Mathijs Kolkhuis Tanke}
@@ -126,11 +126,11 @@ Let $\X$ and $\Y$ be countable. Let $U$ be a random variable on $\Y$ and $V$ be 
 \Pmod\subseteq\{\P\mid\forall u\in\Y:\P[U=u]=p_u\}
 \end{equation*}
 be our model of probability distributions on $\X\times\Y$. Suppose there is a \begin{equation*}
-u'\in\bigcap_{\P\in\Pmod}\bigcap_{v\in\range_{\P}(V)}\range_{\P}(U|V=v).
+u'\in\bigcap_{\P\in\Pmod}\bigcap_{v\in\supp_{\P}(V)}\supp_{\P}(U|V=v).
 \end{equation*}
 Let $\Psafe$ be a distribution on $\X\times\Y$ with $\Psafe[U=u'|V=v]=p_{u'}$ for all $v\in\X$. This $\Psafe$ is safe for $\GeneralInd|[V]$.
 
-If for all $v\in\X$ a $\P\in\Pmod$ exists such that $v\in\range_{\P}(V)$ holds, then this requirement on $\Psafe$ is necessary for safety for $\langle\GeneralInd\rangle|\langle V\rangle$.
+If for all $v\in\X$ a $\P\in\Pmod$ exists such that $v\in\supp_{\P}(V)$ holds, then this requirement on $\Psafe$ is necessary for safety for $\langle\GeneralInd\rangle|\langle V\rangle$.
 \end{theorem*}
 
 This theorem and its notation will be explained, proven and applied in chapter~\ref{chap:DiscPara}, but it essentially states that in the case of the Monty Hall problem if one assumes the car is initially distributed evenly between the doors, the probability of the car being behind the originally chosen door $a$ can be assumed to be $\frac{1}{3}$. Using this assumption one must always switch to the other door as the probability of the car being behind that door can be assumed to be $\frac{2}{3}$, resulting in a 67\% chance of winning the car. Note that this assumption is with probability 0 the correct distribution. However, this assumption always yields to a 67\% chance of winning the car independent on the probability of opening door $b$ when the car is behind door $a$.
@@ -789,59 +789,71 @@ In this chapter we first introduce theorem~\ref{thm:DiscMainThm} to create safe 
 \section{The main theorem}
 In the general setting we consider a set $\X$ of all possible outcomes called the \emph{outcome space} and a set $\Y$ of observations the player can make called the \emph{observation space}. Our sample space then becomes $\Omega=\X\times\Y$. Let $U$ be an $\X$-valued random variable on $\X$ denoting the outcome of the game, e.g.~the door containing the car in Monty Hall or the family composition in the boy or girl problem. Let $V$ be a $\Y$-valued random variable denoting the statement of the game master. Using safe probability we will create a safe distribution for $\1_{\{U=u'\}}|[V]$ for a particular $u'\in\X$.
 
-
-
-We can give a stronger statement.
 \begin{theorem}\label{thm:DiscMainThm}
 Let $\X$ and $\Y$ be countable. Let $U$ be a random variable on $\X$ and $V$ be a random variable on $\Y$. Let $p_u\in[0,1]$ with $\sum_{u\in\X}p_u=1$ and let 
 \begin{equation}
 \Pmod\subseteq\{\P\mid\forall u\in\X:\P[U=u]=p_u,\E_{\P}[U]<\infty\}
 \end{equation}
 be our model of probability distributions on $\X\times\Y$. Suppose there is a
-\begin{equation}
-u'\in\bigcap_{\P\in\Pmod}\bigcap_{v\in\range_{\P}(V)}\range_{\P}(U|V=v).
+\begin{equation}\label{eq:DiscMainThmUPrime}
+u'\in\bigcap_{\P\in\Pmod}\bigcap_{v\in\supp_{\P}(V)}\supp_{\P}(U|V=v).
 \end{equation}
-Let $\Psafe$ be a distribution on $\X\times\Y$. If $\Y=\bigcup_{\P\in\Pmod}\range_{\P}(V)$, then the following are equivalent:
+Let $\Psafe$ be a distribution on $\X\times\Y$. If $\Y=\bigcup_{\P\in\Pmod}\supp_{\P}(V)$, then the following are equivalent:
 \begin{enumerate}
+    \item For all $v\in\Y$ we have $\Psafe[U=u'|V=v]=p_{u'}$.
     \item $\Psafe$ is safe for $\GeneralInd|[V]$.
     \item $\Psafe$ is safe for $\langle\GeneralInd\rangle|\langle V\rangle$.
-    \item For all $v\in\Y$ we have $\Psafe[U=u'|V=v]=p_{u'}$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Consider now safety for $\langle\GeneralInd\rangle|\langle V\rangle$. Let $\P\in\Pmod$ be arbitrary. Take a first look at $\E_{\P}[\GeneralInd]$, then
-\[\E_{\P}[\GeneralInd]=\P[U=u']=p_{u'}.\]
-Let $v\in\range_{\P}(V)$ be arbitrary, then we have
-\[\E_{\Psafe}[\GeneralInd|V=v]=\Psafe[U=u'|V=v].\]
-The expectation $\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]$ can now be expended to
-\begin{align*}
-\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]&=\sum_{v\in\range_{\P}(V)}\E_{\Psafe}[U=u'|V=v]\P[V=v]\\
-&=\sum_{v\in\range_{\P}(V)}\Psafe[U=u'|V=v]\P[V=v].
-\end{align*}
-Filling in $\Psafe[U=u'|V=v]=p_{u'}$ and using $\sum_{v\in\range_{\P}(V)}\P[V=v]=1$ gives us
-\[\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]=p_{u'}\cdot1=\E_{\P}[\GeneralInd],\]
-thus $\Psafe[U=u'|V=v]=p_{u'}$ for all $v\in\X$ is sufficient for safety for $\langle\GeneralInd\rangle|\langle V\rangle$.\\
-Suppose now that for all $v\in\X$ a $\P\in\Pmod$ exists with $v\in\range_{\P}(V)$. We will now prove that $\Psafe[U=u'|V=v]=p_{u'}$ for all $v\in\X$ is a necessary condition. We first need to abbreviate our notation. From now on we will write $\Psafe[u|v]$ instead of $\Psafe[U=u|V=v]$ for all $(v,u)\in\X\times\Y$.\\
-Let $\P\in\Pmod$ be arbitrary and take an $v'\in\range_{\P}(V)$. Let $\X'=\range_{\P}(V)\setminus\{v'\}$. Let $\Psafe$ be an arbitrary distribution on $\X\times\Y$, then we have
-\begin{align*}
-\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]&=\sum_{v\in\X}\Psafe[u'|v']\P[V=v]\\
-&=\sum_{v\in\X'}\Psafe[u'|v]\P[V=v]+\Psafe[u'|v']\P[V=v']\\
-&=\sum_{v\in\X'}\Psafe[u'|v]\P[V=v]+\Psafe[u'|v']\left(1-\sum_{v\in\X'}\P[V=v]\right)\\
-&=\sum_{v\in\X'}\left(\Psafe[u'|v]-\Psafe[u'|v']\right)\P[V=v]+\Psafe[u'|v'].
-\end{align*}
+The implication from 1 to 2 is satisfied by proposition~\ref{prop:SafeProperties}. Let $v\in\Y$ and $\P\in\Pmod$ be arbitrary, then we have
+\begin{equation}
+\Psafe[U=u'|V=v]=p_{u'}=\P[U=u'].
+\end{equation}
+Thus proposition~\ref{prop:SafeProperties} states that $\Psafe$ is safe for $\GeneralInd|[V]$.
+
+The implication from 2 to 3 is by proposition~\ref{prop:SafeImply}.
+
+Consider lastly the implication from 3 to 1. Safety for $\langle\GeneralInd\rangle|\langle V\rangle$ implies 
+\begin{equation}
+\E_{\P}[\GeneralInd]=\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]
+\end{equation}
+for all $\P\in\Pmod$. We will construct a sufficient $\Psafe$ from this requirement and prove that $\Psafe[U=u'|V=v]=p_{u'}$ for all $v\in\Y$ is necessary.\\
+Let $\P\in\Pmod$ be arbitrary. Take a first look at $\E_{\P}[\GeneralInd]$, then
+\begin{equation}
+\E_{\P}[\GeneralInd]=\P[U=u']=p_{u'}.
+\end{equation}
+Let $v\in\Y$ be arbitrary, then we can write out
+\begin{equation}
+\E_{\Psafe}[\GeneralInd|V=v]=\Psafe[U=u'|V=v].
+\end{equation}
+The expectation $\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]$ can now be expanded to
+\begin{align}
+\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]&=\sum_{v\in\supp_{\P}(V)}\E_{\Psafe}[U=u'|V=v]\P[V=v]\\
+&=\sum_{v\in\supp_{\P}(V)}\Psafe[U=u'|V=v]\P[V=v].
+\end{align}
+We now need to abbreviate our notation. From now on we write $\Psafe[u|v]$ instead of $\Psafe[U=u|V=v]$ for all $(u,v)\in\X\times\Y$. Take a $v'\in\supp_{\P}(V)$ and define $\Y'=\supp_{\P}(V)\setminus\{v'\}$. Let $\Psafe$ be an arbitrary distribution on $\X\times\Y$, then we have
+\begin{align}
+\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]&=\sum_{v\in\Y}\Psafe[u'|v]\P[V=v]\\
+&=\Psafe[u'|v']\P[V=v']+\sum_{v\in\Y'}\Psafe[u'|v]\P[V=v]\\
+&=\Psafe[u'|v']\left(1-\sum_{v\in\Y'}\P[V=v]\right)+\sum_{v\in\Y'}\Psafe[u'|v]\P[V=v]\\
+&=\Psafe[u'|v']+\sum_{v\in\Y'}\left(\Psafe[u'|v]-\Psafe[u'|v']\right)\P[V=v].
+\end{align}
 Two conditions must be satisfied for this expectation to equal $p_{u'}$:
-\[
+\begin{equation}
 \begin{cases}
-\sum_{v\in\X'}\left(\Psafe[u'|v]-\Psafe[u'|v']\right)\P[V=v]=0,\\
+\sum_{v\in\Y'}\left(\Psafe[u'|v]-\Psafe[u'|v']\right)\P[V=v]=0,\\
 \Psafe[u'|v']=p_{u'}.
 \end{cases}
-\]
-The first condition is because the expectation value should be independent of the chosen $\P\in\Pmod$, thus all terms concerning $\P$ must disappear. The second requirement forces the expectation to be $p_{u'}$. Note that earlier $\P\in\Pmod$ and $v'\in\range_{\P}(V)$  were taken arbitrarily, thus we need $\Psafe[u'|v]=p_{u'}$ for all $v\in\X$ to always meet the second condition. Using this $\Psafe$, the first condition is automatically met:
-\[\sum_{v\in\X'}\left(\Psafe[u'|v]-\Psafe[u'|v']\right)\P[V=v]=\sum_{v\in\X'}\left(p_{u'}-p_{u'}\right)\P[V=v]=0.\]
-Thus if for all $x\in\X$ a $\P\in\Pmod$ exists such that $x\in\range_{\P}(V)$, the condition $\Psafe[u'|v]=p_{u'}$ is necessary for $\Psafe$ to be safe for $\langle\GeneralInd\rangle|\langle V\rangle$.
+\end{equation}
+The first condition is because the expectation value should be independent of the chosen $\P\in\Pmod$, thus all terms concerning $\P$ must disappear. The second requirement forces the expectation to be value $p_{u'}$.\\
+Note that earlier $\P\in\Pmod$ and $v'\in\supp_{\P}(V)$  were taken arbitrarily and that for all $v\in\Y$ there is a $\P\in\Pmod$ such that $\P[V=v]>0$ by $\Y=\bigcup_{\P\in\Pmod}\supp_{\P}(V)$, thus we need $\Psafe[u'|v]=\Psafe[u'|v']$ for all $v\in\Y$ to meet the first condition for all $\P\in\Pmod$. Using this $\Psafe$, the second condition is automatically met.
+Therefore if $\Psafe$ is safe for $\langle\GeneralInd\rangle|\langle V\rangle$, we need $\Psafe[u'|v]=p_{u'}$ for all $v\in\Y$.
 \end{proof}
 
-We can make a more loose statement by just applying proposition~\ref{prop:SafeProperties} as safety for $\GeneralInd|[V]$ is easily achieved. We will repeat this in an extra proposition as we will apply the setting of theorem~\ref{thm:DiscMainThm}.
+It looks like theorem~\ref{thm:DiscMainThm} can only applied in a few circumstances. However, the restriction on model $\Pmod$ is in many cases quickly satisfied, as in most cases one already has an impression of the initial probability distribution on outcome space $\X$. Furthermore, the existence of $u'$ as in equation~\ref{eq:DiscMainThmUPrime} is in all three problems in the introduction the actual core of the problem. In Monty Hall's problem the $u'$ is the initially chosen door $a$, as it will remain closed for all possible strategies of the game master. In the boy or girl problem the $u'$ is the family composition of one boy and one girl, as this composition is a possibility both when the stranger tells you that he has at least one son or when he says he has at least one daughter. If a $u'$ as in equation~\ref{eq:DiscMainThmUPrime} does not exist, then either $\{\supp_{\P}(U|V=v)|v\in\Y\}$ is a partition of $\X$ for all $\P\in\Pmod$ or the intersection of all $\supp_{\P}(U|V=v)$ for all $v\in\Y$ and $\P\in\Pmod$ is empty for a different reason. If the conditional ranges always form a partition, you can use traditional conditional probability removing the need of theorem~\ref{thm:DiscMainThm}. In the second case when the intersection of all conditional ranges is empty for a different reason, you simply need to adjust the problem. Computing a safe conditional distribution for $\GeneralInd|V$ against all probabilities in $\Pmod$ is not possible when for one $\P\in\Pmod$ the probability $\P[\GeneralInd=1|V=v]=0$ is zero and for the other $\P'\in\Pmod$ the probability $\P'[\GeneralInd=1|V=v]>0$ is non-zero.
+
+The requirement $\Y=\bigcup_{\P\in\Pmod}\supp_{\P}(V)$ is however restrictive. The following proposition drops this requirement, but the equivalence in theorem~\ref{thm:DiscMainThm} disappears as well leaving only the implications from 1 to 2 and from 2 to 3.
 
 \begin{proposition}\label{prop:DiscSafeMargGen}
 Let $\X$, $\Y$, $U$, $V$, $\{p_{u}\}_{u\in\X}$, $u'$ and $\Pmod$ be as before and let $\Psafe$ be a distribution on $\X\times\Y$. This $\Psafe$ is safe for $\GeneralInd|[V]$ if
@@ -851,19 +863,88 @@ Let $\X$, $\Y$, $U$, $V$, $\{p_{u}\}_{u\in\X}$, $u'$ and $\Pmod$ be as before an
 holds for all $v\in\Y$.
 \end{proposition}
 \begin{proof}
-Let $\P\in\Pmod$ and $v\in\range_{\P}(V)$ be arbitrary, then we have
-\begin{align*}
-\Psafe[U=u'|V=v]&=p_{u'}=\P[U=u'],\\
-\Psafe[U\neq u'|V=v]&=1-p_{u'}=\sum_{u\in\range_{\P}(U)\setminus\{u'\}}\P[U=u]=\P[U\neq u'].
-\end{align*}
-Proposition~\ref{prop:SafeProperties} states that $\Psafe$ is safe for $\GeneralInd|[V]$.
+Let $\P\in\Pmod$ and $v\in\Y$ be arbitrary, then we have
+\begin{equation}
+\Psafe[U=u'|V=v]=p_{u'}=\P[U=u'].
+\end{equation}
+Proposition~\ref{prop:SafeProperties} states that this $\Psafe$ is safe for $\GeneralInd|[V]$.
 \end{proof}
 
-If we follow the same procedure as in the proof of proposition~\ref{prop:DiscSafeMargGen} for a 
+Note that from the proof of proposition~\ref{prop:DiscSafeMargGen} one can deduce that the elaborate set-up in theorem~\ref{thm:DiscMainThm} is not necessarily needed and that proposition~\ref{prop:DiscSafeMargGen} is nothing more than a restricted restatement of the fourth property of proposition~\ref{prop:SafeProperties}.\\
+On the other hand, pick a $v\in\Y$ such that we can pick a different 
 \begin{equation}
-u^*\in\X\setminus\bigcap_{\P\in\Pmod}\bigcap_{v\in\range_{\P}(V)}\range_{\P}(U|V=v)
+u^*\in\X\setminus\bigcap_{\P\in\Pmod}\supp_{\P}(U|V=v)
 \end{equation}
-with $p_{u^*}>0$, then there is a $\P\in\Pmod$ with $\P[U=u^*|V=v]=0$. The safe distribution for $\1_{\{U=u^*\}}|[V]$ is now dictated by $\Psafe[U=u^*|V=v]=p_{u^*}$ according to proposition~\ref{prop:SafeProperties}, but not many will accept this as an `acceptable' safe distribution since $p_{u^*}>0$. This is why in proposition~\ref{prop:DiscSafeMargGen} we still need to pick $u'$ as in theorem~\ref{thm:DiscMainThm}.
+with $p_{u^*}>0$. Now for all $\P\in\Pmod$ we have $\P[U=u^*|V=v]=0$. The safe distribution for $\1_{\{U=u^*\}}|[V]$ is now dictated by $\Psafe[U=u^*|V=v]=p_{u^*}$ according to proposition~\ref{prop:SafeProperties}, but not many will accept this as an `acceptable' safe distribution since $p_{u^*}>0$. In other words, our safe distribution always suggests to choose $u^*$ with probability $p_{u^*}$, where actually you already know that $u^*$ is not a possibility when observing $v$. This contradicting result is a mere coincidence of $\Psafe$ being a distribution on $\Omega$ instead of being a member of $\Pmod$. This is why in proposition~\ref{prop:DiscSafeMargGen} we still want to pick $u'$ as in theorem~\ref{thm:DiscMainThm}.
+
+Theorem~\ref{thm:DiscMainThm} only considers single $u'$. We can construct safe probability distributions for $\GeneralGenInd|V$ for certain larger $\X'\subset\X$ as well in the following corollary.
+\begin{corollary}\label{cor:DiscSafeGeneral}
+Let $\X$, $\Y$, $U$, $V$, $\{p_u\}_{u\in\Y}$ and $\Pmod$ be as in theorem~\ref{thm:DiscMainThm}. Suppose there is a non-empty
+\begin{equation}
+\X'\subseteq\bigcap_{\P\in\Pmod}\bigcap_{v\in\supp_{\P}(V)}\supp_{\P}(U|V=v).
+\end{equation}
+Let $\Psafe$ be a distribution on $\X\times\Y$ with
+\begin{equation}
+\Psafe[U=u|V=v]=p_{u}
+\end{equation}
+for all $v\in\Y$ and $u\in\X'$. If $\Y=\bigcup_{\P\in\Pmod}\supp_{\P}(V)$, then the following are equivalent:
+\begin{enumerate}
+    \item For all $u\in\X'$ and $v\in\Y$ we have $\Psafe[U=u|V=v]=p_{u}$.
+    \item $\Psafe$ is safe for $\GeneralGenInd|[V]$.
+    \item $\Psafe$ is safe for $\langle\GeneralGenInd\rangle|\langle V\rangle$.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+The proof is in essence a repetition of the proof of theorem~\ref{thm:DiscMainThm} where $\GeneralGenInd=\sum_{u'\in\X'}\GeneralInd$ must be used.
+\end{proof}
+
+\subsection{Strategy deployment}
+Suppose you are in a situation where you need to guess $\GeneralGenInd|V$ for an $\X'\subset\X$. An example is the Monty Hall game where on live television you need to guess whether your door $a$ has the car, thus whether $\1_{\{U=a\}}=1$ given the opened door $V$. Let $\GeneralGenInd^*$ be a random variable taking values in $\{0,1\}$. The goal is pick a probability distribution on $\GeneralGenInd^*$ in order to maximize $\P[\GeneralGenInd^*=\GeneralGenInd]$ for all $\P\in\Pmod$. The following theorem gives the optimal distribution.
+\begin{theorem}\label{thm:DiscAccOpt}
+Let $\X$, $\X'$, $\Y$, $U$, $V$, $\{p_u\}_{u\in\Y}$ and $\Pmod$ be as before. The probability distribution on $\GeneralGenInd^*$ maximizing $\P[\GeneralGenInd^*=\GeneralGenInd]$ for all $\P\in\Pmod$ is
+\begin{equation}\
+\GeneralGenInd^*=\begin{cases}
+1,&\sum_{u\in\X'}p_u>\frac{1}{2},\\
+0,&\sum_{u\in\X'}p_u<\frac{1}{2},\\
+\mathrm{Ber}(p),&\sum_{u\in\X'}p_u=\frac{1}{2},p\in[0,1].
+\end{cases}
+\end{equation}
+where $\mathrm{Ber}(p)$ is the Bernoulli distribution with parameter $p$. This distribution guesses $\GeneralGenInd$ correct with probability 
+\begin{equation}
+\P[\GeneralGenInd^*=\GeneralGenInd]=\max\left\{\sum_{u\in\X'}p_u,1-\sum_{u\in\X'}p_u\right\}
+\end{equation}
+for all $\P\in\Pmod$.
+\end{theorem}
+\begin{proof}
+Let $\P\in\Pmod$ be arbitrary. Expanding $\P[\GeneralGenInd^*=\GeneralGenInd]$ yields
+\begin{equation}
+\P\left[\GeneralGenInd^*=\GeneralGenInd\right]=\sum_{k=0}^1\P\left[\GeneralGenInd^*=k\middle|\GeneralGenInd=k\right]\P\left[\GeneralGenInd=k\right]
+\end{equation}
+Note that $\P[\GeneralGenInd=1]=\sum_{u\in\X'}p_u$ and $\P[\GeneralGenInd=0]=1-\sum_{u\in\X'}p_u$ hold by $\P\in\Pmod$. Furthermore, as we want to guess $\GeneralGenInd$, it is not reasonable to make $\GeneralGenInd^*$ dependent on $\GeneralGenInd$. If we know the value of $\GeneralGenInd$, we can just guess that value. Thus we have
+\begin{equation}
+\P\left[\GeneralGenInd^*=k\middle|\GeneralGenInd=k\right]=\P\left[\GeneralGenInd^*=k\right]
+\end{equation}
+for all $k\in\{0,1\}$. This results in the following sum:
+\begin{align}
+&\phantom{=}\P\left[\GeneralGenInd^*=\GeneralGenInd\right]\\
+&=\P\left[\GeneralGenInd^*=1\right]\left(\sum_{u\in\X'}p_u\right)+\P\left[\GeneralGenInd^*=0\right]\left(1-\sum_{u\in\X'}p_u\right).
+\end{align}
+Rewrite $\sum_{u\in\X'}p_u=x$ and $\P[\GeneralGenInd^*=1]=p$, we then need to maximize
+\begin{equation}
+f(p):=px+(1-p)(1-x)=p(2x-1)+1-x.
+\end{equation}
+Consider the following different values of $x$.
+\begin{itemize}
+    \item[$x>\frac{1}{2}$:] When $x>\frac{1}{2}$ holds, the function $f$ is strictly increasing in $p$. The maximum is then achieved at $p=1$, which is $p$. Thus $\1_{\{U\in\X'\}}^*=1$ must always be guessed.
+    \item[$x<\frac{1}{2}$:] When $x<\frac{1}{2}$ holds, the function $f$ is strictly decreasing in $p$. The maximum is then achieved at $p=0$, which is $1-x$. Thus $\1_{\{U\in\X'\}}^*=0$ must always be guessed.
+    \item[$x=\frac{1}{2}$:] When $x=\frac{1}{2}$ holds, the function $f$ is constant. Its value is $f(p)=\frac{1}{2}=x$ for all $p\in[0,1]$. Therefore we can put $\GeneralGenInd^*=\mathrm{Ber}(p)$ as guessing strategy for all $p\in[0,1]$.
+\end{itemize}
+Using these distributions $\P[\GeneralGenInd^*=\GeneralGenInd]$ is maximal for all $\P\in\Pmod$ with value 
+\begin{equation}
+\P\left[\GeneralGenInd^*=\GeneralGenInd\right]=\max\left\{\sum_{u\in\X'}p_u,1-\sum_{u\in\X'}p_u\right\}.
+\end{equation}
+\end{proof}
+
 
 \section{Dice game}
 \begin{proposition}\label{prop:DiceIndSafe}
