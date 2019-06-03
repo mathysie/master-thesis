@@ -1,5 +1,5 @@
 %!TEX program = xelatex
-\documentclass[twoside,a4paper]{report}
+\documentclass[a4paper]{report}
 \usepackage[ngerman, english]{babel}
 \usepackage{comment}
 \usepackage{csquotes}
@@ -87,15 +87,20 @@
 \maketitle
 \end{titlepage}
 
-\begin{abstract}
+\pagenumbering{roman}
 
+\begin{abstract}
+This is my thesis.
+\newpage
+This is a long abstract.
 \end{abstract}
 
+
+\pagenumbering{gobble}
 \tableofcontents
 
-\newpage
-
 \chapter{Introduction}
+\pagenumbering{arabic}
 Probability theory is one of the most important and most researched fields in mathematics. It is entirely based on three axioms first stated by Andrey Kolmogorov \cite{Kolmogorov33}, namely that the probability of an event is non-negative, the probability measure is a unit measure and the probability measure is countably additive on disjoint sets. These three axioms however do not prevent the existence of certain paradoxes, like the Borel-Kolmogorov paradox, Monty Hall's problem and the Sleeping Beauty problem. Some paradoxes arise from wrongly using probability theory, others are a misinterpretation of results.
 
 This thesis focuses mainly paradoxes arising from conditional probability, such as the Borel-Kolmogorov paradox, Monty Hall's problem and the two envelope problem. We study will these problems and address their paradoxical nature. Ultimately it will be shown that all paradoxes arise by incorrectly applying conditional probability.
