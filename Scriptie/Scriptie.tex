@@ -100,13 +100,13 @@ Probability theory is one of the most important and most researched fields in ma
 
 This thesis focuses mainly paradoxes arising from conditional probability, such as the Borel-Kolmogorov paradox, Monty Hall's problem and the two envelope problem. We study will these problems and address their paradoxical nature. Ultimately it will be shown that all paradoxes arise by incorrectly applying conditional probability.
 
-Take a look at the Borel-Kolmogorov paradox first. A sphere is equipped with the uniform probability measure. Suppose a point exists on a great circle of the sphere, but you do not know where that point is. Is there a probability distribution on this great circle for that point? If one models this problem using longitudes, the conditional distribution on the great circle is uniform. However, if one models this problem using meridians, the conditional distribution is a cosine. Borel \cite{Borel09} and Kolmogorov \cite{Kolmogorov33} both addressed this problem and Kolmogorov gave the following answer:
+Take a look at the Borel-Kolmogorov paradox first. A sphere is equipped with the uniform probability measure. Suppose a point exists on a great circle of the sphere, but you do not know where that point is. Is there a probability distribution on this great circle for that point? If one models this problem using longitudes, the conditional distribution on the great circle is uniform. However, if one models this problem using meridians, the conditional distribution is a cosine.
 
+Borel \cite{Borel09} and Kolmogorov \cite{Kolmogorov33} both addressed this problem and Kolmogorov gave the following answer:
 \foreignblockquote{ngerman}[Andrey Kolmogoroff, \cite{Kolmogorov33}]{Dieser Umstand zeigt, daß der Begriff der bedingten Wahrscheinlichkeit in bezug auf eine isoliert gegebene Hypothese, deren Wahrscheinlichkeit gleich Null ist, unzulässig ist: nur dann erhält man auf einem Meridiankreis eine Wahrscheinlichkeitsverteilung für [Breite] Theta, wenn dieser Meridiankreis als Element der Zerlegung der ganzen Kugelfläche in Meridiankreise mit den gegebenen Polen betrachtet wird.}
-
 In summary, Kolmogorov states that the concept of conditional probability on a great circle is inadmissible, since the event that the point lies on a great circle of the sphere has zero measure. Furthermore, the sole reason of a cosine distribution on a great circle arising when considering meridians is that the meridian circle serves as an element of the decomposition of the whole spherical surface in meridian circles with the poles considered.
 
-Despite Kolmogorov's explanation this problem is still upon debate. Recently Gyenis, Hofer-Szabó and Rédei \cite{Gyenis17} studied this problem and provided more insight and an in my opinion satisfying discussion to the problem, eventually drawing the same conclusion as Kolmogorov already did. This problem is more elaborately discussed in chapter~\ref{chap:BorelKolmogorov}.
+Despite Kolmogorov's explanation this problem is still upon debate. Recently Gyenis, Hofer-Szabó and Rédei \cite{Gyenis17} studied this problem and provided more insight and an in my opinion satisfying discussion to the problem, eventually drawing the same conclusion as Kolmogorov already did. This problem is more elaborately discussed in chapter~\ref{chap:BorelKolmogorov} where we will expand the analysis of \cite{Gyenis17} and not only consider longitudes and meridians, but their combination as well. Furthermore, we will look whether a conditional probability on a zero set can be uniquely approached by traditional conditional probability on sets of decreasing measure as stated in conjecture~\ref{con:BorelConjecture}. This conjecture turns out to be false, again affirming that conditional probabilities on sets of measure zero are not uniquely defined.
 
 Another paradox arising from conditional probability is Monty Hall's problem. In Monty Hall's problem, a player is facing three doors called $a$, $b$ and $c$. One door opens to a car and the other two have goats. Suppose the player initially chooses door $a$. The game master then opens either door $b$ or $c$, but always a door with a goat. The player now faces two doors and is asked whether he wants to switch. One possible solution is that the player faces two doors without any preference for either door, thus the probability is 50\%. Another possible solution is that first the player had a 33\% chance of correctly guessing the door with the car. If for example door $c$ is opened, door $b$ remains with a conditional probability of 67\% of having the car. Which solution is correct?
 
@@ -167,16 +167,20 @@ I propose a solution that the thirders use a different model than the halfers. T
 
 Every problem has a different reason for getting paradoxical results. There is one recurring theme with all paradoxes, namely when analysing these problems most of the times the underlying $\sigma$-algebra is not taken into account. This yields to various conflicting results, as conditioning on events that cannot be conditioned on to not recognizing that multiple probability distributions are possible. The theme of is thesis this therefore that when doing probability theory, the underlying probability space and $\sigma$-algebra must never be ignored and not providing a sub-$\sigma$-algebra with a conditional distribution must become a bad habit instead of an accepted practice.
 
-
-
 \chapter{The Borel-Kolmogorov paradox}\label{chap:BorelKolmogorov}
-The first paradox we will study in more detail is the Borel-Kolmogorov paradox. It is first studied by Borel \cite{Borel09} and Kolmogorov \cite{Kolmogorov33} and has sparked debate over the centuries afterwards\footnote{Bronnen lezen en invoeren.}. We will take a look the following version of the paradox.
+The first paradox we will study in more detail is the Borel-Kolmogorov paradox. It is first studied by Borel \cite{Borel09} and Kolmogorov \cite{Kolmogorov33} and has sparked debate over the centuries afterwards\footnote{Bronnen lezen en invoeren.}. We will take a look at the following version of the paradox.
 
 Suppose a random variable has a uniform probability distribution on the unit sphere. If one conditions on a great circle, what will the resulting conditional distribution be? If the great circle is viewed as a longitude, the conditional distribution will be uniform as well. However, if the great circle is modelled as a meridian, the conditional distribution has a cosine as density function. We have two different conditional distributions on the same set, thus which one is correct?
 
-As Kolmogorov \cite{Kolmogorov33} pointed out, the great circle has zero measure and therefore conditioning on a great circle must not be allowed. Our analysis will concern conditioning on zero sets using measure-theoretic conditional expectations as such conditioning is defined in that setting. The article of Gyenis, Hofer-Szabó and Rédei \cite{Gyenis17} is followed to compute the conditional distributions, who come to the same conclusion as Kolmogorov but with a more elaborate explanation.
+The basic solution to the paradox is to use measure-theoretic conditional probability, so that one is given not just a set like a great circle to condition on but rather a set and an accompanying sub-$\sigma$-algebra containing this set. The definition of measure-theoretic conditional probability now provides an answer that is unique and meaningful up to a set of zero measure. When conditional probability is defined traditionally based on density functions, it is defined on every point even though each such point has measure zero. One may now ask the following question: can we generally extend the measure-theoretic conditional probability to be defined on all points once a sub-$\sigma$-algebra is provided, by treating the conditional probability at that point as a limit of traditional conditional probabilities where one conditions on smaller and smaller sets? In section~\ref{sec:BorelCombining} we provide conjecture~\ref{con:BorelConjecture} that would imply this, but we will then show this conjecture is wrong. If we condition on both a given meridian and a suitably rotated longitude, then two phenomena occur:
+\begin{enumerate}
+\item the only sub-$\sigma$-algebra that we can provide is the full Borel $\sigma$-algebra and conditioning on the full $\sigma$-algebra leads to no effect and
+\item the required limit is undefined as the limit of smaller and smaller meridians takes on a different value than the limit of smaller and smaller rotated longitudes.
+\end{enumerate}
 
-Before we can start with the analysis, we need to define conditional expectations in the measure-theoretic setting. We will then prove that the conditional distributions on a great circle can differ and conclude from the results that conditioning on zero sets cannot be admissible. The Borel-Kolmogorov paradox will then be renamed to the \emph{Borel-Kolmogorov phenomenon}, as it is more an example on why you should not condition on zero sets than it is a paradox.
+Kolmogorov \cite{Kolmogorov33} pointed out that the great circle has zero measure and according to him conditioning on a great circle must not be allowed. Our analysis will concern conditioning on zero sets using measure-theoretic conditional expectations as such conditioning is defined there. The article of Gyenis, Hofer-Szabó and Rédei \cite{Gyenis17} is followed to compute the conditional distributions on the great circle, viewing that circle both as longitude and as meridian. In their article the same conclusion as in \cite{Kolmogorov33} is drawn but with a more elaborate explanation. We will take it one step further to also consider the $\sigma$-algebra of both the meridians and longitudes and to consider conditional distributions on rotated longitudes making them coincide with meridians. We will then conclude that once again conditioning on measure zero sets must not be admissible, as it will lead to contradicting results.
+
+After drawing these conclusions, we will rename the Borel-Kolmogorov paradox to the \emph{Borel-Kolmogorov phenomenon}, as it is more an example on why you should not condition on zero sets than it is a paradox.
 
 \section{Conditional expectation}
 First we need to define conditional expectations. We will use the definitions given by David Williams \cite{Williams91}.
@@ -208,20 +212,31 @@ $Y$ is called a \emph{version of the conditional expectation} $\E[X|\G]$ of $X$ 
 
 Note that when $\G=\sigma(Z)$ is the smallest $\sigma$-algebra generated by a set $Z\in\F$, we also write $\E[X|\G]=\E[X|Z]$. This generalizes to $\E[X|\G]=\E[X|Z_1,Z_2,\ldots]$ when $\G=\sigma(Z_1,Z_2,\ldots)$.
 
-The traditional definition of conditional expectation is that when $X$ and $Y$ are two random variables on $\R$, $f_{X,Y}$ is the joint density function of $X$ and $Y$ and $f_Y$ is the density function of $X$, the conditional expectation $\E[X|Y=y]$ is defined as
+Definition~\ref{def:conexp} extends very nicely to the definition of conditional probability. Note that $\E[\1_F]=\P[F]$ holds for all $F\in\F$ and this carries over to conditional probabilities.
+
+\begin{definition}[Conditional probability]
+If $\G$ is a sub-$\sigma$-algebra of $\F$ and $F\in\F$, then the \emph{conditional probability} $\P[F|\G]$ is a version of $\E[\1_F|\G]$.
+\end{definition}
+
+\subsection{Comparison to traditional definitions}
+The traditional definition of traditional density-based conditional expectation and probability is the following: when $X$ and $Y$ are two random variables on $\R$, $f_{X,Y}$ is the joint density function of $X$ and $Y$ and $f_Y$ is the density function of $X$, the conditional expectation $\E[X|Y=y]$ is defined as
 \begin{equation}
 \E[X|Y=y]=\int_\R x\frac{f_{X,Y}(x,y)}{f_Y(y)}dx.
 \end{equation}
-Definition~\ref{def:conexp} agrees on this traditional usage. Take $\G=\sigma(\{Y=y\})$. The smallest $\sigma$-algebra generated by all $\omega\in\R$ such that $Y(\omega)=y$ and define
+Definition~\ref{def:conexp} agrees on this traditional usage although it can be modified on a set of measure zero, as we will see now. Take $\G=\sigma(\{Y=y\})$. The smallest $\sigma$-algebra generated by all $\omega\in\R$ such that $Y(\omega)=y$ and define
 \begin{equation}
 g(y)=\int_\R x\frac{f_{X,Y}(x,y)}{f_Y(y)}dx,
 \end{equation}
 then $g(Y)$ is a version of $\E[X|Y]$. The proof and a more general statement can be found in section~9.6 of \cite{Williams91}.
 
-Definition~\ref{def:conexp} extends very nicely to the definition of conditional probability. Note that $\E[\1_F]=\P[F]$ holds for all $F\in\F$ and this carries over to conditional probabilities.
+The traditional conditional expectation can also be extended to traditional conditional probability.
+\begin{definition}[Traditional conditional probability]
+Let $(\Omega,\F, \P)$ be a probability space. Let $F\in\F$ be with positive measure and let $E\in\F$ be measurable. The \emph{traditional conditional probability} of $E$ given $F$ is given by
+\begin{equation}
+\P[E|F]=\frac{\P[E\cap F]}{\P[F]}.
+\end{equation}
 
-\begin{definition}[Conditional probability]
-If $\G$ is a sub-$\sigma$-algebra of $\F$ and $F\in\F$, then the \emph{conditional probability} $\P[F|\G]$ is a version of $\E[\1_F|\G]$.
+If $F$ has measure zero, the traditional conditional probability of $E$ given $F$ is undefined.
 \end{definition}
 
 \section{Formal description of the probability space}
@@ -257,7 +272,7 @@ Note that the function in \eqref{eq:BorelPolar} is not a bijection. The image of
 
 \section{Conditional distributions}
 We will now explore various ways to describe the conditional distribution on a great circle.
-\subsection{Naive conditional probability}\label{sec:BorelNaive}
+\subsection{Traditional conditional probability}\label{sec:BorelNaive}
 The first method is the naive method using traditional conditional probability. The probability space here is $(S,\B,\P)$. Let $F\in\B$ be a great circle.
 
 Note that $\P[F]=0$, as a great circle always has zero measure. To be precise, let $f\colon S\to\R^3$ be the coordinate transformation of \eqref{eq:BorelPolar}. All great circles $F'$ have a rotation $O\colon\R^3\to\R^3$ such that $(f^{-1}\circ O\circ f)(F')=[0,2\pi)\times\left\{\frac{\pi}{2}\right\}$. Rotations are orthogonal and have determinant $1$, thus
@@ -266,13 +281,13 @@ Note that $\P[F]=0$, as a great circle always has zero measure. To be precise, l
 &=\frac{1}{4\pi}\int_0^{2\pi}\int_{\frac{1}{2}\pi}^{\frac{1}{2}\pi}\sin\psi \det(f^{-1}\circ O\circ f)d\psi d\phi\\
 &=\frac{1}{4\pi}\int_0^{2\pi}\int_{\frac{1}{2}\pi}^{\frac{1}{2}\pi}\sin\psi d\psi d\phi=0.
 \end{align}
-The inverse $f^{-1}$ is well-defined here since $f$ is a bijection locally around the circle $[0,2\pi)\times\left\{\frac{\pi}{2}\right\}$. Let $E\subset F$ be a measurable subset of $F$, then the conditional probability of $E$ given $F$ equals
+The inverse $f^{-1}$ is well-defined here since $f$ is a bijection locally around the circle $[0,2\pi)\times\left\{\frac{\pi}{2}\right\}$. Let $E\subset F$ be a measurable subset of $F$, then the traditional conditional probability of $E$ given $F$ equals
 \begin{equation}
 \P[E|F]=\frac{\P[E\cap F]}{\P[F]},
 \end{equation}
 which is not defined as $\P[F]=0$.
 
-Thus classical Bayesian interpretation of conditional probability will not give an answer. Furthermore, a single great circle does not yield enough information to compute any conditional probability. In terms of definition~\ref{def:conexp} the sub-$\sigma$-algebra considered here is $\G=\{\emptyset,S,B,S\setminus B\}$, which turns out to be too small.
+Thus the traditional interpretation of conditional probability will not give an answer. Furthermore, a single great circle does not yield enough information to compute any conditional probability. In terms of definition~\ref{def:conexp} the sub-$\sigma$-algebra considered here is $\G=\{\emptyset,S,B,S\setminus B\}$, which turns out to be too small.
 
 \subsection{Conditional probability on longitudes}\label{sec:BorelLong}
 Since four-element sub-$\sigma$-algebras are too small, we need to condition on larger sub-$\sigma$-algebras. One option is the $\sigma$-algebra of longitudes. Let
@@ -307,7 +322,7 @@ Filling in $\E[X|\mathfrak{C}]$ and rewriting yields
 Note that $\mathfrak{C}$ is generated by sets like $C$, thus $\E[X|\mathfrak{C}]$ is a well-defined version of the $\mathfrak{C}$-conditional expectation of $X$.
 \end{proof}
 
-This derivation is slightly different from the one in \cite{Gyenis17}. There they claim that the volume of the unit sphere is $2\pi$, whereas they should have claimed that the surface area of the unit sphere is $4\pi$. Luckily this constant is not actually used in the computations, thus their mistake has no impact on the rest of their article.
+This derivation is slightly different from the one in \cite{Gyenis17}. The corrections on \cite{Gyenis17} are given in appendix~\ref{app:CorLong}.
 
 As we now have a $\mathfrak{C}$-conditional expectation, we can look at the measure space $(S,\mathfrak{C})$. Let $\psi'\in(0,\pi)$ be arbitrary, then from $\mathfrak{C}$ we can take a longitude $C=[0,2\pi)\times\{\psi'\}$ and a measurable arc $A=[\phi_1,\phi_2]\times\{\psi'\}\subset C$. Let $\P'$ be the probability measure taking $1$ on $C$ and $0$ on $C^c$, then the conditional probability $\bar{\P}$ of points being on $A$ given there is a point on $C$ is
 \begin{align}
@@ -349,19 +364,10 @@ Note that this representation is different from equations (81) and (112) of \cit
 \end{equation}
 and equation 112 is
 \begin{equation}
-\E[X|\mathfrak{M}](\phi,\psi)=\int_0^{\pi}X(\phi,\psi')\sin\psi'd\psi',
+\E[X|\mathfrak{M}](\phi,\psi)=\int_0^{\pi}X(\phi,\psi')\sin\psi'd\psi'.
 \end{equation}
-as those versions are wrong for the following reasons:
-\begin{enumerate}
-\item In the verification \cite{Gyenis17} claims that $\int_0^\pi\sin\theta d\theta=1$ holds between equations (107) and (108) and between equations (115) and (116), while that integral actually has value $2$.
-\item The conditional distribution of \cite{Gyenis17} is verified on a half meridian arc on page 2614, while this distribution must be verified on a full circle in order to be compared with the longitudes. Verification on a full meridian, e.g.~computation of $q(C)$ in formula (85), quickly reveals that the conditional distribution of \cite{Gyenis17} integrates to $2$.
-\item The random variable $X$ is integrated on the domain $[0,2\pi)$, while $X$ is only defined on $[0,2\pi)\times[0,\pi]\in\mathfrak{M}$. The set $A\times[0,2\pi)$ is not an element of $\mathfrak{M}$.
-\item Between equations (105) and (106) of \cite{Gyenis17}, they implicitly claim that the identity $X(\phi,\theta)=X(\phi,\theta+\pi)$ holds for all $\F$-measurable $X$, where now notation of \cite{Gyenis17} is used. This is most certainly false without any more restrictions on $X$.
-\item Before equation (85) a measure $q_\mathcal{M}$ is defined on a whole meridian. Since the integral is taken from $\psi=0$ to $\psi=2\pi$, the integral of $q_\mathcal{M}$ over $S$ becomes $1$. However, as pointed out earlier, $\psi>\pi$ is not in our domain. Thus the integral must be split up in two arcs with $q_{\mathcal{M}}$ taking value $\frac{1}{2}$ on each arc.
-\item The normalization constant is used in equation (103) of \cite{Gyenis17} is $2\pi$, where it must be $4\pi$. This does however not impact further calculations, like the same mistake made from equation (109) to (110) in the section of longitudes.
-\end{enumerate}
-
-We can verify that our version is the correct one. Take first the meridian $M=\{\phi',\phi'+\pi\}\times[0,\pi]\in\mathfrak{M}$ with $\phi'\in[0,\pi)$. Let $\psi_1^*,\psi_2^*\in\R$ be arbitrary with $\psi_2^*-2\pi\leq\psi_1^*\leq\psi_2^*$, define the angles $\psi_1=\psi_1^*\mod2\pi$ and $\psi_2=\psi_2^*\mod2\pi$ and define arc $A\subseteq M$ as
+The corrections on \cite{Gyenis17} are given in appendix~\ref{app:CorMer}. We can verify that our version is the correct one.\\
+Take first the meridian $M=\{\phi',\phi'+\pi\}\times[0,\pi]\in\mathfrak{M}$ with $\phi'\in[0,\pi)$. Let $\psi_1^*,\psi_2^*\in\R$ be arbitrary with $\psi_2^*-2\pi\leq\psi_1^*\leq\psi_2^*$, define the angles $\psi_1=\psi_1^*\mod2\pi$ and $\psi_2=\psi_2^*\mod2\pi$ and define arc $A\subseteq M$ as
 \begin{equation}
 A=\begin{cases}
 \{\phi'\}\times[\psi_1,\psi_2],&\psi_1,\psi_2\leq\pi,\\
@@ -392,8 +398,8 @@ Now one can immediately check that $\hat{\P}$ is well-defined on $M$ as
 
 Clearly this conditional distribution on meridians is not uniform. However, one should expect they are, as a meridian is just a rotation of a longitude and the points on the sphere are spread uniformly. An explanation of this difference is given in section~\ref{sec:BorelExplained}.
 
-\subsection{Combining longitudes and meridians}
-Another question one could ask is the following: if I define $\Sigma=\sigma(\mathfrak{C},\mathfrak{M})$ as the smallest $\sigma$-algebra containing both measurable subsets of meridians and longitudes, what is then the conditional probability distribution on a great circle given $\Sigma$? The answer is that in this approach the distributions in sections~\ref{sec:BorelLong} and~\ref{sec:BorelMer} can be recovered as limiting distributions of a sequence of Bayesian conditional probabilities defined in section~\ref{sec:BorelNaive}.
+\subsection{Combining longitudes and meridians}\label{sec:BorelCombining}
+Another question one could ask is the following: if I define $\Sigma=\sigma(\mathfrak{C},\mathfrak{M})$ as the smallest $\sigma$-algebra containing both measurable subsets of meridians and longitudes, what is then the conditional probability distribution on a great circle given $\Sigma$? The answer is that in this approach the distributions in sections~\ref{sec:BorelLong} and~\ref{sec:BorelMer} can be recovered as limiting distributions of a sequence of traditional conditional probabilities defined in section~\ref{sec:BorelNaive}.
 
 First we'll further analyse the new $\sigma$-algebra $\Sigma$. Consider an arbitrary rectangle $(a,b)\times(c,d)\subset[0,2\pi)\times[0,\pi]$. Since by definition $(a,b)\times[0,\pi]\in\mathfrak{M}$ and $[0,2\pi)\times(c,d)\in\mathfrak{C}$, we have
 \begin{equation}
@@ -437,7 +443,7 @@ The limit of $\epsilon\downarrow0$ remains $\P[R_0|M_0]=\frac{1}{2}\left(\cos a-
 
 Note that the probability in proposition~\ref{prop:BorelMerBayes} has $\frac{1}{2}$ as normalization factor instead of $\frac{1}{4}$, as $M_\epsilon$ converges to only a half meridian. By symmetry the distribution on the whole meridian follows the absolute cosine function.
 
-The conditional probabilities on $\mathfrak{C}$ and $\mathfrak{M}$ therefore can be approached by Bayesian conditional probabilities on $\B$. This gives rise to the following conjecture.
+The conditional probabilities on $\mathfrak{C}$ and $\mathfrak{M}$ therefore can be approached by traditional conditional probabilities on $\B$. This gives rise to the following conjecture.
 \begin{conjecture}\label{con:BorelConjecture}
 Let $(X,\F,\P)$ be a probability space. Let $F\in\mathcal{F}$ have zero measure and let $E\subseteq F$ be measurable. Let $\G\subset\F$ be a sub-$\sigma$-algebra containing $E$ and $F$ with $\G\neq\F$. Let $\{F_n\}_{n\in\N}\subset\G$ be a sequence converging to $F$ and $\{E_n\}_{n\in\N}\subset\G$ be a sequence converging to $E$ with for all $n\in\N$ the sets $E_n$ and $F_n$ have positive measure, $E_n\subseteq F_n$ holds and the limit $\lim_{n\to\infty}\P[E_n|F_n]$ exists. Then
 \begin{equation}
@@ -446,7 +452,7 @@ Let $(X,\F,\P)$ be a probability space. Let $F\in\mathcal{F}$ have zero measure 
 where $\P'$ is the probability measure taking $1$ on $F$ and $\E[\cdot|\G]$ is a version of the conditional expectation on $\G$.
 \end{conjecture}
 
-If conjecture~\ref{con:BorelConjecture} is true, then all conditional probabilities on null sets can be computed by limiting Bayesian conditional probabilities. It seems to hold as for the Borel-Kolmogorov paradox when considering longitudes we can take $\F=\B$ and $\G=\mathfrak{C}$ and when considering meridians we can take $\F=\B$ and $\G=\mathfrak{M}$. It however is false as the following proposition will point out.
+If conjecture~\ref{con:BorelConjecture} is true, then all conditional probabilities on null sets can be computed by limiting traditional conditional probabilities. It seems to hold as for the Borel-Kolmogorov paradox when considering longitudes we can take $\F=\B$ and $\G=\mathfrak{C}$ and when considering meridians we can take $\F=\B$ and $\G=\mathfrak{M}$. It however is false as the following proposition will point out.
 
 \begin{proposition}\label{prop:BorelConFalse}
 Conjecture~\ref{con:BorelConjecture} is false.
@@ -491,7 +497,7 @@ holds and the guess can be generalized to
 \end{equation}
 This is in fact the same $\mathfrak{C}$-conditional expectation of $X$ by proposition~\ref{prop:BorelLongBayes}. The same steps can be taken to guess $\E[X|\mathfrak{M}]$ using proposition~\ref{prop:BorelMerBayes}. 
 
-Thus we can conclude that it is wise to look at a converging sequence of Bayesian conditional probabilities for a potential conditional expectation when conditioning on zero sets. However, it must be noted that the resulting conditional probability is not uniquely defined, must be checked whether it complies to the actual definition of conditional probability and depends on the chosen sub-$\sigma$-algebra.
+Thus we can conclude that it is wise to look at a converging sequence of traditional conditional probabilities for a potential conditional expectation when conditioning on zero sets. However, it must be noted that the resulting conditional probability is not uniquely defined, must be checked whether it complies to the actual definition of conditional probability and depends on the chosen sub-$\sigma$-algebra.
 
 \section{The Borel-Kolmogorov paradox explained}\label{sec:BorelExplained}
 Following the arguments of \cite{Gyenis17} we will argue that the difference in conditional distribution is no paradox, but a misinterpretation of conditional probability.
@@ -532,11 +538,11 @@ At last, as Kolmogorov \cite{Kolmogorov33} already stated in his work, there is 
 
 
 \chapter{Safe probability}\label{chap:SafeProp}
-To introduce safe probability, take a look at a game of dice. This game is devised by Grunwald \cite{Grunwald13}. A player and game master are present and the game master casts a fair die. He peeks the value of the die and must either state that the value is 4 or lower or state that the value is 3 or higher. The game master is not able to lie. Upon hearing the game master's advice, what is the probability the die has landed 4?\\
+To introduce safe probability, take a look at a game of dice. This game is devised by Grünwald \cite{Grunwald13}. A player and game master are present and the game master casts a fair die. He peeks the value of the die and must either state that the value is 4 or lower or state that the value is 3 or higher. The game master is not able to lie. Upon hearing the game master's advice, what is the probability the die has landed 4?\\
 Suppose an alternative game is considered, where the game master can only say that the value is either from 1 to and including 4 or the value is 5 or 6. The question of the probability of the die having 4 becomes easy to answer. When 5 or 6 is revealed, the answer is 0 and when 1 to 4 is revealed, Bayes gives us that the probability is 25\%.\\
 However, when either `4 and lower' or `3 and higher' is stated, the game master can choose his statement when 3 or 4 is cast. His method of choosing the statement influences the probability of the die having cast 4 upon hearing the game master's statement.
 
-What can we thus state about the probability of the die having 4? Traditional conditional probability will not suffice hear. If we loose our notion of conditional probability, we can resort to \emph{safe probability}. Safe probability is introduced by Grunwald in 2018 \cite{Grunwald18}.\\
+What can we thus state about the probability of the die having 4? Traditional conditional probability will not suffice hear. If we loose our notion of conditional probability, we can resort to \emph{safe probability}. Safe probability is introduced by Grünwald in 2018 \cite{Grunwald18}.\\
 Suppose there are two random variables, $U$ and $V$, and we want to use the distribution $U|V$, but there is no method of finding this distribution. Then one creates a model of all possible probability distributions containing hopefully the correct distribution as well. A new conditional distribution is created, not necessarily one from our model, which gives a safe probability of $U$ given $V$ and performs equal for all distributions in our model.\\
 The advantage is that, while not knowing the correct probability distribution, we can use the safe distribution as guess. This guess will perform equal against all distributions in our model. We will make this more precise.
 \section{Definitions}
@@ -1075,6 +1081,21 @@ We have seen that the conditional probability of rolling $3$ given the game mast
 \bibliography{../Referenties/Referenties}
 
 \appendix
+\chapter{Corrections to [GHSR17]}
+\section{Corrections on appendix 1}\label{app:CorLong}
+\pagenumbering{Alph}
+In appendix 1, equation 94 of the proof of the conditional expectation on longitudes in \cite{Gyenis17}, they claim that the volume of the unit sphere is $2\pi$, whereas they should have claimed that the surface area of the unit sphere is $4\pi$. Luckily this constant is not actually used in the computations, thus their mistake has no impact on the rest of their article.
+
+\section{Corrections on appendix 2}\label{app:CorMer}
+I suggest the following corrections on appendix 2, the proof of conditional expectation on meridians:
+\begin{enumerate}
+\item In the verification \cite{Gyenis17} claims that $\int_0^\pi\sin\theta d\theta=1$ holds between equations (107) and (108) and between equations (115) and (116), while that integral actually has value $2$.
+\item The conditional distribution of \cite{Gyenis17} is verified on a half meridian arc on page 2614, while this distribution must be verified on a full circle in order to be compared with the longitudes. Verification on a full meridian, e.g.~computation of $q(C)$ in formula (85), quickly reveals that the conditional distribution of \cite{Gyenis17} integrates to $2$.
+\item The random variable $X$ is integrated on the domain $[0,2\pi)$, while $X$ is only defined on $[0,2\pi)\times[0,\pi]\in\mathfrak{M}$. The set $A\times[0,2\pi)$ is not an element of $\mathfrak{M}$.
+\item Between equations (105) and (106) of \cite{Gyenis17}, they implicitly claim that the identity $X(\phi,\theta)=X(\phi,\theta+\pi)$ holds for all $\F$-measurable $X$, where now notation of \cite{Gyenis17} is used. This is most certainly false without any more restrictions on $X$.
+\item Before equation (85) a measure $q_\mathcal{M}$ is defined on a whole meridian. Since the integral is taken from $\psi=0$ to $\psi=2\pi$, the integral of $q_\mathcal{M}$ over $S$ becomes $1$. However, as pointed out earlier, $\psi>\pi$ is not in our domain. Thus the integral must be split up in two arcs with $q_{\mathcal{M}}$ taking value $\frac{1}{2}$ on each arc.
+\item The normalization constant is used in equation (103) of \cite{Gyenis17} is $2\pi$, where it must be $4\pi$. This does however not impact further calculations, like the same mistake made from equation (109) to (110).
+\end{enumerate}
 
 \newpage
 
