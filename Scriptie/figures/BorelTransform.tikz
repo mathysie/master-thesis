@@ -5,26 +5,43 @@
 \draw (2,0) node [below] {$2\pi$};
 \draw (0,1) node [left] {$\pi$};
 % Hoogtegraden op rechthoek
-\draw[red] (0,0.5) -- (2,0.5);
+\draw[red] (0,0.5) -- (1,0.5);
+\draw[red, dashed] (1,0.5) -- (2,0.5);
+\draw[red, opacity=0.42] (0,1/6) -- (1,1/6);
+\draw[red, dashed, opacity=0.42] (1,1/6) -- (2,1/6);
+\draw[red, opacity=0.42] (0,5/6) -- (1,5/6);
+\draw[red, dashed, opacity=0.42] (1,5/6) -- (2,5/6);
 \draw[red] (0,0.5) node [left] {$C$};
 % Meridiaan op rechthoek
 \draw[blue] (0.5,1) -- (0.5,0);
-\draw[blue] (1.5,1) -- (1.5,0);
+\draw[blue, opacity=.42] (0.2,1) -- (0.2,0);
+\draw[blue, dashed] (1.5,1) -- (1.5,0);
 \draw[blue] (1,1) node [above] {$M$};
 
 % Pijl
 \draw [->] (2.5, 0.5) -- (3, 0.5);
 \draw (2.75,0.5) node [above] {\eqref{eq:BorelPolar}};
 % Bol
-\shade[ball color = gray!40, opacity = 0.4] (4.5,0.5) circle (1);
-\draw (4.5, 0.5) circle (1);
+\shade[ball color = gray!40, opacity = 0.4] (4.5, 0.5) circle (1);
+
 % Hoogtegraden op bol
 \draw[red, dashed] (5.5, 0.5) arc (0:180:1 and 0.1);
 \draw[red] (3.5, 0.5) arc (-180:0:1 and 0.1);
 \draw[red] (5.5, 0.5) node [right] {$C$};
 
+\draw[red, opacity=0.42] ({4.5-cos(30)}, {0.5-sin(30)}) arc (-180:0:{cos(30)} and 0.1);
+\draw[red, opacity=0.42, dashed] ({4.5+cos(30)}, {0.5-sin(30)}) arc (0:180:{cos(30)} and 0.1);
+\draw[red, opacity=0.42] ({4.5-cos(30)}, {0.5+sin(30)}) arc (-180:0:{cos(30)} and 0.1);
+\draw[red, opacity=0.42, dashed] ({4.5+cos(30)}, {0.5+sin(30)}) arc (0:180:{cos(30)} and 0.1);
+
 % Meridiaan op bol
 \draw[blue, dashed, rotate around={90:(4.5, 1.5)}] (4.5, 1.5) arc (0:180:1 and 0.1);
 \draw[blue, rotate around={90:(4.5, -0.5)}] (4.5, -0.5) arc (-180:0:1 and 0.1);
-\draw[blue] (4.5, 1.5) node [above] {$M$};
+
+\draw[blue] (4.7, 1.3) node {$M$};
+
+\draw[blue, rotate around={270:(4.5, 1.5)}, opacity=.42] (4.5, 1.5) arc (-180:0:1 and 0.6);
+
+
+\draw (4.5, 0.5) circle (1);
 \end{tikzpicture}
