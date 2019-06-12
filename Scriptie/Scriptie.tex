@@ -73,7 +73,7 @@
 \newcommand{\ChildIndSafe}{\tilde{\1}_{\{U=bg\}}}
 \newcommand{\ChildTwoInd}{\1_{\{U=bb\}}}
 \newcommand{\ChildTwoIndSafe}{\tilde{\1}_{\{U=bb\}}}
-\newcommand{\GeneralInd}{\1_{\{U=u'\}}}
+\newcommand{\GeneralInd}{\1_{\{U=u\}}}
 \newcommand{\GeneralGenInd}{\1_{\{U\in\X'\}}}
 \newcommand{\GeneralGenIndSafe}{\tilde{\1}_{\{U\in\X'\}}}
 
@@ -126,17 +126,13 @@ The crux of the Monty Hall problem is that the initial distribution of the car i
 
 In Chapter~\ref{chap:DiscPara} the results of the analysis of Monty Hall's problem are generalized to a theorem, which can be used to provide safe distributions for other problems like the boy or girl problem.
 \begin{theoremmain*}
-Let $\X$ and $\Y$ be countable. Let $U$ be a random variable on $\X$ and $V$ be a random variable on $\Y$. Let $p_u\in[0,1]$ with $\sum_{u\in\X}p_u=1$ and let 
-\begin{equation*}
-\Pmod\subseteq\{\P\mid\forall u\in\X:\P[U=u]=p_u,\E_{\P}[U]<\infty\}
-\end{equation*}
-be our model of probability distributions on $\X\times\Y$. Suppose there is a
-\begin{equation*}
-u'\in\bigcap_{\P\in\Pmod}\bigcap_{v\in\supp_{\P}(V)}\range(U|V=v).
-\end{equation*}
-Let $\Psafe$ be a distribution on $\X\times\Y$. If $\Y=\bigcup_{\P\in\Pmod}\supp_{\P}(V)$, then the following are equivalent:
+Let $\X$ be countable and $\Y$ be finite. Let $U$ be an $\X$-valued random variable and $V$ be a $\Y$-valued random variable. Let $p_u\in[0,1]$ with $\sum_{u\in\X}p_u=1$. Let 
+\begin{equation}
+\Pmod\subseteq\{\P\mid\forall u\in\X:\P[U=u]=p_u\}
+\end{equation}
+be our model of probability distributions on $\X\times\Y$ where $|\Y|$ distributions $\P_1,\ldots,\P_{|\Y|}\in\Pmod$ impose $|\Y|$ linearly independent vectors $(\P_i[V=v])_{v\in\Y}$ with $i\in\{1,\ldots,|\Y|\}$. Let $u\in\X$ be arbitrary and let $\Psafe$ be a distribution on $\X\times\Y$, then the following are equivalent:
 \begin{enumerate}
-    \item For all $v\in\Y$ we have $\Psafe[U=u'|V=v]=p_{u'}$.
+    \item For all $v\in\Y$ we have $\Psafe[U=u|V=v]=p_{u}$.
     \item $\Psafe$ is safe for $\GeneralInd|[V]$.
     \item $\Psafe$ is safe for $\langle\GeneralInd\rangle|\langle V\rangle$.
 \end{enumerate}
@@ -790,33 +786,29 @@ To conclude, in the example of the dice game, we cannot compute a unique conditi
 \chapter{Discrete conditional paradoxes}\label{chap:DiscPara}
 Consider the following three problems:
 \begin{enumerate}
-    \item[Monty Hall:] There are three doors. Two doors open to a goat and one door opens to a car. The player chooses initially a door, say door $a$. The game master then opens either door $b$ or $c$, however he never opens the door with the car. After opening a door, the player is asked if he should switch. Should the player switch to the other door?
-    \item[Boy or girl:] Suppose you encounter a stranger in a bar and you get in conversation. Suddenly, the stranger states that he has two children and at least one is a girl. What is the probability he has two daughters?
-    \item[Dice game:] This game is already introduced in Section~\ref{sec:SafeDice}. In short a die is rolled. Only the game master is able to observe the die's value. He then tells you whether the value of the die is in the set $\{1,2,3,4\}$ or in the set $\{3,4,5,6\}$. What is the probability you rolled $3$ given the game master's statement?
+    \item[Monty Hall:] There are three doors. Two doors have to a goat behind and one door a car. The player chooses initially a door, say he chooses door $a$. The game master then opens either door $b$ or $c$, however he never opens the door with the car. After opening a door, the player is asked if he should switch. He ultimately wins the contents of the door he has chosen. Should the player switch to the other door?
+    \item[Boy or girl:] Suppose you encounter a stranger in a bar and you two get in conversation. Suddenly, the stranger states that he has two children and at least one of them is a girl. What is the probability he has two daughters?
+    \item[Dice game:] This game is already introduced in Section~\ref{sec:SafeDice}, but here is a repeat. A die is rolled. Only the game master is able to observe the die's value. He then tells you whether the value of the die is in the set $\{1,2,3,4\}$ or in the set $\{3,4,5,6\}$. What is the probability you rolled $3$ given the game master's statement?
 \end{enumerate}
-All three problems essentially have the same structure. There is a finite set of outcomes in each problem. Monty Hall's problem has three doors, the boy or girl problem has three different family compositions and there are six values on a die. The game master must reveal some information, where it is essential that there is at least one outcome that remains possible no matter what the game master reveals. For that outcome the game master is free to choose his revelation. In Monty Hall's problem if door $a$ has the car, the game master can choose to leave doors $a$ and $b$ shut or leave doors $a$ and $c$ shut. If for the boy or girl problem the stranger has one son and one daughter, he is free to choose whether at least one child is a boy or girl. If the die rolled 3 in the dice game, the game master is free to choose $\{1,2,3,4\}$ or $\{3,4,5,6\}$. However, since there is at least one outcome remaining possible no matter which revelation the game master makes, traditional conditional probability does not suffice. This is seen for the dice game in Section~\ref{sec:SafeDice} where there is no sub-$\sigma$-algebra on $\{1,2,3,4,5,6\}$ that both contains the sets $\{3\}$ and the subset $\{\{1,2,3,4\},\{3,4,5,6\}$. We cannot simply use Bayes theorem anymore to compute the probability of $3$ given $\{1,2,3,4\}$, as we need to take the probability of the game master stating $\{3,4,5,6\}$ instead into account.
 
-Therefore all three problems can be analysed using the same methods; they are essentially equal. The game master has a choice and therefore is able to employ a strategy. When using traditional conditional probability one sees that such strategy is of influence. Equation~\ref{eq:SafeDiceCon6} states for example that the probability of rolling $6$ given $\{3,4,5,6\}$ dilates from $\frac{1}{4}$ to $\frac{1}{2}$.
+All three problems essentially have the same structure. Firstly, there is a finite set of outcomes in each problem. Monty Hall's problem has three doors, the boy or girl problem has three different family compositions and there are six values on a die. Secondly, the game master must reveal some information, where it is essential that there is at least one outcome that remains possible no matter what the game master reveals. For that outcome the game master is free to choose his revelation. In Monty Hall's problem, if door $a$ has the car, the game master can choose to leave doors $a$ and $b$ shut or leave doors $a$ and $c$ shut. If for the boy or girl problem the stranger has one son and one daughter, he is free to choose whether he tells at least one child is a boy or at least one is a girl. If the die rolled 3 in the dice game, the game master is free to choose to reveal $\{1,2,3,4\}$ or $\{3,4,5,6\}$.\\
+Since there is at least one outcome remaining possible no matter which revelation the game master makes, traditional conditional probability does not suffice. This is seen for the dice game in Section~\ref{sec:SafeDice} where there is no strict sub-$\sigma$-algebra on $\{1,2,3,4,5,6\}$ that both contains the sets $\{3\}$ and the subset $\{\{1,2,3,4\},\{3,4,5,6\}\}$. We cannot simply use traditional probability theory any-more to compute the probability of $3$ given $\{1,2,3,4\}$, as we need to take the probability of the game master stating $\{3,4,5,6\}$ instead into account. Equation~\ref{eq:SafeDiceCon6} states for example that the probability of rolling $6$ given $\{3,4,5,6\}$ dilates from $\frac{1}{4}$ to $\frac{1}{2}$.
 
-To counteract such strategies we need to first model all possible probability distributions. We can then create a pragmatic probability distribution where the decision maker can act on, which on average performs as well as all probability distributions in the model. We can use safe probability here.
+Therefore all three problems can be analysed using the same methods; they are essentially equal. The game master has a choice and therefore is able to employ a strategy. To counteract such strategies we need to first model all possible probability distributions. We can then create a pragmatic probability distribution using safe probability where the decision maker can act on. This distribution performs for predicting the distribution on the outcome space kon average as well as all probability distributions in the model.
 
 In this chapter we first introduce Theorem~\ref{thm:DiscMainThm} to create safe probability distributions in the setting of the three introduced problems. Then each problem is treated individually where Theorem~\ref{thm:DiscMainThm} is applied and we will discuss the results. We will conclude by stating that there is nothing paradoxical going on with the three problems. The paradoxical statements are just misapplications of conditional probability.
 
 \section{The main theorem}
-In the general setting we consider a set $\X$ of all possible outcomes called the \emph{outcome space} and a set $\Y$ of observations the player can make called the \emph{observation space}. Our sample space then becomes $\Omega=\X\times\Y$. Let $U$ be an $\X$-valued random variable on $\X$ denoting the outcome of the game, e.g.~the door containing the car in Monty Hall or the family composition in the boy or girl problem. Let $V$ be a $\Y$-valued random variable denoting the statement of the game master. Using safe probability we will create a safe distribution for $\1_{\{U=u'\}}|[V]$ for a particular $u'\in\X$.
+In the general setting we consider a set $\X$ of all possible outcomes called the \emph{outcome space} and a set $\Y$ of observations the player can make called the \emph{observation space}. Our sample space then becomes $\Omega=\X\times\Y$. Let $U$ be an $\X$-valued random variable denoting the outcome of the game, e.g.~the door containing the car in Monty Hall or the family composition in the boy or girl problem. Let $V$ be a $\Y$-valued random variable denoting the statement of the game master. Using safe probability we will create a safe distribution for $\1_{\{U=u'\}}|[V]$ for a particular $u'\in\X$.
 
 \begin{theorem}\label{thm:DiscMainThm}
-Let $\X$ and $\Y$ be countable. Let $U$ be a random variable on $\X$ and $V$ be a random variable on $\Y$. Let $p_u\in[0,1]$ with $\sum_{u\in\X}p_u=1$ and let 
+Let $\X$ be countable and $\Y$ be finite. Let $U$ be an $\X$-valued random variable and $V$ be a $\Y$-valued random variable. Let $p_u\in[0,1]$ with $\sum_{u\in\X}p_u=1$. Let 
 \begin{equation}
-\Pmod\subseteq\{\P\mid\forall u\in\X:\P[U=u]=p_u,\E_{\P}[U]<\infty\}
+\Pmod\subseteq\{\P\mid\forall u\in\X:\P[U=u]=p_u\}
 \end{equation}
-be our model of probability distributions on $\X\times\Y$. Suppose there is a
-\begin{equation}\label{eq:DiscMainThmUPrime}
-u'\in\bigcap_{\P\in\Pmod}\bigcap_{v\in\supp_{\P}(V)}\range(U|V=v).
-\end{equation}
-Let $\Psafe$ be a distribution on $\X\times\Y$. If $\Y=\bigcup_{\P\in\Pmod}\supp_{\P}(V)$, then the following are equivalent:
+be our model of probability distributions on $\X\times\Y$ where $|\Y|$ distributions $\P_1,\ldots,\P_{|\Y|}\in\Pmod$ impose $|\Y|$ linearly independent vectors $(\P_i[V=v])_{v\in\Y}$ with $i\in\{1,\ldots,|\Y|\}$. Let $u\in\X$ be arbitrary and let $\Psafe$ be a distribution on $\X\times\Y$, then the following are equivalent:
 \begin{enumerate}
-    \item For all $v\in\Y$ we have $\Psafe[U=u'|V=v]=p_{u'}$.
+    \item For all $v\in\Y$ we have $\Psafe[U=u|V=v]=p_{u}$.
     \item $\Psafe$ is safe for $\GeneralInd|[V]$.
     \item $\Psafe$ is safe for $\langle\GeneralInd\rangle|\langle V\rangle$.
 \end{enumerate}
@@ -824,7 +816,7 @@ Let $\Psafe$ be a distribution on $\X\times\Y$. If $\Y=\bigcup_{\P\in\Pmod}\supp
 \begin{proof}
 The implication from 1 to 2 is satisfied by Proposition~\ref{prop:SafeProperties}. Let $v\in\Y$ and $\P\in\Pmod$ be arbitrary, then we have
 \begin{equation}
-\Psafe[U=u'|V=v]=p_{u'}=\P[U=u'].
+\Psafe[U=u|V=v]=p_{u}=\P[U=u].
 \end{equation}
 Thus Proposition~\ref{prop:SafeProperties} states that $\Psafe$ is safe for $\GeneralInd|[V]$.
 
@@ -834,37 +826,34 @@ Consider lastly the implication from 3 to 1. Safety for $\langle\GeneralInd\rang
 \begin{equation}
 \E_{\P}[\GeneralInd]=\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]
 \end{equation}
-for all $\P\in\Pmod$. We will construct a sufficient $\Psafe$ from this requirement and prove that $\Psafe[U=u'|V=v]=p_{u'}$ for all $v\in\Y$ is necessary.\\
+for all $\P\in\Pmod$. We will construct a sufficient $\Psafe$ from this requirement and prove that $\Psafe[U=u|V=v]=p_{u}$ for all $v\in\Y$ is necessary.\\
 Let $\P\in\Pmod$ be arbitrary. Take a first look at $\E_{\P}[\GeneralInd]$, then
 \begin{equation}
-\E_{\P}[\GeneralInd]=\P[U=u']=p_{u'}.
+\E_{\P}[\GeneralInd]=\P[U=u]=p_{u}.
 \end{equation}
-Let $v\in\Y$ be arbitrary, then we can write out
+Let $\Psafe$ be a arbitrary distribution on $\X\times\Y$ that is safe for $\langle\GeneralInd\rangle|\langle V\rangle$ and let $v\in\Y$ be arbitrary, then we can write out
 \begin{equation}
-\E_{\Psafe}[\GeneralInd|V=v]=\Psafe[U=u'|V=v].
+\E_{\Psafe}[\GeneralInd|V=v]=\Psafe[U=u|V=v].
 \end{equation}
 The expectation $\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]$ can now be expanded to
 \begin{align}
-\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]&=\sum_{v\in\supp_{\P}(V)}\E_{\Psafe}[U=u'|V=v]\P[V=v]\\
-&=\sum_{v\in\supp_{\P}(V)}\Psafe[U=u'|V=v]\P[V=v].
+\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]&=\sum_{v\in\supp_{\P}(V)}\E_{\Psafe}[\GeneralInd|V=v]\P[V=v]\\
+&=\sum_{v\in\supp_{\P}(V)}\Psafe[U=u|V=v]\P[V=v].
 \end{align}
-We now need to abbreviate our notation. From now on we write $\Psafe[u|v]$ instead of $\Psafe[U=u|V=v]$ for all $(u,v)\in\X\times\Y$. Take a $v'\in\supp_{\P}(V)$ and define $\Y'=\supp_{\P}(V)\setminus\{v'\}$. Let $\Psafe$ be an arbitrary distribution on $\X\times\Y$, then we have
-\begin{align}
-\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]&=\sum_{v\in\Y}\Psafe[u'|v]\P[V=v]\\
-&=\Psafe[u'|v']\P[V=v']+\sum_{v\in\Y'}\Psafe[u'|v]\P[V=v]\\
-&=\Psafe[u'|v']\left(1-\sum_{v\in\Y'}\P[V=v]\right)+\sum_{v\in\Y'}\Psafe[u'|v]\P[V=v]\\
-&=\Psafe[u'|v']+\sum_{v\in\Y'}\left(\Psafe[u'|v]-\Psafe[u'|v']\right)\P[V=v].
-\end{align}
-Two conditions must be satisfied for this expectation to equal $p_{u'}$:
+We now need to abbreviate our notation. From now on we write $\Psafe[u|v]$ instead of $\Psafe[U=u|V=v]$ for all $(u,v)\in\X\times\Y$. For safety for $\langle\GeneralInd\rangle|\langle V\rangle$ we require
 \begin{equation}
-\begin{cases}
-\sum_{v\in\Y'}\left(\Psafe[u'|v]-\Psafe[u'|v']\right)\P[V=v]=0,\\
-\Psafe[u'|v']=\P[U=u'].
-\end{cases}
+p_{u}=\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]=\sum_{v\in\supp_{\P}(V)}\Psafe[u|v]\P[V=v].\label{eq:DiscSafeCondition}
 \end{equation}
-The first condition is because the expectation value should be independent of the chosen $\P\in\Pmod$, thus all terms concerning $\P$ must disappear. The second requirement forces the expectation to have value $\E_{\P}[\GeneralInd]$.\\
-Note that earlier $\P\in\Pmod$ and $v'\in\supp_{\P}(V)$  were taken arbitrarily and that for all $v\in\Y$ there is a $\P\in\Pmod$ such that $\P[V=v]>0$ by $\Y=\bigcup_{\P\in\Pmod}\supp_{\P}(V)$, thus we need $\Psafe[u'|v]=\Psafe[u'|v']$ for all $v\in\Y$ to meet the first condition for all $\P\in\Pmod$. Fix now $\Psafe[u'|v']=p_{u'}$, then the second requirement is met. Note that since $u'\in\bigcap_{\P\in\Pmod}\bigcap_{v\in\supp_{\P}(V)}\range(U|V=v)$ the probabilities $\P[U=u'|V=v']>0$ and $\P[U=u']=p_{u'}>0$ are positive.\footnote{Ik ben nog niet tevreden met deze argumentatie. De voorwaarde voor $u'$ is volgens mij echt nodig, maar ik kan niet goed hard maken waarom.}\\
-Therefore if $\Psafe$ is safe for $\langle\GeneralInd\rangle|\langle V\rangle$, we need $\Psafe[u'|v]=p_{u'}$ for all $v\in\Y$.
+From now on we will write $v\in\Y$ in the index instead of $v\in\supp_{\P}(V)$, as $\P[V=v]=0$ will be zero for every $v\in\Y\setminus\supp_{\P}(V)$ and this will have no impact on the summation.\\
+Note that equation~\ref{eq:DiscSafeCondition} is a linear combination of the vectors $(\Psafe[u|v])_{v\in\Y}$ and $(\P[V=v])_{v\in\Y}$ and the values of the latter vector are known, thus the equation $\sum_{v\in\Y}\Psafe[u|v]\P[V=v]=p_{u}$ is linear. Since $\Pmod$ has $|\Y|$ distributions $\P_1,\ldots,\P_{|\Y|}$ that have linearly independent vectors $(\P_i[V=v])_{v\in\Y}$ with $i\in\{1,\ldots,|\Y|\}$, we can create a system of $|\Y|$ linearly independent equations 
+\begin{equation}
+\sum_{v\in\Y}\Psafe[u|v]\P_i[V=v]=p_{u},\qquad i\in\{1,\ldots,|\Y|\}.
+\end{equation}
+Since we have $|\Y|$ linearly independent equations with $|\Y|$ unknowns $\Psafe[u|v]$ with $v\in\Y$, there is a unique solution. The coefficients $\P[V=v]$ with sum up to~$1$, thus $\Psafe[u|v]=p_{u}$ is the unique solution to this system. Let now $\P\in\Pmod$ be arbitrary, then requirement \ref{eq:DiscSafeCondition} still holds as
+\begin{equation}
+\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]=\sum_{v\in\supp_{\P}(V)}\Psafe[u|v]\P[V=v]=p_{u}\sum_{v\in\supp_{\P}(V)}\P[V=v]=p_{u}.
+\end{equation}
+Therefore $\Psafe[u|v]=p_{u}$ for all $v\in\Y$ is required for $\Psafe$ when $\Psafe$ is safe for $\langle\GeneralInd\rangle|\langle V\rangle$, thus 3 implies 1.
 \end{proof}
 
 It looks like Theorem~\ref{thm:DiscMainThm} can only applied in a few circumstances. However, the restriction on model $\Pmod$ is in many cases quickly satisfied, as in most cases one already has an impression of the initial probability distribution on outcome space $\X$. Furthermore, the existence of $u'$ as in Equation~\ref{eq:DiscMainThmUPrime} is in all three problems in the introduction the actual core of the problem. In Monty Hall's problem the $u'$ is the initially chosen door $a$, as it will remain closed for all possible strategies of the game master. In the boy or girl problem the $u'$ is the family composition of one boy and one girl, as this composition is a possibility both when the stranger tells you that he has at least one son or when he says he has at least one daughter. If a $u'$ as in Equation~\ref{eq:DiscMainThmUPrime} does not exist, then either $\{\range(U|V=v)|v\in\Y\}$ is a partition of $\X$ for all $\P\in\Pmod$ or the intersection of all $\range(U|V=v)$ for all $v\in\Y$ and $\P\in\Pmod$ is empty for a different reason. If the conditional ranges always form a partition, you can use traditional conditional probability removing the need of Theorem~\ref{thm:DiscMainThm}. In the second case when the intersection of all conditional ranges is empty for a different reason, you simply need to adjust the problem. Computing a safe conditional distribution for $\GeneralInd|V$ against all probabilities in $\Pmod$ is not possible when for one $\P\in\Pmod$ the probability $\P[\GeneralInd=1|V=v]=0$ is zero and for the other $\P'\in\Pmod$ the probability $\P'[\GeneralInd=1|V=v]>0$ is non-zero.
