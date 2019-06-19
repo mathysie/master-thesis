@@ -655,7 +655,7 @@ We can now for example calculate the probability of the die landing on $6$ after
 \begin{equation}\label{eq:SafeDiceCon6}
 \P[U=6\mid V=\{3,4,5,6\}]=\frac{1}{p+q+2}.
 \end{equation}
-Thus the conditional probability of rolling $6$ ranges from $\frac{1}{4}$ to $\frac{1}{2}$ depending on the game masters strategy. This should not suffice as answer, as the player does not know the game masters strategy.
+Thus the conditional probability of rolling $6$ ranges from $\frac{1}{4}$ to $\frac{1}{2}$ depending on the game master's strategy. This should not suffice as answer, as the player does not know the game master's strategy.
 
 \subsection{Using safe probabilities}
 Can we create a distribution $\Psafe$ such that the probability of $U=3$ given $V$ is independent of $p$ and $q$ and behaves on average like the dice? The answer is yes and we need to use safe probability. Consider as model
@@ -1022,55 +1022,127 @@ Note that $\GeneralGenIndSafe$ and $\GeneralGenInd^*$ are only equal when $\sum_
 Knowing this, one needs to keep in mind that safe probability gives in almost no case a prediction for $\GeneralGenInd|V$ with optimal accuracy. Safe probability merely simulates the distribution of $\GeneralGenInd$, where in the setting of Theorem~\ref{thm:DiscMainThm} the revelation of the game master is in no cases of influence. A safe probability distribution must therefore in this setting not directly be used to make predictions for $\GeneralGenInd$, but it can be used to create a different random variable that does predict $\GeneralGenInd$ with optimal accuracy. In the Monty Hall game, you should not switch with probability $\frac{2}{3}$, as then the probability of winning the car is $\frac{5}{9}$. If the player observes that the safe distribution in the Monty Hall game puts a probability of $\frac{1}{3}$ door $a$, then never choosing door $a$ yields a probability of winning the car of $\frac{2}{3}$.
 
 \section{Dice game}\label{sec:DiscDice}
-Now the main theorems are stated, we can apply them to some well-known paradoxes. We will first continue our example of the dice game, started in Section~\ref{sec:SafeDice}. Recall that a die is cast with values in $\X=\{1,2,3,4,5,6\}$ and the game master is after observing the die's value only able to reveal a member of the set $\Y=\{\{1,2,3,4\},\{3,4,5,6\}\}=\{y_1,y_2\}$. Let $U$ be an $\X$-valued random variable and $V$ be a $\Y$-valued random variable. The game master is not allowed to lie and the die is fair, thus any probability distribution for this game must be a member of \begin{equation}
+Now the main theorems are stated, we can apply them to some well-known paradoxes. We will first continue our example of the dice game, started in Section~\ref{sec:SafeDice}. Recall that a die is cast with values in $\X=\{1,2,3,4,5,6\}$ and the game master is, after observing the die's value, only able to reveal a member of the set $\Y=\{\{1,2,3,4\},\{3,4,5,6\}\}=:\{y_1,y_2\}$. Our sample space is $\Omega=\X\times\Y$ with its power set $\Sigma=2^\Omega$ as $\sigma$-algebra. Let $U$ be an $\X$-valued random variable and $V$ be a $\Y$-valued random variable. The game master is not allowed to lie and the die is fair, thus any probability distribution for this game must be a member of \begin{equation}
 \Pmod=\left\{\P\middle|\forall u\in\X:\P[U=u]=\frac{1}{6},\forall y\in\Y:\P[U\in y|Y=y]=1\right\}.
 \end{equation}
-Proposition~\ref{prop:SafeDice} gives a set $\tilde{\mathcal{P}}$ of distributions that are all safe for $\langle U\rangle|[V]$. However, in the original problem we are not interested in the whole distribution of $U$ given $V$, but only want to know the probability of rolling $3$ after the game master's statement. Therefore finding safe distributions for $\DieInd|[V]$ is sufficient for finding a safe probability of rolling $3$.
+
+\subsection{Safe probability}
+Proposition~\ref{prop:SafeDice} gives a set $\tilde{\mathcal{P}}$ of distributions that are all safe for $\langle U\rangle|[V]$. However, in the original problem we are not interested in the whole distribution of $U$ given $V$, but only want to know the probability of rolling $3$ after the game master's statement. Therefore finding safe distributions for $\DieInd|[V]$ is sufficient.
 
 \begin{proposition}\label{prop:DiceIndSafe}
-Let $\X$, $\Y$, $\Omega$, $U$, $V$ and $\Pmod$ be as in the dice game. Let $\Psafe$ be a distribution on $\Omega$. The following statements are equivalent:
+Let $\X$, $\Y$, $\Omega$, $U$, $V$ and $\Pmod$ be as in the dice game. Let $\Psafe$ be a distribution on $\Omega$. Let $u\in\X$, then the following statements are equivalent:
 \begin{enumerate}
-\item For all $v\in\Y$ we have $\P[U=3|V=v]=\frac{1}{6}$.
-\item $\Psafe$ is safe for $\langle \DieInd\rangle|\langle V\rangle$.
-\item $\Psafe$ is safe for $\DieInd|[V]$.
+\item For all $v\in\Y$ we have $\P[U=u|V=v]=\frac{1}{6}$.
+\item $\Psafe$ is safe for $\langle \1_{\{U=u\}}\rangle|\langle V\rangle$.
+\item $\Psafe$ is safe for $\1_{\{U=u\}}|[V]$.
 \end{enumerate}
-
-The same holds for $\1_{\{Y=4\}}$ instead of $\1_{\{Y=3\}}$.
 \end{proposition}
 \begin{proof}
-This proposition is a direct application of Theorem~\ref{thm:DiscMainThm}. The sets $\X$ and $\Y$ are respectively of sizes $2$ and $6$ and therefore countable. $U$ is a random variable on $\X$ and $V$ is a random variable on $\Y$. In this dice game we have $p_u=\frac{1}{6}$ for all $u\in\X$ as $\P\in\Pmod$ implies $\P[U=u]=\frac{1}{6}$ for all $u\in\X$. The expectation of $U$ under an arbitrary $\P\in\Pmod$ is finite since $\X$ is a finite set.
+This proposition is a direct application of Theorem~\ref{thm:DiscMainThm}. The set $\X$ is of size $6$ and therefore countable and the set $\Y$ is of size $2$, which makes it finite. $U$ is a random variable on $\X$ and $V$ is a random variable on $\Y$. In this dice game we have $p_u=\frac{1}{6}$ as $\P\in\Pmod$ implies $\P[U=u]=\frac{1}{6}$ for all $u\in\X$. Lastly, the set $\Pmod$ is a subset of $\{\P|\forall u\in\X:\P[U=u]=p_u\}$.
 
-Take $\P\in\Pmod$ arbitrary. Note that in all cases we have $\supp_{\P}(V)=\{y_1,y_2\}$, as when rolling $1$ or $2$ the game master must give $y_1$ and when rolling $5$ or $6$ the game master must give $y_2$. The ranges of $U|V=v$ under $\P$ are
-\begin{align}
-\supp_{\P}(U|V=y_1)&=\{1,2,3,4\},&\supp_{\P}(U|V=y_2)&=\{3,4,5,6\}
-\end{align}
-Note that $3$ is in the intersection, thus we can take $u'=3$.
+Take $\P_1,\P_2\in\Pmod$ with $\P_i[V=y_i|U=3]=\P_i[V=y_i|U=4]=1$. Let $i\in\{1,2\}$ be arbitrary, then
+\begin{align*}
+\P_i[V=y_i]&=\sum_{u=1}^6\P_i[V=y_i|U=u]\P_i[U=u]\\
+&=\frac{1}{6}\left(4\cdot1+2\cdot0\right)=\frac{2}{3}.
+\end{align*}
+Thus the vectors $\left(\P_i[V=v]\right)_{v\in\Y}$ become $\left(\frac{1}{3},\frac{2}{3}\right)$ and $\left(\frac{2}{3},\frac{1}{3}\right)$, which are linearly independent.
 
-Now we can directly apply Theorem~\ref{thm:DiscMainThm} to conclude the proof. Without loss of generality this proof is valid for $\1_{\{U=4\}}$ instead of $\DieInd$ as well.
+Now we can directly apply Theorem~\ref{thm:DiscMainThm} to conclude the proof.
 \end{proof}
-
+\subsection{Accuracy}
 Suppose you want to bet on this game and want to know whether you must put money on rolling $3$. As the following proposition will state, after observing the game master's statement, always stating that the die has not rolled to a $3$ has a $\frac{5}{6}$ chance of being correct independently on the game master's strategy.
 
 \begin{proposition}
-Let $\X$, $\Y$, $U$, $V$ and $\Pmod$ be as in the dice game. Let $\DieInd^*=0$, then this $\DieInd^*$ maximizes the probability
+Let $\X$, $\Y$, $U$, $V$ and $\Pmod$ be as in the dice game. Let $\DieInd^*=0$, then this $\DieInd^*$ has accuracy
 \begin{equation}
-\P\left[\DieInd^*=\DieInd\right]=\frac{5}{6}.
+\acc^{\P}\left(\DieInd^*\right)=\frac{5}{6}
 \end{equation}
+for all $\P\in\Pmod$. There is no random variable $W$ with $\acc^{\P}(W)>\acc^{\P}(\DieInd^*)$ for a $\P\in\Pmod$.
 \end{proposition}
 \begin{proof}
-We want to apply Theorem~\ref{thm:DiscAccOpt}. As the proof of Proposition~\ref{prop:DiceIndSafe} already pointed out, we can take $\X'=\{3\}\subset\X$. Furthermore, in the dice game we have $p_3=\frac{1}{6}$. Since we have $\sum_{u\in\X'}p_u=p_3=\frac{1}{6}$, Theorem~\ref{thm:DiscAccOpt} states that $\DieInd^*=0$ maximizes the probability of guessing $\DieInd$ correctly. Theorem~\ref{thm:DiscAccOpt} also states that the probability of guessing $\DieInd$ correctly is
+We want to apply Theorem~\ref{thm:DiscAccOpt}. Firstly in this case $\X'=\{3\}\subset\X$ is non-empty. Secondly, we have $\sum_{u\in\X'}p_u=p_3=\frac{1}{6}<\frac{1}{2}$. Then Theorem~\ref{thm:DiscAccOpt} states that $\DieInd^*=0$ optimizes the accuracy for guessing $\DieInd$ with
 \begin{equation}
-\P\left[\DieInd^*=\DieInd\right]=\max\left\{\sum_{u\in\X'}p_u,1-\sum_{u\in\X'}p_u\right\}=1-p_3=\frac{5}{6}.
+\acc^{\P}\left(\DieInd^*\right)=\max\left\{\frac{1}{6},\frac{5}{6}\right\}=\frac{5}{6}.
 \end{equation}
 \end{proof}
 
-We now observe that using the information given by the game master does not lead to a higher probability of guessing $\DieInd$ correct. When always stating that the die has not rolled $3$ you maximize the probability of having a correct guess, which is a fraction of $\frac{5}{6}$ of the played games.
+We now observe that using the information given by the game master does not lead to a higher probability of guessing $\DieInd$ correct. When always stating that the die has not rolled $3$ you maximize the probability of having a correct guess, which is $5$ out of $6$. The information revealed by the game master can therefore be ignored as it will not yield to a higher probability of guessing correctly.
 
+\subsection{Final remarks}
 We have seen that the conditional probability of rolling $3$ given the game master's statement is not uniquely defined; it dilates from $0$ to $\frac{1}{4}$ depending on the to the player unknown strategy of the game master. However, when playing like the probability of rolling $3$ is always $\frac{1}{6}$ disregarding the game master's statement, you are able to simulate the probability distribution of $\DieInd$. Furthermore, when always stating that the die has not rolled $3$, you are correct in five out of six games, which is the maximal fraction of games you can be correct on.
 
+The paradoxical nature of this problem is that most people treat this problem with sample space $\Omega=\{1,2,3,4,5,6\}$ and condition on for example the information $\{3,4,5,6\}$. However, as we have seen in Section~\ref{sec:SafeDice}, we also need to condition on the possibility $\{1,2,3,4\}$ and those two sets cannot form a partition of $\Omega$. Therefore the sample space $\Omega$ is insufficient for solving this problem, resulting in the paradoxical statements.
+
+This underlines the argument that when conditioning the accompanying sub-$\sigma$-algebra must always be given, as then it is easily seen that conditioning on a sub-$\sigma$-algebra containing $\sigma(\{\{1,2,3,4\},\{3,4,5,6\}\})\subset2^\Omega$ is not possible.
+
 \section{Monty Hall}\label{sec:DiscMonty}
+One of the most classic paradoxes in probability theory is Monty Hall's three door problem. The problem is already explained in the introduction of this chapter, but we will repeat it here.\footnote{Geschiedenis en bronnenonderzoek toevoegen.}
+
+There are three doors called $a$, $b$ and $c$.  Two doors have a goat behind and one door has a car. The player chooses one door, where after the game master opens one of the remaining doors. However, the game master does not open the door with the car. The player is then asked whether he wants to switch to the remaining door. The player wins the contents of the door he ultimately chooses.
+
+A logical question, and the centre of this paradox, is whether the player should switch after the revealing of a door. There are multiple viewpoints for this question. Throughout the whole analysis we assume that initially the car is placed behind a door with equal probability. Without loss of generality we now assume the player has chosen door $a$, as the choice of the first door has become independent of the question whether the player should switch. 
+
+The most naive viewpoint is the following. Say door $c$ is opened by the game master, then either door $a$ or door $b$ has a car with equal probability $\frac{1}{2}$. Since there is a 50-50 chance, switching does not increase your chances. This viewpoint is widely disputed.
+
+Another viewpoint using classic conditional probability states the following. In the beginning there is a $\frac{1}{3}$-chance that door $a$ has a car. After choosing door $a$, suppose door $c$ is revealed. There was a chance of $\frac{2}{3}$ that the car was behind door $b$ or $c$, leaving a $\frac{2}{3}$-chance that the car is behind door $b$. Therefore switching is advised, doubling your chances of winning the car. However, this viewpoint is disputed as well.
+
+Grünwald and Halpern \cite{Grunwald03} pointed out that the probability of the car being behind door $a$ is anything between $0$ and $\frac{1}{2}$. When the car is behind door $a$, the game master is free to choose between doors $b$ and $c$. The game master's strategy influences the probability of the car being behind the other door.
+
+Let us start with a formal statement of the problem. Let $\X=\{a,b,c\}$ be our outcome space and $\Y=\{b,c\}$ be our observation space. Let $\Omega=\X\times\Y$ be our sample space with $\Sigma=2^\Omega$ as $\sigma$-algebra. Let $U$ be an $\X$-valued random variable denoting the placement of the car and let $V$ be a $\Y$-valued random variable on $\Y$ denoting the opening of a door.\\
+Note that the doors are called $a$, $b$ and $c$ and not $1$, $2$ and $3$, as in the latter case the expectation $\E[U]$ suddenly can be given a meaning. There is no such thing as the `average door', as the labels on the doors are nothing more than names, not aspects indicating any value. Therefore we choose to put $\X=\{a,b,c\}$ to not give rise to any confusion.\\
+We assume that the car is initially distributed with equal probability and the game master cannot open a door with a car. A probability distribution must therefore be a member of the set
+\begin{equation}
+\Pmod=\left\{\P\middle|\forall u\in\X:\P[U=u]=\frac{1}{3},\forall v\in\Y:\P[V=v|U=v]=0\right\}.
+\end{equation}
+
+In this section we first give a repetition the arguments of \cite{Grunwald13} as they view the Monty Hall problem in the viewpoint of traditional probability. Then we apply safe probability and Theorem~\ref{thm:DiscMainThm} to the Monty Hall problem, with as result that it is safe to state that the car is behind door $a$ with probability~$\frac{1}{3}$.
+
+
+\subsection{Traditional conditional probability}
+Let us start with the viewpoint that result in a probability of $\frac{2}{3}$ of obtaining the car after switching. This viewpoint takes $\Omega'=\{a,b,c\}$ as sample space. Let $U'$ be an $\Omega'$-valued random variable denoting the cars location and $V'$ be a $\{b,c\}$-valued random variable denoting the game master's statement. Equip $\Omega'$ with the uniform distribution $\P$ such that $\P[U'=u]=\frac{1}{3}$ and $\P[V'=y|U'=y]=0$ with $y\in\{b,c\}$. Assume lastly that $\P[V'=b|U'=a]=\frac{1}{2}$, thus that the game master chooses a door with equal probability when he has free choice. Traditional conditional probability then gives
+\begin{equation}
+\P[U'=a|V'=b]=\frac{\P[V'=b|U'=a]\P[U'=a]}{\sum_{u\in\Omega}\P[V'=b|U'=u]\P[U'=u]}=\frac{\frac{1}{2}\cdot\frac{1}{3}}{\frac{1}{3}\left(\frac{1}{2}+0+1\right)}=\frac{1}{3}.
+\end{equation}
+It is clear that the argument above needs to make assumptions on $\P$ in order to be able to perform the calculation, as following the problem's statement we cannot put a direct value on $\P[V'=b,U'=a]$. We thus need to make a reasonable assumption on $\P[V'=b|U'=a]$ for this argument.\\
+Let now $p\in[0,1]$ be such that $\P[V'=b|U'=a]=p$, then we have
+\begin{equation}\label{eq:DiscMonty}
+\P[U'=a|V'=b]=\frac{\P[V'=b|U'=a]\P[U'=a]}{\sum_{u\in\Omega}\P[V'=b|U'=u]\P[U'=u]}=\frac{p}{p+1}.
+\end{equation}
+Thus the probability of door $a$ having the car after opening door $b$ dilates from $0$ to $\frac{1}{2}$, as \cite{Grunwald13} also pointed out in their work.\\
+To create a probability of $\frac{1}{2}$ of our initial door having the car, we need to pick $p=1$. We thus need to assume that when we initially chose the correct door, the game master \emph{always} opens door $b$. This also debunks the argument that there are two doors left, thus there is a probability of $\frac{1}{2}$ that door $a$ has the car. The information that door $b$ has no car heavily influences the conditional probability.
+
+
+However, more is wrong with the above reasoning. Suppose door $a$ has the car. The game master is now able to choose between doors $b$ and $c$. If door $b$ is opened, the resulting set of possibilities is $\{a,b\}$ and when door $c$ is opened, the resulting set of possibilities is $\{a,c\}$. We need to condition on both the possibilities $\{a,b\}$ and $\{a,c\}$, however both sets do not form a partition. Furthermore, the smallest $\sigma$-algebra containing both sets is 
+\begin{equation}
+\G=\sigma(\{a,b\},\{a,c\})=2^{\{a,b,c\}}=2^{\Omega'},
+\end{equation}
+our original $\sigma$-algebra. As stated by \cite{Williams91} and also easy to prove, we have $\P[F|\G]=\P[F]$ for all $F\in\G$ when $\G=\F$ is our original $\sigma$-algebra. We are therefore simply not able to use measure-theoretic conditional probability, let alone traditional conditional probability.
+
+Can we say nothing sensible at all about the probability of winning the car after switching? Consider the $\Omega$, $U$ and $V$ from the formal statement in the introduction of this section. Now we have $\Omega=\X\times\Y$, thus $\Omega$ is split up in outcome space $\X=\{a,b,c\}$ and observation space $\Y=\{b,c\}$. Now we can condition on all possibilities of open doors, as $\sigma(\{a\}\times\Y)$ is a strict sub-$\sigma$-algebra of $2^\Omega$.\\
+The resulting conditional probabilities come in the form of Equation~\ref{eq:DiscMonty}. Let $\P\in\Pmod$, thus such that $\P$ is uniform distributed on $U$ and a door with a car cannot be opened. Then a $p\in[0,1]$ exists such that $\P[V=b|U=a]=p$. This results into
+\begin{align}
+\P[U=a|V=b]=\frac{\P[V=b|U=a]\P[U=a]}{\sum_{u\in\Omega}\P[V=b|U=u]\P[U=u]}=\frac{p}{p+1},\\
+\P[U=a|V=c]=\frac{\P[V=c|U=a]\P[U=a]}{\sum_{u\in\Omega}\P[V=c|U=u]\P[U=u]}=\frac{1-p}{2-p}.
+\end{align}
+In both cases the probability of door $a$ having the car dilates from $0$ to $\frac{1}{2}$. Therefore, you are advised to switch no matter the strategy of the game master. However, we cannot pin down a single probability of door $a$ having the car given the game master's statement. We can put a prior on $\P[V=b|U=a]$, however we do need more information to apply such prior wisely.
+
+This subsection shows another example of why when doing conditional probability one always needs to provide the accompanying sub-$\sigma$-algebra. Unlike the Borel-Kolmogorov paradox in Chapter~\ref{chap:BorelKolmogorov}, here the measure-theoretic conditional expectation defines a unique probability measure. However, most use $\Omega=\{a,b,c\}$ as sample space and without taking the accompanying $\sigma$-algebra in account when conditioning, one should find no reason not to do this. Only when applying conditional probability and noticing that both $\{a,b\}$ and $\{a,c\}$ are possible options, one finds out that $\Omega=\{a,b,c\}$ is insufficient as sample space and paradoxical results will rise.
+
+\subsection{Safe probability}
+Using safe probability it is possible to find a pragmatic distribution $\Psafe$ on $\Omega$ that is safe against all $\P\in\Pmod$.
+
+\subsection{Accuracy}
+
+\subsection{Final remarks}
 
 \section{Boy or girl problem}\label{sec:DiscChildren}
+\subsection{Traditional conditional probability}
+
+\subsection{Safe probability}
+
+\subsection{Accuracy}
+
+\subsection{Final remarks}
 
 \section{Conclusion}\label{sec:DiscConcl}
 
