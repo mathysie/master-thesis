@@ -69,6 +69,7 @@
 \newcommand{\Usafe}{\tilde{U}}
 
 \newcommand{\EnvIndSafe}{\1_{\{B=2A\}}}
+\newcommand{\MontyInd}{\1_{\{U=a\}}}
 \newcommand{\DieInd}{\1_{\{U=3\}}}
 \newcommand{\DieIndSafe}{\tilde{\1}_{\{Y=3\}}}
 \newcommand{\ChildInd}{\1_{\{U=bg\}}}
@@ -128,7 +129,7 @@ The crux of the Monty Hall problem is that the initial distribution of the car i
 
 In Chapter~\ref{chap:DiscPara} the results of the analysis of Monty Hall's problem are generalized to a theorem, which can be used to provide safe distributions for other problems like the boy or girl problem.
 \begin{theoremmain*}
-Let $\X$ be countable and $\Y$ be finite. Let $U$ be an $\X$-valued random variable and $V$ be a $\Y$-valued random variable. Let $p_u\in[0,1]$ with $\sum_{u\in\X}p_u=1$. Let 
+Let $\X$ be countable and $\Y$ be finite. Let $U$ be an $\X$-valued random variable and $V$ be a $\Y$-valued random variable. Let $p_u\in[0,1]$ with $\sum_{u\in\X}p_u=1$. Let
 \begin{equation}
 \Pmod\subseteq\{\P\mid\forall u\in\X:\P[U=u]=p_u\}
 \end{equation}
@@ -191,11 +192,11 @@ Let $\X$ be a measurable space. A function $X\colon\Omega\to\X$ is an \emph{$\X$
 We can now define the conditional expectation as definition 9.2 of \cite{Williams91}.
 
 \begin{definition}[Conditional expectation]\label{def:conexp}
-Let $X$ be an $\F$-measurable random variable with finite $\E[|X|]$. Let $\G$ be a sub-$\sigma$-algebra of $\F$. There exists a random variable $Y$ such that 
+Let $X$ be an $\F$-measurable random variable with finite $\E[|X|]$. Let $\G$ be a sub-$\sigma$-algebra of $\F$. There exists a random variable $Y$ such that
 \begin{enumerate}
 \item $Y$ is $\G$-measurable,
 \item $\E[|Y|]$ is finite,
-\item for every $G\in\G$ we have 
+\item for every $G\in\G$ we have
 \begin{equation}
 \int_G Yd\P=\int_G Xd\P.
 \end{equation}
@@ -251,7 +252,7 @@ Let $\B=\B(S)$ be the Borel-$\sigma$-algebra on $S$. The uniform distribution on
 \end{equation}
 for a $B\in\B$. The triple $(S,\B,\P)$ form a probability space.
 
-The set of latitudes is described by 
+The set of latitudes is described by
 \begin{equation}
 \mathcal{C}=\{[0,2\pi)\times\{\psi\}\mid\psi\in[0,\pi]\}
 \end{equation}
@@ -297,7 +298,7 @@ Let $X$ be $\B$-measurable. The conditional expectation of $\E[X|\mathfrak{C}]$ 
 with $(\phi,\psi)\in S$.
 \end{proposition}
 \begin{proof}
-The proof is taken from \cite{Gyenis17}. Take $A\in\B([0,2\pi))$ and consider $C=[0,2\pi)\times A\in\mathfrak{C}$. Since $\P$ is the uniform measure on the surface of the unit sphere, we have 
+The proof is taken from \cite{Gyenis17}. Take $A\in\B([0,2\pi))$ and consider $C=[0,2\pi)\times A\in\mathfrak{C}$. Since $\P$ is the uniform measure on the surface of the unit sphere, we have
 \begin{equation}
 \int_C Xd\P=\frac{1}{4\pi}\int_A\int_0^{2\pi}X(\phi,\psi)\sin\psi d\phi d\psi
 \end{equation}
@@ -326,7 +327,7 @@ As we now have a $\mathfrak{C}$-conditional expectation, we can look at the meas
 Thus the conditional probability distribution on $C$ is uniform, resulting in all latitudes having uniform conditional probability measure. Since the unit sphere itself has a uniform probability measure, this result is as expected.
 
 \subsection{Conditional probability on meridians}\label{sec:BorelMer}
-A great circle cannot only be described as a latitude, but also as a meridian. Therefore it is interesting whether describing great circles as meridians yield to the same conditional distribution. Let 
+A great circle cannot only be described as a latitude, but also as a meridian. Therefore it is interesting whether describing great circles as meridians yield to the same conditional distribution. Let
 \begin{equation}
 \mathfrak{M}=\sigma(\{A\times[0,\pi]\mid A\in\B([0,2\pi))\})
 \end{equation}
@@ -487,7 +488,7 @@ holds and the guess can be generalized to
 \begin{equation}
 \E[X|\mathfrak{C}](\phi,\psi)=\frac{1}{2\pi}\int_0^{2\pi}X(\phi',\psi)d\phi'.
 \end{equation}
-This is in fact the same $\mathfrak{C}$-conditional expectation of $X$ by Proposition~\ref{prop:BorelLongBayes}. The same steps can be taken to guess $\E[X|\mathfrak{M}]$ using Proposition~\ref{prop:BorelMerBayes}. 
+This is in fact the same $\mathfrak{C}$-conditional expectation of $X$ by Proposition~\ref{prop:BorelLongBayes}. The same steps can be taken to guess $\E[X|\mathfrak{M}]$ using Proposition~\ref{prop:BorelMerBayes}.
 
 Thus we can conclude that it is wise to look at a converging sequence of traditional conditional probabilities for a potential conditional expectation when conditioning on zero sets. However, it must be noted that the resulting conditional probability is not uniquely defined, must be checked whether it complies to the actual definition of conditional probability and depends on the chosen sub-$\sigma$-algebra.
 
@@ -565,7 +566,7 @@ We are now able to define conditional probability. The following definitions and
 Let $\Omega$ be a sample space and let $\Pmod$ be a set of distributions on $\Omega$. Let $U$ be a real-valued random variable with finite expectation and let $V$ be a random variable on $\Omega$. Let $\Psafe$ be a probability distribution on $\Omega$. Then $\Psafe$ is \emph{safe} with respect to $\Pmod$ for
 \begin{itemize}
     \item $\langle U\rangle|\langle V\rangle$ if $\E_{\P}[U]=\E_{\P}[\E_{\Psafe}[U|V]]$ holds for all $\P\in\Pmod$. This $\Psafe$ is called \emph{unbiased} for $U|V$.
-    \item $\langle U\rangle|[V]$ if $\E_{\P}[U]=\E_{\Psafe}[U|V=v]$ holds for all $v\in\supp_{\Psafe}(V)$. This $\Psafe$ is called \emph{marginally valid} for $U|V$. 
+    \item $\langle U\rangle|[V]$ if $\E_{\P}[U]=\E_{\Psafe}[U|V=v]$ holds for all $v\in\supp_{\Psafe}(V)$. This $\Psafe$ is called \emph{marginally valid} for $U|V$.
 \end{itemize}
 \end{definition}
 Since in almost all situations we only consider a single model $\Pmod$, we will from now on omit the statement `with respect to $\Pmod$'.
@@ -589,13 +590,13 @@ Definition~\ref{def:SafeStrongProp} is not easy to work with as constructing a $
 Let $\Omega$, $\Pmod$, $U$, $V$ and $\Psafe$ be as above. Then
 \begin{enumerate}
     \item $\Psafe$ is safe for $U|\langle V\rangle$ if and only if for all $\P\in\Pmod$ there is a distribution $\P'$ on $\Omega$ with $\P'[U=u,V=v]=\Psafe[U=u|V=v]\P[V=v]$ for all $(u,v)\in\range((U,V))$ such that $\P'[U]=\P[U]$.
-    \item $\Psafe$ is safe for $\langle U\rangle|V$ if and only if 
-    \begin{equation}
+    \item $\Psafe$ is safe for $\langle U\rangle|V$ if and only if
+        \begin{equation}
     \E_{\P}[U|V]=\E_{\Psafe}[U|V]
     \end{equation}
     holds with probability $1$ for all $\P\in\Pmod$. This $\Psafe$ is called \emph{squared error-optimal} for $U|V$.
-    \item $\Psafe$ is safe for $U|V$ if and only if 
-    \begin{equation}
+    \item $\Psafe$ is safe for $U|V$ if and only if
+        \begin{equation}
     \P[U|V]=\Psafe[U|V]
     \end{equation}
     holds with probability $1$ for all $\P\in\Pmod$. This $\Psafe$ is called \emph{valid} for $U|V$.
@@ -646,7 +647,7 @@ thus $\{3\}$ is no member of $\G$ as $\G$ cannot have sets of odd size. When add
 
 Therefore we need to extend our sample space. We will use the extension introduced in \cite{Grunwald13}. Take $\X=\{1,2,3,4,5,6\}$ and $\Y=\{\{1,2,3,4\},\{3,4,5,6\}\}$ and let our sample space be $\Omega=\X\times\Y$. Let $U$ be an $\X$-valued random variable and let $V$ be a $\Y$-valued random variable. In this space conditioning on $\{1,2,3,4\}$ is valid, as $\G=\sigma(\{3\}\times Y)$ is a strict sub-$\sigma$-algebra of $2^\Omega$ for all subsets $Y\subseteq\Y$.
 \subsection{Using traditional conditional probability}
-First we will try using traditional conditional probability. Let $\P$ be a probability measure with the uniform distribution on $U$. To model the strategy of the game master, we need $p,q\in[0,1]$ such that 
+First we will try using traditional conditional probability. Let $\P$ be a probability measure with the uniform distribution on $U$. To model the strategy of the game master, we need $p,q\in[0,1]$ such that
 \begin{align}
 \P[V=\{3,4,5,6\}\mid U=3]&=p,&\P[V=\{3,4,5,6\}\mid U=4]&=q.
 \end{align}
@@ -667,7 +668,7 @@ We do not know the strategy of the game master when $3$ or $4$ is rolled. Howeve
 For shorthand purposes, we write $y_1=\{1,2,3,4\}$ and $y_2=\{3,4,5,6\}$ such that $\Y=\{y_1,y_2\}$ from now on.
 
 \begin{proposition}\label{prop:SafeDice}
-Let $\X$, $\Y$, $\Omega$, $U$, $V$ and $\Pmod$ be as before. Let 
+Let $\X$, $\Y$, $\Omega$, $U$, $V$ and $\Pmod$ be as before. Let
 \begin{equation}
 \tilde{\mathcal{P}}=\left\{\P\middle|
 \begin{array}{l}
@@ -726,7 +727,7 @@ As we have $\E_{\P}[U]=\frac{7}{2}$, we need to get rid of the dependence on $p+
 \begin{equation}
 \sum_{u=3}^{6}u\Psafe[u|y_2]=\sum_{u=1}^4u\Psafe[u|y_1].
 \end{equation}
-When this condition is satisfied, we need 
+When this condition is satisfied, we need
 \begin{equation}
 \sum_{u=1}^4\frac{2u}{3}\Psafe[u|y_1]+\sum_{u=3}^6\frac{u}{3}\Psafe[u|y_2]=\frac{7}{2}
 \end{equation}
@@ -760,7 +761,7 @@ thus $\Psafe[3|y_1]\in[0,1]$ holds when $\Psafe[1|y_1]\in\left[0,\frac{1}{6}\rig
 Lastly we turn to safety for $U|[V]$. Pick probability measure $\Psafe$ on $\Omega$ arbitrarily with $\Psafe[1|y_1]=\Psafe[2|y_1]$, $\Psafe[5|y_2]=\Psafe[6|y_2]$ and $\Psafe[U\in y|V=y]=1$ for all $y\in\Y$. Proposition~\ref{prop:SafeProperties} implies $\Psafe[u|y_1]=\frac{1}{6}$ for all $u\in\X$, which is a clear contradiction to $\Psafe[U\in y|V=y]=1$. Thus there is no probability measure $\Psafe$ with the requirements in the proposition that is safe for $U|[V]$.
 \end{proof}
 
-The original question of the dice game did not concern an overall safe probability distribution for the whole die, but rather the probability of rolling $3$. Proposition~\ref{prop:DiceIndSafe} states that a distribution $\Psafe$ is safe for $\langle\DieInd\rangle|\langle V\rangle$ as well as $\DieInd|[V]$ if and only if $\Psafe[U=3|V=v]=\frac{1}{6}$ holds for all $v\in\Y$. It is therefore safe to ignore the statement of the game master when guessing the probability of the die rolling to a $3$ and safe to state that the probability of rolling to a $3$ remains $\frac{1}{6}$. 
+The original question of the dice game did not concern an overall safe probability distribution for the whole die, but rather the probability of rolling $3$. Proposition~\ref{prop:DiscDiceSafe} states that a distribution $\Psafe$ is safe for $\langle\DieInd\rangle|\langle V\rangle$ as well as $\DieInd|[V]$ if and only if $\Psafe[U=3|V=v]=\frac{1}{6}$ holds for all $v\in\Y$. It is therefore safe to ignore the statement of the game master when guessing the probability of the die rolling to a $3$ and safe to state that the probability of rolling to a $3$ remains $\frac{1}{6}$.
 
 A safe distribution for a statement of $\langle\1_{\{U=1\}}\rangle|\langle V\rangle$ cannot exist, as the following proposition will prove.
 
@@ -773,17 +774,17 @@ Pick $u=1$ and suppose $\Psafe$ is safe for $\langle\1_{\{U=1\}}\rangle|\langle 
 \E_{\P}[\E_{\Psafe}[\1_{\{U=1\}}|V]]&=\Psafe[U=1|V=y_1]\P[V=y_1]\\
 &=\Psafe[U=1|V=y_1]\left(\frac{2}{3}-\frac{p+q}{6}\right).
 \end{align}
-We need $\E_{\P}[\E_{\Psafe}[\1_{\{U=1\}}|V]]=\P[U=1]=\frac{1}{6}$, but there is no possible value for $\Psafe[U=1|V=y_1]$ such that 
+We need $\E_{\P}[\E_{\Psafe}[\1_{\{U=1\}}|V]]=\P[U=1]=\frac{1}{6}$, but there is no possible value for $\Psafe[U=1|V=y_1]$ such that
 \begin{equation}
 \Psafe[U=1|V=y_1]\left(\frac{2}{3}-\frac{p+q}{6}\right)=\frac{1}{6}
 \end{equation}
 holds for all $p,q\in[0,1]$. This only happens when $p+q=1$, so there is a contradiction. Therefore $\Psafe$ cannot be safe for $\langle\1_{\{U=1\}}\rangle|\langle V\rangle$.
 
-This proof applies to all $v\in\{1,2,5,6\}$, where in the case of $v\in\{5,6\}$ we need to condition on $V=y_2$ instead of $V=y_1$. 
+This proof applies to all $v\in\{1,2,5,6\}$, where in the case of $v\in\{5,6\}$ we need to condition on $V=y_2$ instead of $V=y_1$.
 \end{proof}
 
 \subsection{Conclusion}
-To conclude, in the example of the dice game, we cannot compute a unique conditional distribution for $U|V$. However, we were able to create a set of probability distributions that are all unbiased estimators for $\E_{\P}[U]$ with $\P\in\Pmod$. When only considering the probability of the die rolling to a specific value, we can create a safe distribution for the values 3 or 4, which will be done in Proposition~\ref{prop:DiceIndSafe}. A safe distribution for the values $1$, $2$, $5$ and $6$ does not exist.
+To conclude, in the example of the dice game, we cannot compute a unique conditional distribution for $U|V$. However, we were able to create a set of probability distributions that are all unbiased estimators for $\E_{\P}[U]$ with $\P\in\Pmod$. When only considering the probability of the die rolling to a specific value, we can create a safe distribution for the values 3 or 4, which will be done in Proposition~\ref{prop:DiscDiceSafe}. A safe distribution for the values $1$, $2$, $5$ and $6$ does not exist.
 
 \chapter{Discrete conditional paradoxes}\label{chap:DiscPara}
 Consider the following three problems:
@@ -804,7 +805,7 @@ In this chapter we first introduce Theorem~\ref{thm:DiscMainThm} to create safe 
 In the general setting we consider a set $\X$ of all possible outcomes called the \emph{outcome space} and a set $\Y$ of observations the player can make called the \emph{observation space}. Our sample space then becomes $\Omega=\X\times\Y$. Let $U$ be an $\X$-valued random variable denoting the outcome of the game, e.g.~the door containing the car in Monty Hall or the family composition in the boy or girl problem. Let $V$ be a $\Y$-valued random variable denoting the statement of the game master, e.g.~the opening of door $b$ in the Monty Hall problem. Using safe probability we will create a safe distribution for $\1_{\{U=u'\}}|[V]$ for a particular $u'\in\X$.
 
 \begin{theorem}\label{thm:DiscMainThm}
-Let $\X$ be countable and $\Y$ be finite. Let $U$ be an $\X$-valued random variable and $V$ be a $\Y$-valued random variable. Let $\{p_u\}_{u\in\X}\subset[0,1]$ with $\sum_{u\in\X}p_u=1$. Let 
+Let $\X$ be countable and $\Y$ be finite. Let $U$ be an $\X$-valued random variable and $V$ be a $\Y$-valued random variable. Let $\{p_u\}_{u\in\X}\subset[0,1]$ with $\sum_{u\in\X}p_u=1$. Let
 \begin{equation}\label{eq:DiscMainMod}
 \Pmod\subseteq\{\P\mid\forall u\in\X:\P[U=u]=p_u\}
 \end{equation}
@@ -824,7 +825,7 @@ Proposition~\ref{prop:SafeProperties} states that $\Psafe$ is safe for $\General
 
 The implication from 2 to 3 is by Proposition~\ref{prop:SafeImply}.
 
-Consider lastly the implication from 3 to 1. Safety for $\langle\GeneralInd\rangle|\langle V\rangle$ implies 
+Consider lastly the implication from 3 to 1. Safety for $\langle\GeneralInd\rangle|\langle V\rangle$ implies
 \begin{equation}
 \E_{\P}[\GeneralInd]=\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]
 \end{equation}
@@ -847,7 +848,7 @@ We now need to abbreviate our notation. From now on we write $\Psafe[u|v]$ inste
 p_{u}=\E_{\P}[\E_{\Psafe}[\GeneralInd|V]]=\sum_{v\in\supp_{\P}(V)}\Psafe[u|v]\P[V=v].\label{eq:DiscSafeCondition}
 \end{equation}
 We will also abbreviate the index of the sum to $v\in\Y$ instead of $v\in\supp_{\P}(V)$, as $\P[V=v]=0$ will be zero for every $v\in\Y\setminus\supp_{\P}(V)$ and this will have no impact on the summation.\\
-Note that equation~\ref{eq:DiscSafeCondition} is a linear combination of the vectors $(\Psafe[u|v])_{v\in\Y}$ and $(\P[V=v])_{v\in\Y}$ and the values of the latter vector are known, thus the equation $\sum_{v\in\Y}\Psafe[u|v]\P[V=v]=p_{u}$ is linear. Since $\Pmod$ has $|\Y|$ distributions $\P_1,\ldots,\P_{|\Y|}$ that have linearly independent vectors $(\P_i[V=v])_{v\in\Y}$ with $i\in\{1,\ldots,|\Y|\}$, we can create a system of $|\Y|$ linearly independent equations 
+Note that equation~\ref{eq:DiscSafeCondition} is a linear combination of the vectors $(\Psafe[u|v])_{v\in\Y}$ and $(\P[V=v])_{v\in\Y}$ and the values of the latter vector are known, thus the equation $\sum_{v\in\Y}\Psafe[u|v]\P[V=v]=p_{u}$ is linear. Since $\Pmod$ has $|\Y|$ distributions $\P_1,\ldots,\P_{|\Y|}$ that have linearly independent vectors $(\P_i[V=v])_{v\in\Y}$ with $i\in\{1,\ldots,|\Y|\}$, we can create a system of $|\Y|$ linearly independent equations
 \begin{equation}
 \sum_{v\in\Y}\Psafe[u|v]\P_i[V=v]=p_{u},\qquad i\in\{1,\ldots,|\Y|\}.
 \end{equation}
@@ -861,7 +862,7 @@ Therefore $\Psafe[u|v]=p_{u}$ for all $v\in\Y$ is required for $\Psafe$ when $\P
 
 It looks like Theorem~\ref{thm:DiscMainThm} can only applied in a few circumstances. However, the restriction on model $\Pmod$ is in many cases quickly satisfied, as in most cases $\Pmod$ is not a strict subset of the set in Equation~\ref{eq:DiscMainMod}. If $\Pmod$ is equal to the set in Equation~\ref{eq:DiscMainMod}, then the distributions $\P_i$ with $\P_i[V=v_j]=\delta_{ij}$ for all $i,j\in\{1,\ldots,|\Y|\}$, where $\delta$ is the Kronecker delta, form a sequence of $|\Y|$ linearly independent unit vectors imposed from $|\Y|$ distributions of $\Pmod$. In other cases when excluding the unit vectors, if for all $v\in\Y$ there is a $\P\in\Pmod$ with $v\in\supp_{\P}(V)$, then finding $|\Y|$ different distributions that impose $|\Y|$ linearly independent marginal probabilities on $V$ is not a hard task; otherwise the model is simply too small. This leads to the following lemma that is helpful when checking whether the model is large enough to apply Theorem~\ref{thm:DiscMainThm}.
 \begin{lemma}\label{lem:DiscMainReq}
-Let $\X$, $\Y$, $U$, $V$, $\{p_u\}_{u\in\X}$ be as in Theorem~\ref{thm:DiscMainThm}.  Let 
+Let $\X$, $\Y$, $U$, $V$, $\{p_u\}_{u\in\X}$ be as in Theorem~\ref{thm:DiscMainThm}.  Let
 \begin{equation}
 \Pmod\subseteq\{\P\mid\forall u\in\X:\P[U=u]=p_u\}.
 \end{equation}
@@ -876,7 +877,7 @@ Take for example the dice game, there either $3$ or $4$ can be picked as $u'$ as
 \begin{equation}
 \Psafe[U=1|V=\{3,4,5,6\}]=\frac{1}{6}.
 \end{equation}
-Thus we need to assume that the game master lies with a probability $\frac{1}{6}$ when he tells the die has rolled three or higher, while in the problem we specifically assume the game master is not able to lie. This solution or distribution should therefore not be regarded as admissible, while it is still mathematically valid. However, when calculating a safe distribution $\Psafe$ for $\DieInd|[V]$, as is done in Proposition~\ref{prop:DiceIndSafe}, we obtain $\Psafe[U=3|V=v]=\frac{1}{6}$ for all $v\in\Y$. Since for all $v\in\Y$ a $\P\in\Pmod$ exists with $\P[U=3|V=v]>0$, putting a positive probability on $U=3$ given any value of $V$ is a wise thing to do.\\
+Thus we need to assume that the game master lies with a probability $\frac{1}{6}$ when he tells the die has rolled three or higher, while in the problem we specifically assume the game master is not able to lie. This solution or distribution should therefore not be regarded as admissible, while it is still mathematically valid. However, when calculating a safe distribution $\Psafe$ for $\DieInd|[V]$, as is done in Proposition~\ref{prop:DiscDiceSafe}, we obtain $\Psafe[U=3|V=v]=\frac{1}{6}$ for all $v\in\Y$. Since for all $v\in\Y$ a $\P\in\Pmod$ exists with $\P[U=3|V=v]>0$, putting a positive probability on $U=3$ given any value of $V$ is a wise thing to do.\\
 Therefore, while Theorem~\ref{thm:DiscMainThm} can be applied in many cases, it is wise to only apply it on $\GeneralInd|V$ when firstly $\P[U=u]>0$ holds for all $\P\in\Pmod$ and secondly when this $u$ is a member of the set
 \begin{equation}\label{eq:DiscMainUReq}
 \bigcap_{\P\in\Pmod}\bigcap_{v\in\supp_{\P}(V)}\range(U|V=v).
@@ -942,7 +943,7 @@ Let $\X$, $\Y$, $U$, $V$, $\{p_u\}_{u\in\Y}$ and $\Pmod$ be as in Proposition~\r
 \mathrm{Ber}(p),&\sum_{u\in\X'}p_u=\frac{1}{2},p\in[0,1]
 \end{cases}
 \end{equation}
-where $\mathrm{Ber}(p)$ is the Bernoulli distribution with parameter $p\in[0,1]$. This distribution guesses $\GeneralGenInd$ correctly with probability 
+where $\mathrm{Ber}(p)$ is the Bernoulli distribution with parameter $p\in[0,1]$. This distribution guesses $\GeneralGenInd$ correctly with probability
 \begin{equation}
 \acc^{\P}\left(\GeneralGenInd^*\right)=\max\left\{\sum_{u\in\X'}p_u,1-\sum_{u\in\X'}p_u\right\}.
 \end{equation}
@@ -1029,7 +1030,7 @@ Now the main theorems are stated, we can apply them to some well-known paradoxes
 \subsection{Safe probability}
 Proposition~\ref{prop:SafeDice} gives a set $\tilde{\mathcal{P}}$ of distributions that are all safe for $\langle U\rangle|[V]$. However, in the original problem we are not interested in the whole distribution of $U$ given $V$, but only want to know the probability of rolling $3$ after the game master's statement. Therefore finding safe distributions for $\DieInd|[V]$ is sufficient.
 
-\begin{proposition}\label{prop:DiceIndSafe}
+\begin{proposition}\label{prop:DiscDiceSafe}
 Let $\X$, $\Y$, $\Omega$, $U$, $V$ and $\Pmod$ be as in the dice game. Let $\Psafe$ be a distribution on $\Omega$. Let $u\in\X$, then the following statements are equivalent:
 \begin{enumerate}
 \item For all $v\in\Y$ we have $\P[U=u|V=v]=\frac{1}{6}$.
@@ -1041,10 +1042,10 @@ Let $\X$, $\Y$, $\Omega$, $U$, $V$ and $\Pmod$ be as in the dice game. Let $\Psa
 This proposition is a direct application of Theorem~\ref{thm:DiscMainThm}. The set $\X$ is of size $6$ and therefore countable and the set $\Y$ is of size $2$, which makes it finite. $U$ is a random variable on $\X$ and $V$ is a random variable on $\Y$. In this dice game we have $p_u=\frac{1}{6}$ as $\P\in\Pmod$ implies $\P[U=u]=\frac{1}{6}$ for all $u\in\X$. Lastly, the set $\Pmod$ is a subset of $\{\P|\forall u\in\X:\P[U=u]=p_u\}$.
 
 Take $\P_1,\P_2\in\Pmod$ with $\P_i[V=y_i|U=3]=\P_i[V=y_i|U=4]=1$. Let $i\in\{1,2\}$ be arbitrary, then
-\begin{align*}
+\begin{align}
 \P_i[V=y_i]&=\sum_{u=1}^6\P_i[V=y_i|U=u]\P_i[U=u]\\
 &=\frac{1}{6}\left(4\cdot1+2\cdot0\right)=\frac{2}{3}.
-\end{align*}
+\end{align}
 Thus the vectors $\left(\P_i[V=v]\right)_{v\in\Y}$ become $\left(\frac{1}{3},\frac{2}{3}\right)$ and $\left(\frac{2}{3},\frac{1}{3}\right)$, which are linearly independent.
 
 Now we can directly apply Theorem~\ref{thm:DiscMainThm} to conclude the proof.
@@ -1053,7 +1054,7 @@ Now we can directly apply Theorem~\ref{thm:DiscMainThm} to conclude the proof.
 Suppose you want to bet on this game and want to know whether you must put money on rolling $3$. As the following proposition will state, after observing the game master's statement, always stating that the die has not rolled to a $3$ has a $\frac{5}{6}$ chance of being correct independently on the game master's strategy.
 
 \begin{proposition}
-Let $\X$, $\Y$, $U$, $V$ and $\Pmod$ be as in the dice game. Let $\DieInd^*=0$, then this $\DieInd^*$ has accuracy
+Let $\X$, $\Y$, $U$, $V$ and $\Pmod$ be as in the dice game. Consider the random variable $\DieInd^*=0$, then this $\DieInd^*$ has accuracy
 \begin{equation}
 \acc^{\P}\left(\DieInd^*\right)=\frac{5}{6}
 \end{equation}
@@ -1062,7 +1063,7 @@ for all $\P\in\Pmod$. There is no random variable $W$ with $\acc^{\P}(W)>\acc^{\
 \begin{proof}
 We want to apply Theorem~\ref{thm:DiscAccOpt}. Firstly in this case $\X'=\{3\}\subset\X$ is non-empty. Secondly, we have $\sum_{u\in\X'}p_u=p_3=\frac{1}{6}<\frac{1}{2}$. Then Theorem~\ref{thm:DiscAccOpt} states that $\DieInd^*=0$ optimizes the accuracy for guessing $\DieInd$ with
 \begin{equation}
-\acc^{\P}\left(\DieInd^*\right)=\max\left\{\frac{1}{6},\frac{5}{6}\right\}=\frac{5}{6}.
+\acc\left(\DieInd^*\right)=\max\left\{\frac{1}{6},\frac{5}{6}\right\}=\frac{5}{6}.
 \end{equation}
 \end{proof}
 
@@ -1080,7 +1081,7 @@ One of the most classic paradoxes in probability theory is Monty Hall's three do
 
 There are three doors called $a$, $b$ and $c$.  Two doors have a goat behind and one door has a car. The player chooses one door, where after the game master opens one of the remaining doors. However, the game master does not open the door with the car. The player is then asked whether he wants to switch to the remaining door. The player wins the contents of the door he ultimately chooses.
 
-A logical question, and the centre of this paradox, is whether the player should switch after the revealing of a door. There are multiple viewpoints for this question. Throughout the whole analysis we assume that initially the car is placed behind a door with equal probability. Without loss of generality we now assume the player has chosen door $a$, as the choice of the first door has become independent of the question whether the player should switch. 
+A logical question, and the centre of this paradox, is whether the player should switch after the revealing of a door. There are multiple viewpoints for this question. Throughout the whole analysis we assume that initially the car is placed behind a door with equal probability. Without loss of generality we now assume the player has chosen door $a$, as the choice of the first door has become independent of the question whether the player should switch.
 
 The most naive viewpoint is the following. Say door $c$ is opened by the game master, then either door $a$ or door $b$ has a car with equal probability $\frac{1}{2}$. Since there is a 50-50 chance, switching does not increase your chances. This viewpoint is widely disputed.
 
@@ -1112,7 +1113,7 @@ Thus the probability of door $a$ having the car after opening door $b$ dilates f
 To create a probability of $\frac{1}{2}$ of our initial door having the car, we need to pick $p=1$. We thus need to assume that when we initially chose the correct door, the game master \emph{always} opens door $b$. This also debunks the argument that there are two doors left, thus there is a probability of $\frac{1}{2}$ that door $a$ has the car. The information that door $b$ has no car heavily influences the conditional probability.
 
 
-However, more is wrong with the above reasoning. Suppose door $a$ has the car. The game master is now able to choose between doors $b$ and $c$. If door $b$ is opened, the resulting set of possibilities is $\{a,b\}$ and when door $c$ is opened, the resulting set of possibilities is $\{a,c\}$. We need to condition on both the possibilities $\{a,b\}$ and $\{a,c\}$, however both sets do not form a partition. Furthermore, the smallest $\sigma$-algebra containing both sets is 
+However, more is wrong with the above reasoning. Suppose door $a$ has the car. The game master is now able to choose between doors $b$ and $c$. If door $b$ is opened, the resulting set of possibilities is $\{a,b\}$ and when door $c$ is opened, the resulting set of possibilities is $\{a,c\}$. We need to condition on both the possibilities $\{a,b\}$ and $\{a,c\}$, however both sets do not form a partition. Furthermore, the smallest $\sigma$-algebra containing both sets is
 \begin{equation}
 \G=\sigma(\{a,b\},\{a,c\})=2^{\{a,b,c\}}=2^{\Omega'},
 \end{equation}
@@ -1126,16 +1127,135 @@ The resulting conditional probabilities come in the form of Equation~\ref{eq:Dis
 \end{align}
 In both cases the probability of door $a$ having the car dilates from $0$ to $\frac{1}{2}$. Therefore, you are advised to switch no matter the strategy of the game master. However, we cannot pin down a single probability of door $a$ having the car given the game master's statement. We can put a prior on $\P[V=b|U=a]$, however we do need more information to apply such prior wisely.
 
-This subsection shows another example of why when doing conditional probability one always needs to provide the accompanying sub-$\sigma$-algebra. Unlike the Borel-Kolmogorov paradox in Chapter~\ref{chap:BorelKolmogorov}, here the measure-theoretic conditional expectation defines a unique probability measure. However, most use $\Omega=\{a,b,c\}$ as sample space and without taking the accompanying $\sigma$-algebra in account when conditioning, one should find no reason not to do this. Only when applying conditional probability and noticing that both $\{a,b\}$ and $\{a,c\}$ are possible options, one finds out that $\Omega=\{a,b,c\}$ is insufficient as sample space and paradoxical results will rise.
+This subsection shows another example of why when doing conditional probability one always needs to provide the accompanying sub-$\sigma$-algebra. Unlike the Borel-Kolmogorov paradox in Chapter~\ref{chap:BorelKolmogorov}, here the measure-theoretic conditional expectation defines a unique probability measure. However, most use $\Omega=\{a,b,c\}$ as sample space and without taking the accompanying $\sigma$-algebra in account when conditioning, one should find no reason not to do this. Only when correctly applying conditional probability and noticing that both $\{a,b\}$ and $\{a,c\}$ are possible options, one finds out that $\Omega=\{a,b,c\}$ is insufficient as sample space and paradoxical results will rise.
 
 \subsection{Safe probability}
-Using safe probability it is possible to find a pragmatic distribution $\Psafe$ on $\Omega$ that is safe against all $\P\in\Pmod$.
+Using safe probability it is possible to find a pragmatic distribution $\Psafe$ on $\Omega$ that is safe against all $\P\in\Pmod$. We only need to apply Theorem~\ref{thm:DiscMainThm}.
+
+\begin{proposition}\label{prop:DiscMontySafe}
+Let $\X$, $\Y$, $\Omega$, $U$, $V$ and $\Pmod$ be as in the Monty Hall problem. Let $\Psafe$ be a distribution on $\Omega$. Let $u\in\X$, then the following statements are equivalent:
+\begin{enumerate}
+\item For all $v\in\Y$ we have $\P[U=u|V=v]=\frac{1}{3}$.
+\item $\Psafe$ is safe for $\langle \1_{\{U=u\}}\rangle|\langle V\rangle$.
+\item $\Psafe$ is safe for $\1_{\{U=u\}}|[V]$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+This proposition is a direct application of Theorem~\ref{thm:DiscMainThm} and its proof is equal to the proof of Proposition~\ref{prop:DiscDiceSafe}. The set $\X$ is of size $3$ and therefore countable and the set $\Y$ is of size $2$, which makes it finite. $U$ is a random variable on $\X$ and $V$ is a random variable on $\Y$. In this Monty Hall problem we have $p_u=\frac{1}{3}$ as $\P\in\Pmod$ implies $\P[U=u]=\frac{1}{3}$ for all $u\in\X$. Lastly, the set $\Pmod$ is a subset of $\{\P|\forall u\in\X:\P[U=u]=p_u\}$.
+
+Take $\P_b,\P_c\in\Pmod$ with $\P_i[V=i|U=a]=1$. Let $i\in\{b,c\}$ be arbitrary, then
+\begin{align}
+\P_i[V=i]&=\sum_{u=1}^3\P_i[V=i|U=u]\P_i[U=u]\\
+&=\frac{1}{3}\left(2\cdot1+0\right)=\frac{2}{3}.
+\end{align}
+Thus the vectors $\left(\P_i[V=v]\right)_{v\in\Y}$ become $\left(\frac{1}{3},\frac{2}{3}\right)$ and $\left(\frac{2}{3},\frac{1}{3}\right)$, which are linearly independent.
+
+Now we can directly apply Theorem~\ref{thm:DiscMainThm} to conclude the proof.
+\end{proof}
+
+Thus the distribution stating that door $a$ has probability $\frac{1}{3}$ of having the car is safe for $\MontyInd|[V]$, thus is marginally valid. In this case safety for $\MontyInd|[V]$ implies a few other results using \emph{pivotal safety}. Before we can introduce pivotal safety, we first need to introduce the \emph{pivot}. This definition is taken from \cite{Grunwald18}.
+
+\begin{definition}[Discrete pivot]\label{def:DiscPivot}
+Let $U$ and $V$ be random variables on $\Omega$. Assume $\Omega$ is countable. A random variable $U'$ is a \emph{discrete pivot} for $U|V$ if
+\begin{enumerate}
+    \item $(U,V)\rightsquigarrow U'$ holds, thus there is a function $f$ with $U'=f(U,V)$.
+    \item For each fixed $v\in\range(V)$ the function
+    \begin{equation}
+    f_v\colon\range(U|V=v)\to\range(U'),\qquad u\mapsto f(u,v)
+    \end{equation}
+    is injective.
+    \item All $\P\in\Pmod$ agree on $U'$, thus for all $\P_1,\P_2\in\Pmod$ we have $\P_1(U')=\P_2(U')$.
+\end{enumerate}
+Pivot $U'$ is \emph{simple} if $f_v$ is a bijection for all $v\in\range(V)$.
+\end{definition}
+
+Since we will not consider continuous pivots in this thesis, we just state that $U'$ is a \emph{pivot} for $U|V$. Now we can define pivotal safety, where the definition is taken from \cite{Grunwald18}.
+
+\begin{definition}[Pivotal safety]\label{def:DiscPivotSafe}
+Let $U$ and $V$ be as in Definition~\ref{def:DiscPivot} and let $\Psafe$ be an arbitrary distribution on $\Omega$. If $V$ has full support under $\Psafe$, thus $\supp_{\Psafe}(V)=\range(V)$, and $U'$ is a discrete pivot such that $\Psafe$ is safe for $U'|[V]$, then $\Psafe$ is \emph{pivotally safe for $U|V$ with pivot $U'$}.
+\end{definition}
+
+Now we can prove that $\MontyInd$ is a pivot for $U|V$ and immediately that $\Psafe$ from Proposition~\ref{prop:DiscMontySafe}.
+
+\begin{proposition}\label{prop:DiscMontyPivSafe}
+Let $\X$, $\Y$, $\Omega$, $U$, $V$, $\Pmod$ and $\Psafe$ be as in Theorem~\ref{prop:DiscMontySafe}. The random variable $\MontyInd$ is a pivot for $U|V$ and $\Psafe$ is pivotally safe for $U|V$ with pivot $\MontyInd$.
+\end{proposition}
+\begin{proof}
+The proof is a mere check of Definitions~\ref{def:DiscPivot} and \ref{def:DiscPivotSafe}.
+
+We will start with $\MontyInd$ being a pivot for $U|V$ by checking the three requirements of Definition~\ref{def:DiscPivot}.
+\begin{enumerate}
+    \item Take as function $f(U,V)=\MontyInd$. This is a well-defined function, therefore $(U,V)\rightsquigarrow U'$.
+    \item Note that $\range(V)=\{b,c\}$. Take $v=b$, then $\range(U|V=b)=\{a,c\}$. We have $f_b(a)=f(a,b)=1$ and $f_b(c)=f(c,b)=0$, thus $f_b$ is a bijection. Taking $v=c$ we get $f_c(a)=1$ and $f_c(b)=0$, thus $f_c$ is a bijection as well.
+    \item Take $\P_1,\P_2\in\Pmod$ arbitrarily. Note that $\range(\MontyInd)=\{0,1\}$. Therefore
+    \begin{align}
+        \P_1[U\neq a]&=\P_1[U\in\{2,3\}]=\frac{2}{3}=\P_2[U\in\{2,3\}]=\P_2[U\neq a],\\
+        \P_1[U=a]&=\P_1[U=1]=\frac{1}{3}=\P_2[U=1]=\P_2[U=a],
+    \end{align}
+    thus we have $\P_1[\MontyInd]=\P_2[\MontyInd]$.
+\end{enumerate}
+Since we have proven that $f_v$ is a bijection for all $v\in \range(V)$, the pivot $\MontyInd$ is a simple pivot for $U|V$.
+
+Theorem~\ref{thm:DiscMainThm} states that $\Psafe$ with $\Psafe[U=a|V=v]=\frac{1}{3}$ for all $v\in\Y$ is safe for $\MontyInd|[V]$. This $\Psafe$ has full support under $V$, as for all $v\in\Y$ the statement $\Psafe[U=a|V=v]>0$ implies $\Psafe[V=v]>0$ by definition of traditional conditional probability. Therefore by Definition~\ref{def:DiscPivotSafe} probability measure $\Psafe$ is pivotally safe for $U|V$ with pivot $\MontyInd$.
+\end{proof}
+
+Pivotal safety comes with a nice result. Following \cite{Grunwald18}, introduce the random variable $\tilde{p}(U|V)$ by
+\begin{equation}
+\tilde{p}(U|V)(\omega)=\Psafe[U=U(\omega)|V=V(\omega)]
+\end{equation}
+for all $\omega\in\Omega$. This random variable maps $\omega\in\Omega$ to the probability of a single outcome $\Psafe[U=U(\omega)|V=V(\omega)]$. Now \cite{Grunwald18} stated the following theorem on pivotal safety.
+\begin{theorem}\label{thm:PivotSafe}
+Let $\Omega$ be countable and $U,V$ be random variables on $\Omega$. Let $\Psafe$ be an arbitrary distribution on $\Omega$. Suppose that for all $v\in\range(V)$ there are no two $u_1,u_2\in\range(U|V=v)$ with $\Psafe[U=u_1|V=v]=\Psafe[U=u_2|V=v]$. The following statements are equivalent:
+\begin{enumerate}
+    \item $\Psafe$ is pivotally safe for $\tilde{p}(U|V)|[V]$.
+    \item $\Psafe$ is pivotally safe for $U|V$ with simple pivot $U'=\tilde{p}(U|V)|[V]$.
+    \item $\Psafe$ is pivotally safe for $U|V$ for some simple pivot $U''$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+The proof can be found in \cite{Grunwald16}.
+\end{proof}
+
+Let in our case $\Psafe$ be as in Proposition~\ref{prop:DiscMontyPivSafe}. We only defined $\Psafe[U=a|V=v]$ for all $v\in\Y$, not $\Psafe[U=u|V=v]$ with $(u,v)\in\{b,c\}\times\Y$. Thus to actually write down the outcomes of $\tilde{p}(U|V)$ with their respective probabilities, we need to put $p_u^v\in\left[0,\frac{2}{3}\right]\setminus\left\{\frac{1}{3}\right\}$ with $p_b^v+p_c^v=\frac{2}{3}$ for all $(u,v)\in\{b,c\}\times\Y$ and apply
+\begin{equation}
+\Psafe[U=u|V=v]=p_u^v.
+\end{equation}
+Now $\Psafe[U=a|V=v]$ is fixed to be $\frac{1}{3}$. No $u\in\{b,c\}$ has $\Psafe[U=u|V=v]=\frac{1}{3}$ as well, since we excluded $\frac{1}{3}$ from the set $p_u^v$ could be picked from. Since $\Psafe$ is pivotally safe for $U|V$ with pivot $\MontyInd$, Theorem~\ref{thm:PivotSafe} states that $\Psafe$ is pivotally safe for $U|V$ with simple pivot $\tilde{p}(U|V)$ as well.
+
+Summarizing, since $\Psafe$ is pivotally safe for $\MontyInd$ with simple pivot $\MontyInd$ and since we can create $\tilde{p}(U|V)$ to be a simple pivot for $U|V$ as well, we immediately obtain pivotal safety for $U|V$ with simple pivot $\tilde{p}(U|V)$. We also obtain an infinite family of simple pivots $\tilde{p}(U|V)$, as for example $\Psafe[U=b|V=c]$ is not uniquely defined, for which $\Psafe$ is safe for $\tilde{p}(U|V)$. We have seen that it is safe to assume that the car is behind door $a$ with a probability of $\frac{1}{3}$ and by some special properties of the Monty Hall game, specifically that $\MontyInd$ is a simple pivot for $U|V$, we see that $\Psafe$ is safe for $U'|[V]$ with $U'=\tilde{p}(U|V)$ being another simple pivot constructed by $\Psafe$.
+
 
 \subsection{Accuracy}
+Suppose you are playing the Monty Hall game, which strategy optimizes winning the car? The answer is that you must always switch for a probability of $2$ out of $3$ to win the car, as can be found by applying Theorem~\ref{thm:DiscAccOpt}.
+
+\begin{proposition}
+Let $\X$, $\Y$, $U$, $V$ and $\Pmod$ be as in the dice game. Consider the random variable $\MontyInd^*=0$, then this $\MontyInd^*$ has accuracy
+\begin{equation}
+\acc^{\P}\left(\MontyInd^*\right)=\frac{2}{3}
+\end{equation}
+for all $\P\in\Pmod$. There is no random variable $W$ with $\acc^{\P}(W)>\acc^{\P}(\MontyInd^*)$ for a $\P\in\Pmod$.
+\end{proposition}
+\begin{proof}
+We want to apply Theorem~\ref{thm:DiscAccOpt}. Firstly in this case $\X'=\{a\}\subset\X$ is non-empty. Secondly, we have $\sum_{u\in\X'}p_u=p_a=\frac{1}{3}<\frac{1}{2}$. Then Theorem~\ref{thm:DiscAccOpt} states that $\MontyInd^*=0$ optimizes the accuracy for guessing $\MontyInd$ with
+\begin{equation}
+\acc\left(\MontyInd^*\right)=\max\left\{\frac{1}{3},\frac{2}{3}\right\}=\frac{2}{3}.
+\end{equation}
+\end{proof}
+
+As in the dice game, the information of the game master does not lead to a higher probability of winning the car. When always switching doors, the probability of winning the car becomes $\frac{2}{3}$ and this is the optimal probability you can have.
 
 \subsection{Final remarks}
+The Monty Hall problem applied Theorems~\ref{thm:DiscMainThm} and \ref{thm:DiscAccOpt} in the same manner as the dice game. In the setting of Monty Hall, it is safe to say that the car has probability $\frac{1}{3}$ to be behind the originally chosen door. Therefore, always switching yields to an optimal probability of $\frac{2}{3}$ for winning the car.
+
+Since in the case of Monty Hall the random variable $\MontyInd$ is a simple pivot for $U|V$, we can pick $\Psafe$ to construct a family of other simple pivots $U'$ that are safe for $U'|[V]$. This is not possible in the dice game, as there $f_v$ as in Definition~\ref{def:DiscPivot} with $v\in\{\{1,2,3,4\},\{3,4,5,6\}\}$ is not injective.
+
+When pivots are not considered, the Monty Hall problem is essentially equal to the dice game. Here the paradoxical nature of the Monty Hall problem stems from the fact that most use $\Omega=\{a,b,c\}$ when first trying to solve the problem. However, in that case we cannot create a partition to apply traditional conditional probability or a $\sigma$-algebra for measure-theoretic conditional probability. This problem can only be spotted when performing conditional probability correctly, thus with stating the accompanying sub-$\sigma$-algebra. Then it is clear that $\Omega$ must be extended with an observation space $\Y=\{b,c\}$.
+
+Therefore the Monty Hall problem is yet another argument as in why the $\sigma$-algebra must be given when performing conditional probability.
 
 \section{Boy or girl problem}\label{sec:DiscChildren}
+The last problem we will observe in this chapter is the boy or girl problem.
+
 \subsection{Traditional conditional probability}
 
 \subsection{Safe probability}
