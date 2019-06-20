@@ -1027,7 +1027,7 @@ Now the main theorems are stated, we can apply them to some well-known paradoxes
 \Pmod=\left\{\P\middle|\forall u\in\X:\P[U=u]=\frac{1}{6},\forall y\in\Y:\P[U\in y|Y=y]=1\right\}.
 \end{equation}
 
-\subsection{Safe probability}
+\subsubsection{Safe probability}
 Proposition~\ref{prop:SafeDice} gives a set $\tilde{\mathcal{P}}$ of distributions that are all safe for $\langle U\rangle|[V]$. However, in the original problem we are not interested in the whole distribution of $U$ given $V$, but only want to know the probability of rolling $3$ after the game master's statement. Therefore finding safe distributions for $\DieInd|[V]$ is sufficient.
 
 \begin{proposition}\label{prop:DiscDiceSafe}
@@ -1050,7 +1050,7 @@ Thus the vectors $\left(\P_i[V=v]\right)_{v\in\Y}$ become $\left(\frac{1}{3},\fr
 
 Now we can directly apply Theorem~\ref{thm:DiscMainThm} to conclude the proof.
 \end{proof}
-\subsection{Accuracy}
+\subsubsection{Accuracy}
 Suppose you want to bet on this game and want to know whether you must put money on rolling $3$. As the following proposition will state, after observing the game master's statement, always stating that the die has not rolled to a $3$ has a $\frac{5}{6}$ chance of being correct independently on the game master's strategy.
 
 \begin{proposition}
@@ -1069,7 +1069,7 @@ We want to apply Theorem~\ref{thm:DiscAccOpt}. Firstly in this case $\X'=\{3\}\s
 
 We now observe that using the information given by the game master does not lead to a higher probability of guessing $\DieInd$ correct. When always stating that the die has not rolled $3$ you maximize the probability of having a correct guess, which is $5$ out of $6$. The information revealed by the game master can therefore be ignored as it will not yield to a higher probability of guessing correctly.
 
-\subsection{Final remarks}
+\subsubsection{Final remarks}
 We have seen that the conditional probability of rolling $3$ given the game master's statement is not uniquely defined; it dilates from $0$ to $\frac{1}{4}$ depending on the to the player unknown strategy of the game master. However, when playing like the probability of rolling $3$ is always $\frac{1}{6}$ disregarding the game master's statement, you are able to simulate the probability distribution of $\DieInd$. Furthermore, when always stating that the die has not rolled $3$, you are correct in five out of six games, which is the maximal fraction of games you can be correct on.
 
 The paradoxical nature of this problem is that most people treat this problem with sample space $\Omega=\{1,2,3,4,5,6\}$ and condition on for example the information $\{3,4,5,6\}$. However, as we have seen in Section~\ref{sec:SafeDice}, we also need to condition on the possibility $\{1,2,3,4\}$ and those two sets cannot form a partition of $\Omega$. Therefore the sample space $\Omega$ is insufficient for solving this problem, resulting in the paradoxical statements.
@@ -1099,7 +1099,7 @@ We assume that the car is initially distributed with equal probability and the g
 In this section we first give a repetition the arguments of \cite{Grunwald13} as they view the Monty Hall problem in the viewpoint of traditional probability. Then we apply safe probability and Theorem~\ref{thm:DiscMainThm} to the Monty Hall problem, with as result that it is safe to state that the car is behind door $a$ with probability~$\frac{1}{3}$.
 
 
-\subsection{Traditional conditional probability}
+\subsubsection{Traditional conditional probability}
 Let us start with the viewpoint that result in a probability of $\frac{2}{3}$ of obtaining the car after switching. This viewpoint takes $\Omega'=\{a,b,c\}$ as sample space. Let $U'$ be an $\Omega'$-valued random variable denoting the cars location and $V'$ be a $\{b,c\}$-valued random variable denoting the game master's statement. Equip $\Omega'$ with the uniform distribution $\P$ such that $\P[U'=u]=\frac{1}{3}$ and $\P[V'=y|U'=y]=0$ with $y\in\{b,c\}$. Assume lastly that $\P[V'=b|U'=a]=\frac{1}{2}$, thus that the game master chooses a door with equal probability when he has free choice. Traditional conditional probability then gives
 \begin{equation}
 \P[U'=a|V'=b]=\frac{\P[V'=b|U'=a]\P[U'=a]}{\sum_{u\in\Omega}\P[V'=b|U'=u]\P[U'=u]}=\frac{\frac{1}{2}\cdot\frac{1}{3}}{\frac{1}{3}\left(\frac{1}{2}+0+1\right)}=\frac{1}{3}.
@@ -1122,14 +1122,14 @@ our original $\sigma$-algebra. As stated by \cite{Williams91} and also easy to p
 Can we say nothing sensible at all about the probability of winning the car after switching? Consider the $\Omega$, $U$ and $V$ from the formal statement in the introduction of this section. Now we have $\Omega=\X\times\Y$, thus $\Omega$ is split up in outcome space $\X=\{a,b,c\}$ and observation space $\Y=\{b,c\}$. Now we can condition on all possibilities of open doors, as $\sigma(\{a\}\times\Y)$ is a strict sub-$\sigma$-algebra of $2^\Omega$.\\
 The resulting conditional probabilities come in the form of Equation~\ref{eq:DiscMonty}. Let $\P\in\Pmod$, thus such that $\P$ is uniform distributed on $U$ and a door with a car cannot be opened. Then a $p\in[0,1]$ exists such that $\P[V=b|U=a]=p$. This results into
 \begin{align}
-\P[U=a|V=b]=\frac{\P[V=b|U=a]\P[U=a]}{\sum_{u\in\Omega}\P[V=b|U=u]\P[U=u]}=\frac{p}{p+1},\\
+\P[U=a|V=b]=\frac{\P[V=b|U=a]\P[U=a]}{\sum_{u\in\Omega}\P[V=b|U=u]\P[U=u]}=\frac{p}{p+1},\label{eq:DiscMontyDilate}\\
 \P[U=a|V=c]=\frac{\P[V=c|U=a]\P[U=a]}{\sum_{u\in\Omega}\P[V=c|U=u]\P[U=u]}=\frac{1-p}{2-p}.
 \end{align}
 In both cases the probability of door $a$ having the car dilates from $0$ to $\frac{1}{2}$. Therefore, you are advised to switch no matter the strategy of the game master. However, we cannot pin down a single probability of door $a$ having the car given the game master's statement. We can put a prior on $\P[V=b|U=a]$, however we do need more information to apply such prior wisely.
 
 This subsection shows another example of why when doing conditional probability one always needs to provide the accompanying sub-$\sigma$-algebra. Unlike the Borel-Kolmogorov paradox in Chapter~\ref{chap:BorelKolmogorov}, here the measure-theoretic conditional expectation defines a unique probability measure. However, most use $\Omega=\{a,b,c\}$ as sample space and without taking the accompanying $\sigma$-algebra in account when conditioning, one should find no reason not to do this. Only when correctly applying conditional probability and noticing that both $\{a,b\}$ and $\{a,c\}$ are possible options, one finds out that $\Omega=\{a,b,c\}$ is insufficient as sample space and paradoxical results will rise.
 
-\subsection{Safe probability}
+\subsubsection{Safe probability}
 Using safe probability it is possible to find a pragmatic distribution $\Psafe$ on $\Omega$ that is safe against all $\P\in\Pmod$. We only need to apply Theorem~\ref{thm:DiscMainThm}.
 
 \begin{proposition}\label{prop:DiscMontySafe}
@@ -1178,7 +1178,7 @@ Let $U$ and $V$ be as in Definition~\ref{def:DiscPivot} and let $\Psafe$ be an a
 Now we can prove that $\MontyInd$ is a pivot for $U|V$ and immediately that $\Psafe$ from Proposition~\ref{prop:DiscMontySafe}.
 
 \begin{proposition}\label{prop:DiscMontyPivSafe}
-Let $\X$, $\Y$, $\Omega$, $U$, $V$, $\Pmod$ and $\Psafe$ be as in Theorem~\ref{prop:DiscMontySafe}. The random variable $\MontyInd$ is a pivot for $U|V$ and $\Psafe$ is pivotally safe for $U|V$ with pivot $\MontyInd$.
+Let $\X$, $\Y$, $\Omega$, $U$, $V$, $\Pmod$ and $\Psafe$ be as in Proposition~\ref{prop:DiscMontySafe}. The random variable $\MontyInd$ is a pivot for $U|V$ and $\Psafe$ is pivotally safe for $U|V$ with pivot $\MontyInd$.
 \end{proposition}
 \begin{proof}
 The proof is a mere check of Definitions~\ref{def:DiscPivot} and \ref{def:DiscPivotSafe}.
@@ -1225,7 +1225,7 @@ Now $\Psafe[U=a|V=v]$ is fixed to be $\frac{1}{3}$. No $u\in\{b,c\}$ has $\Psafe
 Summarizing, since $\Psafe$ is pivotally safe for $\MontyInd$ with simple pivot $\MontyInd$ and since we can create $\tilde{p}(U|V)$ to be a simple pivot for $U|V$ as well, we immediately obtain pivotal safety for $U|V$ with simple pivot $\tilde{p}(U|V)$. We also obtain an infinite family of simple pivots $\tilde{p}(U|V)$, as for example $\Psafe[U=b|V=c]$ is not uniquely defined, for which $\Psafe$ is safe for $\tilde{p}(U|V)$. We have seen that it is safe to assume that the car is behind door $a$ with a probability of $\frac{1}{3}$ and by some special properties of the Monty Hall game, specifically that $\MontyInd$ is a simple pivot for $U|V$, we see that $\Psafe$ is safe for $U'|[V]$ with $U'=\tilde{p}(U|V)$ being another simple pivot constructed by $\Psafe$.
 
 
-\subsection{Accuracy}
+\subsubsection{Accuracy}
 Suppose you are playing the Monty Hall game, which strategy optimizes winning the car? The answer is that you must always switch for a probability of $2$ out of $3$ to win the car, as can be found by applying Theorem~\ref{thm:DiscAccOpt}.
 
 \begin{proposition}
@@ -1244,7 +1244,7 @@ We want to apply Theorem~\ref{thm:DiscAccOpt}. Firstly in this case $\X'=\{a\}\s
 
 As in the dice game, the information of the game master does not lead to a higher probability of winning the car. When always switching doors, the probability of winning the car becomes $\frac{2}{3}$ and this is the optimal probability you can have.
 
-\subsection{Final remarks}
+\subsubsection{Final remarks}
 The Monty Hall problem applied Theorems~\ref{thm:DiscMainThm} and \ref{thm:DiscAccOpt} in the same manner as the dice game. In the setting of Monty Hall, it is safe to say that the car has probability $\frac{1}{3}$ to be behind the originally chosen door. Therefore, always switching yields to an optimal probability of $\frac{2}{3}$ for winning the car.
 
 Since in the case of Monty Hall the random variable $\MontyInd$ is a simple pivot for $U|V$, we can pick $\Psafe$ to construct a family of other simple pivots $U'$ that are safe for $U'|[V]$. This is not possible in the dice game, as there $f_v$ as in Definition~\ref{def:DiscPivot} with $v\in\{\{1,2,3,4\},\{3,4,5,6\}\}$ is not injective.
@@ -1254,17 +1254,134 @@ When pivots are not considered, the Monty Hall problem is essentially equal to t
 Therefore the Monty Hall problem is yet another argument as in why the $\sigma$-algebra must be given when performing conditional probability.
 
 \section{Boy or girl problem}\label{sec:DiscChildren}
-The last problem we will observe in this chapter is the boy or girl problem.
+The last problem we will study in this chapter is the boy or girl problem\footnote{Bronnen invoeren}. A stranger approaches you and you two get in conversation. The stranger tells you that he has two children and at least one of them is a girl. You want to know what the probability is that he has two daughters.
 
-\subsection{Traditional conditional probability}
+The paradox arises when one misinterpreted the setting. Suppose you ask the stranger if he has at least one girl. If he says `yes', the probability of two girls is $\frac{1}{3}$, as he can also have a boy and a girl and you do not know whether the earlier mentioned girl is his oldest child. This calculation is not controversial, as his answer `yes' implies the set of possibilities $\{bg, gb, gg\}$ and is answer `no' implies the set of possibilities $\{bb\}$. These sets do not overlap, thus traditional probability theory can be applied without any problems.\\
+Suppose now the strangers tells you out of the blue that he has two children and at least one of them is a girl. Now the setting changes, as he could also have told you that at least one of his children is a boy. If he said that he has a girl, the set of possibilities is $\{bg, gb, gg\}$ and if he said that he has a boy, the set of possibilities is $\{bg, gb, bb\}$. Now there is an overlap of $\{bg, gb\}$ and traditional probability theory does cannot be applied any-more. The probability of the stranger having two girls given he has at least one is now dilated between $0$ and $\frac{1}{3}$, dependent on the willingness of the stranger to reveal he has a girl. This dilation can be calculated in the same manner as is done for the Monty Hall problem in Equation~\ref{eq:DiscMontyDilate}.
 
-\subsection{Safe probability}
+We will now construct our model. Let $\X=\{bb,bg,gg\}$ be our outcome space of outcomes and let $\Y=\{bb,bg, gg\}$ be our observation space. Then $\Omega=\X\times\Y$ becomes our sample space with $2^\Omega$ as its accompanying $\sigma$-algebra. We do not care about whether the girl is older than the boy in the event that the stranger has a boy and a girl, thus we remove the outcome $gb$. Let $U$ be a random variable on $\X$ denoting the children of the stranger and $V$ be a random variable on $\Y$ denoting whether the stranger told you he as at least one boy, $V=b$, or at least one girl, $V=g$. All probabilities $\P$ on $\Omega$ must be a member of
+\begin{equation}
+\Pmod=\left\{\P\middle|\begin{array}{l}
+\P[U=bb]=\frac{1}{4},\P[U=bg]=\frac{1}{2},\\
+\P[V=g|U=bb]=\P[V=b|U=gg]=0
+\end{array}
+\right\}.
+\end{equation}
 
-\subsection{Accuracy}
+\subsubsection{Traditional conditional probability}
+The analysis the problem using traditional conditional probability will be very short here, as it is essentially the same analysis as in sections~\ref{sec:DiscDice} and \ref{sec:DiscMonty}. Let $\P\in\Pmod$ be arbitrary, then there is a $p\in[0,1]$ with $\P[V=g|U=bg]=p$. Using Bayes' rule we get
+\begin{align}
+\P[U=bg|V=g]&=\frac{\P[V=g|U=bg]\P[U=bg]}{\sum_{u\in\X}\P[V=g|U=u]\P[U=u]}\\
+&=\frac{p\cdot\frac{1}{2}}{0\cdot\frac{1}{4}+p\cdot\frac{1}{2}+1\cdot\frac{1}{4}}=\frac{2p}{2p+1},
+\end{align}
+thus the probability of two girls given the stranger told you he has at least one daughter dilates from $\frac{1}{3}$ to $1$. Therefore traditional conditional probability does not give a single answer.
+
+\subsubsection{Safe probability}
+
+
+Since $U$ is not real-valued, we cannot calculate $\E_{\P}[U]$ for any $U\in\Pmod$. Thus there is no notion of safety for $U|V$. We can speak of safety for $\ChildInd|V$, as the event $\{U=bg\}$ arises both in conditioning on $\{V=b\}$ and $\{V=g\}$.
+\begin{proposition}\label{prop:DiscChildSafe}
+Let $\X$, $\Y$, $\Omega$, $U$, $V$ and $\Pmod$ be as in the boy or girl problem. Let $\Psafe$ be a distribution on $\Omega$. Let $u\in\X$, then the following are equivalent:
+\begin{enumerate}
+    \item For all $v\in\Y$ we have $\Psafe[U=bg|V=v]=\frac{1}{2}$ in the case of $u=bg$ and $\Psafe[U=u|V=v]=\frac{1}{4}$ in the case of $u\in\{bb,gg\}$.
+    \item $\Psafe$ is safe for $\langle\1_{\{U=u\}}\rangle|\langle V\rangle$.
+    \item $\Psafe$ is safe for $\1_{\{U=u\}}|[V]$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+The proof is a direct application of Theorem~\ref{thm:DiscMainThm} and a direct copy of the proof of Proposition~\ref{prop:DiscMontySafe}. We will nevertheless state the full proof here.
+
+The set $\X$ is of size $3$ and therefore countable and the set $\Y$ is of size $2$, which makes it finite. $U$ is a random variable on $\X$ and $V$ is a random variable on $\Y$. In this boy or girl problem we have $p_{bg}=\frac{1}{2}$ and $p_{bb}=p_{gg}=\frac{1}{4}$ by $\P\in\Pmod$. Lastly, the set $\Pmod$ is a subset of $\{\P|\forall u\in\X:\P[U=u]=p_u\}$.
+
+Take $\P_{b},\P_{g}\in\Pmod$ with $\P_i[V=i|U=bg]=\frac{3}{4}$. Let $i\in\{b,g\}$ be arbitrary, then
+\begin{align}
+\P_i[V=i]&=\sum_{u\in\X}\P_i[V=i|U=u]\P_i[U=u]\\
+&=\frac{1}{2}\cdot\frac{3}{4}+\frac{1}{4}\cdot\frac{1}{4}+0\cdot\frac{1}{4}=\frac{7}{16}.
+\end{align}
+Thus the vectors $\left(\P_i[V=v]\right)_{v\in\Y}$ become $\left(\frac{7}{16},\frac{9}{16}\right)$ and $\left(\frac{9}{16},\frac{7}{16}\right)$, which are linearly independent.
+
+Now we can directly apply Theorem~\ref{thm:DiscMainThm} to conclude the proof.
+\end{proof}
+
+Therefore the distribution, for which the probability of the stranger having two girls after being told he has at least one girl is $\frac{1}{2}$, is safe for $\ChildInd|[V]$. A further analysis using pivots is possible, as $\ChildInd$ is a pivot for $U|V$.
+\begin{proposition}
+Let $\X$, $\Y$, $\Omega$, $U$, $V$, $\Pmod$ and $\Psafe$ be as in Proposition~\ref{prop:DiscChildSafe}. The random variable $\ChildInd$ is a pivot for $U|V$ and $\Psafe$ is pivotally safe for $U|V$ with pivot $\ChildInd$.
+\end{proposition}
+\begin{proof}
+The proof is equal to the proof of Proposition~\ref{prop:DiscMontyPivSafe}.
+\end{proof}
+
+\subsubsection{Accuracy}
+In this problem the optimal accuracy for guessing $\ChildInd$ correctly becomes interesting. When playing this game multiple times, it does not matter how many times you guess that he has a boy and a girl, say the amount of times $\ChildInd=1$. According to Proposition~\ref{prop:DiscChildSafe} distribution $\Psafe$ with $\Psafe[U=bg|V=v]=\frac{1}{2}$ for all $v\in\Y$ is safe for $\ChildInd|[V]$, thus Theorem~\ref{thm:DiscAccOpt} gives us that $\ChildInd^*\sim\mathrm{Ber}(p)$ optimizes the accuracy of guessing $\ChildInd$ correctly.
+\begin{proposition}
+Let $\X$, $\Y$, $U$, $V$ and $\Pmod$ be as in the boy or girl problem. Consider the random variable $\ChildInd^*\sim\mathrm{Ber}(p)$ distributed as the Bernoulli distribution with parameter $p\in[0,1]$, then this $\ChildInd^*$ has accuracy
+\begin{equation}
+\acc^{\P}\left(\ChildInd^*\right)=\frac{1}{2}
+\end{equation}
+for all $\P\in\Pmod$. There is no random variable $W$ with $\acc^{\P}(W)>\acc^{\P}(\ChildInd^*)$ for a $\P\in\Pmod$.
+\end{proposition}
+\begin{proof}
+We want to apply Theorem~\ref{thm:DiscAccOpt}. Firstly in this case $\X'=\{bg\}\subset\X$ is non-empty. Secondly, we have $\sum_{u\in\X'}p_u=p_{bg}=\frac{1}{2}$. Then Theorem~\ref{thm:DiscAccOpt} states that $\ChildInd^*~\mathrm{Ber}(p)$ with $p\in[0,1]$ arbitrary optimizes the accuracy for guessing $\ChildInd$ with
+\begin{equation}
+\acc\left(\ChildInd^*\right)=\max\left\{\frac{1}{2},\frac{1}{2}\right\}=\frac{1}{2}.
+\end{equation}
+\end{proof}
+
+We can therefore just guess randomly whether the stranger has a boy and girl or not. On average we will be correct 50\% of the times we find ourselves in this situation.
+
+\subsection{Boy or girl problem 2.0}
+There is a second variant of the boy or girl problem stated in a lecture by Peter Grünwald \cite{Grunwald19}. He stated a revised boy or girl problem as such:
+\begin{enumerate}
+    \item A person is picked uniformly at random from a population and a conversation is started.
+    \item You ask if at least one of his children is a boy. Suppose his answer is `yes', then the probability of two boys is $\frac{1}{3}$. As stated in section~\ref{sec:DiscChildren}, this is not controversial.
+    \item You ask if he can give you the name of his son. He can choose which son if he has two. The answer is `Martin'.
+    \item You ask if Martin is his youngest child.
+    \begin{itemize}
+        \item[Yes:] If he answered `yes', then his youngest child is a boy and the probability of two boys is now $\frac{1}{2}$.
+        \item[No:] If he answered `no', then his oldest child is a boy and the probability of two boys is now $\frac{1}{2}$.
+    \end{itemize}
+\end{enumerate}
+
+The paradoxical nature of this problem is that after learning the name of a son of the stranger, the probability of two boys shifts from $\frac{1}{3}$ to $\frac{1}{2}$. However, as the stranger can state any string as name, just learning the name after knowing he has at least a boy must not influence the probability of the stranger having two boys.
+
+As this problem is stated more elaborately, the underlying problem is equal to the Monty Hall or the original boy or girl problem. The outcome space after the stranger answering `yes' is $\{gb,bb\}$ and the outcome space after the stranger answering `no' is $\{bg, bb\}$. Now there is an overlap of $bb$. Furthermore, asking a boy's name and then asking if he is the youngest is essentially the same as asking whether his youngest child is a boy.
+
+Therefore we can adapt our model to this situation. Let $\X=\{bg,gb,bb\}$ be the outcome space, let $\Y=\{y,o\}$ be the observation space and take $\Omega=\X\times\Y$ as sample space. Now we have both $bg$ and $gb$ in $\X$ as we now do care about whether the boy is the oldest of the children. The outcome $gg$ is not included in $\X$ as we assume he answered `yes' on the question whether he has at least one boy. Let $U$ be a random variable on $\X$ denoting the family composition of the stranger, where $\{U=bg\}$ is the event that his oldest child is a boy. Let $V$ be a random variable on $\Y$ denoting which of the children is a boy for sure, where $\{V=y\}$ is the event that the youngest child is a boy and $\{V=o\}$ is the event that the oldest child is a boy. Assume lastly that the stranger does not lie. All probability distributions $\P$ on $\X\times\Y$ must lie in
+\begin{equation}
+\Pmod=\left\{\P\middle|\forall u\in\X:\P[U=u]=\frac{1}{3},\P[V=bg|Y=y]=\P[V=gb|Y=o]=0\right\}.
+\end{equation}
+For safe probability we can now look at safety for $\ChildTwoInd$ as $bb$ is in the intersection of the outcome spaces conditioned on $\{V=y\}$ or $\{V=o\}$.
+\begin{proposition}
+Let $\X$, $\Y$, $\Omega$, $U$, $V$ and $\Pmod$ be as in the boy or girl problem 2.0. Let $\Psafe$ be a distribution on $\Omega$. Let $u\in\X$, then the following are equivalent:
+\begin{enumerate}
+    \item For all $v\in\Y$ we have $\Psafe[U=u|V=v]=\frac{1}{3}$.
+    \item $\Psafe$ is safe for $\langle\1_{\{U=u\}}\rangle|\langle V\rangle$.
+    \item $\Psafe$ is safe for $\1_{\{U=u\}}|[V]$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+This proof is equal to the proof of Proposition~\ref{prop:DiscMontySafe}, the model in the boy or girl problem 2.0 is equal to the model in the Monty Hall problem.
+\end{proof}
+
+For this problem we can talk about pivotal safety and accuracy, but as the proof above already stated, this revised boy or girl problem is in essence equal to the Monty Hall problem. Therefore if the reader wants to dive further in this subject, he is kindly referred to Section~\ref{sec:DiscMonty}.
 
 \subsection{Final remarks}
+Both versions of the boy or girl problem are in essence equal to the dice game and the Monty Hall problem. When in both versions of the boy or girl problem $\Omega=\{bb,bg,gb,gg\}$ is chosen as sample space, then in the first version the conditioned sample spaces become $\{bg, gb, bb\}$ and $\{bg, gb, gg\}$ and in the second version the conditioned sample spaces become $\{bg, bb\}$ and $\{gb, bb\}$. In both versions the conditioned sample spaces cannot form a partition as there is an overlap in the sets, thus traditional conditional probability cannot be applied. You need to extend your sample space, which can only be noted when performing conditional probability correctly, thus with taking the $\sigma$-algebras into account.
+
+In both versions there is no probability of the stranger either having two girls or having two boys. In the first version the probability of having two girls dilates from $\frac{1}{3}$ to $1$, in the second version the probability is dilated from $0$ to $\frac{1}{2}$. The latter can be proven by following the reasoning in Equation~\ref{eq:DiscMontyDilate}.
+
+When Theorem~\ref{thm:DiscMainThm} is applied, we find that the first version has a safe distribution stating the probability of having a boy and a girl is $\frac{1}{2}$. In the second version, we find that the safe distribution puts a probability of $\frac{1}{3}$ on having two boys.
+
+Most importantly, the second version of the paradox is practically equal to the Monty Hall problem. The first version can also be solved using the same techniques as the only difference being the model of probability distributions.
 
 \section{Conclusion}\label{sec:DiscConcl}
+After going through the dice game, Monty Hall problem or the boy or girl problem, we see that Theorem~\ref{thm:DiscMainThm} can be applied nicely. When a problem is founded upon a probability space $\Omega=\X\times\Y$, where $\X$ is the countable space of all possible outcomes, $\Y$ is the finite space of all statements the game master can make to the player and the distribution on $\X$ is fixed, we can apply Theorem~\ref{thm:DiscMainThm} to find safe distributions for single probabilities. The model of probability distributions must be larger enough and fulfil an important requirement, however this requirement is almost always fulfilled when $\Pmod$ has $|\Y|$ distinct distributions. When $\Pmod$ has fewer than $|\Y|$ distributions, then you should at first ask yourselves whether $\Pmod$ is not too restrictive, making you prone for overfit.
+
+Furthermore, the seemly distinct problems like boy or girl and Monty Hall are in essence equal. Therefore the studies on both of these problems can be combined, but with care as both problems do have different probability models.
+
+Lastly, and the most important observation of this chapter, the paradoxical results people find in the Monty Hall or the boy or girl problem all arise when $\Omega=\X$, thus when the outcome space is taken as sample space. In this case traditional conditional probability cannot be applied as the resulting outcome spaces after conditioning on the observed events do not form a partition.\\
+This can be easily seen when the $\sigma$-algebra $2^{\Omega}$ is taken into account. Using loose notation, take $y_1,y_2\in\Y$ and suppose $x\in\X$ is present in both conditioned spaces $\X|y_1$ and $\X|y_2$. Then for computing the conditional probability of $x$ you need to condition on $\{\{y_1\},\{y_2\}\}$, which is not a element of $2^\Omega$. Thus a sub-$\sigma$-algebra needed for conditioning cannot be found.\\
+This mistake is easily spotted when providing the $\sigma$-algebra with the conditional probability, therefore these problems are more examples on why when applying conditional probability the accompanying $\sigma$-algebras must always be provided.
 
 \chapter{The two envelopes problem}\label{chap:TwoEnvelope}
 
