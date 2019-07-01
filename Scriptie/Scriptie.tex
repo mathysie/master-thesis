@@ -787,7 +787,7 @@ This proof applies to all $v\in\{1,2,5,6\}$, where in the case of $v\in\{5,6\}$ 
 \end{proof}
 
 \subsection{Conclusion}
-To conclude, in the example of the dice game, we cannot compute a unique conditional distribution for $U|V$. However, we were able to create a set of probability distributions that are all unbiased estimators for $\E_{\P}[U]$ with $\P\in\Pmod$. When only considering the probability of the die rolling to a specific value, we can create a safe distribution for the values 3 or 4, which will be done in Proposition~\ref{prop:DiscDiceSafe}. A safe distribution for the values $1$, $2$, $5$ and $6$ does not exist.
+To conclude, in the example of the dice game, we cannot compute a unique conditional distribution for $U|V$. However, we were able to create a set of probability distributions that are all unbiased for $U|V$. When only considering the probability of the die rolling to a specific value, we can create a safe distribution for the values 3 or 4, which will be done in Proposition~\ref{prop:DiscDiceSafe}. A safe distribution for the values $1$, $2$, $5$ and $6$ does not exist.
 
 \chapter{Discrete conditional paradoxes}\label{chap:DiscPara}
 Consider the following three problems:
@@ -912,7 +912,7 @@ Proposition~\ref{prop:SafeProperties} states that this $\Psafe$ is safe for $\Ge
 Safety for $\langle\GeneralInd\rangle|\langle V\rangle$ now immediately follows for $\Psafe$ by Proposition~\ref{prop:SafeImply}.
 \end{proof}
 
-Note that from the proof of Proposition~\ref{prop:DiscSafeMargGen} one can deduce that the elaborate set-up in Theorem~\ref{thm:DiscMainThm} is not necessarily needed and that Proposition~\ref{prop:DiscSafeMargGen} is nothing more than an applied restatement of the fourth property of Proposition~\ref{prop:SafeProperties}. However, in the case of Proposition~\ref{prop:DiscSafeMargGen}, you do not know whether distributions exist that are safe for $\langle \GeneralInd\rangle|\langle V\rangle$ but not for $\GeneralInd|[V]$. In the case of Theorem~\ref{thm:DiscMainThm}, safety for $\langle \GeneralInd\rangle|\langle V\rangle$ and $\GeneralInd|[V]$ are equivalent. Finding a safe distribution for $\GeneralInd|[V]$ is easy when the distribution on $U$ in $\Pmod$ is known, however for knowing that only these distributions are unbiased estimators for $U$ we need Theorem~\ref{thm:DiscMainThm}.
+Note that from the proof of Proposition~\ref{prop:DiscSafeMargGen} one can deduce that the elaborate set-up in Theorem~\ref{thm:DiscMainThm} is not necessarily needed and that Proposition~\ref{prop:DiscSafeMargGen} is nothing more than an applied restatement of the fourth property of Proposition~\ref{prop:SafeProperties}. However, in the case of Proposition~\ref{prop:DiscSafeMargGen}, you do not know whether distributions exist that are safe for $\langle \GeneralInd\rangle|\langle V\rangle$ but not for $\GeneralInd|[V]$. In the case of Theorem~\ref{thm:DiscMainThm}, safety for $\langle \GeneralInd\rangle|\langle V\rangle$ and $\GeneralInd|[V]$ are equivalent. Finding a safe distribution for $\GeneralInd|[V]$ is easy when the distribution on $U$ in $\Pmod$ is known, however for knowing that only these distributions are unbiased for $U$ we need Theorem~\ref{thm:DiscMainThm}.
 
 Theorem~\ref{thm:DiscMainThm} only considers single $u\in\X$. We can construct safe probability distributions for $\GeneralGenInd|V$ for larger $\X'\subset\X$ as well in the following corollary.
 \begin{corollary}\label{cor:DiscSafeGeneral}
@@ -1384,62 +1384,59 @@ After going through the dice game, the Monty Hall problem and the boy or girl pr
 Furthermore, seemly distinct problems like the boy or girl problem and the Monty Hall problem are in essence equal. Therefore the studies on both of these problems can be combined, but with care as both problems do have different probability models.
 
 The last and most important observation of this chapter is that the paradoxical results people find in the Monty Hall problem or the boy or girl problem all arise when $\Omega=\X$, thus when the outcome space is taken as sample space. In this case traditional conditional probability cannot be applied as the resulting outcome spaces after conditioning on the observed events do not form a partition.\\
-This can be easily seen when the $\sigma$-algebra $2^{\Omega}$ is taken into account. Using loose notation, take $y_1,y_2\in\Y$ and suppose $x\in\X$ is present in both conditioned spaces $\X|y_1$ and $\X|y_2$. Then for computing the conditional probability of $x$ you need to condition on $\{\{y_1\},\{y_2\}\}$, which is either not a element of $2^\Omega$ or the probability on $\{\{y_1\},\{y_2\}\}$ is not known. Thus a sub-$\sigma$-algebra needed for conditioning cannot be found.\\
+This can be seen when the $\sigma$-algebra $2^{\Omega}$ is taken into account. Using loose notation, take $y_1,y_2\in\Y$ and suppose $x\in\X$ is present in both conditioned spaces $\X|y_1$ and $\X|y_2$. Then for computing the conditional probability of $x$ you need to condition on $\{\{y_1\},\{y_2\}\}$, which is either not a element of $2^\Omega$ or the probability on $\{\{y_1\},\{y_2\}\}$ is not known. Thus a sub-$\sigma$-algebra needed for conditioning cannot be found.\\
 This mistake is easily spotted when taking the $\sigma$-algebra into account when performing conditional probability. Therefore these problems are more examples of why when applying conditional probability the accompanying $\sigma$-algebras must always be provided.
 
 \chapter{The two envelopes problem}\label{chap:TwoEnvelope}
-The last paradox we will consider is the two envelope problem. This problem is first stated in 1953 by Kraitchik \cite{Kraitchik53} as the necktie problem. There each person claims to have the finer necktie. A judge must make a decision, where the winner has to give his necktie to the loser. The argument of the each contestant is `I know what my tie is worth. I may lose it, but I may also win a better one, so the game is to my advantage.' However, a game that is favourable for both players cannot exist. Furthermore, the game is symmetrical in terms of the contestants, thus \cite{Kraitchik53} states that the chance of winning is actually $\frac{1}{2}$.
+The last paradox we will consider is the two envelope problem. This problem is first stated in 1953 by Kraitchik \cite{Kraitchik53} as the necktie problem. In this problem each person claims to have the finer necktie. A judge must make a decision, where the winner has to give his necktie to the loser. The argument of each contestant is: `I know what my tie is worth. I may lose it, but I may also win a better one, so the game is to my advantage.' However, a game that is favourable for both players cannot exist. Furthermore, the game is symmetrical in terms of the contestants, thus \cite{Kraitchik53} states that the chance of winning is actually fifty-fifty.
 
-However, \cite{Kraitchik53} only provides a discussion and no rigorous proofs. In 1989 Nalebuff \cite{Nalebuff89} states the two envelope problem with many variants and provides a wide discussion from various sources. We will consider one of the variants, in my opinion the simplest, of the paradox and show how all paradoxical statements are incorrect. The reasoning will stay valid for various extensions to the problem.
+However, \cite{Kraitchik53} only provides a discussion and no rigorous proofs. In 1989 Nalebuff \cite{Nalebuff89} states the two envelope problem with many variants and provides a wide discussion from various sources. We will study one of the variants, in my opinion the one with the most interesting results, of the paradox and show how all paradoxical statements are incorrect. The reasoning will stay valid for various extensions to the problem. Those extensions will be treated briefly in Section~\ref{sec:EnvelopeAli}.
 
-Pick the following version of the two envelope problem from \cite{Nalebuff89}. There are two envelopes called $A$ and $B$. Envelope~$A$ contains a fixed amount of money and envelope~$B$ contains either value $\frac{1}{2}A$ or value $2A$. The player can choose between envelope~$A$ or $B$ and let us say without loss of generality he chooses envelope~$A$. After choosing, the player is given the choice whether he must switch. He reasons that envelope~$B$ contains $\frac{1}{2}A$ with probability $\frac{1}{2}$ and containsb $2A$ with probability $\frac{1}{2}$, thus
+Pick the following version of the two envelope problem from \cite{Nalebuff89}. There are two envelopes called $A$ and $B$. Envelope~$A$ contains a fixed amount of money and envelope~$B$ contains either value $\frac{1}{2}A$ or value $2A$. The player can choose between envelope~$A$ and $B$ and let us say without loss of generality that he chooses envelope~$A$. After choosing, the player is given the choice whether he wants to switch. Reasoning that envelope~$B$ contains $\frac{1}{2}A$ with probability $\frac{1}{2}$ and contains $2A$ with probability $\frac{1}{2}$, he computes the expected value of envelope~$B$ to be
 \begin{equation}\label{eq:EnvelopeIntroWrong}
-\E[B]=\frac{1}{2}\cdot\frac{1}{2}A+\frac{1}{2}\cdot2A=\frac{5}{4}A
+\E[B]=\frac{1}{2}\cdot\frac{1}{2}A+\frac{1}{2}\cdot2A=\frac{5}{4}A.
 \end{equation}
-is the expected value in envelope~$B$. Thus the player always wants to switch when initially picking envelope~$A$. However, by symmetry, if the player has chosen envelope~$B$, then to his knowledge $A$ contains either $\frac{1}{2}B$ or $2B$, thus he wants to switch as well. Some even reason that if the player possesses no memory, he wants switch infinitely many times, believing to gain infinite money.
+Thus the player always wants to switch when initially picking envelope~$A$. However, by symmetry, if the player chose envelope~$B$, then to his knowledge $A$ contains either $\frac{1}{2}B$ or $2B$, thus he wants to switch as well. It is however not possible to have a greater expected value in the other envelope in all cases, as the total amount of money in the whole game is fixed. Therefore this result is called the \emph{two envelope paradox}. Some even reason that if the player possesses no memory, he wants to switch infinitely many times, believing to gain infinite money.
 
-First we will provide a naive solution that corrects the calculation in Equation~\ref{eq:EnvelopeIntroWrong}. That solution will however be incomplete, as the formalized problem in Section~\ref{sec:EnvelopeFormal} will point out. In Section~\ref{sec:EnvelopePrior} we will investigate the prior on the lowest value of both envelopes, as that value will remain constant during the game. Safe probability will be applied in Section~\ref{sec:EnvelopeSafe}, which gives a safe probability distribution on whether to switch or not. Section~\ref{sec:EnvelopeSwitching} provides a switching strategy which will be optimized that does improve on safe probability, but with an unknown amount. Lastly, a different version called the Ali~Baba problem will be introduced in Section~\ref{sec:EnvelopeAli} and shortly discussed, pointing out how many variants of the two envelope problem exist. Eventually we will wrap up in Section~\ref{sec:EnvelopeConcl} giving concluding remarks.
+First we will provide a naive solution that corrects the calculation in Equation~\ref{eq:EnvelopeIntroWrong}. That solution will however be incomplete, as the formalized problem in Section~\ref{sec:EnvelopeFormal} will point out. In Section~\ref{sec:EnvelopePrior} we will investigate the prior on the lowest value of both envelopes, as that value will remain constant during the game. Safe probability will be applied in Section~\ref{sec:EnvelopeSafe}, which gives a safe probability distribution on whether to switch or not. This will however not lead to satisfactory results. Section~\ref{sec:EnvelopeSwitching} introduces Cover switching, which provides a switching strategy that does on average improve the amount of money won. Lastly, an alternative version called the Ali~Baba problem will be introduced in Section~\ref{sec:EnvelopeAli} and shortly discussed with many other variants of the two envelope problem. Eventually we will wrap up in Section~\ref{sec:EnvelopeConcl} giving concluding remarks.
 
 \section{The naive solution}\label{sec:EnvelopeNaive}
-The two envelope problem asks where the flaw is in the reasoning above. The biggest flaw is in Equation~\ref{eq:EnvelopeIntroWrong}, this calculation is performed using incorrect probability measures. An in-depth discussion is given by O'Brien and Mitchell \cite{Brien14}, we will only discuss the main solution of the problem.
+First we need to find the flaw in the reasoning of the two envelope paradox. The biggest flaw is in Equation~\ref{eq:EnvelopeIntroWrong}. This calculation is performed using incorrect probability measures. An in-depth discussion is in 2014 given by O'Brien and Mitchell \cite{Brien14}. Here we only discuss the main solution of the problem.
 
-Let $A$ and $B$ the random variables denoting the values of respectively envelopes $A$ and $B$. Let $x$ be the lowest value of the envelopes. The envelopes can only obtain two values: $x$ and $2x$. The probability of $A$ having $x$ is $\frac{1}{2}$, thus the probability space is
+Let $A$ and $B$ the random variables denoting the values of respectively envelopes $A$ and $B$. Let $x=\min\{A,B\}$ be the lowest value of the envelopes. The envelopes can only obtain two values: $x$ and $2x$. The probability of $A$ having $x$ is $\P[A=x]=\frac{1}{2}$, thus the probability space is
 \begin{equation}
 \left(\Omega=\{(x,2x),(2x,x)\},\Omega=2^\X,\P\right)
 \end{equation}
-with $\P$ the probability measure such that $\P[\{(x,2x)\}]=\P[\{(2x,x)\}]=\frac{1}{2}$. The calculation of $\E[B]$ in the statement of the two envelope problem is the following:
+with $\P$ a probability measure such that $\P[\{(x,2x)\}]=\P[\{(2x,x)\}]=\frac{1}{2}$. The calculation of $\E[B]$ in the statement of the two envelope problem is the following:
 \begin{equation}
 \E[B]=\frac{A}{2}\P\left[B=\frac{A}{2}\right]+2A\P[B=2A].
 \end{equation}
 
-The flaw here as discussed by \cite{WikiEnvelope} is that symbol $A$ is used with two different meanings. In $\P\left[B=\frac{A}{2}\right]$ the $A$ must actually be the expected value of envelope~$A$ given that envelope~$A$ contains less than envelope~$B$. In $\P[B=2A]$ the opposite is meant. There the expected value of $A$ given that envelope~$A$ contains more than envelope~$B$. Equation~\ref{eq:EnvelopeIntroWrong} must therefore be rewritten to
+The flaw here as discussed by \cite{WikiEnvelope} is that symbol $A$ is used with two different meanings. In $\P\left[B=\frac{A}{2}\right]$ the $A$ is actually the expected value of envelope~$A$ given that envelope~$A$ contains less than envelope~$B$. In $\P[B=2A]$ the opposite happens, where actually the expected value of $A$ given that envelope~$A$ contains more than envelope~$B$ is calculated. Equation~\ref{eq:EnvelopeIntroWrong} must therefore be rewritten to
 \begin{align}
 \E[B]&=\E[B|A<B]\P[A<B]+\E[B|A>B]\P[A>B]\\
 &=\frac{1}{2}\left(\E[2A|A<B]+\E\left[\frac{1}{2}A\middle|A>B\right]\right)\\
 &=\E[A|A<B]+\frac{1}{4}\E[A|A>B].
 \end{align}
-Now we clearly see that the expectation of $A$ in both cases are different and we are therefore unable to relate $\E[B]$ to $\E[A]$.
-
-The following calculation inspired by \cite{Schwitzgebel08} and \cite{Brien14} is correct:
+Now we clearly see that the expectation of $A$ in both cases are different and we are therefore unable to relate $\E[B]$ to $\E[A]$. The following calculation inspired by \cite{Schwitzgebel08} and \cite{Brien14} is correct:
 \begin{align}
 \E[B]&=\E[\E[B|A]]=\E[B|A=x]\P[A=x]+\E[B|A=2x]\P[A=2x]\\
 &=\frac{1}{2}\left(2x\P[B=2x|A=x]\right)+\frac{1}{2}\left(x\P[B=x|A=2x]\right)\\
-&=\frac{1}{2}\cdot2x+\frac{1}{2}x=\frac{3}{2}x.
+&=\frac{1}{2}\cdot2x+\frac{1}{2}x=\frac{3}{2}x,
 \end{align}
-We can calculate with the same method that $\E[A]=\frac{3}{2}x$, thus the expected amount of money in either envelope is equal. Switching therefore does not increase one's chances of getting more money.
+We can calculate using the same method that $\E[A]=\frac{3}{2}x$, thus the expected amount of money in either envelope is equal. Switching therefore does not increase one's chances of getting more money.
 
-So why is this section called `The naive solution'? The problem is that we do not know the value of $x$. When a player observes the contents of his envelope, he does not know whether he has value $x$ or $2x$. He cannot put equal probability on having $x$ or $2x$, as that will result in a uniform distribution on an infinite set as will be pointed out in Section~\ref{sec:EnvelopePrior}. Such a distribution is not possible. We therefore need to find a method that models the possible value of $x$.
+So why is this section called `The naive solution'? The problem is that we do not know the value of $x$. When a player observes the contents of his envelope, he does not know whether he has value $x$ or $2x$. He cannot put equal probability on having $x$ or $2x$, as that will result in a uniform distribution on an infinite set as will be pointed out in Section~\ref{sec:EnvelopePrior}. We therefore need to find a method that takes the possible values of $x$ into account.
 
 \section{The problem formalized}\label{sec:EnvelopeFormal}
-This discussion however does not completely resolve the two envelope paradox. Two immediate flaws can be found in the discussion of Section~\ref{sec:EnvelopeNaive}:
+The discussion in the previous section does not completely resolve the two envelope paradox. Two immediate flaws can be found in the discussion of Section~\ref{sec:EnvelopeNaive}:
 \begin{enumerate}
-\item How is the value $x$ picked? If the value $x$ is drawn from a probability distribution $\P$ on an unbounded set $U$, then it is not possible for all $x\in U$ that $\P[B=2x|A=x]=\P\left[B=\frac{1}{2}x\middle|A=x\right]=\frac{1}{2}$ holds, as that would imply that $\P$ is the uniform distribution on $U$ \cite{Christensen92,Christensen93b,Navara17,Tzur18}. It is clear that uniform distributions on unbounded sets do not exist.
-\item Expanding on the previous point, if $x$ is drawn from a probability distribution with $\E[B]=\E[A]=\infty$, then $\E[B]=\E[\E[B|A]]$ is in some cases not valid any-more \cite{Tzur18}.
+\item How is the value $x$ picked? If the value $x$ is drawn from a probability distribution $\P$ on an unbounded set $U$, then it is not possible for all $x\in U$ that $\P[B=2x|A=x]=\P\left[B=\frac{1}{2}x\middle|A=x\right]=\frac{1}{2}$ holds as that would imply $\P$ being the uniform distribution on $U$ \cite{Christensen92,Christensen93b,Navara17,Tzur18}. It is clear that uniform distributions on unbounded sets do not exist.
+\item If $x$ is drawn from a probability distribution with $\E[B]=\E[A]=\infty$, then $\E[B]=\E[\E[B|A]]$ is in some cases not valid any-more \cite{Tzur18}.
 \end{enumerate}
+Thus we need to not only model which envelope has the higher value, we must also model the lower value of the envelopes. In this section we will formally create the probability space describing the two envelope problem fully. This probability space will be used through the rest of this chapter.
 
-Thus we need to not only model which envelope has the higher value, we must also model the lower value of the envelopes. In this section we will formally create the probability space we will use for the rest of the chapter.
-
-Let $\X=(0,\infty)$. This space contains all possible lowest values $x$ of the envelopes. Equip $\X$ with $\Sigma_{\X}=\B((0,\infty))$, the Borel $\sigma$-algebra on $(0,\infty)$. Let $\Y=\{(x,2x),(2x,x)\in(0,\infty)^2|x\in\X\}$ be all possible values in the envelopes. The set $\Y$ is equipped with $\sigma$-algebra $\Sigma_{\Y}=\B\left(\Y\right)$, the Borel-$\sigma$-algebra of the lines $y=2x$ and $y=\frac{1}{2}x$. Let $\Omega=\X\times\Y$ be our sample space equipped with $\Sigma=\Sigma_{\X}\times\Sigma_{\Y}$ as $\sigma$-algebra.
+Let $\X=(0,\infty)$ be the space containing all possible lowest values $x$ of the envelopes. Equip $\X$ with $\Sigma_{\X}=\B((0,\infty))$, the Borel $\sigma$-algebra on $(0,\infty)$. Let $\Y=\left\{(x,2x),(2x,x)\in(0,\infty)^2\middle|x\in\X\right\}$ be all possible values in the envelopes. The set $\Y$ is equipped with $\sigma$-algebra $\Sigma_{\Y}=\B\left(\Y\right)$, the Borel-$\sigma$-algebra of the lines $x\mapsto2x$ and $x\mapsto\frac{1}{2}x$. Let $\Omega=\X\times\Y$ be our sample space equipped with $\Sigma=\Sigma_{\X}\times\Sigma_{\Y}$ as $\sigma$-algebra.
 
 Let $X$ be an $\X$-valued continuous random variable denoting the lowest value of the envelopes and $Y$ be a $\Y$-valued random variable denoting the actual values. All probability distributions $\P$ on $(\Omega,\Sigma)$ must be a member of
 \begin{equation}
@@ -1447,72 +1444,71 @@ Let $X$ be an $\X$-valued continuous random variable denoting the lowest value o
 \end{equation}
 Let $\pi_i\colon\R^2\to\R$ with $i\in\{1,2\}$ be the projection on the $i$-th coordinate. Let $A=\pi_1(Y)$ be the value in envelope~$A$ and $B=\pi_2(Y)$ be the value in envelope~$B$. Assume that without loss of generality the player initially chooses envelope~$A$, then we would like to know the distribution of $B|A$.
 
-Note that all $\P\in\Pmod$ are fixed on $Y$ when the value of $X$ is known. Thus $\Pmod$ is essentially all the probability distributions on $\X$ where $X$ has finite expectation.\\
-The reason why we demand finite expectation, is that in the case of infinite expectation the two envelope problem starts to behave like the St.~Petersburg problem \cite{Brams95,Broome95,Tzur18}. This is an entirely different paradox and will not be treated in this thesis. Interested readers are referred to William Feller, who described in 1950 the paradox with an accessible discussion and solution \cite{Feller50} and provided in 1971 a general theorem for similar paradoxes \cite{Feller71}. Furthermore, a prior with infinite expectation value on $X$ will lead to the paradoxical result of always having to switch, as will be found in Section~\ref{sec:EnvelopePriorInfluence}. This is another reason to leave such priors out of $\Pmod$.\\
-In the next section we will dive deeper into the distributions $\P\in\Pmod$ and their influence on the problem.
+The reason why we demand finite expectation, is that in the case of infinite expectation the two envelope problem starts to behave like the St.~Petersburg problem \cite{Brams95,Broome95,Tzur18}. This problem concerns a game where the coin is flipped until it gives heads. Suppose the coin is flipped $n$ times, then \$$2^n$ is paid out. The expected value of the amount of money paid out is infinite while there is a probability of 87,5\% of a payout of only \$7, which was viewed as paradoxical. This problem does not concern conditional probability and will therefore not be treated in this thesis. Interested readers are referred to William Feller, who described in 1950 the problem with an accessible discussion and solution \cite{Feller50} and provided in 1971 a general theorem for similar problems \cite{Feller71}.\\
+In our case, a prior with infinite expectation value on $X$ will lead to the paradoxical result of always having to switch, as will be shown in Section~\ref{sec:EnvelopePriorInfluence}. This is another reason to leave such priors out of $\Pmod$.
+
+Note that all $\P\in\Pmod$ are fixed on $Y$ when the value of $X$ is known. Thus $\Pmod$ is essentially implied by all the probability distributions on $\X$ where $X$ has finite expectation. In the next section we will dive deeper into the distributions $\P$ on $\Omega$ and their influence to the problem.
 
 \section{Prior on envelope values}\label{sec:EnvelopePrior}
 Recall that all probability distributions usable in the two envelope problem must be of the set
 \begin{equation}
 \Pmod=\left\{\P\middle|\P[Y=(x,2x)|X=x]=\P[Y=(2x,x)|X=x]=\frac{1}{2},\E_{\P}[X]<\infty\right\}.
 \end{equation}
-As we now do not have more information on the problem, any distribution from $\Pmod$ can be the correct one. However, a player playing the two envelope game probably has a suspicion on how $X$ is distributed. This suspicion can be modelled as either a single distribution $\P\in\Pmod$ or a subset $P\subset\Pmod$ of distributions.\\
-Note that, as mentioned in Section~\ref{sec:EnvelopeFormal}, there are no two $\P_1,\P_2\in\Pmod$ that are distributed equally almost surely on $\X$ but differently on $\Y$, as the conditional distribution $Y|X$ is fixed in $\Pmod$. Thus all $\P\in\Pmod$ denote a different distribution on subsets of $\X$ of non-zero measure.\\
-Therefore, we can introduce the following definition of a prior.
+As we now do not have more information on the problem, any distribution from $\Pmod$ can be the correct one. However, a player playing the two envelope game probably has a suspicion on how $X$ is distributed. This suspicion can be modelled as either a single distribution $\P\in\Pmod$ or a subset $P\subset\Pmod$ of distributions. Therefore, we can introduce the following definition of a prior.
 
 \begin{definition}[Prior]
 A distribution $\P\in\Pmod$ is called a \emph{prior} on the envelope values and set $P\subset\Pmod$ is called a set of priors. The density function of prior $\P\in\Pmod$ on $\X$, the lowest value of the envelopes, will be denoted by $f\colon\X\to[0,\infty)$.
 \end{definition}
 
+Note that, as mentioned in Section~\ref{sec:EnvelopeFormal}, there are no two $\P_1,\P_2\in\Pmod$ that are almost surely equally distributed on $\X$ but differently on $\Y$, as the conditional distribution $Y|X$ is fixed in $\Pmod$. Thus the distribution on $\Omega$ of two $\P$'s in $\Pmod$ are only almost surely equal when those $\P$'s are almost surely equal on $\X$.
+
 
 \subsection{Prior with no information}
-First consider the setting where no information on $\Pmod$ is known. An exhaustive analysis of this case is done by Albers, Kooi and Schaafsma \cite{Albers05}. They give three noteworthy examples for trying to solve the two envelope problem while nothing is known about $f$, however they conclude that the paradox is just hopeless to tackle without being giving more information.
+First consider the setting where no information on $\Pmod$ is known. An exhaustive analysis of this case is done by Albers, Kooi and Schaafsma \cite{Albers05}. They give three noteworthy examples for trying to solve the two envelope problem while nothing is known about prior $f$, however they conclude that the paradox is just hopeless to tackle without being giving more information.
 
 \begin{example}[Conditional expectation]
-Let $\P\in\Pmod$ be arbitrary and suppose $\P[A>B|A=a]=p\in[0,1]$ holds, thus the probability of receiving the higher envelope given you observed $a$ equals $p$. The expected value of $B$ given $A=a$ becomes
+Let $\P\in\Pmod$ be arbitrary and suppose $\P[A>B|A=a]=p\in[0,1]$ holds, thus the probability of receiving the higher envelope given you observed $A=a$ equals $p$. The expected value of $B$ given $A=a$ becomes
 \begin{align}
 \E_{\P}[B|A=a]&=\frac{a}{2}\P\left[B=\frac{a}{2}\middle|A=a\right]+2a\P[B=2a|A=a]\\
 &=\frac{a}{2}p+2a(1-p)=a\left(2-\frac{3}{2}p\right).
 \end{align}
-Therefore $\E_{\P}[B|A=a]<a$ holds when $p>\frac{2}{3}$, thus when it is likely that you have the high envelope, switching is not advised.
+Therefore $\E_{\P}[B|A=a]<a$ holds when $p>\frac{2}{3}$. Thus when it is likely that you have the higher envelope, switching is not advised.
 
 However, note that
 \begin{equation}
 \P[A>B|A=a]=\E\left[\1_{\{A>B\}}\middle|A=a\right]
 \end{equation}
-holds. However, following \cite{Albers05}, the estimation of $\P[A>B|A=a]$ is replaced by the prediction of $\1_{\{A>B\}}$, which is not possible without having more information on $\P$.
+holds. Following \cite{Albers05}, the estimation of $\P[A>B|A=a]$ is replaced by the prediction of $\1_{\{A>B\}}$, which is not possible without having more information on $\P$.
 \end{example}
 \begin{example}[Entropy analysis]
-Another route is to estimate the entropy of the distribution on the other envelope. If we can maximize this entropy, a estimated prior will follow giving us advice on whether we want to switch.
+Another route is to estimate the entropy of the distribution on the other envelope. If we can maximize this entropy, an estimated prior will follow giving us advice on whether we want to switch.
 
-Let $\mu\in(0,\infty)$ be arbitary and let $P\in\Pmod$ be such that $\E_{\P}[B]=\mu$ holds for all $\P\in P$. This will be the only assumption we will make on the prior. We can now construct an estimate $f'$ for the prior $f$ such that
+Let $\mu\in(0,\infty)$ be arbitrary and let $P\subset\Pmod$ be such that $\E_{\P}[B]=\mu$ holds for all $\P\in P$. This will be the only assumption we will make on the prior. We can now construct an estimate $f'$ for the prior $f$ such that
 \begin{equation}
 H(f')=\begin{cases}
 -\sum_{y=1}^\infty f'(y)\log f'(y),&X\text{ discrete},\\
--\int_{y=0}^\infty f'(y)\log f'(y),&X\text{ continuous}.
+-\int_{y=0}^\infty f'(y)\log f'(y),&X\text{ continuous},
 \end{cases}
 \end{equation}
 is maximized with $\E[B]=\mu$ as restriction.
 
-Following this route \cite{Albers05} found that in the discrete case, the envelope must be swapped for odd $a$ and not swapped for even $a$. In the continuous case, the player must always swap.
+Following this route \cite{Albers05} found that in the discrete case, the envelope must be swapped for odd $a\in\N\setminus2\N$ and not swapped for even $a\in2\N$. In the continuous case, the player must always swap.
 
-This answer raises a lot of questions, as such as why the player should favour values $1001$ and $1003$ and discard value $1002$ in the discrete case. No one playing the two envelope problem would be satisfied with such a strategy. Furthermore, as we will see in Section~\ref{sec:EnvelopeSwitching}, in the continuous case strategies for switching exist yielding higher gain than always switching the envelope, independent of prior $f$. Thus the continuous strategy using entropy can be called inadmissible, as strategies exist that outperform `always switching'.
+This answer raises a lot of questions, such as why the player should in the discrete case favour values $1001$ and $1003$ and discard value $1002$. No one playing the two envelope problem would be convinced that this is a working strategy. Furthermore, as we will see in Section~\ref{sec:EnvelopeSwitching}, in the continuous case switching strategies exist yielding higher gain for all priors $f$ than always switching the envelope. Thus the continuous strategy using entropy can be called insufficient, as strategies exist that outperform `always switching'.
 \end{example}
 
-There is a third game-theoretic example given by \cite{Albers05}, however they even state that this perspective is unnecessarily complicated and will not be helpful.
+There is a third game-theoretic example given by \cite{Albers05}, however even Albers et alii state that this perspective is unnecessarily complicated and will not be helpful.
 
-The overall conclusion of \cite{Albers05} is that if no information on the prior is known, a mathematician must be satisfied with the fact that he just cannot solve the problem. There is not enough relevant information to make justified decisions on optimal strategies.
+The overall conclusion of \cite{Albers05} is that if no information on the prior is known, a mathematician must be satisfied with the fact that he just cannot solve the problem. There is not enough relevant information to make justified decisions or create useful strategies.
 
 
 \subsection{Investigating different priors}\label{sec:EnvelopePriorInfluence}
 Take a distribution $\P$ on $\Omega$ and let $f$ be its accompanying prior. We will take a look at various variations of $f$. We will observe that for certain priors switching will always be advised, but the expectation $\E[X]$ will be infinite as well. When $\E[X]$ is finite, then useful switching strategies will arise.
 
 \begin{example}[Navara and Šindelár (2017)]\label{ex:EnvelopePriorGain}
-The following example is taken from \cite{Navara17}. Assume that $f$ is a discrete prior.
-
-First we want to know how much we expect to gain by switching given value $a$ is in envelope $A$. Define the gain $G=B-A$. In this case it is easy to see that
+The following example is taken from \cite{Navara17}. Assume that $f$ is a discrete prior and $\P$ its accompanying distribution on $\Omega$. We want to know how much we expect to gain by switching given value $a$ is in envelope $A$. Define the gain $G=B-A$. It is easy to see that
 \begin{equation}
-\E[G]=\E[B]-\E[A]=\frac{3}{2}\E[X]-\frac{3}{2}\E[X]=0.
+\E_{\P}[G]=\E_{\P}[B]-\E_{\P}[A]=\frac{3}{2}\E_{\P}[X]-\frac{3}{2}\E_{\P}[X]=0.
 \end{equation}
 The possible values of the gain given $A=a$ are $G=a$ or $G=-\frac{a}{2}$. The probability distribution of $G|A=a$ is according to \cite{Navara17} given by
 \begin{equation}
@@ -1523,51 +1519,51 @@ The possible values of the gain given $A=a$ are $G=a$ or $G=-\frac{a}{2}$. The p
 \end{equation}
 The expectation value of $G|A=a$ is then given by
 \begin{equation}
-\E[G|A=a]=\frac{af(a)-\frac{a}{2}f\left(\frac{a}{2}\right)}{f(a)+f\left(\frac{a}{2}\right)}.
+\E_{\P}[G|A=a]=\frac{af(a)-\frac{a}{2}f\left(\frac{a}{2}\right)}{f(a)+f\left(\frac{a}{2}\right)}.
 \end{equation}
 Consider now the prior $f(2^t)=\frac{q^t}{1-q}$, then three different cases can be distinguished:
 \begin{enumerate}
-    \item[$q<\frac{1}{2}$:] Suppose $q<\frac{1}{2}$, then $\E[X]$ exists and is equal to $\E[X]=(1-q)^{-1}(1-2q)^{-1}$. In this case we have
+    \item[$q<\frac{1}{2}$:] Take $q<\frac{1}{2}$, then $\E_{\P}[X]$ exists and is equal to $\E_{\P}[X]=(1-q)^{-1}(1-2q)^{-1}$. In this case we have
     \begin{equation}
-    \E\left[G\middle|A=2^t\right]=\begin{cases}2^{t-1}\frac{2q-1}{q+1},&t\in\N_{\geq 1}\\1,&t=0.\end{cases}
+    \E_{\P}\left[G\middle|A=2^t\right]=\begin{cases}2^{t-1}\frac{2q-1}{q+1},&t\in\N_{\geq 1}\\1,&t=0.\end{cases}
     \end{equation}
-    Therefore with this prior switching is only recommended when one observes a value of $1$ in his envelope, as $\E[G|A=2^t]<0$ is negative for all $t\in\N_{\geq 1}$.
-    \item[$q=\frac{1}{2}$:] Suppose $q=\frac{1}{2}$, then $\E[X]$ does not exist any-more. The expected gain now simplifies to $\E\left[G\middle|A=2^t\right]=\1_{\{0\}}(t)$, thus there is only gain on switching when $A=1$.
-    \item[$q>\frac{1}{2}$:] Suppose $q>\frac{1}{2}$, then $\E[X]$ does not exist as well. The conditional gain $G|A=2^t$ is still valid and equals
+    Therefore with this prior switching is only recommended when one observes a value of $1$ in his envelope, as $\E_{\P}[G|A=2^t]<0$ is negative for all $t\in\N_{\geq 1}$.
+    \item[$q=\frac{1}{2}$:] Take $q=\frac{1}{2}$, then $\E_{\P}[X]$ does not exist any-more. The expected gain now simplifies to $\E\left[G\middle|A=2^t\right]=\1_{\{0\}}(t)$, thus there is only gain on switching when $A=1$.
+    \item[$q>\frac{1}{2}$:] Take $q>\frac{1}{2}$, then $\E_{\P}[X]$ does not exist as well. The conditional gain $G|A=2^t$ is still valid and equals
     \begin{equation}
-    \E\left[G\middle|A=2^t\right]=\begin{cases}2^{t-1}\frac{2q-1}{q+1},&t\in\N_{\geq 1},\\1,&t=0,\end{cases}
+    \E_{\P}\left[G\middle|A=2^t\right]=\begin{cases}2^{t-1}\frac{2q-1}{q+1},&t\in\N_{\geq 1},\\1,&t=0,\end{cases}
     \end{equation}
     which is strictly positive for all $t\in\N$. Thus the player is motivated to always switch, which is a paradoxical result.
 \end{enumerate}
 
-The $q$ controlling the prior $f$ can lead to various results, from non-paradoxical advise to only switch when obtaining the smallest value $1$, knowing the other envelope must contain $2$, to the original paradox of always having to switch, no matter the contents of $A$. The difference with the original paradox is that the paradoxical result of this example is supported by a prior on $X$, not by wrongly performing the calculations involved with the problem.
+The $q$ controlling the prior $f$ can lead to various results, from non-paradoxical advise to only switch when obtaining the smallest value $1$ knowing the other envelope must contain $2$, to the original paradox of always having to switch no matter the contents of $A$. The difference with the original paradox is that the paradoxical result of this example is supported by a prior on $X$, not by wrongly performing the calculations involved with the problem.
 \end{example}
 
 \begin{example}[Broome (1995)]
-This example is taken from \cite{Broome95} and is given by many as a lighting example when a prior on $X$ can have infinite expectation. Consider first the discrete case. Let $f(2^n)=\frac{2^n}{3^{n+1}}$ with $n\in\N_{\geq 0}$ be a prior. We now want to know the expected value in envelope $B$. The trivial case is $\E[B|A=1]=2$, as the only possible value in envelope $B$ is $2$ when observing $1$.\\
-Suppose we observe a value $a\neq1$. Then $B=2a$ is possible if and only if $X=A=a$. When observing envelope $A=a$, then either $X=a$ or $X=\frac{a}{2}$ can hold. Therefore
+This example is taken from \cite{Broome95} and is given by many as a lighting example of when a prior on $X$ can have infinite expectation. Consider first the discrete case. Let $f(2^n)=\frac{2^n}{3^{n+1}}$ with $n\in\N_{\geq 0}$ be a prior. We now want to know the expected value in envelope $B$. The trivial case is $\E[B|A=1]=2$, as the only possible value in envelope $B$ is $2$ when observing $1$.\\
+Suppose we observe a value $a\neq1$. Then $B=2a$ is possible if and only if $X=A=a$. When observing envelope $A=a$, then either $X=a$ or $X=\frac{a}{2}$ can hold. Therefore following \cite{Broome95}
 \begin{align}
 \P[B=2a|A=a]&=\P\left[X=a\middle|X=a\lor X=\frac{a}{2}\right]\\
 &=\frac{\frac{2^n}{3^{n+1}}}{\frac{2^n}{3^{n+1}}+\frac{2^{n-1}}{3^{n}}}=\frac{2}{5}.
 \end{align}
-Then we have $\P\left[B=\frac{a}{2}\middle|A=a\right]=1-\P[B=2a|A=a]=\frac{3}{5}$, giving an expected value of envelope $B$ of
+We have $\P\left[B=\frac{a}{2}\middle|A=a\right]=1-\P[B=2a|A=a]=\frac{3}{5}$ as well, giving an expected value of envelope $B$ of
 \begin{equation}
 \E[B|A=a]=\frac{2}{5}\cdot2a+\frac{3}{5}\cdot\frac{a}{2}=\frac{11}{10}a.
 \end{equation}
-The paradoxical conclusion is that the player must always switch, no matter the contents of his envelope. The reason why $\E[B|A=a]>0$ for all $a=2^n$ with $n\in\N$ is possible, is that $\E[X]=\sum_{n=1}^\infty\left(\frac{4}{3}\right)^n=\infty$ holds.
+The paradoxical conclusion is that the player must always switch, no matter the contents of his envelope. The reason why $\E[B|A=a]>a$ for all $a=2^n$ with $n\in\N$ is possible, is that $\E[X]=\sum_{n=1}^\infty\left(\frac{4}{3}\right)^n=\infty$ is infinite.
 
-Until now we have only considered discrete distributions, but paradoxical conclusions can result from continuous distributions as well. Let $f$ be the density function of the continuous prior on $X$, then the conditional expectation on $B|A=a$ is
+Until now we have only considered discrete distributions, but paradoxical conclusions can result from continuous distributions as well. Let $f$ be a continuous prior on $X$, then the conditional expectation on $B|A=a$ is
 \begin{equation}
 \E[B|A=a]=a\frac{8f(a)+f\left(\frac{a}{2}\right)}{4f(x)+2f\left(\frac{a}{2}\right)}
 \end{equation}
-as is derived by \cite{Broome95}. Take density function $f(x)=(x+1)^{-2}$ with $x\in[0,\infty)$, then the conditional expectation of $B|A=a$ becomes
+as is derived by \cite{Broome95}. Take density function $f(x)=(x+1)^{-2}$ with $x\in(0,\infty)$, then the conditional expectation of $B|A=a$ becomes
 \begin{equation}
-\E[B|A=a]=a\frac{2(a+2)^2+(a+1)^2}{(a+2)^2+2(a+1)^2}>0
+\E[B|A=a]=a\frac{2(a+2)^2+(a+1)^2}{(a+2)^2+2(a+1)^2}>a
 \end{equation}
-for all $a\in[0,\infty)$. Here the situation that switching is advised arises as well. Note that the expectation value of the prior $\E[X]=\int_0^\infty \frac{x}{(x+1)^2}dx=\infty$ is infinite, explaining why $\E[B|A=a]>0$ being positive for all $a\in(0,\infty)$ is again possible.
+for all $a\in(0,\infty)$. Here the situation that switching is advised arises as well. Note that the expectation value of the prior $\E[X]=\int_0^\infty \frac{x}{(x+1)^2}dx=\infty$ is infinite, explaining why $\E[B|A=a]>a$ for all $a\in(0,\infty)$ is again possible.
 \end{example}
 
-Take another look at the gain $G$ given $A=a$, defined in Example~\ref{ex:EnvelopePriorGain}. When taking a look at the conditional expectation $\E[G|A=a]$, one can quantify when a distribution yields to paradoxical results. For discrete priors, $\E[G|A=a]$ equals \cite{Navara17,Tzur18}
+Take another look at the gain $G$ given $A=a$, defined in Example~\ref{ex:EnvelopePriorGain}. When considering the conditional expectation $\E[G|A=a]$, one can quantify when a distribution yields to paradoxical results. For discrete priors, $\E[G|A=a]$ equals \cite{Navara17,Tzur18}
 \begin{equation}
 \E[G|A=a]=\frac{af(a)-\frac{a}{2}f\left(\frac{a}{2}\right)}{f(a)+f\left(\frac{a}{2}\right)}
 \end{equation}
@@ -1582,28 +1578,34 @@ Let $f$ be a discrete paradoxical prior on $X$, then the expectation value $\E[X
 This proof is taken from \cite{Tzur18}. Let $x$ be a possible realization of $X$, then $2^k x$ with $k\in\N$ are possible realizations of $X$ as well by the setting of the two envelope problem. Note that $2^{k+1}xf(2^{k+1} x)>2^k xf(2^kx)$ holds for all $x\in\N$, implying an unbounded $\E[X]=\sum_{k=0}^\infty k f(k)>\sum_{k=0}^\infty 2^k xf(2^k x)$ as all terms $2^kxf(2^kx)$ will increase in $k$.
 \end{proof}
 
-As mentioned in Section~\ref{sec:EnvelopeFormal}, we will only consider non-paradoxical distributions from now on. It is now clear that, when having full information, paradoxical distributions still yield unexpected results. However, this is contributed to the expectation value of the prior being undefined, not to a wrong interpretation of the problem. When having full information non-paradoxical priors yield well-defined switching strategies.
+The requirement for a continuous paradoxical distribution is slightly different. Brams, Kilgour and Blachman \cite{Brams95,Christensen96} calculated when the conditional expectation $\E[B|A=a]>a$ holds for continuous priors.
+
+\begin{definition}[Continuous paradoxical distribution]
+A continuous prior $f$ on $X$ is called \emph{paradoxical} if $f(x)>\frac{1}{4}f\left(\frac{x}{2}\right)$ holds for all $x\in\supp_{\P}(X)$.
+\end{definition}
+
+As mentioned in Section~\ref{sec:EnvelopeFormal}, we will only consider non-paradoxical distributions from now on. It is now clear that, when having full information, paradoxical distributions still yield unexpected results. This is contributed to the expectation value of the prior being undefined, not to a wrong interpretation of the problem. When having full information non-paradoxical priors yield well-defined and useful switching strategies.
 
 
 \subsection{Optimal solution}
 Suppose a non-paradoxical prior on $X$ is known, does an optimal switching strategy exist? This question is asked and answered by \cite{Christensen92} and further discussed by \cite{Christensen93a,Christensen93b,Christensen94,Christensen96}. Originally, \cite{Christensen92} proposed a solution for all general priors, however \cite{Christensen96} pointed out this is incorrect for continuous distributions. Here we will combine the discussion and provide a resolution.
 
 \subsubsection{Discrete priors}
-Let $f$ be a discrete prior on $X$ with distribution $\P$ on $\Omega$, then \cite{Christensen92} states that
+Let $f$ be a discrete prior on $X$ with distribution $\P\in\Pmod$, then \cite{Christensen92} states that
 \begin{align}
 \P\left[X=a\middle|A=a\right]&=\frac{\P[A=a|X=a]f(a)}{\P[A=a|X=a]f(a)+\P\left[A=a\middle|X=\frac{a}{2}\right]f\left(\frac{a}{2}\right)}\\
 &=\frac{f(a)}{f(a)+f\left(\frac{a}{2}\right)},\\
 \P\left[X=\frac{a}{2}\middle|A=a\right]&=\frac{\P\left[A=a\middle|X=\frac{a}{2}\right]f\left(\frac{a}{2}\right)}{\P[A=a|X=a]f(a)+\P[A=a|X=2a]f(2a)}\\
 &=\frac{f\left(\frac{a}{2}\right)}{f(a)+f\left(\frac{a}{2}\right)}.
 \end{align}
-To compute $\E[B|A=a]$, note that there are two possibilities: either $B=2a$, which happens when $X=a$ upon observing $A=a$, or $B=\frac{a}{2}$ when $X=\frac{a}{2}$ upon observing $A=a$. Therefore we have
+We can now compute $\E[B|A=a]$ to be
 \begin{align}
 \E[B|A=a]&=\frac{a}{2}\P\left[X=\frac{a}{2}\middle|A=a\right]+2a\P\left[X=a\middle|A=a\right]\\
 &=\frac{af\left(\frac{a}{2}\right)+4af(a)}{2f(a)+2f\left(\frac{a}{2}\right)}.
 \end{align}
 Obviously when $\E[B|A=a]>a$ holds, switching is advised. This happens when $f\left(\frac{a}{2}\right)<2f(a)$.
 
-Does a discrete prior $f$ exist for which the requirement $\E[B|A=a]\leq a$ holds for all $a\in\supp_{\P}(A)$? The answer is no, as the following proposition will point out.
+Does a discrete prior $f$ exist for which the requirement $\E[B|A=a]\leq a$ holds for all $a\in\supp_{\P}(A)$, thus where the player must never switch? The answer is no, as the following proposition from \cite{Brams95} points out.
 \begin{proposition}[Brams and Kilgour (1995)]
 There is no discrete prior $f$ on $X$ for which $\E[B|A=a]\leq a$ holds for all $a\in\supp_{\P}(A)$.
 \end{proposition}
@@ -1611,16 +1613,17 @@ There is no discrete prior $f$ on $X$ for which $\E[B|A=a]\leq a$ holds for all 
 The proof is taken from \cite{Brams95}. Assume $f$ is a prior with $\E[B|A=a]\leq a$ for all $a\in\supp_{\P}(A)$. In order for $\E[B|A=a]\leq a$ we must have $f\left(\frac{a}{2}\right)\geq2f(a)$. Let $a\in\supp_{\P}(A)$ be such that $f(a)>0$, then $f\left(a\right)\geq 2^{n}f(2^na)$ holds for all $n\in\Z$, leading to $f(a)\to0$ as $n\to-\infty$. We cannot have $f(a)$ being arbitrarily close to zero and strictly positive at the same time, rendering the assumption of the existence of $f$ false.
 \end{proof}
 
-On the contrary, does a discrete prior $f$ exist with $\E[B|A=a]>a$ for all $a\in\supp_{\P}(A)$? Then $f\left(\frac{a}{2}\right)>f(a)$ must hold for all $a\in\supp_{\P}(A)$, which is achieved for all paradoxical distributions since $\supp_{\P}(X)\subset\supp_{\P}(A)$. Various examples can be found in \cite{Christensen93a,Linzer94,Broome95} and previously in Section~\ref{sec:EnvelopePriorInfluence}, with $f(2^n)=\frac{2^n}{3^{n+1}}$ as the easiest one. In this case a new paradox arises, where switching is always advised. Note that Christensen and Utts do not agree with this occurrence as being a paradox as stated in \cite{Christensen93a}, as $\E[B|A=a]$ is still finite and can be compared with $a$.
+On the contrary, does a discrete prior $f$ exist with $\E[B|A=a]>a$ for all $a\in\supp_{\P}(A)$? Then $f\left(\frac{a}{2}\right)>f(a)$ must hold for all $a\in\supp_{\P}(A)$, which is achieved for all paradoxical distributions since $\supp_{\P}(X)\subset\supp_{\P}(A)$. Various examples can be found in \cite{Christensen93a,Linzer94,Broome95} and previously in Section~\ref{sec:EnvelopePriorInfluence}, with $f(2^n)=\frac{2^n}{3^{n+1}}$ as the most common one. In this case a new paradox arises, where switching is always advised.\\
+Note that Christensen and Utts do not agree with this occurrence as being a paradox as stated in \cite{Christensen93a}, as $\E[B|A=a]$ is still finite and can be compared with $a$.
 
 \subsubsection{Continuous case}
-Let $f$ be a continuous prior on $X$. First \cite{Christensen92} states that
+Let $f$ be a continuous prior on $X$ with distribution $\P\in\Pmod$. First \cite{Christensen92} states that
 \begin{equation}
 \E[B|A=a]=\frac{af\left(\frac{a}{2}\right)+4af(a)}{2f(a)+2f\left(\frac{a}{2}\right)}
 \end{equation}
-holds for continuous priors as well, however \cite{Christensen96} points out this is a mistake.
+holds for continuous priors as well, however \cite{Christensen96} points out this is not correct.
 
-Take a look at the following analysis from \cite{Brams95}. Let $Y=\frac{X}{2}$ and let $g$ be a prior on $Y$. Then we have $\P[X\leq x]=\P\left[Y\leq \frac{x}{2}\right]$, thus $F(x)=G\left(\frac{x}{2}\right)$ where $F$ and $G$ are the cumulative density functions of $f$ and $g$. Differentiating for the density functions yields $f(x)=\frac{1}{2}g\left(\frac{x}{2}\right)$. Now, analogous to the discrete case, we have
+Take a look at the following analysis from \cite{Brams95}. Let $Y=\frac{X}{2}$ and let $g$ be a probability density function on $Y$. Then we have $\P[X\leq x]=\P\left[Y\leq \frac{x}{2}\right]$, thus $F(x)=G\left(\frac{x}{2}\right)$ where $F$ and $G$ are the cumulative density functions of $X$ and $Y$ respectively. Differentiating for the density functions yields $f(x)=\frac{1}{2}g\left(\frac{x}{2}\right)$. Now, analogous to the discrete case, we have
 \begin{align}
 \P[X=a|A=a]&=\frac{f(x)}{f(x)+g(x)}=\frac{f(x)}{f(x)+\frac{1}{2}f\left(\frac{x}{2}\right)},\\
 \P\left[X=\frac{a}{2}\middle|A=a\right]&=\frac{g(x)}{f(x)+g(x)}=\frac{\frac{1}{2}f\left(\frac{x}{2}\right)}{f(x)+\frac{1}{2}f\left(\frac{x}{2}\right)}.
@@ -1630,20 +1633,20 @@ The expectation of $B|A=a$ now becomes
 \E[B|A=a]&=\frac{a}{2}\P\left[X=\frac{a}{2}\middle|A=a\right]+2a\P\left[X=a\middle|A=a\right]\\
 &=\frac{af\left(\frac{a}{2}\right)+8af(a)}{4f(a)+2f\left(\frac{a}{2}\right)}.
 \end{align}
-This expectation value is different from \cite{Christensen96}, they made a mistake mixing up the probabilities while calculating the expectation value. Their conclusion that now $4f(a)>f\left(\frac{a}{2}\right)$ must hold in order to get $\E[B|A=a]>a$ is still correct.
+This expectation value is different from the version in \cite{Christensen96}, as they made a mistake mixing up the probabilities while calculating the expectation value. Nevertheless their conclusion that now $4f(a)>f\left(\frac{a}{2}\right)$ must hold in order to get $\E[B|A=a]>a$ is still correct.
 
 The same proposition as in the discrete case that $\E[B|A=a]>a$ must happen for at least one $a\in\supp_{\P}(A)$ is valid here as well.
 \begin{proposition}[Brams and Kilgour (1995)]
-There is no discrete prior $f$ on $X$ for which $\E[B|A=a]\leq a$ holds for all $a\in\supp_{\P}(A)$.
+There is no continuous prior $f$ on $X$ for which $\E[B|A=a]\leq a$ holds for all $a\in\supp_{\P}(A)$.
 \end{proposition}
 \begin{proof}
 This proposition is stated and proven as Theorem 2 in \cite{Brams95}.
 \end{proof}
 
-Examples for which $\E[B|A=a]>a$ holds for all $a\in\supp_{\P}(A)$ can be found in \cite{Christensen96,Broome95,Brams95} and previously in Section~\ref{sec:EnvelopePriorInfluence}, with $f(a)=(a+1)^{-2}$ for $a\in(0,\infty)$ being one of the easiest examples \cite{Broome95}.
+Examples for which $\E[B|A=a]>a$ holds for all $a\in\supp_{\P}(A)$ can be found in \cite{Christensen96,Broome95,Brams95} and previously in Section~\ref{sec:EnvelopePriorInfluence}, with $f(a)=(a+1)^{-2}$ for $a\in(0,\infty)$ being one of the most common example \cite{Broome95}.
 
 \subsubsection{Summarizing switching strategies}
-To summarize, let $f$ be a non-paradoxical prior on $X$ with distribution $\P$ on $\Omega$. Suppose the player observes $a\in\supp_{\P}(A)$. The following strategies optimize the values won by the player
+To summarize, let $f$ be a non-paradoxical prior on $X$ with distribution $\P\in\Pmod$. Suppose the player observes $a\in\supp_{\P}(A)$. The following strategies optimize the values won by the player:
 \begin{itemize}
 \item[Discrete:] When $f$ is discrete, the player must switch his envelope when \begin{equation}
 f(a)>\frac{1}{2}f\left(\frac{a}{2}\right).
@@ -1657,7 +1660,7 @@ f(a)>\frac{1}{4}f\left(\frac{a}{2}\right).
 \section{Safe probability}\label{sec:EnvelopeSafe}
 Consider now applying safe probability to the two envelope problem. If there is a safe distribution for $\EnvInd|A$, we can use this distribution to see whether we want to switch and when. The random variable $\EnvInd$ describes whether the second envelope has twice the observed value. The following proposition gives a safe distribution for $\EnvInd$.
 \begin{proposition}\label{prop:EnvelopeIndSafe}
-A distribution $\Psafe$ on $\Omega$ is safe for $\langle\EnvInd\rangle|\langle A\rangle$ in model $\Pmod$ if
+A distribution $\Psafe$ on $\Omega$ is safe for $\langle\EnvInd\rangle|\langle A\rangle$ with model $\Pmod$ if
 \begin{equation}
 \int_0^\infty \Psafe[B=2A|A=a]f_A(a)da=\frac{1}{2}
 \end{equation}
@@ -1706,31 +1709,41 @@ Expanding this requirement gives
 which gives the result that $\Psafe[B=2A|A=a]=\frac{1}{2}$ must hold for all $a\in\supp_{\Psafe}(A)$.
 \end{proof}
 
-Note that in this case Theorem~\ref{thm:DiscMainThm} cannot be applied, as it dictates that the sample space $\Omega$ is split up in $\Omega=\X'\times\Y'$, where $\X'$ is countable and $\Y'$ is finite. In our case we do have $\Omega=\X\times\Y$, however both $\X$ and $\Y$ are uncountably infinite of size.
+Note that in this case Theorem~\ref{thm:DiscMainThm} cannot be applied, as this theorem dictates that the sample space $\Omega$ is split up in $\Omega=\X'\times\Y'$, where $\X'$ is countable and $\Y'$ is finite. In our case we do have $\Omega=\X\times\Y$, however both $\X$ and $\Y$ are uncountably infinite of size.
 
-Therefore when considering how $\EnvInd|A$ is distributed, we can pick a $\Psafe$ from Proposition~\ref{prop:EnvelopeIndSafe}. When we only need an unbiased estimator for $\EnvInd$, it is sufficient to pick a $\Psafe$ with
+Therefore while not knowing how $\EnvInd|A$ is distributed, we can pick a safe distribution $\Psafe$ from Proposition~\ref{prop:EnvelopeIndSafe}. When we only need an unbiased distribution for $\EnvInd$ given $A$, it is sufficient to pick a $\Psafe$ with
 \begin{equation}
 \int_0^\infty\Psafe[B=2A|A=a]f_A(a)da=\frac{1}{2}.
 \end{equation}
-For marginal validity we need $\Psafe[B=2A|A=a]$ for all $a\in\supp_{\Psafe}(A)$.
+For marginal validity we need $\Psafe[B=2A|A=a]=\frac{1}{2}$ for all $a\in\supp_{\Psafe}(A)$.
 
-Safe probability does not provide much more insight here. According to safe probability, one can act like the probability of the envelope $B$ having twice the value of envelope $A$ is $\frac{1}{2}$. In this case, when playing this game multiple times, the frequency of switching or not switching does not matter. Let $\P$ be the actual probability distribution on $\Omega$ and let $\EnvInd^*\sim\mathrm{Ber}(p)$ be Bernoulli distributed with parameter $p\in[0,1]$. Let $\P'$ be the probability distribution of $\EnvInd^*$, then
+Now note that safe probability will not provide more insight. Considering marginal validity first, let $\Psafe$ be marginally valid for $\EnvInd|A$. Then according to Proposition~\ref{prop:EnvelopeIndSafe} $\Psafe[B=2A|A=a]=\frac{1}{2}$ is required for all $a\in\supp_{\Psafe}(A)$. When $\supp_{\Psafe}(A)$ is of infinite size, distribution $\Psafe$ cannot exist as is earlier pointed out in Section~\ref{sec:EnvelopeFormal} and in \cite{Christensen92,Christensen93b,Navara17,Tzur18}.\\
+When $\Psafe$ is an unbiased for $\EnvInd|A$, we have the requirement
+\begin{equation}
+\int_0^\infty\Psafe[B=2A|A=a]f_A(a)da=\frac{1}{2}.
+\end{equation}
+Here the probability density function $f_A$ of $A$ is not known and if it is, then a vast array of distributions $\Psafe$ will satisfy this requirement. Thus unbiased distribution for $\EnvInd|A$ will not give more insight here.
+
+Suppose $\EnvInd$ is predicted by a random variable $\EnvInd^*$, not taking $A$ into account. Let $\P\in\Pmod$ be the actual probability distribution on $\Omega$ and let $\EnvInd^*\sim\mathrm{Ber}(p)$ be Bernoulli distributed with parameter $p\in[0,1]$. Let $\P'$ be the probability distribution of $\EnvInd^*$, then
 \begin{equation}
 \acc(\EnvInd)=\sum_{k\in\{0,1\}}\P'[\EnvInd^*=k]\P[\EnvInd=k]=\frac{1}{2}(p+1-p)=\frac{1}{2}.
 \end{equation}
-Therefore it looks like no matter in which frequency the person switches after an observed $A=a$, the probability of receiving the higher envelope stays equal. The average value the player wins will be $\frac{3}{2}\E_{\P}[X]$ where $\P$ is the actual distribution on $\Omega$.
+Therefore it looks like no matter in which frequency the person switches after an observed $A=a$, the probability of receiving the higher envelope stays equal. The average value the player wins will be $\frac{3}{2}\E_{\P}[X]$ and this cannot be improved without taking $A$ into account.
 
-Safe probability cannot take into account the probability observing $A=a$. A probability measure $\Psafe$ from Proposition~\ref{prop:EnvelopeIndSafe} must be safe against all $\P\in\Pmod$ and those $\P$'s all impose vastly different distributions on $A$. Therefore it is not possible to know the likeliness of $A\leq a$ and safe probability cannot take such observations into account. We need to either put assumptions on our model or try another strategy, as we will do in the next section.
+Safe probability cannot take into account the probability observing $A=a$. Either a marginally valid distributions arises which erases the influence of $A$ or an unbiased distribution arises where there is too less information for the distribution to be convincing. A probability measure $\Psafe$ from Proposition~\ref{prop:EnvelopeIndSafe} must be safe against all $\P\in\Pmod$ and those $\P$'s all impose vastly different distributions on $A$. Therefore we can say that model $\Pmod$ is simply too large to apply safe probability. We need to either put ill-founded assumptions on our model or try another strategy. We will do the latter in the next section.
 
 \section{Cover's switching strategy}\label{sec:EnvelopeSwitching}
-If we however adapt our probability of switching to the observation $A=a$, we can obtain on average higher results than $\frac{3}{2}\E_{\P}[X]$. The technique of switching smartly is first devised by Cover in 2003 \cite{McDonnell09} and McDonell and Abbott published this technique with numerous examples \cite{McDonnell09,Abbott10,McDonnell11}. The techniques used were already lightly touched upon by Christensen and Utts in 1992 \cite{Christensen92} and by Ross in 1994 as response on their article \cite{Christensen94}. Since McDonell and Abbott describe the switching technique in more detail, we will use their articles as foundation.
+If we  adapt our probability of switching to the observation $A=a$, we can obtain on average higher results than $\frac{3}{2}\E_{\P}[X]$. The technique of switching smartly is first devised by Cover and in 2003 personlly communicated to McDonnell and Abbott \cite{McDonnell09}, who published this technique with numerous examples \cite{McDonnell09,Abbott10,McDonnell11}. The techniques used were already lightly touched upon by Christensen and Utts in 1992 \cite{Christensen92} and by Ross in 1994 \cite{Christensen94} as response on the article of Christensen and Utts. Since McDonell and Abbott fleshed out the switching strategy and describes it in more detail, we will use their articles as foundation.
 
-In short, Cover's switching strategy devises a function $P\colon(0,\infty)\to[0,1]$ which picks an observed $a\in(0,\infty)$ and assigns a probability $P(a)\in[0,1]$ to it. The player then switches his envelope with probability $P(a)$. The function $P$ can be picked in such a way that, while not knowing the distribution $\P$ on $\Omega$, we can always on average get a higher result than $\frac{3}{2}\E_{\P}[X]$.
+In short, Cover's switching strategy devises a function $P\colon(0,\infty)\to[0,1]$ which picks an observed $a\in(0,\infty)$ and assigns a probability $P(a)\in[0,1]$ to it. The player then switches his envelope with probability $P(a)$. Note that, in contrary to what many initially assume, the function $P$ does not need to integrate to $1$; it is not a probability density function. It implies after observing an $a\in(0,\infty)$ a probability distribution of whether or not to switch the envelopes.
+
 \begin{definition}[Switching strategy]
 A function $P\colon(0,\infty)\to[0,1]$ is called a \emph{switching strategy}.
 \end{definition}
 
-Assume that the prior $f$ on $X$ is \emph{continuous} with finite expectation value. Consider for a short while a more general problem where envelope $A$ receives $2X$ with probability $1-p$ and $X$ with probability $p\in[0,1]$. The original problem can then be retrieved by putting $p=\frac{1}{2}$. After observing value $A=a$, the player randomly switches with probability $P(a)$. Let $R$ be the value returned to the player at the end of the game, then the probability distribution of $R|X=x$ is given by
+Assume that the prior $f$ on $X$ is \emph{continuous} with finite expectation value and let $\P\in\Pmod$ be its accompanying distribution on $\Omega$. The function $P$ can be picked in such a way that, while not knowing the distribution $\P\in\Pmod$, we can always on average get a higher result than $\frac{3}{2}\E_{\P}[X]$.
+
+Consider for a short while a more general problem where envelope $A$ receives $2X$ with probability $1-p$ and receives $X$ with probability $p\in[0,1]$. The original problem can then be retrieved by putting $p=\frac{1}{2}$. After observing value $A=a$, the player randomly chooses envelope~$B$ with probability $P(a)$. Let $R$ be the value returned to the player at the end of the game, then the probability distribution of $R|X=x$ is given by
 \begin{align}
 \P[R=x|X=x]&=\P[A=x|X=x](1-P(x))+\P[A=2x|X=x]P(2x)\\
 &=p(1-P(x))+(1-p)P(2x),\\
@@ -1747,12 +1760,12 @@ Following \cite{McDonnell09}, we get
 \E[R]=\E[\E[R|X]]&=\int_0^\infty f(x)\E[R|X=x]dx\\
 &=(2-p)\E[X]+\int_0^\infty xf(x)(pP(x)-(1-p)P(2x))dx.
 \end{align}
-When the player never switches, thus $P\equiv0$, his expected return is $(2-p)\E[X]$. Define $G=\int_0^\infty xf(x)(pP(x)-(1-p)P(2x))dx$ as the players gain of his switching strategy. One can immediately see that $pP(x)\geq(1-p)P(2x)$ for all $x$ is a sufficient condition for a non-negative gain. The gain can be rewritten as
+When the player never or always switches, thus $P\equiv0$ or $P\equiv1$, his expected return is $(2-p)\E[X]$. Define $G=\int_0^\infty xf(x)(pP(x)-(1-p)P(2x))dx$ as the players gain of his switching strategy. One can immediately see that for all $x$ the requirement $pP(x)\geq(1-p)P(2x)$ is a sufficient condition for a non-negative gain. The gain can be rewritten as
 \begin{align}
 G&=\int_0^\infty xf(x)(pP(x)-(1-p)P(2x))dx\\
 &=\int_0^\infty xP(x)\left(pf(x)-\frac{1-p}{4}f\left(\frac{x}{2}\right)\right)dx,
 \end{align}
-where both representations will become useful in different manners. This will be summarized in the following definition.
+where both representations will become useful in many different ways. This will be summarized in the following definition.
 \begin{definition}
 Let $f$ be a continuous prior on $X$ with finite expectation value. Let $P$ be a switching strategy. The \emph{gain} of a player is defined by
 \begin{align}
@@ -1764,13 +1777,13 @@ Equation~\ref{eq:EnvelopeGainF} immediately gives us the optimal switching strat
 \begin{theorem}[McDonnell, Abbott \cite{McDonnell09}]\label{thm:switchopt}
 The optimal switching strategy $P^*(x)$ is
 \begin{equation}
-P^*(x)=\1_{(0,\infty)}\left(pf(x)-\frac{1-p}{4}f\left(\frac{y}{2}\right)\right).\end{equation}
+P^*(x)=\1_{(0,\infty)}\left(pf(x)-\frac{1-p}{4}f\left(\frac{x}{2}\right)\right).\end{equation}
 \end{theorem}
 \begin{proof}
-We can split the integrand of \eqref{eq:EnvelopeGainF} in two functions: $x\mapsto P(x)$ and $x\mapsto x\left(pf(x)-\frac{1-p}{4}f\left(\frac{x}{2}\right)\right)$. Function $P$ can be chosen at will, but the image must lie in $[0,1]$. The integration in \eqref{eq:EnvelopeGainF} is therefore maximized then $P(x)=1$ is chosen if $x\left(pf(x)-\frac{1-p}{4}f\left(\frac{x}{2}\right)\right)>0$ is positive and $P(x)=0$ otherwise. Since $x\mapsto x$ is positive for all $x\in(0,\infty)$, it is sufficient that $pf(x)-\frac{1-p}{4}f\left(\frac{y}{2}\right)$ is positive. Switching strategy $P^*$ implements this strategy.
+We can split the integrand of \eqref{eq:EnvelopeGainF} in two functions: $x\mapsto P(x)$ and $x\mapsto x\left(pf(x)-\frac{1-p}{4}f\left(\frac{x}{2}\right)\right)$. Function $P$ can be chosen at will, but the image must lie in $[0,1]$. The integration in \eqref{eq:EnvelopeGainF} is therefore maximized when $P(x)=1$ is chosen if $x\left(pf(x)-\frac{1-p}{4}f\left(\frac{x}{2}\right)\right)>0$ is positive and $P(x)=0$ otherwise. Since $x\mapsto x$ is positive for all $x\in(0,\infty)$, it is sufficient to require that the function $x\mapsto pf(x)-\frac{1-p}{4}f\left(\frac{y}{2}\right)$ must be positive when $P(x)=1$. Switching strategy $P^*$ implements this strategy.
 \end{proof}
 
-From now on we'll put $p=\frac{1}{2}$ as in our model an envelope is  distributed to the player uniformly. In this case Equation~\ref{eq:EnvelopeGainP} leads to $P(x)\geq P(2x)$ for all $x\in(0,\infty)$ being sufficient for non-negative gain. We will now look at two example strategies, namely Cover switching and threshold switching. More examples, comparison between the examples and simulations of the examples can be found in \cite{McDonnell09,McDonnell11}.
+From now on we will put $p=\frac{1}{2}$ as in our model an envelope is  distributed to the player uniformly. In this case Equation~\ref{eq:EnvelopeGainP} leads to $P(x)\geq P(2x)$ for all $x\in(0,\infty)$ being sufficient for non-negative gain. We will now look at two example strategies, namely Cover switching and threshold switching. More examples, comparisons between the examples and simulations of the examples can be found in \cite{McDonnell09,McDonnell11}.
 
 \begin{example}[Cover switching]
 This example is taken from \cite{McDonnell09,Abbott10}. Let $a\in(0,\infty]$ be arbitrary and put $P(x)=e^{-ax}$. This $P$ is called \emph{Cover switching}. The inequality $P(x)\geq P(2x)$ is automatically satisfied as the requirement $e^{-ax}>e^{-2ax}$ holds for all positive $x$.
@@ -1779,38 +1792,38 @@ Suppose that $X\sim\mathrm{Exp}(c)$ is exponentially distributed. Let $R_C$ be t
 \end{example}
 
 \begin{example}[Threshold switching]
-This example is taken from \cite{McDonnell09}. Let $b\in(0,\infty)$ be arbitrary and define $P(a)=\1_{(0,b]}(a)$. This strategy is called \emph{threshold switching}. The player tries to switch all the low values he gets, but always holds on high values. Of course, if the prior on $X$ is unknown, no advice on which $b$ to choose can be given. However, as $P(a)\geq P(2a)$ always holds, this strategy has non-negative gain for all possible values $b$ independent of prior $f$.
+This example is taken from \cite{McDonnell09}. Let $b\in(0,\infty)$ be arbitrary and define $P(a)=\1_{(0,b]}(a)$. This strategy is called \emph{threshold switching}. The player tries to switch all the low values he gets, but always holds on high values. Of course, if the prior on $X$ is unknown, no advice on which $b$ to choose can be given. However, as $P(a)\geq P(2a)$ always holds, this strategy has non-negative gain for all possible values $b$ independent of the prior $f$.
 
-Let $X\sim\text{Exp}(c)$ be exponentially distributed. Looking at Equation~\ref{eq:EnvelopeGainF}, we want that $P(x)=1$ when $f(x)\geq\frac{1}{4}f\left(\frac{x}{2}\right)$ holds, thus when $ce^{-cx}\geq\frac{1}{4}ce^{-\frac{c}{2}x}$ holds. This is satisfied when $x<\frac{2\ln(4)}{c}$ holds, thus take $b=\frac{2\ln(4)}{c}$. Let $R_T$ be the value returned to the player when using threshold switching. The expected return will be $\E[R_T]=\frac{51+\ln(16)}{32c}\approx\frac{1.6804}{c}$, which is higher than Cover switching's $\E[R_C]=\frac{1.6013}{c}$ and the $\E[R]=\frac{3}{2c}$ of never switching. Threshold switching is in fact the optimal switching function here, as $f(x)=\frac{1}{4}f\left(\frac{x}{2}\right)$ is obtained for a unique $x=\frac{4\ln(2)}{c}$ and $P^*$ from Theorem~\ref{thm:switchopt} then becomes the threshold strategy.
+Let $X\sim\text{Exp}(c)$ be exponentially distributed. Looking at Equation~\ref{eq:EnvelopeGainF}, we want that $P(x)=1$ when $f(x)\geq\frac{1}{4}f\left(\frac{x}{2}\right)$ holds, thus when $ce^{-cx}\geq\frac{1}{4}ce^{-\frac{c}{2}x}$ holds. This is satisfied when $x<\frac{4\ln(2)}{c}$ holds, thus take $b=\frac{4\ln(2)}{c}$. Let $R_T$ be the value returned to the player when using threshold switching. The expected return will be $\E[R_T]=\frac{51+4\ln(2)}{32c}\approx\frac{1.6804}{c}$, which is higher than Cover switching's $\E[R_C]=\frac{1.6013}{c}$ and the $\E[R]=\frac{3}{2c}$ of never or always switching. Threshold switching is in fact the optimal switching function here, as $f(x)=\frac{1}{4}f\left(\frac{x}{2}\right)$ is obtained for a unique $x=\frac{4\ln(2)}{c}$ and $P^*$ from Theorem~\ref{thm:switchopt} then becomes threshold switching.
 \end{example}
 \subsection{Optimizing Cover's switching strategy}
-Having two strategies, namely Cover and threshold switching, we would like to know how to optimize them while knowing as little of $X$ as possible. McDonnell et al.~\cite{McDonnell11} calculated various cases and here we will take a look at the ones with the least information on the prior of $X$. Assume for the rest of this section that the prior $f$ on $X$ is absolutely continuous and differentiable on $(0,\infty)$.
+Having two strategies, namely Cover and threshold switching, we would like to know how to optimize them while knowing as little of the distribution on $X$ as possible. McDonnell et alii~\cite{McDonnell11} considered various cases and here we will take a look at the ones with the least information on the prior of $X$. Assume for the rest of this section that the prior $f$ on $X$ is absolutely continuous and differentiable on $(0,\infty)$.
 
 \subsubsection{Cover switching optimized}
 This example is taken from \cite{McDonnell11}. Let $a\in[0,\infty]$ and consider Cover's switching strategy, $P(x)=e^{-ax}$. The gain as a function of $a$ can be written as
 \begin{equation}
 G(a)=\int_0^\infty pxf(x)e^{-ax}-(1-p)xf(x)e^{-2ax}dx.
 \end{equation}
-The optimal value $a$ solves the functional equation
+The optimal value $a^*$ solves the functional equation
 \begin{equation}
-\int_0^\infty e^{-at}x^2f(x)dx=\frac{2(1-p)}{p}\int_0^\infty e^{-2at}x^2f(x)dx,
+\int_0^\infty e^{-a^*t}x^2f(x)dx=\frac{2(1-p)}{p}\int_0^\infty e^{-2a^*t}x^2f(x)dx,
 \end{equation}
 where $\int_0^\infty e^{-at}x^2f(x)dx$ is the Laplace transform of $x\mapsto x^2f(x)$ with parameter $a$. This leads to the following lemma:
 \begin{lemma}[McDonnell et al.~(2011)]
-Let $p\in[0,1]$ be the probability the lowest envelope is given to the player. Let $P$ be Cover's switching strategy with parameter $a$. The optimal value $a$ of $G(a)$ is as such:
+Let $p\in[0,1]$ be the probability the lowest envelope is given to the player. Let $P$ be Cover's switching strategy with parameter $a$. The following cases must be distinguished for the optimal value $a^*$ of $G(a^*)$:
 \begin{itemize}
-    \item%[$p\in\left[0,\frac{1}{5}\right)$:]
-    The optimal value is $a=\infty$, thus never switching is the optimal strategy. The optimal gain is $G(\infty)=0$.
-    \item%[$p\in\left[\frac{1}{5},\frac{2}{3}\right)$:]
+    \item[{$p\in\left[0,\frac{1}{5}\right)$:}]
+    The optimal value is $a^*=\infty$, thus never switching is the optimal strategy. The optimal gain is $G(\infty)=0$.
+    \item[{$p\in\left[\frac{1}{5},\frac{2}{3}\right)$:}]
     If the function $x\mapsto pf(x)-\frac{1-p}{4}f\left(\frac{x}{2}\right)$ has a unique sign change, then $a\mapsto G(a)$ has a unique stationary point $a^*\in[0,\infty)$. This $a^*$ maximizes $a\mapsto G(a)$.
-    \item%[{$p\in\left[\frac{2}{3},1\right]$:}]
-    The optimal value is $a=0$, thus always switching is the best strategy. The optimal gain is $G(0)=(2p-1)\E[X]$.
+    \item[{$p\in\left[\frac{2}{3},1\right]$:}]
+    The optimal value is $a^*=0$, thus always switching is the best strategy. The optimal gain is $G(0)=(2p-1)\E[X]$.
 \end{itemize}
 \end{lemma}
 \begin{proof}
 The proof can be found in \cite{McDonnell11}.
 \end{proof}
-Do note that there is an asymmetry in the previous lemma. When the probability of receiving the envelope with the lowest value is below $\frac{1}{5}$, never switching is the best strategy, but when the probability is above $\frac{2}{3}$, always switching is the best strategy. One should expect the turning points to lie symmetric around $\frac{1}{2}$ such that they are $\frac{1}{3}$ and $\frac{2}{3}$ or $\frac{1}{5}$ and $\frac{4}{5}$. This phenomenon is widely studied in \cite{McDonnell11}.
+Do note that there is an asymmetry in the previous lemma. When the probability of receiving the envelope with the lowest value is below $\frac{1}{5}$, never switching is the best strategy. However, when the probability is above $\frac{2}{3}$, always switching is the best strategy. One should expect the turning points to lie symmetric around $\frac{1}{2}$ such that they are $\frac{1}{3}$ and $\frac{2}{3}$ or $\frac{1}{5}$ and $\frac{4}{5}$. This phenomenon is widely studied in \cite{McDonnell11}.
 
 
 \subsubsection{Threshold switching optimized}
@@ -1825,7 +1838,7 @@ G''(b^*)=b^*\left(pf'(b^*)-\frac{1-p}{8}f'\left(\frac{b^*}{2}\right)\right),\
 \begin{equation}
 \frac{8p}{1-p}f'(b^*)< f'\left(\frac{b^*}{2}\right).
 \end{equation}
-Note that \cite{McDonnell11} does not have a strict inequality as the second derivative test is inconclusive when $G''(b^*)=0$. Thus it is still possible for $b^*$ to be a saddle or a minimum in case of $G''(b^*)=0$, which is why we write a strict inequality here. This all results into the following lemma:
+Note that \cite{McDonnell11} does not have a strict inequality, but the second derivative test is inconclusive when $G''(b^*)=0$. Thus it is still possible for $b^*$ to be a saddle or a minimum in case of $G''(b^*)=0$, which is why we write a strict inequality here. This all results into the following lemma:
 \begin{lemma}
 Let $p\in[0,1]$ be such that the probability of receiving the lower envelope is $p$. Let $P$ be the threshold switching strategy. The set
 \begin{equation}
@@ -1841,7 +1854,7 @@ This example however requires full knowledge on $f$. Can we optimize $P$ with as
 \begin{equation}
 G(b)=\frac{1}{2}\E[XP(X)-XP(2X)]=\frac{1}{2}\E\left[X\1_{\left(\frac{b}{2},b\right]}(X)\right],
 \end{equation}
-then we can derive the best possible lower bound of $G$ knowing only $\E[X]$ and $\V[X]$.
+then we can derive a lower bound of $G$ when knowing only $\E[X]$ and $\V[X]$.
 \begin{theorem}[Egozcue and García (2015)]\label{thm:EnvelopeSwitchBound}
 Let $X$ be a continuous random variable with $\E[X]=\mu$ and $\V[X]=\sigma^2$. Let $m=\mu^2+\sigma^2$. Let $P$ be the threshold strategy with parameter $b\in(0,\infty)$.
 \begin{enumerate}
@@ -1854,30 +1867,29 @@ Let $X$ be a continuous random variable with $\E[X]=\mu$ and $\V[X]=\sigma^2$. L
         \begin{equation}
     G(b^*)\geq(3+2\sqrt{2})\left(\frac{3}{2}\mu-\sqrt{2m}\right)\geq0.
     \end{equation}
-    The last inequality is strict for $\mu^2>8\sigma^2$.
+    The gain is strictly positive when $\mu^2>8\sigma^2$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
 The proof can be found in \cite{Egozcue15}.
 \end{proof}
-Thus if $\E[X]^2\geq8\V[X]$ holds, we can find an optimal $b^*$ which always results in non-negative gain. The next question is whether there is a $b\in[0,\infty)$ which guarantees us a strictly positive gain in all cases. This is not possible, as the following theorem will point out.
-\begin{theorem}[Egozcue and García (2015) \cite{Egozcue15}]
-Let $b\in(0,\infty)$. There always exists a random variable $X$ with $\E[X]^2<8\V[X]$ such that $G(b)=0$.
+Thus if $\E[X]^2\geq8\V[X]$ holds, we can find an optimal $b^*$ which always results in non-negative gain. The next question is whether there is a $b\in(0,\infty)$ which guarantees us a strictly positive gain for all priors on $X$. This is not possible, as the following theorem will point out.
+\begin{theorem}[Egozcue and García (2015)]
+Let $b\in(0,\infty)$. A random variable $X$ with $\E[X]^2<8\V[X]$ such that $G(b)=0$ always exists.
 \end{theorem}
 \begin{proof}
 The proof can be found in \cite{Egozcue15}.
 \end{proof}
-An example for $X$ is given by \cite{Egozcue15}, however that example is a discrete distribution and all theory in \cite{Egozcue15,McDonnell09,McDonnell11} is written only for continuous distributions.
 
 \subsection{Discrete priors and the switching strategy}
-We only considered switching strategies for continuous priors thus far. If $X$ is distributed discretely by distribution $\P$, then switching strategies are still possible. As in the continuous case, we have
+We only considered switching strategies for continuous priors thus far. If $X$ is distributed discretely by distribution $\P\in\Pmod$, then switching strategies are still possible. As in the continuous case, we have
 \begin{equation}
 \E[R|X=x]=x(2-p)+pxP(x)-x(1-p)P(2x).
 \end{equation}
 The expected return is therefore
 \begin{align}
 \E[R]&=\sum_x f(x)\E[R|X=x]\\
-&=(2-p)\E[X]+\sum_x xf(x)(pP(x)-(1-p)P(2x)).
+&=(2-p)\E[X]+\sum_x xf(x)\big(pP(x)-(1-p)P(2x)\big).
 \end{align}
 A change in variables like the continuous case now becomes a bit awkward. Let $S$ be support of $X$, then
 \begin{equation}
@@ -1908,11 +1920,9 @@ when $X$ is discrete. As $P$ is decreasing, $P(x)\geq P(2x)$ will always hold, m
 \end{proof}
 
 \section{The Ali Baba problem}\label{sec:EnvelopeAli}
-We only studied the two envelope problem where there is only one player. Consider now the following Ali Baba problem mentioned by Nalebuff in 1989 \cite{Nalebuff89}. In the Ali Baba problem, envelope $A$ is filled first and then given to Ali. Then a hidden fair coin is tossed to decide whether envelope $B$ must contain values $2A$ or $\frac{1}{2}A$, where after filling the envelope is given to Baba. Ali and Baba are allowed to privately look at the contents of their envelope. If they both agree that switching is the better choice, they are able to do so.
+We thus far only studied the two envelope problem where there is only one player. Consider now the following Ali Baba problem mentioned by Nalebuff in 1989 \cite{Nalebuff89}. In the Ali Baba problem, envelope $A$ is filled first and then given to Ali. Then a hidden fair coin is tossed to decide whether envelope $B$ must contain value $2A$ or $\frac{1}{2}A$, where after filling the envelope it is given to Baba. Ali and Baba are allowed to privately look at the contents of their envelope. If they both agree that switching is the better choice, they are able to do so.
 
-Nalebuff had the following reasoning taken in the introduction of \cite{Nalebuff89}. First consider Ali's choice. Baba has $\frac{1}{2}x$ money with probability $\frac{1}{2}$ and $2x$ money with probability $\frac{1}{2}$. He will reason that on average $B$ has $\frac{5}{4}x$ money, thus Ali always proposes a switch.\\
-Consider Baba's viewpoint next. Say he has an amount $y$, then $A$ has $2y$ or $\frac{1}{2}y$ amount of money. Thus Baba expects an amount of $\frac{5}{4}y$ in Ali's envelope, thus he also wants to switch.\\
-They both want to switch, while Ali obtained a fixed value and Baba's value is linked to this value. This is considered paradoxical.
+Take a look at the following reasoning taken from the introduction of \cite{Nalebuff89}. First consider Ali's choice. Baba has $\frac{1}{2}x$ money with probability $\frac{1}{2}$ and $2x$ money with probability $\frac{1}{2}$. He will reason that on average $B$ has $\frac{5}{4}x$ money, thus Ali always proposes a switch. Consider Baba's viewpoint next. Say he has an amount $y$, then $A$ has $2y$ or $\frac{1}{2}y$ amount of money. Thus Baba expects an amount of $\frac{5}{4}y$ in Ali's envelope, making him also wanting to switch. They both want to switch, while Ali obtained a fixed value and Baba's value is linked to this value. This is considered paradoxical.
 
 The problem in this paradox again arises from wrongly applying probability theory like in Section~\ref{sec:EnvelopeNaive}. Call $x$ the amount of money in envelope $A$. The probability space is
 \begin{equation}
@@ -1920,46 +1930,43 @@ The problem in this paradox again arises from wrongly applying probability theor
 \end{equation}
 where $\P$ is the probability measure with $\P\left[\left(x,\frac{1}{2}x\right)\right]=\P[(x,2x)]=\frac{1}{2}$. Since Ali always gets an amount $x$, the expected value of Baba's envelope calculated from Ali's viewpoint remains the same:
 \begin{equation}
-\E[B]=2x\P[B=2x|A=x]+x\P\left[B=\frac{1}{2}x\middle|A=x\right]=2x\cdot\frac{1}{2}+x\cdot\frac{1}{2}=\frac{5}{4}x.
+\E[B]=\sum_{b\in\left\{\frac{x}{2},2x\right\}}b\P[B=b|A=x]=\frac{x}{2}\cdot\frac{1}{2}+2x\cdot\frac{1}{2}=\frac{5}{4}x.
 \end{equation}
-Therefore Ali will always want to switch.
-
-Consider now Baba's viewpoint. He either receives an amount $2x$ or $\frac{1}{2}x$. The corresponding expected values are
+Therefore Ali will always want to switch. Consider now Baba's viewpoint. He either receives an amount $2x$ or $\frac{1}{2}x$. The corresponding expected values are
 \begin{align}
-\E[A|B=2x]&=4x\P[A=4x|B=2x]+x\P[A=x|B=2x]=0+1\cdot x,\\
-\E\left[A\middle|B=\frac{1}{2}x\right]&=\frac{1}{4}x\P\left[A=\frac{1}{4}x\middle|B=\frac{1}{2}x\right]+x\P\left[A=x\middle|B=\frac{1}{2}x\right]=0+1\cdot x.
+\E[A|B=2x]&=\sum_{a\in\{x,4x\}}a\P[A=a|B=2x]=1\cdot x+0,\\
+\E\left[A\middle|B=\frac{1}{2}x\right]&=\sum_{a\in\left\{\frac{x}{4},x\right\}}a\P[A=a|B=\frac{1}{2}x]=0+1\cdot x.
 \end{align}
 Thus the expected value of Ali's envelope is
 \begin{align}
-\E[A]&=\E[\E[A|B]]=\P[B=2x]\E[A|B=2x]+\P\left[B=\frac{1}{2}x\right]\E\left[A\middle|B=\frac{1}{2}x\right]\\
+\E[A]=\E[\E[A|B]]&=\sum_{b\in\left\{\frac{x}{2},2x\right\}}\P[B=b]\E[A|B=b]\\
 &=\frac{1}{2}x+\frac{1}{2}x=x.
 \end{align}
-It is unclear for Baba whether he should switch, as $A$ is expected to have on average $x$ amounts of money.
+It is unclear for Baba whether he should switch, as $A$ is expected to have on average value $x$.
 
 Let $p\in[0,1]$ be the probability that $A$ and $B$ agree to switch. Consider the probability space
 \begin{equation}
 \Omega'=\left(\Y=\left\{(x,-x),\left(-\frac{1}{2}x,\frac{1}{2}x\right),(0,0)\right\},2^\Y,\P\right)
 \end{equation}
-with $\P[\{(x,-x)\}]=\P\left[\left\{-\frac{1}{2}x,\frac{1}{2}x\right\}\right]=\frac{1}{2}p$ and $\P[\{(0,0)\}]=1-p$. When there is no switch, $A$ and $B$ gain nothing. The probability of no switch is $1-p$, therefore $\{(0,0)\}$ has mass $1-p$. The probability of switching is $p$ and $B$ has $2x$ with probability $\frac{1}{2}$, therefore $\{(x,-x)\}$ has mass $\frac{1}{2}p$.\\
-Let $G$ be the vector of gains. The expected gains are
+with $\P[\{(x,-x)\}]=\P\left[\left\{-\frac{1}{2}x,\frac{1}{2}x\right\}\right]=\frac{1}{2}p$ and $\P[\{(0,0)\}]=1-p$. When there is no switch, $A$ and $B$ gain nothing. The probability of no switch is $1-p$, therefore $\{(0,0)\}$ has mass $1-p$. The probability of switching is $p$ and $B$ has $2x$ with probability $\frac{1}{2}$, therefore $\{(x,-x)\}$ has mass $\frac{1}{2}p$. Let $G$ be the vector of gains. The expected gains are
 \begin{align}
 \E[G]=\begin{pmatrix}x\\-x\end{pmatrix}\P[\{(x,-x)\}]+\begin{pmatrix}-\frac{1}{2}x\\\frac{1}{2}x\end{pmatrix}\P\left[\left\{\left(-\frac{1}{2}x,\frac{1}{2}x\right)\right\}\right]=\begin{pmatrix}\frac{1}{4}px\\-\frac{1}{4}px\end{pmatrix}.
 \end{align}
-The expected gains sum to $0$, thus no money is magically put into the system. Furthermore, $A$ will always profit in the long run for any switching strategy with $p>0$ as he obtains a fixed value $x$ and the expected value obtained by $B$ is $\E[B]=\frac{5}{4}\E[A]$. Thus Baba must always refuse the switching request from Ali in order to lose no money, giving a trivial non-paradoxical game.
+The expected gains sum to $0$, thus no money is magically put into the system. Furthermore, $A$ will always profit in the long run for any switching strategy with $p>0$ as he initially obtains a fixed value $x$ and the expected value obtained by $B$ is $\E[B]=\frac{5}{4}\E[A]$. Thus Baba must always refuse the switching request from Ali in order to lose no money, giving a trivial non-paradoxical game.
 
 \subsection{Different versions of the Ali Baba problem}
-This is just one version of the Ali Baba problem; in fact there are four different problems. Those problems are discussed by Nickerson and Falk in 2006 \cite{Nickerson06} and we will give a quick overview.
+This is just one version of the Ali Baba problem; At least four different variations can be put upon the problem. Those problems are discussed by Nickerson and Falk in 2006 \cite{Nickerson06} and we will give a quick overview. For some variations the optimal strategy is independent of a prior on $X$, for others a prior needs to be taken into account.
 
-Nickerson and Falk considered three variants in \cite{Nickerson06}:
+Nickerson and Falk considered the following three variants on the Ali Baba problem in \cite{Nickerson06}:
 \begin{enumerate}
 \item is the distribution on $X$ unknown or from the uniform distribution between $0$ and $100$,
-\item do the players know which envelope they got and
+\item do the players know which envelope they received and
 \item are the players able to look at the contents?
 \end{enumerate}
-The first variant is not treated here as we assume that the players do not know the distribution on $X$. Even if they do know, \cite{Nickerson06} only considers the uniform prior between $0$ and $100$ which we find too restrictive. Here we will always assume that the prior on the first envelope is unknown, possibly unbounded, reducing the number of different problems to four.
+The first variant is not treated here as we assume that the players do not know the distribution on $X$. Even if they do know, \cite{Nickerson06} only considers the uniform prior between $0$ and $100$ which we find too restrictive and not realistic. Here we always assume that the prior on the first envelope is unknown, possibly unbounded, reducing the number of different problems to four.
 
 \begin{table}
-\begin{center}
+\centering
 \begin{tabular}{cc|cc}
 Envelope known&Contents known&Ali's choice&Baba's choice\\\hline
 Yes&Yes&Trade&Prior\\
@@ -1967,12 +1974,12 @@ Yes&No&Trade&Keep\\
 No&Yes&Prior&Prior\\
 No&No&Indifferent&Indifferent
 \end{tabular}
-\end{center}
+
 \caption{Table taken from \cite{Nickerson06} giving advice to Ali and Baba whether they should switch their envelopes. `Envelope known' means that both players know Ali received the first envelope. `Contents known' means both players are allowed to look at their envelope's contents. When `Prior' is stated, Ali or Baba should decide on the prior they impose on the value of their envelope.}
 \label{tbl:alibaba}
 \end{table}
 
-Table~\ref{tbl:alibaba} gives all optimal strategies. Unfortunately, two out of four cases depend on the prior Ali and Baba impose on their envelope. If both players know the contents of their envelope, the prior of the observed value is needed to give an advice on switching.\\
+Table~\ref{tbl:alibaba} gives all optimal strategies. Unfortunately, two out of four cases depend on the prior Ali and Baba impose on their envelope. If both players know the contents of their envelope, the prior on the observed value is needed to give an advice to switching.\\
 Note that Ali must always trade if he knows he received the first envelope. In this case the expected value of Baba's envelope is $\E[B]=\frac{5}{4}\E[A]$. In both cases however Baba must either decide on his prior or always keep the envelope, thus blindly switching for all values is only fortunate when the prior has infinite mean. This debunks the paradox in most cases and when the mean is infinite, the paradox can be classified as St.~Petersburg-like.\\
 If both players have no information, the symmetry in the game dictates that there is no information to base a player's strategy on. No paradoxical results can be obtained here.
 
@@ -1989,15 +1996,24 @@ however random variable $A$ is used here twice with a different context. As obse
 \end{equation}
 where $\E[A|A<B]$ and $\E[A|A>B]$ are impossible to calculate without having more information. When the lowest value of both envelopes $X=\min\{A,B\}$ is considered, we observe that
 \begin{equation}
-\E[A]=\frac{3}{2}\E[X]=\E[B].
+\E[A]=\frac{3}{2}\E[X]=\E[B]
 \end{equation}
+which is not considered as paradoxical.
 
-We now only need to know the distribution of $X$. All probability distributions on $(0,\infty)$ are however possible. In Section~\ref{sec:EnvelopeSafe} we saw that safe probability does not lead to new insights, unlike the problems in Chapter~\ref{chap:DiscPara}. Proposition~\ref{prop:EnvelopeIndSafe} states that it is safe to assume that envelope $B$ has twice the value of $A$ with probability $\frac{1}{2}$, however in Section~\ref{sec:EnvelopeFormal} we already saw such distribution is technically not possible.
+We now only need to know the distribution of $X$. All probability distributions on $(0,\infty)$ are however possible. In Section~\ref{sec:EnvelopeSafe} we saw that safe probability does not lead to new insights, in contrast to the problems in Chapter~\ref{chap:DiscPara}. Proposition~\ref{prop:EnvelopeIndSafe} states that it is marginally safe to assume that envelope $B$ has twice the value of $A$ with probability of 50\%, however in Section~\ref{sec:EnvelopeFormal} we already saw such distribution does not exist when infinitely many values of $X$ are possible. When $\Psafe$ is unbiased for $\EnvInd|A$, then 
+\begin{equation}
+\int_0^\infty \Psafe[B=2A|A=a]f_A(a)da=\frac{1}{2}
+\end{equation}
+is needed, where $f_A$ is the probability density function of $A$. We however need more information on $f_A$ to create a convincing $\Psafe$ satisfying this requirement and this is not possible from the problems statement.
 
-When we state that $B=2A$ happens with probability $\frac{1}{2}$ independent of $A$'s value and we base our decisions on this assumption, we will on average get a return of $\frac{3}{2}\E[X]$. If we drop this assumption, we can improve on this return. Cover switching states that we create a strategy $P\colon(0,\infty)\to[0,1]$ which assigns a probability of switching to each observed value. Theorem~\ref{thm:switchall} then states that we only need to make $P$ decreasing in order to perform as well as the `never switching' strategy. This is quite intuitive, as you are less likely to swap the envelopes when you initially obtain a high value. When a low value is observed, you will lose less if you swap it for an even lower envelope.\\
-Initially it was unknown how much gain a switching strategy yields, as nothing is known on the distribution of $X$. The gain $G$ can therefore become arbitrarily close to $0$. You can for example apply threshold switching with $31$ as threshold, while $X$ only takes values higher than $94$. Recently in 2015, Egozcue and Fuentes García \cite{Egozcue15} proved that in certain conditions only depending on the expectation value and variance of the distribution on $X$ an optimal threshold value for threshold switching can be obtained, resulting in a lower bound for the gain which is strictly positive. In this case one is able to actually improve on the naive `never switching' strategy by at least a certain amount.
+When we state that $B=2A$ happens with probability $\frac{1}{2}$ independent of $A$'s value and we base our decisions on this assumption, we will on average get a return of $\frac{3}{2}\E[X]$. If we drop this assumption, we can improve on this return. Cover switching states that we create a strategy $P\colon(0,\infty)\to[0,1]$ which assigns a probability of switching to each observed value. The gain $G$ relative to the trivial strategies can then be defined by
+\begin{equation}
+G=\frac{1}{2}\int_0^\infty xf(x)(P(x)-P(2x))dx
+\end{equation}
+with $f$ the density function on $X$. For the never or always switching strategies we have zero gain. Theorem~\ref{thm:switchall} states that we only need to make $P$ decreasing in order to perform as well as the `never switching' strategy. This is quite intuitive, as you are less likely to swap the envelopes when you initially obtain a high value. When a low value is observed, you will lose less if you swap it for an even lower envelope.\\
+Initially it was unknown how much gain a switching strategy yields, as nothing is known of the distribution of $X$. The gain $G$ can therefore become arbitrarily close to zero. You can for example apply threshold switching with $31$ as threshold, while $X$ only takes values higher than $94$. Recently in 2015, Egozcue and Fuentes García \cite{Egozcue15} proved that in certain conditions only depending on the expectation value and variance of the distribution on $X$ an optimal threshold value for threshold switching can be obtained, resulting in a lower bound for the gain which is strictly positive as described in Theorem~\ref{thm:EnvelopeSwitchBound}. In this case one is able to actually improve on the trivial `never switching' strategy by at least a certain amount.
 
-The most important observations for this thesis are in Sections~\ref{sec:EnvelopeNaive} and \ref{sec:EnvelopeFormal}. When explicitly writing down the probability spaces used for studying this problem, one first observes that the calculation performed in Equation~\ref{eq:EnvelopeIntroWrong} is wrong. Furthermore, one observes that the naive probability space of Section~\ref{sec:EnvelopeNaive} with only $\Omega=\{(x,2x),(2x,x)\}$ as sample space is too restrictive. Only then you are able to extend this probability space to the one in Section~\ref{sec:EnvelopeFormal} including all possible distributions on the lowest value $X$. This enables you also to observe that $\P[B=2A|A=a]=\frac{1}{2}$ for all $a\in(0,\infty)$ is simply not possible; an assumption that does follow from safe probability and that everyone starting to study this problem makes. This underlines the message that when performing conditional probability, the probability space with the accompanying $\sigma$-algebra should always be taken in account to avoid paradoxical results.
+The most important observations for this thesis are in Sections~\ref{sec:EnvelopeNaive} and \ref{sec:EnvelopeFormal}. When explicitly writing down the probability spaces used for studying this problem, one first observes that the calculation performed in Equation~\ref{eq:EnvelopeIntroWrong} is wrong. Furthermore, one observes that the naive probability space of Section~\ref{sec:EnvelopeNaive} with only $\Omega=\{(x,2x),(2x,x)\}$ as sample space is too restrictive. Only then you are able to extend this probability space to the one in Section~\ref{sec:EnvelopeFormal} including all possible distributions on the lowest value $X$. This enables you also to observe that $\P[B=2A|A=a]=\frac{1}{2}$ for all $a\in(0,\infty)$ is simply not possible; an assumption that does follow from safe probability and that everyone starting to study this problem makes. This underlines the message that when performing conditional probability, the probability space with the accompanying $\sigma$-algebra should always be taken into account to avoid paradoxical results.
 
 \bibliographystyle{alpha}
 \bibliography{../Referenties/Referenties}
