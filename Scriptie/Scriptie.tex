@@ -89,14 +89,23 @@
 \begin{document}
 \begin{titlepage}
 \pagenumbering{gobble}
-
-\maketitle
+\input{titlepage.tex}
 \end{titlepage}
 
 \pagenumbering{roman}
 
 \begin{abstract}
-This is my thesis.
+A vast number of questions and problems concerning probability theory need conditional probability for providing an answer. From traditional games of dice or chess to modern statistical applications and machine learning, all use conditional probability in some sense to obtain more insight in the problems. As fundamental conditional probability is, it is not without controversy. Problems and paradoxes like the Borel-Kolmogorov paradox, Monty Hall's three door problem and the two envelope puzzle mathematicians, statisticians and psychologists for centuries, resulting into much debate and a vast amount of literature.
+
+This thesis concerns some of the most well-known paradoxes in conditional probability, defines the underlying problems and poses a solution to remove all paradoxes. In all paradoxes, the paradoxical result arises from wrongly stating the probability space concerning the problem or wrongly applying conditional probability at all. All problems can be easily avoided by always stating the probability space when applying conditional probability.
+
+The two most obvious examples are the Borel-Kolmogorov paradox and Monty Hall's problem. In the first case, the Borel-Kolmogorov paradox, the conditional distribution on a great circle on a sphere is asked. Traditional conditional probability does not suffice here as great circles on a sphere have zero probability measure. When the circle is viewed as a latitude, the conditional probability is uniform and when the circle is viewed as a meridian, it is not. Most are puzzled by the answer, however when giving the $\sigma$-algebra while applying conditional probability it is easy to see that both conditional probability spaces are not equal nor does a bijection conserving the measure-theoretic properties of the conditional probability spaces exist. Therefore, the Borel-Kolmogorov paradox is mere an example of why conditioning on sets with zero measure is not a wise thing to do without taking more care.\\
+At Monty Hall's three door problem there are three doors: $a$, $b$ and $c$. The player initially chooses door $a$ and door $c$ is opened by the game master. One door has a car behind, two have goats and the game master never opens the initially chosen door nor a door with a car. The stranger is asked whether he wants to switch to the other door. Some argue that the probability of the car being behind the other door is $\frac{1}{2}$, while others argue this probability to be $\frac{2}{3}$. However, when stating the probability space, one discovers rather quickly that the game master's preference for door $c$ is not taken into account. If door $a$ has the car, then the game master either opens door $b$ or $c$ and the player does not know his preference. Correctly applying conditional probability reveals that the probability of the car being behind door $b$ is between $\frac{1}{2}$ to $1$, not a single value.\\
+In both cases the paradoxical results vanish when the whole probability space is considered and when conditional probability is applied correctly.
+
+The dilation of the conditional probability like in Monty Hall's problem is investigated further in this thesis. Problems like Monty Hall and the boy or girl problem resemble each other in such a fundamental fashion that a generalization can be written down. Furthermore, safe probability introduced by Grünwald \cite{Grunwald18} can be applied to answer the question that if one should pin a single probability on for example in Monty Hall's game the car being behind door $b$, which probability it should be. This generalization can be applied to all problems with a countable space of outcomes with fixed probability measure and finite set of possible observations with multiple possible possibility measures and some more minor requirements, solving many paradoxes in probability at once.
+
+The common thread through the whole thesis is that in each paradox, conditional probability is applied wrongly. Each application is however wrong in a different sense. By always carefully stating the probability space you are working with and the $\sigma$-algebra of events you condition on, you are able to remove all paradoxical results and obtain correct answers. The answer may not be satisfactory, like the conditional probability of an event being dependent on the $\sigma$-algebra chosen or the conditional probability being dilated, but it will be correct and without controversy.
 \end{abstract}
 
 
