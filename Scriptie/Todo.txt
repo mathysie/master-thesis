@@ -2,4 +2,11 @@ Bronnen:
 Roscorla 2014 - Veel over Borel-Kolmogorov
 Easwaran08 - Doet praktisch mijn scriptie
 
-Implicaties van mijn stelling bedenken
+Implicaties van mijn stelling bedenken.
+Feedback Peter verwerken.
+Index maken.
+Spellingscontrole.
+Mooie voorkant ontwerpen.
+
+Vragen:
+Stelling of propositie in appendix herhalen?
