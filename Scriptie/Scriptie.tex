@@ -8,12 +8,9 @@
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{graphicx}
-\usepackage{makeidx}
-\usepackage{showidx}
 \usepackage{pgf,tikz,pgfplots}
 \usetikzlibrary{arrows, positioning}
 \pgfplotsset{compat=1.16}
-\makeindex
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
@@ -103,9 +100,10 @@ A vast number of questions and problems concerning probability theory need condi
 
 This thesis concerns some of the most well-known paradoxes in conditional probability. In all paradoxes, the paradoxical result arises from wrongly stating the probability space concerning the problem or wrongly applying conditional probability, like not giving the accompanying $\sigma$-algebra or not conditioning on a partition. All problems can be easily avoided by always stating the probability space with the $\sigma$-algebra when applying conditional probability.
 
-The two most obvious examples are the Borel-Kolmogorov paradox and Monty Hall's problem. The Borel-Kolmogorov paradox is a good example of why conditioning on sets with zero measure is only possible with much care and why it is necessary to provide the accompanying $\sigma$-algebra with your solution. Monty Hall's three door problem is a prime example of wrongly conditioning on a set of subsets that cannot form a partition of the sample space. The original problem asks for a single probability, however correctly applying conditional probability reveals that the probability of the car being behind the other door is dilated between two values $\frac{1}{2}$ to $1$. In both cases the paradoxical results vanish when the whole probability space is considered and when conditional probability is applied correctly.
+The two most obvious examples are the Borel-Kolmogorov paradox and Monty Hall's problem. The Borel-Kolmogorov paradox is a good example of why conditioning on sets with zero measure is only possible with much care and why it is necessary to provide the accompanying $\sigma$-algebra with your solution.\\
+Monty Hall's three door problem is a prime example of wrongly conditioning on a set of subsets that cannot form a partition of the sample space. The original problem asks for a single probability, however correctly applying conditional probability reveals that the probability of the car being behind the other door is dilated between the two values $\frac{1}{2}$ to $1$. In both cases the paradoxical results vanish when the whole probability space is considered and when conditional probability is applied correctly.
 
-The dilation of the conditional probability like in Monty Hall's problem is investigated further in this thesis. Problems like Monty Hall and the boy or girl problem resemble each other in such a fundamental fashion that a generalization exists, encompassing them both. Furthermore, \emph{safe probability} introduced by Grünwald \cite{Grunwald18} can be applied to answer the question `if one should pin a single probability on for example in Monty Hall's game the car being behind the other door, which probability should it be'. This generalization can be applied to all problems with a countable space of outcomes with fixed probability measure and finite set of possible observations with sufficiently enough possible possibility measures, resolving many paradoxes in probability at once.
+The dilation of the conditional probability like in Monty Hall's problem is investigated further in this thesis. Problems like Monty Hall and the boy or girl problem resemble each other in such a fundamental fashion that a generalization exists, encompassing them both. Furthermore, \emph{safe probability} introduced by Grünwald \cite{Grunwald18} can be applied to answer the following question: if one should pin a single probability on for example in Monty Hall's game the car being behind the other door, which probability should it be? This generalization can be applied to all problems with a countable space of outcomes with fixed probability measure and finite set of possible observations with sufficiently enough possible probability measures, resolving many paradoxes in probability at once.
 \end{abstract}
 
 
@@ -119,25 +117,22 @@ Probability theory is one of the most important and most researched fields in ma
 
 This thesis focuses mainly on paradoxes arising from conditional probability, such as the Borel-Kolmogorov paradox, Monty Hall's problem and the two envelope problem. We will study these problems and address their paradoxical nature. Ultimately it will be shown that all paradoxes arise by incorrectly applying conditional probability.
 
-Take a look at the Borel-Kolmogorov paradox first. A sphere is equipped with the uniform probability measure. Suppose a point exists on a great circle of the sphere, but you do not know where that point is. Is there a probability distribution on this great circle for that point? If one models this problem using latitudes, the conditional distribution on the great circle is uniform. However, if one models this problem using meridians, the conditional distribution is a cosine.
-
-Borel \cite{Borel09} and Kolmogorov \cite{Kolmogorov33} both addressed this problem and Kolmogorov gave the following answer:
+Take a look at the Borel-Kolmogorov paradox first. A sphere is equipped with the uniform probability measure. Suppose a point exists on a great circle of the sphere, but you do not know where that point is. Is there a probability distribution on this great circle for that point? If one models this problem using latitudes, the conditional distribution on the great circle is uniform. However, if one models this problem using meridians, the conditional distribution is a cosine.\\
+Borel\index{Borel} \cite{Borel09} and Kolmogorov \cite{Kolmogorov33} both addressed this problem and Kolmogorov gave the following answer:
 \foreignblockquote{ngerman}[Andrey Kolmogoroff, \cite{Kolmogorov33}]{Dieser Umstand zeigt, daß der Begriff der bedingten Wahrscheinlichkeit in bezug auf eine isoliert gegebene Hypothese, deren Wahrscheinlichkeit gleich Null ist, unzulässig ist: nur dann erhält man auf einem Meridiankreis eine Wahrscheinlichkeitsverteilung für [Breite] Theta, wenn dieser Meridiankreis als Element der Zerlegung der ganzen Kugelfläche in Meridiankreise mit den gegebenen Polen betrachtet wird.}
-In summary, Kolmogorov states that the concept of conditional probability on a great circle is inadmissible, since the event that the point lies on a great circle of the sphere has zero measure. Furthermore, the sole reason of a cosine distribution on a great circle arising when considering meridians is that the meridian circle serves as an element of the decomposition of the whole spherical surface in meridian circles with the poles considered.
+In summary, Kolmogorov states that the concept of conditional probability on a great circle is inadmissible, since the event that the point lies on a great circle of the sphere has zero measure. Furthermore, the sole reason of a cosine distribution on a great circle arising when considering meridians is that the meridian circle serves as an element of the decomposition of the whole spherical surface in meridian circles with the poles considered.\\
+Despite Kolmogorov's explanation this problem is still upon debate. Recently Gyenis, Hofer-Szabó and Rédei \cite{Gyenis17} studied this problem and provided more insight and an in my opinion satisfying discussion to the problem, eventually drawing the same conclusion as Kolmogorov already did. This problem is more elaborately discussed in Chapter~\ref{chap:BorelKolmogorov} where we will expand the analysis of \cite{Gyenis17} and not only consider latitudes and meridians, but their combination as well. Furthermore, we will look whether a conditional probability on a null set can be uniquely approached by traditional conditional probability on sets of decreasing measure as stated in Conjecture~\ref{con:BorelConjecture}. This conjecture turns out to be false, again affirming that conditional probabilities on sets of measure zero are not uniquely defined.
 
-Despite Kolmogorov's explanation this problem is still upon debate. Recently Gyenis, Hofer-Szabó and Rédei \cite{Gyenis17} studied this problem and provided more insight and an in my opinion satisfying discussion to the problem, eventually drawing the same conclusion as Kolmogorov already did. This problem is more elaborately discussed in Chapter~\ref{chap:BorelKolmogorov} where we will expand the analysis of \cite{Gyenis17} and not only consider latitudes and meridians, but their combination as well. Furthermore, we will look whether a conditional probability on a zero set can be uniquely approached by traditional conditional probability on sets of decreasing measure as stated in Conjecture~\ref{con:BorelConjecture}. This conjecture turns out to be false, again affirming that conditional probabilities on sets of measure zero are not uniquely defined.
-
-Another paradox arising from conditional probability is Monty Hall's problem. In Monty Hall's problem, a player is facing three doors called $a$, $b$ and $c$. One door has a car behind and the other two have goats. Suppose the player initially chooses door $a$. The game master then opens either door $b$ or $c$, but always a door with a goat. The player now faces two doors and is asked whether he wants to switch. One possible solution is that the player faces two doors without any preference for either door, thus the probability is 50\%. Another possible solution is that first the player had a 33\% chance of correctly guessing the door with the car. If for example door $c$ is opened, door $b$ remains with a conditional probability of 67\% of having the car. Which solution is correct?
-
-Let $\X=\{a,b,c\}$ be the set of doors and $U$ the random variable denoting the location of the car. Conditional probability then states
+Another paradox arising from conditional probability is Monty Hall's problem. In Monty Hall's problem, a player is facing three doors called $a$, $b$ and $c$. One door has a car behind and the other two have goats. Suppose the player initially chooses door $a$. The game master then opens either door $b$ or $c$, but always a door with a goat. The player now faces two doors and is asked whether he wants to switch. One possible solution is that the player faces two doors without any preference for either door, thus the probability is 50\% of initially picking the correct door. Another possible solution is that first the player had a 33\% chance of correctly guessing the door with the car. If for example door $c$ is opened, door $b$ remains with a conditional probability of 67\% of having the car. Which solution is correct?\\
+Let $\X=\{a,b,c\}$ be the set of doors and $U$ the $\X$-valued random variable denoting the location of the car. Conditional probability then provides
 \begin{equation*}\label{eq:IntMonty}
-\P[U=b\mid U\in\{a,b\}]=\frac{\P[U=b,U\in\{a,b\}]}{\P[U\in\{a,b\}]}=\frac{\frac{1}{3}}{\frac{2}{3}}=\frac{1}{2},
+\P[U=a\mid U\in\{a,b\}]=\frac{\P[U\in\{a,b\}|U=a]\P[U=a]}{\P[U\in\{a,b\}]}=\frac{1\cdot\frac{1}{3}}{\frac{2}{3}}=\frac{1}{2},
 \end{equation*}
-supporting the claim that a probability of 50\% is the correct answer. However, the space conditioned on door $c$ is opened is $\{a,b\}$ and the space conditioned on door $b$ is opened is $\{a,c\}$. If door $a$ has the car, the game master can open either door and the set of events we must condition on is $\{\{a,b\},\{a,c\}\}$. These two events do not form a partition, preventing us from using traditional conditional probability.
+supporting the claim that a probability of 50\% of the car being behind the initially chosen door is the correct answer. However, the space conditioned on the event that door $c$ is opened is $\{a,b\}$ and the space conditioned on the event that door $b$ is opened is $\{a,c\}$. If door $a$ has the car, the game master can open either door and the set of events we must condition on is $\{\{a,b\},\{a,c\}\}$. These two events do not form a partition, preventing us from using traditional conditional probability.
 
-Thus in addition to Kolmogorov's statement, we must not only be wary for conditioning on events with measure 0, we cannot condition on arbitrary events at all. I propose that when using conditional probability, one must provide a pair of a sub-$\sigma$-algebra and the event from that $\sigma$-algebra to condition on. Regarding Monty Hall's problem there is no $\sigma$-algebra on $\{a,b,c\}$ containing the set $\{\{a,b\},\{a,c\}\}$. In the case of the Borel-Kolmogorov paradox providing sub-$\sigma$-algebras immediately make clear why the conditional distribution on a great circle is not unique, as both calculations are supported by different sub-$\sigma$-algebras.
+Thus, in addition to Kolmogorov's statement, we must not only be wary for conditioning on events with zero measure, we cannot condition on arbitrary events at all. I propose that when using conditional probability, one must provide a pair of a sub-$\sigma$-algebra and the event from that $\sigma$-algebra to condition on. Regarding Monty Hall's problem there is no $\sigma$-algebra on $\{a,b,c\}$ containing the set $\{\{a,b\},\{a,c\}\}$. In the case of the Borel-Kolmogorov paradox providing sub-$\sigma$-algebras immediately make clear why the conditional distribution on a great circle is not unique, as both calculations are supported by different sub-$\sigma$-algebras.
 
-The crux of the Monty Hall problem is that the initial distribution of the car is unknown and the player does not know with which probability door $b$ is opened given the car is behind door $a$. Thus there is a set of different possible probability distributions where one is the correct distribution. Using the theory of \emph{safe probability} we can obtain a strategy that give equal results for all distributions in a specified model. This theory is introduced by Grünwald \cite{Grunwald18} and summarized here in Chapter~\ref{chap:SafeProp}. Safe probability is then applied in Chapter~\ref{chap:DiscPara} to problems as the Monty Hall problem and to the two envelope problem in Chapter~\ref{chap:TwoEnvelope}.
+The crux of the Monty Hall problem is that the initial distribution of the car is unknown and the player does not know with which probability door $b$ is opened given the car is behind door $a$. Therefore, there is a set of different possible probability distributions where one is the correct distribution. Using the theory of \emph{safe probability} we can obtain a strategy that give equal results for all distributions in a specified model. This theory is introduced by Grünwald \cite{Grunwald18} and summarized here in Chapter~\ref{chap:SafeProp}. Safe probability is then applied in Chapter~\ref{chap:DiscPara} to problems as the Monty Hall problem and to the two envelope problem in Chapter~\ref{chap:TwoEnvelope}.
 
 In Chapter~\ref{chap:DiscPara} the results of the analysis of Monty Hall's problem are generalized to a theorem, which can be used to provide safe distributions for other problems like the boy or girl problem.
 \begin{theoremmain*}
@@ -145,7 +140,7 @@ Let $\X$ be countable and $\Y$ be finite. Let $U$ be an $\X$-valued random varia
 \begin{equation*}
 \Pmod\subseteq\{\P\mid\forall u\in\X:\P[U=u]=p_u\}
 \end{equation*}
-be our model of probability distributions on $\X\times\Y$ such that $|\Y|$ distributions $\P_1,\ldots,\P_{|\Y|}\in\Pmod$ exist imposing $|\Y|$ linearly independent vectors $(\P_i[V=v])_{v\in\Y}$ with $i\in\{1,\ldots,|\Y|\}$. Let $u\in\X$ be arbitrary and let $\Psafe$ be a distribution on $\X\times\Y$ with full support on $V$, then the following are equivalent:
+be our set of probability distributions on $\X\times\Y$ such that $|\Y|$ distributions $\P_1,\ldots,\P_{|\Y|}\in\Pmod$ exist imposing $|\Y|$ linearly independent vectors $(\P_i[V=v])_{v\in\Y}$ with $i\in\{1,\ldots,|\Y|\}$. Let $u\in\X$ be arbitrary and let $\Psafe$ be a distribution on $\X\times\Y$ with full support on $V$, then the following are equivalent:
 \begin{enumerate}
     \item For all $v\in\Y$ we have $\Psafe[U=u|V=v]=p_{u}$.
     \item $\Psafe$ is safe for $\GeneralInd|[V]$.
@@ -153,47 +148,43 @@ be our model of probability distributions on $\X\times\Y$ such that $|\Y|$ distr
 \end{enumerate}
 \end{theoremmain*}
 
-This theorem and its notation will be explained, proven and applied in Chapter~\ref{chap:DiscPara}, but it essentially states the following: in the case of the Monty Hall problem if one assumes the car is initially distributed evenly between the doors, the probability of the car being behind the originally chosen door $a$ can be assumed to be $\frac{1}{3}$. Using this assumption one must always switch to the other door as the probability of the car being behind that door can be assumed to be $\frac{2}{3}$, resulting in a 67\% chance of winning the car. It is not at all clear whether this is the correct distribution. However, this assumption always yields to a 67\% chance of winning the car independent on the probability of opening door $b$ when the car is behind door $a$.
+This theorem and its notation will be explained, proven and applied in Chapter~\ref{chap:DiscPara}, but it essentially states the following: in the case of the Monty Hall problem if one assumes the car is initially distributed evenly between the doors, the probability of the car being behind the originally chosen door $a$ can be assumed to be $\frac{1}{3}$. Using this assumption one must always switch to the other door as the probability of the car being behind that door can be assumed to be $\frac{2}{3}$, resulting in a 67\% chance of winning the car. It is not at all clear whether this is the correct distribution and in most situations it definitely is not. However, this assumption always yields to a 67\% chance of winning the car independent on the probability of opening door $b$ when the car is behind door $a$.
 
-Another paradox we will treat is the two envelope problem. There are two envelopes, where one is filled with value $a$ and the other with value $b$. The only thing the player knows is that either $a=2b$ or $b=2a$. An envelope is given to the player, with the player receiving either envelope with equal probability. Call this envelope~$A$ and suppose the player observes value $a$. Should he switch to envelope~$B$ or keep the contents of $A$?
-
-At first glance, he should. Either $b=2a$ or $b=\frac{a}{2}$ holds with equal probability, thus \[\E[B|A=a]=\frac{1}{2}\cdot2a+\frac{1}{2}\cdot\frac{a}{2}=\frac{5}{4}a.\]
-However, the player has received an envelope at random and only knows the contents of that particular envelope. So he could also have been given envelope~$B$ with value $b$, for which $\E[A|B=b]=\frac{5}{4}b$ holds. Therefore no matter what envelope the player receives, he should switch. This solution must clearly be wrong and it is. When conditioning on $A=a$, then either $b=2a$ or $a=2b$ holds with probability $1$ in the conditioned probability space. This renders the previous calculation of $\E[B|A=a]$ to be incorrect. However, we do not know which event takes place.
-
-Now let $x=\min\{a,b\}$ be the lowest value, then either $a=x$ or $a=2x$ holds with equal probability. For both envelopes we now have
+Another paradox we will treat is the two envelope problem. There are two envelopes filled with a certain value. The only knowledge to the player is that after filling the first envelope, a fair coin decided whether the second envelope has either half or twice the first envelope's value. An envelope is given to the player, with the player receiving either envelope with equal probability. Call this envelope~$A$ and suppose the player observes value $a$. Should he switch to envelope~$B$ or keep the contents of $A$?\\
+At first glance, he should. Calling envelope $B$'s value $b$, one can reason that either $b=2a$ or $b=\frac{a}{2}$ holds with equal probability, giving \[\E[B|A=a]=\frac{1}{2}\cdot2a+\frac{1}{2}\cdot\frac{a}{2}=\frac{5}{4}a.\]
+However, the player has received an envelope at random and only knows the contents of that particular envelope. So he could also have been given envelope~$B$ with value $b$, for which $\E[A|B=b]=\frac{5}{4}b$ holds. Therefore no matter what envelope the player receives, he should switch. This solution must clearly be wrong and it is. When conditioning on $A=a$, then either $b=2a$ or $a=2b$ holds with probability $1$ in the conditioned probability space. This renders the previous calculation of $\E[B|A=a]$ to be incorrect. However, we do not know whether $b=2a$ or $a=2b$ took place.\\
+Now let $x=\min\{a,b\}$ be the lowest value of both envelopes, then either $a=x$ or $a=2x$ holds with equal probability. For both envelopes we now have
 \[
 \E[A|B=b]=\E[B|A=a]=\frac{1}{2}x+\frac{1}{2}\cdot2x=\frac{3}{2}x.
 \]
-Both envelopes thus have on average the same contents, as is expected when the envelopes are handed out uniformly. Unfortunately, we do not know the value of $x$. Furthermore, if $x$ is picked from an unbounded set and we assume that given an observation the other envelope must hold twice as much or half the value with equal probability, then $x$ must be taken from a uniform probability distribution on the unbounded set. Such distribution does not exist. We conclude that the value of $\E[B|A=a]$ does depend on a prior distribution on the chosen value $x$.
-
-There are two ways to address this problem. Using safe probability, like in the case of Monty Hall, we will devise a strategy where the player wins $\frac{3}{2}\E[X]$ on average, where $X$ the actual unknown distribution for the lowest value in the envelopes on the positive number line with finite expectation. This strategy is in fact that the player must flip a fair coin and switch when it lands heads, which is quite intuitive.\\
-Another method is using a switching strategy introduced by McDonell and Abbott~\cite{McDonnell09,Abbott10,McDonnell11}. Let $f\colon (0,\infty)\to[0,1]$ be a function that takes an observation $a$ and equips it with a probability. The player must switch with probability $f(a)$ when observing value $a$. When $f$ is a decreasing function and strictly decreases on an interval where distribution $X$ has positive measure, then switching using $f$ will always return on average a higher value than $\frac{3}{2}\E[X]$. If $f$ is a threshold switch, for example $f=\1_{(0,a^*]}$, then for some distributions $X$ the strategy $f$ is actually the best strategy available. However, when playing the game, the player does not know how much strategy $f$ outperforms switching using safe probability. By any means, distribution $X$ gives $f$ an arbitrarily small advantage over safe probability, making it an unnecessarily complicated method to marginally increase the average value won.
-
+Both envelopes thus have on average the same contents, as is expected when the envelopes are handed out uniformly. Unfortunately, we do not know the value of $x$. Furthermore, if $x$ is picked from an unbounded set and we assume that given an observation the other envelope must hold twice as much or half the value with equal probability, then $x$ must be taken from a uniform probability distribution on the unbounded set. Such distribution does not exist. We conclude that the value of $\E[B|A=a]$ does depend on a prior distribution on the chosen value $x$.\\
+There are two ways to address this problem. Safe probability can be used, however we then quickly come to the conclusion that $x$ must be drawn according from a uniform distribution. As in most practical cases $x$ is drawn from an unbounded set, this result is not sufficient. Another method is using a switching strategy introduced by McDonell and Abbott~\cite{McDonnell09,Abbott10,McDonnell11}. Let $X$ be the random variable picking $x$ and let $f\colon (0,\infty)\to[0,1]$ be a function that takes an observation $a$ and equips it with a probability. The player must switch with probability $f(a)$ when observing value $a$. When $f$ is a decreasing function and strictly decreases on an interval where the distribution of $X$ has positive measure, then switching using $f$ will always return on average a higher value than $\frac{3}{2}\E[X]$. If $f$ is a threshold switch, for example $f=\1_{(0,a^*]}$, then for some distributions of $X$, in particular the ones with a strictly increasing cumulative distribution function, strategy $f$ is actually the best strategy available. However, when playing the game, the player does not know how much strategy $f$ outperforms the trivial strategy of never switching. By any means, the distribution of $X$ gives $f$ an arbitrary small advantage over safe probability, making it an unnecessarily complicated method to marginally increase the average value won.\\
 The two envelope problem will be discussed further in Chapter~\ref{chap:TwoEnvelope}.
 
-For every problem there is a different reason for getting paradoxical results. There is one recurring theme with all paradoxes, namely when analysing these problems most of the times the underlying $\sigma$-algebra is not taken into account. This yields to various conflicting results, as conditioning on events that cannot be conditioned on to not recognizing that multiple probability distributions are possible. The common thread of this thesis is therefore that when doing probability theory, the underlying probability space and $\sigma$-algebra must never be ignored and not providing a sub-$\sigma$-algebra with a conditional distribution must become a bad habit instead of an accepted practice.
+For every problem there is a different reason for getting paradoxical results. There is one recurring theme with all paradoxes, namely that when analysing these problems most of the times the underlying $\sigma$-algebra is not taken into account. This yields to various conflicting results, as conditioning on events that cannot be conditioned on to not recognizing that multiple probability distributions are possible. The common thread of this thesis is therefore that when doing probability theory, the underlying probability space and $\sigma$-algebra must never be ignored and not providing a sub-$\sigma$-algebra with a conditional distribution must become a bad habit instead of an accepted practice.
 
 \chapter{The Borel-Kolmogorov paradox}\label{chap:BorelKolmogorov}
-The first paradox we will study in more detail is the Borel-Kolmogorov paradox. Many accredit the origin of the problem to Borel in 1909 \cite{Borel09}, but the problem is originally conceived by Bertrand in 1889 \cite{Bertrand89}. Kolmogorov \cite{Kolmogorov33} first provided a meaningful and discussion answer to the problem in 1933, which is why the problem is now called the Borel-Kolmogorov paradox. We will take a look at the following version of the paradox.
+The first paradox we will study in more detail is the Borel-Kolmogorov paradox. Many accredit the origin of the problem to Borel in 1909 \cite{Borel09}, but the problem is originally conceived by Bertrand in 1889 \cite{Bertrand89}. Kolmogorov \cite{Kolmogorov33} first provided a meaningful answer to and discussion on the problem in 1933, which is why the problem is now called the Borel-Kolmogorov paradox. We will take a look at the following version of the paradox.
 
-Suppose a random variable has a uniform probability distribution on the unit sphere. If one conditions on a great circle, what will the resulting conditional distribution be? If the great circle is viewed as a latitude, the conditional distribution will be uniform as well. However, if the great circle is modelled as a meridian, the conditional distribution has a cosine as density function. We have two different conditional distributions on the same set, thus which one is correct?
+Suppose a random variable has a uniform probability distribution on the unit sphere. If one conditions on a great circle, what will the resulting conditional distribution be? If the great circle is viewed as a latitude, the conditional distribution will be uniform as well. However, if the great circle is modelled as a meridian, the conditional distribution has a cosine as probability density function. We have two different conditional distributions on the same set, thus which one is correct?
 
-This problem seems a bit specific, however it can occur in many other more realistic cases. One example is given by Proschan and Presnell \cite{Proschan98}. There two random variables $X$ and $Y$ are considered, both distributed according to the standard normal distribution. A professor once asked the students on a test to describe the distribution of $Y$ given $X=Y$. In short, there are three different ways to attack this problem. Some students calculated the density of $Y$ given $Y-X=0$, others calculated the density of $Y$ given $\frac{Y}{X}=1$ and another student calculated the density of $Y$ given $\1_{\{Y=X\}}=1$. All three methods create different density functions, but the methods used by the students are all correct. The crux is that the original question posed by the professor is flawed as the event $\{X=Y\}$ has zero probability if $X$ and $Y$ are continuous random variables. This is why this problem is related to the Borel-Kolmogorov paradox.
+This problem seems a bit specific, however it can occur in many other more realistic cases. One example is given by Proschan and Presnell \cite{Proschan98}. There two random variables $X$ and $Y$ are considered, both distributed according to the standard normal distribution. A professor once asked the students on a test to describe the distribution of $Y$ given $X=Y$. In short, there are three different ways to attack this problem. Some students calculated the density of $Y$ given $Y-X=0$, others calculated the density of $Y$ given $\frac{Y}{X}=1$ and another student calculated the density of $Y$ given $\1_{\{Y=X\}}=1$. All three methods create different density functions, but the methods used by the students are all correct. The crux is that the original question posed by the professor is flawed: the event $\{X=Y\}$ has zero probability as $X$ and $Y$ both are continuous random variables. This is why this problem is related to the Borel-Kolmogorov paradox.
 
-The basic solution to the paradox is to use measure-theoretic conditional probability, so that one is given not just a set like a great circle to condition on but rather a set and an accompanying sub-$\sigma$-algebra containing this set. The definition of measure-theoretic conditional probability now provides an answer that is unique and meaningful up to a set of zero measure.\\
+The basic solution to the paradox is to use measure-theoretic conditional probability, so that one is given not just a set like a great circle to condition on but rather a set and an accompanying sub-$\sigma$-algebra containing this set. The definition of measure-theoretic conditional probability now provides an answer that is unique and meaningful up to a set of zero measure. 
+
 When conditional probability is defined traditionally based on density functions, it is defined on every point even though each such point has measure zero. One may now ask the following question: can we generally extend the measure-theoretic conditional probability to be defined on all points once a sub-$\sigma$-algebra is provided, by treating the conditional probability at that point as a limit of traditional conditional probabilities where one conditions on smaller and smaller sets? In Section~\ref{sec:BorelCombining} we provide Conjecture~\ref{con:BorelConjecture} that would imply this, but we will then show this conjecture is wrong. If we condition on both a given meridian and a suitably rotated latitude, then two phenomena occur:
 \begin{enumerate}
-\item the only sub-$\sigma$-algebra that we can provide is the full Borel $\sigma$-algebra and conditioning on the full $\sigma$-algebra leads to no effect and
-\item the required limit is undefined as the limit of smaller and smaller meridians takes on a different value than the limit of smaller and smaller rotated latitudes.
+\item the only sub-$\sigma$-algebra that we can provide is the full Borel $\sigma$-algebra leading conditioning on the full $\sigma$-algebra to no effect and
+\item the required limit is undefined as the limit of smaller and smaller meridians differs from the limit of smaller and smaller rotated latitudes.
 \end{enumerate}
 
-Kolmogorov \cite{Kolmogorov33} pointed out that the great circle has zero measure and according to him conditioning on a great circle must not be allowed. One will be tempted to disregard conditioning on zero sets at all, but this brings many problems as argued by De Finetti \cite{Finetti72} and Howson \cite{Howson14}. One example from De Finetti is the field of statistical applications where it is realistic to regard the probability of the event of observations $E$ as $0$. It is only the probabilities conditioned on these $E$'s that determine the optimal actions in these cases. Therefore, we cannot just disregard conditioning on probabilities with measure~$0$, as those conditional probabilities are needed for applying statistics.
+Kolmogorov \cite{Kolmogorov33} pointed out that the great circle has zero measure and according to him conditioning on a great circle must not be allowed. One will be tempted to disregard conditioning on null sets at all, but this brings many problems as argued by De Finetti \cite{Finetti72} and Howson \cite{Howson14}. One example from De Finetti is the field of statistical applications where it is realistic to regard the probability of making observation $E\in\R^d$ as $0$. Prediction models are highly based on these observations $E$, making conditioning on sets of zero measure necessary. Therefore, we cannot just disregard conditioning on probabilities with measure~$0$, as those conditional probabilities are needed for applying statistics.
 
-Our solution, supported by \cite{Rao88,Billingsley95,Proschan98,Easwaran08,Myrvold15,Gyenis17}, is that when performing conditional probability, the $\sigma$-algebra of the sets conditioned on must always be taken into account. Otherwise the event $E$ with zero measure has no meaning as there are many methods to approach $E$ by events with positive measures, giving different conditional probabilities. 
+Our solution, supported by \cite{Rao88,Billingsley95,Proschan98,Easwaran08,Myrvold15,Gyenis17}, is that when performing conditional probability, the $\sigma$-algebra of the sets conditioned on must always be taken into account. Otherwise, the event $E$ with zero measure has no meaning as there are many methods to approach $E$ by events with positive measures, giving different conditional probabilities. 
 
-Our analysis concerns conditioning on zero sets using measure-theoretic conditional expectations as such conditioning is defined there. The article of Gyenis, Hofer-Szabó and Rédei \cite{Gyenis17} is followed to compute the conditional distributions on the great circle, viewing that circle both as latitude and as meridian. We will take it one step further by also considering the $\sigma$-algebra of both the meridians and latitudes and by considering conditional distributions on rotated latitudes making them coincide with meridians. We will then conclude that once again conditioning on only measure zero sets must not be admissible, as it will lead to contradicting results.
+Our analysis concerns conditioning on null sets using measure-theoretic conditional expectations as such conditioning is defined there. The article of Gyenis, Hofer-Szabó and Rédei \cite{Gyenis17} is followed to compute the conditional distributions on the great circle, viewing that circle both as latitude and as meridian. We will take it one step further by also considering the $\sigma$-algebra of both the meridians and latitudes and by considering conditional distributions on rotated latitudes making them coincide with meridians. We will then conclude that once again conditioning on only measure null sets must not be admissible, as it will lead to contradicting results.
 
-After drawing these conclusions, we will rename the Borel-Kolmogorov paradox to the \emph{Borel-Kolmogorov phenomenon}, as it is more an example on why you should not condition on zero sets than it is a paradox.
+After drawing these conclusions, we will rename the Borel-Kolmogorov paradox to the \emph{Borel-Kolmogorov phenomenon}, as it is more an example on why you should not carelessly condition on null sets than it is a paradox.
 
 \section{Conditional expectation}
 First we need to define conditional expectations. We use the standard measure-theoretic definitions as given by David Williams \cite{Williams91}.
@@ -225,18 +216,18 @@ $Y$ is called a \emph{version of the conditional expectation} $\E[X|\G]$ of $X$ 
 
 Note that when $\G=\sigma(Z)$ is the smallest $\sigma$-algebra generated by a set $Z\in\F$, we also write $\E[X|\G]=\E[X|Z]$. This generalizes to $\E[X|\G]=\E[X|Z_1,Z_2,\ldots]$ when $\G=\sigma(Z_1,Z_2,\ldots)$.
 
-Definition~\ref{def:conexp} extends very nicely to the definition of conditional probability. Note that $\E[\1_F]=\P[F]$ holds for all $F\in\F$ and this carries over to conditional probabilities.
+Definition~\ref{def:conexp} extends very nicely to the definition of conditional probability. Note that $\E[\1_F]=\P[F]$ holds for all $F\in\F$. This carries over to conditional probabilities.
 
 \begin{definition}[Conditional probability]
 If $\G$ is a sub-$\sigma$-algebra of $\F$ and $F\in\F$, then the \emph{conditional probability} $\P[F|\G]$ is a version of $\E[\1_F|\G]$.
 \end{definition}
 
 \subsection{Comparison to traditional definitions}
-The traditional definition of traditional density-based conditional expectation and probability is the following: when $X$ and $Y$ are two random variables on $\R$, $f_{X,Y}$ is the joint density function of $X$ and $Y$ and $f_Y$ is the density function of $X$, the conditional expectation $\E[X|Y=y]$ is defined as
+The traditional definition of traditional density-based conditional expectation and probability is the following: when $X$ and $Y$ are two random variables on $\R$, $f_{X,Y}$ is the joint density function of $X$ and $Y$ and $f_Y$ is the density function of $Y$, the conditional expectation $\E[X|Y=y]$ is defined as
 \begin{equation}
 \E[X|Y=y]=\int_\R x\frac{f_{X,Y}(x,y)}{f_Y(y)}dx.
 \end{equation}
-Definition~\ref{def:conexp} agrees on this traditional usage although it can be modified on a set of measure zero, as we will see now. Take $\G=\sigma(\{Y=y\})$. The smallest $\sigma$-algebra generated by all $\omega\in\R$ such that $Y(\omega)=y$ and define
+Definition~\ref{def:conexp} agrees on this traditional usage although it can be modified on a set of measure zero, as we will see now. Take $\G=\sigma(\{Y=y\})$, the smallest $\sigma$-algebra generated by all $\omega\in\R$ such that $Y(\omega)=y$, and define
 \begin{equation}
 g(y)=\int_\R x\frac{f_{X,Y}(x,y)}{f_Y(y)}dx,
 \end{equation}
@@ -248,7 +239,6 @@ Let $(\Omega,\F, \P)$ be a probability space. Let $F\in\F$ be with positive meas
 \begin{equation}
 \P[E|F]=\frac{\P[E\cap F]}{\P[F]}.
 \end{equation}
-
 If $F$ has measure zero, the traditional conditional probability of $E$ given $F$ is undefined.
 \end{definition}
 
@@ -261,7 +251,7 @@ If $F$ has measure zero, the traditional conditional probability of $E$ given $F
 \label{fig:BorelVis}
 \end{figure}
 
-To analyse the Borel-Kolmogorov paradox, we need to formalize our probability space. The following construction is visualized in Figure~\ref{fig:BorelVis}. Let $S$ be the unit sphere. For easier calculations, we equip $S$ with polar coordinates. Define $S=[0,2\pi)\times[0,\pi]$, then $S$ is described in the Euclidean space with the function
+To analyse the Borel-Kolmogorov paradox, we need to formalize our probability space. The following construction is visualized in Figure~\ref{fig:BorelVis}. Let $S$ be the unit sphere. We equip $S$ with polar coordinates to ease some calculations. Define $S=[0,2\pi)\times[0,\pi]$, then $S$ is described in the Euclidean space with the function
 \begin{equation}\label{eq:BorelPolar}
 S\to\R^3:(\phi,\psi)\mapsto(\cos\phi\sin\psi,\sin\phi\sin\psi,\cos\psi).
 \end{equation}
@@ -269,7 +259,7 @@ Let $\B=\B(S)$ be the Borel-$\sigma$-algebra on $S$. The uniform distribution on
 \begin{equation}
 \P[B]=\frac{1}{4\pi}\iint_B\sin\psi d\psi d\phi
 \end{equation}
-for a $B\in\B$. The triple $(S,\B,\P)$ form a probability space.
+for a $B\in\B$. The triple $(S,\B,\P)$ forms a probability space.
 
 The set of latitudes is described by
 \begin{equation}
@@ -286,21 +276,24 @@ Note that the function in \eqref{eq:BorelPolar} is not a bijection. The image of
 \section{Conditional distributions}
 We will now explore various ways to describe the conditional distribution on a great circle.
 \subsection{Traditional conditional probability}\label{sec:BorelNaive}
-The first method is the naive method using traditional conditional probability. The probability space here is $(S,\B,\P)$. Let $F\in\B$ be a great circle.
+The first method is the naive method using traditional conditional probability. The probability space here is $(S,\B,\P)$. Let $F\in\B$ be a great circle. Note that $\P[F]=0$, as a great circle always has zero measure.
 
-Note that $\P[F]=0$, as a great circle always has zero measure. To be precise, let $f\colon S\to\R^3$ be the coordinate transformation of \eqref{eq:BorelPolar}. All great circles $F'$ have a rotation $O\colon\R^3\to\R^3$ such that $(f^{-1}\circ O\circ f)(F')=[0,2\pi)\times\left\{\frac{\pi}{2}\right\}$. Rotations are orthogonal and have determinant $1$, thus
+To be precise, let $f\colon S\to\R^3$ be the coordinate transformation of \eqref{eq:BorelPolar}. All great circles $F'\in\B$ have a rotation $O\colon\R^3\to\R^3$ such that $(f^{-1}\circ O\circ f)(F')=[0,2\pi)\times\left\{\frac{\pi}{2}\right\}$. Rotations are orthogonal and have determinant $1$, thus
 \begin{align}
 \P[F]&=\frac{1}{4\pi}\iint_F\sin\psi d\psi d\phi\\
-&=\frac{1}{4\pi}\int_0^{2\pi}\int_{\frac{1}{2}\pi}^{\frac{1}{2}\pi}\sin\psi \det(f^{-1}\circ O\circ f)d\psi d\phi\\
-&=\frac{1}{4\pi}\int_0^{2\pi}\int_{\frac{1}{2}\pi}^{\frac{1}{2}\pi}\sin\psi d\psi d\phi=0.
+&=\frac{1}{4\pi}\int_0^{2\pi}\int_{\frac{1}{2}\pi}^{\frac{1}{2}\pi}\sin(g(\psi)) \det(f^{-1}\circ O\circ f)d\psi d\phi\\
+&=\frac{1}{4\pi}\int_0^{2\pi}\int_{\frac{1}{2}\pi}^{\frac{1}{2}\pi}\sin(g(\psi)) d\psi d\phi=0
 \end{align}
-The inverse $f^{-1}$ is well-defined here since $f$ is a bijection locally around the circle $[0,2\pi)\times\left\{\frac{\pi}{2}\right\}$. Let $E\subset F$ be a measurable subset of $F$, then the traditional conditional probability of $E$ given $F$ equals
+where $g$ is a function needed to correctly perform the change of coordinates.
+The inverse $f^{-1}$ is well-defined here since $f$ is a bijection locally around the circle $[0,2\pi)\times\left\{\frac{\pi}{2}\right\}$. This proves that any great circle has zero measure.
+
+Let $E\subset F$ be a measurable subset of $F$, then the traditional conditional probability of $E$ given $F$ equals
 \begin{equation}
 \P[E|F]=\frac{\P[E\cap F]}{\P[F]},
 \end{equation}
 which is not defined as $\P[F]=0$.
 
-Thus the traditional interpretation of conditional probability will not give an answer. Furthermore, a single great circle does not yield enough information to compute any conditional probability. In terms of Definition~\ref{def:conexp} the sub-$\sigma$-algebra considered here is $\G=\{\emptyset,S,B,S\setminus B\}$, which turns out to be too small.
+Therefore, the traditional interpretation of conditional probability will not give an answer. Furthermore, a single great circle does not yield enough information to compute any conditional probability. In terms of Definition~\ref{def:conexp} the sub-$\sigma$-algebra considered here is $\G=\{\emptyset,S,B,S\setminus B\}$, which turns out to be too small.
 
 \subsection{Conditional probability on latitudes}\label{sec:BorelLong}
 Since four-element sub-$\sigma$-algebras are too small, we need to condition on larger sub-$\sigma$-algebras. One option is the $\sigma$-algebra of latitudes. Let
@@ -337,7 +330,7 @@ Note that $\mathfrak{C}$ is generated by sets like $C$, thus $\E[X|\mathfrak{C}]
 
 This derivation is slightly different from the one in \cite{Gyenis17}. The corrections on \cite{Gyenis17} are given in Appendix~\ref{app:CorLong}.
 
-As we now have a $\mathfrak{C}$-conditional expectation, we can look at the measure space $(S,\mathfrak{C})$. Let $\psi'\in(0,\pi)$ be arbitrary, then from $\mathfrak{C}$ we can take a latitude $C=[0,2\pi)\times\{\psi'\}$ and a measurable arc $A=[\phi_1,\phi_2]\times\{\psi'\}\subset C$. Let $\P'$ be the probability measure taking $1$ on $C$ and $0$ on $C^c$, then the conditional probability $\bar{\P}$ of points being on $A$ given there is a point on $C$ is
+As we now have a $\mathfrak{C}$-conditional expectation, we can look at the measure space $(S,\mathfrak{C})$. Let $\psi'\in(0,\pi)$ be arbitrary, then from $\mathfrak{C}$ we can take a latitude $C=[0,2\pi)\times\{\psi'\}$ and a measurable arc $A=[\phi_1,\phi_2]\times\{\psi'\}\subset C$. Let $\P'$ be the probability measure taking $1$ on $C$ and $0$ on $S\setminus C$, then the conditional probability $\bar{\P}$ of points being on $A$ given there is a point on $C$ is
 \begin{align}
 \bar{\P}[A]&=\int_S\P[A|\mathfrak{C}]d\P'=\frac{1}{2\pi}\int_S\int_0^{2\pi} \1_A(\phi',\psi)d\phi' d\P'(\phi,\psi)\label{eq:BorelLongConProb}\\
 &=\frac{1}{2\pi}\left(\int_{S\setminus C}\int_{\phi_1}^{\phi_2}0d\phi' d\P'+\int_{C}\int_{\phi_1}^{\phi_2}1d\phi' d\P' \right)\\
@@ -359,7 +352,7 @@ Let $X$ be $\B$-measurable. The conditional expectation of $\E[X|\mathfrak{M}]$ 
 with $(\phi,\psi)\in S$.
 \end{proposition}
 \begin{proof}
-The proof is largely taken from \cite{Gyenis17}. Let $A\in\B([0,2\pi))$ be measurable and consider $M=A\times[0,\pi]\in\mathfrak{M}$. Coordinate transformation between polar coordinates and the uniform measure on the circle $\P$ and further rewrites yield
+The proof is largely taken from \cite{Gyenis17}. Let $A\in\B([0,2\pi))$ be measurable and consider $M=A\times[0,\pi]\in\mathfrak{M}$. The coordinate transformation between polar coordinates and the uniform measure on the circle $\P$ and further rewrites yield
 \begin{align}
 \int_M \E[X|\mathfrak{M}]d\P&=\frac{1}{4\pi}\int_0^\pi\int_A\E[X|\mathfrak{M}](\phi,\psi)\sin\psi d\phi d\psi\\
 &=\frac{1}{4\pi}\int_0^\pi\int_A\left(\frac{1}{2}\int_0^{\pi}X(\phi,\psi')\sin\psi'd\psi'\right)\sin\psi d\phi d\psi\\
@@ -388,7 +381,7 @@ A=\begin{cases}
 \{\phi'\}\times[0,\psi_1]\cup\{\phi'+\pi\}\times[0,\psi_2-\pi],&\psi_2\leq\pi,\psi_1>\pi.
 \end{cases}
 \end{equation}
-This definition is exhaustive, yet it provides all possible arcs on a meridian while restricting ourselves to the domain $[0,2\pi)\times[0,\pi]$. Now, analogous to the latitudes, let $\P'$ be the uniform measure taking $1$ on meridian $M$ and $0$ on $M^c$. The conditional probability of $\hat{\P}$ of points being on $A$ with $\psi_1,\psi_2\leq\pi$ given there is a point on $M$ is given by
+This definition is exhaustive, yet it provides all possible arcs on a meridian while restricting ourselves to the domain $[0,2\pi)\times[0,\pi]$. Now, analogous to the latitudes, let $\P'$ be the uniform measure taking $1$ on meridian $M$ and $0$ on $S\setminus M$. The conditional probability of $\hat{\P}$ of points being on $A$ with $\psi_1,\psi_2\leq\pi$ given there is a point on $M$ is given by
 \begin{align}
 \hat{\P}[A]&=\int_S\P[A|\mathfrak{M}]d\P'=\frac{1}{2}\int_S\int_0^\pi\1_A(\phi,\psi')\sin\psi'd\psi'd\P'(\phi,\psi)\\
 &=\frac{1}{2}\left(\int_{S\setminus M}\int_{\phi_1}^{\phi_2}0d\psi'd\P'+\int_{M}\1_{\{\phi'\}\times[0,\pi]}\int_{\phi_1}^{\phi_2}\sin\psi'd\psi'd\P'\right)\\
@@ -411,15 +404,15 @@ Now one can immediately check that $\hat{\P}$ is well-defined on $M$ as
 Clearly this conditional distribution on meridians is not uniform. However, one should expect they are, as a meridian is just a rotation of a latitude and the points on the sphere are spread uniformly. An explanation of this difference is given in Section~\ref{sec:BorelExplained}.
 
 \subsection{Combining latitudes and meridians}\label{sec:BorelCombining}
-Another question one could ask is the following: if I define $\Sigma=\sigma(\mathfrak{C},\mathfrak{M})$ as the smallest $\sigma$-algebra containing both measurable subsets of meridians and latitudes, what is then the conditional probability distribution on a great circle given $\Sigma$? The answer is that in this approach the distributions in sections~\ref{sec:BorelLong} and~\ref{sec:BorelMer} can be recovered as limiting distributions of a sequence of traditional conditional probabilities defined in Section~\ref{sec:BorelNaive}.
+Another question one could ask is the following: if I define $\F=\sigma(\mathfrak{C},\mathfrak{M})$ as the smallest $\sigma$-algebra containing both measurable subsets of meridians and latitudes, what is then the conditional probability distribution on a great circle given $\F$? The answer is that in this approach the distributions in sections~\ref{sec:BorelLong} and~\ref{sec:BorelMer} can be recovered as limiting distributions of a sequence of traditional conditional probabilities defined in Section~\ref{sec:BorelNaive}.
 
-First we'll further analyse the new $\sigma$-algebra $\Sigma$. Consider an arbitrary rectangle $(a,b)\times(c,d)\subset[0,2\pi)\times[0,\pi]$. Since by definition $(a,b)\times[0,\pi]\in\mathfrak{M}$ and $[0,2\pi)\times(c,d)\in\mathfrak{C}$, we have
+First we'll further analyse the new $\sigma$-algebra $\F$. Consider an arbitrary rectangle $(a,b)\times(c,d)\subset[0,2\pi)\times[0,\pi]$. Since by definition $(a,b)\times[0,\pi]\in\mathfrak{M}$ and $[0,2\pi)\times(c,d)\in\mathfrak{C}$, we have
 \begin{equation}
-(a,b)\times(c,d)=\left((a,b)\times[0,\pi]\right)\cap\left([0,2\pi)\times(c,d)\right)\in\Sigma.
+(a,b)\times(c,d)=\left((a,b)\times[0,\pi]\right)\cap\left([0,2\pi)\times(c,d)\right)\in\F.
 \end{equation}
-Thus all Borel-measurable sets on our sphere are contained in $\Sigma$. Furthermore, as $\mathfrak{C}$ and $\mathfrak{M}$ contain only Borel-measurable sets, $\Sigma=\sigma(\mathfrak{C},\mathfrak{M})$ can only have Borel-measurable sets. Therefore $\Sigma=\B$ is the $\sigma$-algebra of Borel-measurable sets on the sphere.
+Thus all Borel-measurable sets on our sphere are contained in $\F$. Furthermore, as $\mathfrak{C}$ and $\mathfrak{M}$ contain only Borel-measurable sets, $\F=\sigma(\mathfrak{C},\mathfrak{M})$ can only have Borel-measurable sets. Therefore $\F=\B$ is the $\sigma$-algebra of Borel-measurable sets on the sphere.
 
-Now take the following approach. Pick $x\in(0,\pi)$. Define the two rectangles $C_\epsilon=[0,2\pi)\times[x-\epsilon,x+\epsilon]$ and $R_\epsilon=[a,b]\times[x-\epsilon,x+\epsilon]\subseteq C_\epsilon$ for all ${\epsilon\in(0,\min\{\pi-x,x\})}$, then what is the limiting conditional probability of $R_0$ given $C_0$? The conditional probability of $R_0$ given $C_0$ can be modelled as the limit of the sequence $\P[R_\epsilon|C_\epsilon]$ with $\epsilon\to0$, which will take on the uniform distribution on $C_0$ as calculated in Equation~\ref{eq:BorelLongConProb}.
+Now take the following approach. Pick $x\in(0,\pi)$. Define the two rectangles $C_\epsilon=[0,2\pi)\times[x-\epsilon,x+\epsilon]$ and $R_\epsilon=[a,b]\times[x-\epsilon,x+\epsilon]\subseteq C_\epsilon$ for all ${\epsilon\in(0,\min\{\pi-x,x\})}$, then what is the limiting conditional probability of $R_0$ given $C_0$? Note that $C_0$ becomes a latitude and $R_0$ an arc on $C_0$. The conditional probability of $R_0$ given $C_0$ can be modelled as the limit of the sequence $\P[R_\epsilon|C_\epsilon]$ with $\epsilon\to0$, which will take on the uniform distribution on $C_0$ as calculated in Equation~\ref{eq:BorelLongConProb}.
 \begin{proposition}\label{prop:BorelLongBayes}
 Define the two rectangles $C_\epsilon=[0,2\pi)\times[x-\epsilon,x+\epsilon]$ and $R_\epsilon=[a,b]\times[x-\epsilon,x+\epsilon]\subset C_\epsilon$ for all $\epsilon\in(0,\min\{\pi-x,x\})$ with $x\in(0,\pi)$. The limiting conditional probability of $R_0$ given $C_0$ equals
 \begin{equation}
@@ -453,15 +446,15 @@ The conditional probability $\P[R_\epsilon|M_\epsilon]$ equals
 The limit of $\epsilon\downarrow0$ remains $\P[R_0|M_0]=\frac{1}{2}\left(\cos a-\cos b\right)$.
 \end{proof}
 
-Note that the probability in Proposition~\ref{prop:BorelMerBayes} has $\frac{1}{2}$ as normalization factor instead of $\frac{1}{4}$, as $M_\epsilon$ converges to only a half meridian. By symmetry the distribution on the whole meridian follows the absolute cosine function.
+Note that the probability in Proposition~\ref{prop:BorelMerBayes} has $\frac{1}{2}$ as normalization factor instead of $\frac{1}{4}$, as $M_\epsilon$ converges to only a half meridian. By symmetry the probability density function of the distribution on the whole meridian follows the absolute sine function.
 
-The conditional probabilities on $\mathfrak{C}$ and $\mathfrak{M}$ therefore can be approached by traditional conditional probabilities on $\B$. This gives rise to the following conjecture.
+The conditional probabilities on $\mathfrak{C}$ and $\mathfrak{M}$ therefore can be approached by traditional conditional probabilities on $\B$. This gives rise to the following conjecture, conjuring whether this is possible for all conditional probability distributions on sets of measure zero once a sub-$\sigma$-algebra is specified.
 \begin{conjecture}\label{con:BorelConjecture}
 Let $(X,\F,\P)$ be a probability space. Let $F\in\mathcal{F}$ have zero measure and let $E\subseteq F$ be measurable. Let $\G\subset\F$ be a sub-$\sigma$-algebra containing $E$ and $F$ with $\G\neq\F$. Let $\{F_n\}_{n\in\N}\subset\G$ be a sequence converging to $F$ and $\{E_n\}_{n\in\N}\subset\G$ be a sequence converging to $E$ with for all $n\in\N$ the sets $E_n$ and $F_n$ have positive measure, $E_n\subseteq F_n$ holds and the limit $\lim_{n\to\infty}\P[E_n|F_n]$ exists. Then
 \begin{equation}
 \P[E|F]:=\lim_{n\to\infty}\P[E_n|F_n]=\int_X\E[\1_F|\mathcal{G}]d\P'(E)
 \end{equation}
-where $\P'$ is the probability measure taking $1$ on $F$ and $\E[\cdot|\G]$ is a version of the conditional expectation on $\G$.
+where $\P'$ is the uniform probability measure taking $1$ on $F$ and $\E[\cdot|\G]$ is a version of the conditional expectation on $\G$.
 \end{conjecture}
 
 If Conjecture~\ref{con:BorelConjecture} is true, then all conditional probabilities on null sets can be computed by limiting traditional conditional probabilities. It seems to hold as for the Borel-Kolmogorov paradox when considering latitudes we can take $\F=\B$ and $\G=\mathfrak{C}$ and when considering meridians we can take $\F=\B$ and $\G=\mathfrak{M}$. It however is false as the following proposition will point out.
@@ -473,11 +466,11 @@ Conjecture~\ref{con:BorelConjecture} is false.
 The proof can be found in Appendix~\ref{app:ProofBorelConFalse}.
 \end{proof}
 
-A proposition like Proposition~\ref{prop:BorelConFalse} was already proven by Hájek \cite{Hajek03} and Jaynes \cite{Jaynes03}. Hájek argues that conditional probabilities on sets of measure zero cannot be approached by infinitesimals. This approach needs an entirely new model and the axiom of choice supports the existence of many models. Therefore there is no unique method to calculate conditional probabilities on a set of measure zero. Jaynes adds that a circle cannot be described uniquely and every method of describing a measure zero set with a different limiting approach yields a different result.
+A proposition like Proposition~\ref{prop:BorelConFalse} was already proven by Hájek \cite{Hajek03} and Jaynes \cite{Jaynes03}. Hájek argues that conditional probabilities on sets of measure zero cannot be approached by infinitesimals. This approach needs an entirely new model and the axiom of choice supports the existence of many models. Therefore there is no unique method to calculate conditional probabilities on a set of measure zero. Jaynes adds that a circle cannot be described uniquely and every method of describing a measure null set with a different limiting approach yields to a different result.
 
-This demonstrates that when having an $F\in\F$ with zero measure, one cannot uniquely define $\P[E|F]$. A conditional expectation needs to be accompanied by a sub-$\sigma$-algebra, otherwise contradictory results can arise.
+This demonstrates that when having an $F\in\F$ with zero measure, one cannot uniquely define $\P[E|F]$. A conditional expectation needs to be accompanied by a sufficiently large sub-$\sigma$-algebra, otherwise contradictory results can arise.
 
-The idea underlying Conjecture~\ref{con:BorelConjecture} is however useful to guess a conditional expectation. The measure-theoretic definition of conditional expectation is only a list of properties, not a constructive definition. In the case of a $\mathfrak{C}$-conditional expectation, looking at Proposition~\ref{prop:BorelLongBayes} and its proof we observe that the resulting probability is $\frac{b-a}{2\pi}$, thus uniform. Furthermore, $\phi$ is the only variable that is integrated, thus one can guess $\phi$ is the only needed variable. Therefore one can suspect that
+The idea underlying Conjecture~\ref{con:BorelConjecture} is however useful for guessing a version of the conditional expectation. The measure-theoretic definition of conditional expectation is only a list of properties, not a constructive definition. In the case of a $\mathfrak{C}$-conditional expectation, looking at Proposition~\ref{prop:BorelLongBayes} and its proof we observe that the resulting probability is $\frac{b-a}{2\pi}$, thus uniform. Furthermore, $\phi$ is the only variable that is integrated, thus one can guess $\phi$ is the only needed variable. Therefore one can suspect that
 \begin{equation}
 \E\left[\1_{[a,b]\times\left\{\frac{\pi}{2}\right\}}\middle|\mathfrak{C}\right](\phi,\psi)=\frac{1}{2\pi}\int_0^{2\pi}\1_{[a,b]\times\left\{\frac{\pi}{2}\right\}}(\phi',\psi)d\phi'=\frac{b-a}{2\pi}\1_{\left\{\frac{\pi}{2}\right\}}(\psi)
 \end{equation}
@@ -487,7 +480,7 @@ holds and the guess can be generalized to
 \end{equation}
 This is in fact the same $\mathfrak{C}$-conditional expectation of $X$ by Proposition~\ref{prop:BorelLongBayes}. The same steps can be taken to guess $\E[X|\mathfrak{M}]$ using Proposition~\ref{prop:BorelMerBayes}.
 
-Thus we can conclude that it is wise to look at a converging sequence of traditional conditional probabilities for a potential conditional expectation when conditioning on zero sets. However, it must be noted that the resulting conditional probability is not uniquely defined, must be checked whether it complies to the actual definition of conditional probability and depends on the chosen sub-$\sigma$-algebra.
+Thus, we can conclude that it is wise to look at a converging sequence of traditional conditional probabilities for a potential conditional expectation when conditioning on null sets. However, it must be noted that the resulting conditional probability is not uniquely defined, must be checked whether it complies to the actual definition of conditional probability and depends on the chosen sub-$\sigma$-algebra.
 
 \section{The Borel-Kolmogorov paradox explained}\label{sec:BorelExplained}
 Following the arguments of \cite{Gyenis17} we will argue that the difference in conditional distribution is no paradox, but a misinterpretation of conditional probability.
@@ -501,40 +494,42 @@ Let $f\colon S\to S$ be a measurable bijection with measurable inverse. There is
 \begin{proof}
 The proof can be found in \cite{Gyenis17}, but we will repeat it here. Suppose such isomorphism $h_f$ exists. All latitudes $C$ in $\mathfrak{C}$ are the only atoms of $\mathfrak{C}$, therefore $h_f(C)$ are the only atoms of $\mathfrak{M}$ as well, making $h_f(C)$ meridians. We will now prove that $h_f(C)$ cannot be a meridian.
 
-Let $m_0=\{(0,0), (0,\pi)\}$ be the set of north and south poles. Let $c_0\in\mathfrak{C}$ be such that $h_f(c_0)=m_0$. Then $c_0$ consists of two elements as well, thus we can choose latitude $C$ not on the north or south poles such that $C\cap c_0=\emptyset$. Note that $h_f(C)$ is a meridian, thus $m_0\subset h_f(C)$ as all meridians pass through the north and south poles. Since $h_f$ is a Boolean algebra isomorphism, we have $h_f(C\cap c_0)=h_f(C)\cap h_f(c_0)$. This all can be combined in the following line:
+Let $m_0=\{(0,0), (0,\pi)\}$ be the set of north and south poles. Let $c_0\in\mathfrak{C}$ be such that $h_f(c_0)=m_0$. Then $c_0$ consists of two elements as well, thus we can choose latitude $C$ such that $C\cap c_0=\emptyset$ and $C$ not being the north or south pole. Note that $h_f(C)$ is a meridian, thus $m_0\subset h_f(C)$ as all meridians pass through the north and south poles. Since $h_f$ is a Boolean algebra isomorphism, we have $h_f(C\cap c_0)=h_f(C)\cap h_f(c_0)$. This all can be combined in the following line:
 \begin{equation}
 \emptyset=h_f(\emptyset)=h_f(C\cap c_0)=h_f(C)\cap h_f(c_0)=h_f(C)\cap m_0=m_0.
 \end{equation}
 This is clearly a contradiction.
 
-Let $C$ be the north or south pole of the sphere. Since $h_f$ is a bijection, $h_f(C)$ is only a single point as well. Thus $h_f(C)$ cannot be an atom of $\mathfrak{M}$. Therefore there is a contradiction here as well.
+Let $C$ be the north or south pole of the sphere. Since $h_f$ is a bijection, $h_f(C)$ is only a single point as well. Thus, $h_f(C)$ cannot be an atom of $\mathfrak{M}$. Therefore there is a contradiction here as well.
 
-Thus no single atom of $\mathfrak{C}$ result into an atom of $\mathfrak{M}$ by $h_f$ and therefore function $h_f$ cannot exist.
+No single atom of $\mathfrak{C}$ becomes an atom of $\mathfrak{M}$ by applying $h_f$ and therefore function $h_f$ cannot exist.
 \end{proof}
 
 Therefore every measurable bijection between $(S,\mathfrak{C})$ and $(S,\mathfrak{M})$ has no Boolean algebra isomorphism $h_f\colon\mathfrak{C}\to\mathfrak{M}$ such that latitudes in $\mathfrak{C}$ are mapped to meridians on $\mathfrak{M}$. This theorem holds on all subalgebras of $\mathfrak{C}$ and $\mathfrak{M}$ as well, as is proven by \cite{Gyenis17}.
 
-Now it should be clear why the conditional distribution on the latitudes and meridians of the sphere differ, since we are dealing with two entirely different structured spaces. Therefore, the question `why is the conditional distribution on the latitudes different from the conditional distribution on the meridians' is easy to answer; difference in spaces. To verify that two different methods of conditioning on the same set yield to the correct conditional probability, one must ask the following question: `if one models a distribution on the sample space using conditional expectation on a sub-$\sigma$-algebra, does the resulting conditional probability distribution extend to the original distribution on the whole sample space?' As earlier mentioned, Weisstein \cite{Weisstein} demonstrated that the answer to that question is yes. The uniform distribution on latitudes and the cosine on meridians both extend to the uniform distribution on the whole sphere. Thus when dealing with different conditional distributions on measure zero sets, one should rather ask a question like the last one, as the answer to that question must always be yes. Further reading and a more in-depth analysis can be found in \cite{Gyenis17}.
+Now it should be clear why the conditional distribution on the latitudes and meridians of the sphere differ, since we are dealing with two entirely different structured spaces. Therefore, the question `why is the conditional distribution on the latitudes different from the conditional distribution on the meridians' is easy to answer: the probability spaces differ. To verify that two different methods of conditioning on the same set yield to the correct conditional probability, one must ask the following question: if one models a distribution on the sample space using conditional expectation on a sub-$\sigma$-algebra, does the resulting conditional probability distribution extend to the original distribution on the whole sample space? As earlier mentioned, Weisstein \cite{Weisstein} demonstrated that the answer to that question is yes. The uniform distribution on latitudes and the cosine on meridians both extend to the uniform distribution on the whole sphere. Thus, when dealing with different conditional distributions on measure zero sets, one should rather ask a question like the last one, as the answer to that question must be always yes.
+
+Further reading and a more in-depth analysis can be found in \cite{Gyenis17}.
 
 
 \section{Conclusion}
-After analysing the Borel-Kolmogorov paradox, the first and most important conclusion we can take is that when conditioning, especially on a set $F$ of measure zero, one needs to give the accompanying sub-$\sigma$-algebra of the event that is conditioned on. Otherwise the Borel-Kolmogorov phenomenon appears, where one can give different sub-$\sigma$-algebras containing $F$ such that the resulting conditional probability distribution is different.
+After analysing the Borel-Kolmogorov paradox, the first and most important conclusion we can take is that when conditioning, especially on a set $F$ of measure zero, one needs to provide the accompanying sub-$\sigma$-algebra of the event that is conditioned on. Otherwise, the Borel-Kolmogorov phenomenon appears, where one can give different sub-$\sigma$-algebras containing $F$ such that the resulting conditional probability distribution is different.
 
 Secondly, we must accept that conditional probability on sets of measure zero are not uniquely defined. That uniqueness only appears when conditioning on sets of positive measure, as then the classical rule $\P[E|F]=\frac{\P[E\cap F]}{\P[F]}$ gives a version of the conditional probability. If a sub-$\sigma$-algebra can be used to model the entire sample space, for example the sub-$\sigma$-algebra of latitudes with the sphere as sample space, then the conditional probability must be able to extend to the original probability distribution. For example providing the uniform distribution on all latitudes gives back the uniform distribution on the sphere, as well as applying the cosine distribution on the meridians results into the uniform distribution on the sphere.
 
-Thirdly, a conditional distribution on a zero set must be calculated using the measure-theoretic conditional expectation. Conjecture~\ref{con:BorelConjecture} can help with finding the correct conditional expectation, however Proposition~\ref{prop:BorelConFalse} proves that the resulting conditional probability does not need to be unique. Therefore Conjecture~\ref{con:BorelConjecture} cannot be used to calculate a conditional probability and then call it a day, you need to check whether the distribution you found actually satisfies all conditions of conditional probability.
+Thirdly, a conditional distribution on a null set must be calculated using the measure-theoretic conditional expectation. Conjecture~\ref{con:BorelConjecture} can help with finding a correct version of the conditional expectation, however Proposition~\ref{prop:BorelConFalse} proves that the resulting conditional probabilities do not need to be unique. Therefore Conjecture~\ref{con:BorelConjecture} cannot be used to calculate a conditional probability.
 
-At last, as Kolmogorov \cite{Kolmogorov33} already stated in his work, there is nothing paradoxical going on in the Borel-Kolmogorov paradox. The space of the sphere with the latitudes as $\sigma$-algebra is not homeomorphic with the space of the sphere and the meridians as $\sigma$-algebra. The not-uniqueness of the conditional probability on a zero set is thus as expected and we must give the sub-$\sigma$-algebra when conditioning on sets of measure zero.
+Lastly, as Kolmogorov \cite{Kolmogorov33} already stated in his work, there is nothing paradoxical going on in the Borel-Kolmogorov paradox. The space of the sphere with the latitudes as $\sigma$-algebra is not homeomorphic with the space of the sphere and the meridians as $\sigma$-algebra. The not-uniqueness of the conditional probability on a null set is thus as expected and we must give the sub-$\sigma$-algebra when conditioning on sets of measure zero.
 
 
 \chapter{Safe probability}\label{chap:SafeProp}
 Take a look at the following game of dice, devised by Grünwald \cite{Grunwald13}. A player and game master are present and the game master casts a fair die. He peeks at the value of the die and must either state that the value is 4 or lower or state that the value is 3 or higher. The game master is not allowed to lie. Upon hearing the game master's advice, what is the probability the die has landed on a 3?\\
-To answer this question, suppose first that an alternative game is considered. Here the game master can only say that the value is either from 1 to and including 4 or the value is 5 or 6. The question of the probability of the die landing on 3 becomes easy to answer. When 5 or 6 is revealed, the probability is 0 and when 1 to 4 is revealed, traditional conditional probability gives us that the probability is 0.25.\\
+To answer this question, suppose first that an alternative game is considered. Here the game master can only say that the value is either from 1 to and including 4 or that the value is 5 or 6. The question of the probability of the die landing on 3 becomes easy to answer. When 5 or 6 is revealed, the probability is 0 and when 1 to 4 is revealed, traditional conditional probability gives us that the probability is 0.25.\\
 However, when either `4 or lower' or `3 or higher' is stated, the game master can choose his statement when the die lands on a 3 or 4. His strategy of choosing his statement heavily influences the probability of the die landing on 3 upon hearing the game master's statement, making that probability not uniquely defined.
 
 What can we say about the probability of the die landing on 3? Traditional conditional probability will not suffice here. Unfortunately, measure-theoretic probability cannot be applied as well. We want to condition on sets with positive measure and the versions of conditional expectation then all almost surely coincide with traditional conditional probability, thus using measure-theoretic conditional probability will not give more insight than traditional conditional probability.
 
-Thus, not even measure-theoretic probability gives a unique answer. Is a unique yet still meaningful answer possible nevertheless? For this, we can resort to \emph{safe probability}, introduced by Grünwald in 2018 \cite{Grunwald18}. Suppose there are two random variables, $U$ and $V$, and we want to use the distribution $U|V$. Suppose however that there is no method of finding this distribution: you only know that it is a member of a set of joint distributions $\Pmod$. One can then create a new conditional distribution, not necessarily one from our set nor necessarily reflecting the true distribution at all, which gives a probability of $U$ given $V$ that on average performs equal for all distributions in our set $\Pmod$ in predicting $U$ given $V$. For example, one notion of safe probability is that we have a distribution $\Psafe$ such that $\E_{\P}[U]=\E_{\P}[\E_{\Psafe}[U|V]]$ holds for all $\P\in\Pmod$. Under this $\Psafe$ the expectation $\E_{\Psafe}[U|V]$ is an unbiased estimator of $U$ for all distributions $\P\in\Pmod$. Thus no matter which strategy the game master has, distribution $\Psafe$ allows the player to estimate $U$ on average correctly. As a result, $\Psafe$ will behave like a `true' distribution and will be useful for making predictions for some, but not all prediction tasks that can be defined on a domain.
+Thus, not even measure-theoretic probability gives a unique answer. Is a unique yet still meaningful answer possible nevertheless? For this, we can resort to \emph{safe probability}, introduced by Grünwald in 2018 \cite{Grunwald18}. Suppose there are two random variables, $U$ and $V$, and we want to use the distribution of $U|V$. Suppose however that there is no method of finding this distribution: you only know that it is a member of a set of joint distributions $\Pmod$. One can then create a new conditional distribution, not necessarily one from our set nor necessarily reflecting the true distribution at all, which gives a probability of $U$ given $V$ that on average performs equal for all distributions in our set $\Pmod$ in predicting $U$ given $V$. For example, one notion of safe probability is that we have a distribution $\Psafe$ such that $\E_{\P}[U]=\E_{\P}[\E_{\Psafe}[U|V]]$ holds for all $\P\in\Pmod$. Under this $\Psafe$ the expectation $\E_{\Psafe}[U|V]$ is an unbiased estimator of $U$ for all distributions $\P\in\Pmod$. Thus, no matter which strategy the game master has, distribution $\Psafe$ allows the player to estimate $U$ on average correctly. As a result, $\Psafe$ will behave like a `true' distribution and will be useful for making predictions for some, but not all prediction tasks that can be defined on a domain.
 
 There are more notions of safety invoicing more stringent requirements on $\Psafe$. We will first introduce some notions of safe probability and how all notions are related to each other. The example of the dice game is then continued to illustrate how safe probability can be applied. The main idea is that such safe distributions can be used \emph{as if} they were true, and the world does behave as if they were true in some respects, even though they are not.
 
@@ -552,7 +547,7 @@ Let $\P$ be a probability distribution on $\X$. The \emph{support} of $S$ under 
 \end{equation}
 \end{definition}
 
-Let $U$ and $U'$ be two random variables and suppose there is a function $f$ such that $f(U)=U'$ holds, then we will write $U\stackrel{f}{\rightsquigarrow}U'$. If a function $f$ exists such that $U\stackrel{f}{\rightsquigarrow}V$, we will write $U\rightsquigarrow V$. Random variable $V$ is then called a \emph{coarsening} of $U$ or equivalently we state that $U$ determines $V$.
+Let $U$ and $U'$ be two random variables and suppose there is a function $f$ such that $f(U)=U'$ holds, then we will write $U\stackrel{f}{\rightsquigarrow}U'$. If a function $f$ exists such that $U\stackrel{f}{\rightsquigarrow}U'$, we will write $U\rightsquigarrow U'$. Random variable $U'$ is then called a \emph{coarsening} of $U$ or equivalently we state that $U$ determines $U'$.
 
 Let $\Pmod$ be a set of probability measures, then $\Pmod$ is called a \emph{model}. All distributions in $\Pmod$ are candidate to be the true distribution of $U|V$.
 
@@ -567,7 +562,8 @@ Let $\Omega$ be a sample space and let $\Pmod$ be a set of distributions on $\Om
     \item $\langle U\rangle|[V]$ if $\E_{\P}[U]=\E_{\Psafe}[U|V=v]$ holds for all $v\in\supp_{\Psafe}(V)$. This $\Psafe$ is called \emph{marginally valid} for $\langle U\rangle|V$.
 \end{itemize}
 \end{definition}
-Since in almost all situations we only consider a single set $\Pmod$, we will from now on omit the statement `with respect to $\Pmod$'.
+Since in almost all situations we only consider a single set $\Pmod$, we will from now on omit the statement `with respect to $\Pmod$'. When we say that $\Psafe$ is safe for $\langle U\rangle|[V]$, we actually mean that `for all $\P\in\Pmod$ we have $\supp_{\P}(V)\subseteq\supp_{\Psafe}(V)$, $\E_{\P}[U]$ is well-defined and finite, $\E_{\Psafe}[U|V=v]$ is well-defined for all $v\in\supp_{\Psafe}(V)$ and both expectations are equal'. This statement is quite lengthy, therefore we will abbreviate it by stating that $\Psafe$ is safe for $\langle U\rangle |[V]$. Such abbreviations are performed for other notions of safety as well.
+
 \begin{definition}[Stronger safety]\label{def:SafeStrongProp}
 Let $\Omega,\Pmod,U,V$ and $\Psafe$ as above. Then $\Psafe$ is \emph{safe} for
 \begin{itemize}
@@ -576,11 +572,9 @@ Let $\Omega,\Pmod,U,V$ and $\Psafe$ as above. Then $\Psafe$ is \emph{safe} for
 \end{itemize}
 \end{definition}
 
-Both definitions introduce a lot of new notation. In practice, $\langle V\rangle$ implies that $\E_{\Psafe}[U|V]$ must be an unbiased estimator for $U$ for all $\P\in\Pmod$.\\
-When $[V]$ is considered, the expected value of $U|V=v$ under $\Psafe$ must equal the expected value of $U$ under $\P$ for all $v\in\supp_{\P}(V)$ and $\P\in\Pmod$. In other words, the outcome of $V$ will not influence the conditional expectation value of $U$ under $\Psafe$ and this expectation will equal the expectation of $U$ under all $\P\in\Pmod$. Note that when $\E_{\P}[U]$ does not remain constant for all $\P\in\Pmod$, safety for $[V]$ is immediately impossible.\\
-Lastly, the difference between $\langle U\rangle$ and $U$ is that for $\langle U\rangle$ the requirement for safety does only have to be met for $U$. When $U$ is considered, the requirement must be met for all coarsenings $U'$ of $U$.
-
-When we say that $\Psafe$ is safe for $U|[V]$, we actually mean that `for all $\P\in\Pmod$ we have $\supp_{\P}(V)\subseteq\supp_{\Psafe}(V)$, $\E_{\P}[U]$ is well-defined and finite, $\E_{\Psafe}[U|V=v]$ is well-defined for all $v\in\supp_{\Psafe}(V)$, both expectations are equal and this holds for all $U'$ with $U\rightsquigarrow U'$'. This statement is quite lengthy, therefore we will abbreviate it by stating that $\Psafe$ is safe for $U|[V]$. Such abbreviations are performed for other notions of safety as well.
+Both definitions introduce a lot of new notation. In practice, $\cdot|\langle V\rangle$ implies that $\E_{\Psafe}[U|V]$ must be an unbiased estimator for $U$ for all $\P\in\Pmod$.\\
+When $\cdot|[V]$ is considered, the expected value of $U|V=v$ under $\Psafe$ must equal the expected value of $U$ under $\P$ for all $v\in\supp_{\P}(V)$ and $\P\in\Pmod$. In other words, the outcome of $V$ will not influence the conditional expectation value of $U$ under $\Psafe$ and this expectation will equal the expectation of $U$ under all $\P\in\Pmod$. Note that when $\E_{\P}[U]$ does not remain constant for all $\P\in\Pmod$, safety for $\cdot|[V]$ is immediately impossible.\\
+Lastly, the difference between $\langle U\rangle|\cdot$ and $U|\cdot$ is that for $\langle U\rangle|\cdot$ the requirement for safety does only have to be met for $U$. When $U|\cdot$ is considered, the requirement must be met for all coarsenings $U'$ of $U$.
 
 Definition~\ref{def:SafeStrongProp} is not easy to work with as constructing a $\Psafe$ that is safe for $U|[V]$ requires checking $\Psafe$ against all coarsenings $U'$ of $U$. The following proposition from \cite{Grunwald18} gives us tools to actually create a safe $\Psafe$ for $U|\langle V\rangle$, $U|[V]$ and a few extra notions.
 
@@ -611,7 +605,7 @@ It is easy to see that safety for $\langle U\rangle|[V]$ implies safety for $\la
 \begin{equation}
 \E_{\P}[\E_{\Psafe}[U|V]]=\E_{\P}[\E_{\P}[U]]=\E_{\P}[U]
 \end{equation}
-must hold. All implications are stated in the following proposition.
+holds by the projective properties of the expectation value. All implications are stated in the following proposition.
 
 \begin{figure}
 \centering{
@@ -643,7 +637,7 @@ It is insufficient to take $\Omega=\{1,2,3,4,5,6\}$ as our sample space. Let $U$
 \end{equation}
 thus $\{3\}$ is no member of $\G$ as $\G$ cannot have sets of odd size. We can add $\{3\}$ to $\G$, however we still do need the probability of $\{\{1,2,3,4\},\{3,4,5,6\}\}$. Therefore we cannot condition in $\Omega$ to compute $U=3$ given $V=\{1,2,3,4\}$.
 
-Therefore we need to extend our sample space. We will use the extension introduced in \cite{Grunwald13}. Take $\X=\{1,2,3,4,5,6\}$ and $\Y=\{\{1,2,3,4\},\{3,4,5,6\}\}$ and let our sample space be $\Omega=\X\times\Y$. Let $U$ be an $\X$-valued random variable and let $V$ be a $\Y$-valued random variable. In this space conditioning on $\{1,2,3,4\}$ is valid, as $\G=\sigma(\{3\}\times Y)$ is a strict sub-$\sigma$-algebra of $2^\Omega$ for all subsets $Y\subseteq\Y$.
+We need to extend our sample space. We will use the extension introduced in \cite{Grunwald13}. Take $\X=\{1,2,3,4,5,6\}$ and $\Y=\{\{1,2,3,4\},\{3,4,5,6\}\}$ and let our sample space be $\Omega=\X\times\Y$. Let $U$ be an $\X$-valued random variable and let $V$ be a $\Y$-valued random variable. In this space conditioning on $\{1,2,3,4\}$ is valid, as $\G=\sigma(\{3\}\times Y)$ is a strict sub-$\sigma$-algebra of the power set $2^\Omega$ for all subsets $Y\subseteq\Y$.
 \subsection{Using traditional and measure-theoretic conditional probability}
 First we will try to solve the problem using traditional probability. Here our sample space is $\Omega'=\{1,2,3,4,5,6\}$ with random variable $U'$. We are interested in $\P[U'=3|U'\in\{1,2,3,4\}]$. Bayes' rule delivers the answer
 \begin{align}
@@ -652,7 +646,7 @@ First we will try to solve the problem using traditional probability. Here our s
 \end{align}
 which is the answer most people initially will give \cite{Grunwald13}. However, as stated earlier, $U'=3$ is also possible when $U'\in\{3,4,5,6\}$, thus the conditioning is not executed on a partition of sample space $\Omega'$. Therefore, traditional conditional probability is not allowed and the answer of $\frac{1}{4}$ is not correctly obtained.
 
-Take now the viewpoint of measure-theoretic conditional probability. Let $\P$ be a probability measure with the uniform distribution on $U$. To model the strategy of the game master, we need $p,q\in[0,1]$ such that
+Take now the viewpoint of measure-theoretic conditional probability with $\Omega$ as our sample space. Let $\P$ be a probability measure with the uniform distribution on $U$. To model the strategy of the game master, we need $p,q\in[0,1]$ such that
 \begin{align}
 \P[V=\{3,4,5,6\}\mid U=3]&=p,&\P[V=\{3,4,5,6\}\mid U=4]&=q.
 \end{align}
@@ -660,7 +654,7 @@ We can now for example calculate the probability of the die landing on $6$ after
 \begin{equation}\label{eq:SafeDiceCon6}
 \P[U=6\mid V=\{3,4,5,6\}]=\frac{1}{p+q+2}.
 \end{equation}
-Thus the conditional probability of rolling $6$ ranges from $\frac{1}{4}$ to $\frac{1}{2}$ depending on the game master's strategy. This should not suffice as answer, as the player does not know the game master's strategy. Thus measure-theoretic conditional probability will also not be of any help.
+Therefore, the conditional probability of rolling $6$ ranges from $\frac{1}{4}$ to $\frac{1}{2}$ depending on the game master's strategy. This should not suffice as an answer, as the player does not know the game master's strategy. Measure-theoretic conditional probability will thus also not be of any help.
 
 \subsection{Using safe probabilities}
 Can we create a distribution $\Psafe$ such that the probability of $U=3$ given $V$ is independent of $p$ and $q$ and behaves on average like the dice? The answer is yes and we need to use safe probability. Consider as model
@@ -699,7 +693,7 @@ Furthermore, distribution $\Psafe$ is not safe for $U|[V]$.
 The proof can be found in Appendix~\ref{app:ProofSafeDice}.
 \end{proof}
 
-The original question of the dice game did not concern an overall safe probability distribution for the whole die, but rather the probability of rolling $3$. Proposition~\ref{prop:DiscDiceSafe} states that a distribution $\Psafe$ is safe for $\langle\DieInd\rangle|\langle V\rangle$ as well as $\DieInd|[V]$ if and only if $\Psafe[U=3|V=v]=\frac{1}{6}$ holds for all $v\in\Y$. It is therefore safe to ignore the statement of the game master when guessing the probability of the die rolling to a $3$ and safe to state that the probability of rolling to a $3$ remains $\frac{1}{6}$.
+The original question of the dice game did not concern an overall safe probability distribution for the whole die, but rather the probability of rolling $3$. Proposition~\ref{prop:DiscDiceSafe} states that a distribution $\Psafe$ is safe for $\langle\DieInd\rangle|\langle V\rangle$ as well as $\DieInd|[V]$ if and only if $\Psafe[U=3|V=v]=\frac{1}{6}$ holds for all $v\in\Y$. It is therefore safe to ignore the statement of the game master when guessing the probability of the die rolling to a $3$ and safe to state that the probability of rolling to a $3$ remains $\frac{1}{6}$. We will not prove Proposition~\ref{prop:DiscDiceSafe} now as it is a result of Theorem~\ref{thm:DiscMainThm}.
 
 A safe distribution $\Psafe$ for $\langle\1_{\{U=1\}}\rangle|\langle V\rangle$ requiring that the game master still does not lie cannot exist, as the following proposition will prove.
 
@@ -921,7 +915,7 @@ This is already proven by Grunwald and Dawid \cite{Grunwald04}, albeit in the di
 
 We see that the action $a^*$ putting all mass on $\X'$ or no mass on $\X'$ is always optimal. When the decision maker wants to apply safe probability, it is rarely the case that the safe distribution puts all or no mass on $\X'$ as well. In this case for all $\P\in\Pmod$ we have $\P[U\in\X'|V=v]=\P[U\in\X']$ for all $v\in\supp_{\P}(V)$ as the events $\{U\in\X'\}$ and $\{V=v\}$ become independent, thus the conditional distribution of $\GeneralGenInd|V=v$ is known. The application of safe probability becomes trivial and unnecessary.
 
-Knowing this, one must keep in mind that safe probability for $\GeneralGenInd|[V]$ gives in almost no case a prediction for $\GeneralGenInd|V$ with optimal accuracy. Safe probability merely simulates the distribution of $\GeneralGenInd$, where in the setting of Theorem~\ref{thm:DiscMainThm} the revelation of the game master is in no case of influence. A safe probability distribution must therefore in this setting not directly be used to make predictions for $\GeneralGenInd$, but it can be used to create a different random variable that does predict $\GeneralGenInd$ with optimal accuracy. In the Monty Hall game, you should not switch with probability $\frac{2}{3}$, as then the probability of winning the car is $\frac{5}{9}$. If the player observes that the safe distribution in the Monty Hall game puts a probability of $\frac{1}{3}$ door $a$, then never choosing door $a$ yields a probability of winning the car of $\frac{2}{3}$, which is optimal by Theorem~\ref{thm:DiscAccOpt}.
+Knowing this, one must keep in mind that safe probability for $\GeneralGenInd|[V]$ gives in almost no case a prediction for $\GeneralGenInd|V$ with optimal accuracy. Safe probability merely simulates the distribution of $\GeneralGenInd$, where in the setting of Theorem~\ref{thm:DiscMainThm} the revelation of the game master is in no case of influence. A safe probability distribution must therefore in this setting not directly be used to make predictions for $\GeneralGenInd$, but it can be used to create a different random variable that does predict $\GeneralGenInd$ with optimal accuracy. In the Monty Hall game, you should not switch with probability $\frac{2}{3}$, as then the probability of winning the car is $\frac{5}{9}$. If the player observes that the safe distribution in the Monty Hall game puts a probability of $\frac{1}{3}$ door $a$, then never choosing door $a$ yields to a probability of winning the car of $\frac{2}{3}$, which is optimal by Theorem~\ref{thm:DiscAccOpt}.
 
 \section{Dice game}\label{sec:DiscDice}
 With the main theorems stated, we can apply them to some well-known paradoxes. We will first continue our example of the dice game, started in Section~\ref{sec:SafeDice}. Recall that a die is cast with values in $\X=\{1,2,3,4,5,6\}$ and the game master is, after observing the die's value, only able to reveal a member of the set $\Y=\{\{1,2,3,4\},\{3,4,5,6\}\}=:\{y_1,y_2\}$. Our sample space is $\Omega=\X\times\Y$ with its power set $\Sigma=2^\Omega$ as $\sigma$-algebra. Let $U$ be an $\X$-valued random variable and $V$ be a $\Y$-valued random variable. The game master is not allowed to lie and the die is fair, thus any probability distribution for this game must be a member of \begin{equation}
@@ -1896,24 +1890,24 @@ Conjecture~\ref{con:BorelConjecture} is false.
 \end{propositionBorelConFalse}
 \begin{proof}
 
-In sections \ref{sec:BorelLong} and \ref{sec:BorelMer} we have seen that the parametrization using latitudes gave the uniform distribution and the parametrization using meridians gave a cosine. However, in Section~\ref{sec:BorelLong} the set $[0,2\pi)\times\left\{\frac{\pi}{2}\right\}$ is considered, the red horizontal line in Figure~\ref{fig:BorelVis}. Section~\ref{sec:BorelMer} treats the set $\{0,\pi\}\times[0,\pi]$, like the blue vertical lines in Figure~\ref{fig:BorelVis}. Those sets differer, however we can find a set which has two different probabilities using a rotation.
+Suppose Conjecture~\ref{con:BorelConjecture} is true. In sections \ref{sec:BorelLong} and \ref{sec:BorelMer} we have seen that the parametrization using latitudes gave the uniform distribution and the parametrization using meridians gave a cosine. However, in Section~\ref{sec:BorelLong} the set $[0,2\pi)\times\left\{\frac{\pi}{2}\right\}$ is considered, the red horizontal line in Figure~\ref{fig:BorelVis}. Section~\ref{sec:BorelMer} treats the set $\{0,\pi\}\times[0,\pi]$, the blue vertical lines in Figure~\ref{fig:BorelVis}. Those sets differer, however we can find a set which has two different probabilities using a rotation.
 
 Call $f$ the transformation from polar to Euclidean coordinates from Equation~\ref{eq:BorelPolar}. Let $O$ be a rotation such that
 \begin{equation}
 (f^{-1}\circ O\circ f)\left([0,\pi]\times\left\{\frac{\pi}{2}\right\}\right)=\{\pi\}\times[0,\pi],
 \end{equation}
-thus where the largest half latitude is rotated to a half meridian. Recall that $\mathfrak{C}$ is the $\sigma$-algebra of latitudes. We now rotate those latitudes to get the following $\sigma$-algebra:
+thus where the largest half latitude is rotated to a half meridian. Recall that $\mathfrak{C}$ is the $\sigma$-algebra of latitudes. We now rotate those latitudes to get the following $\sigma$-algebra of rotated latitudes:
 \begin{equation}
 \mathfrak{C}'=\left\{F'\in\B\mid F'=\left(f^{-1}\circ O^{-1}\circ f\right)(F),F\in\mathfrak{C}\right\}.
 \end{equation}
 Now $F=\{\pi\}\times[0,\pi]$ is an element of both $\mathfrak{C}'$ and $\mathfrak{M}$. We will prove that different methods of converging to $F$ yield to different $\P[E|F]$ for a measurable $E$. We will take the set $E=\{\pi\}\times\left[\frac{1}{4}\pi,\frac{3}{4}\pi\right]$ as our example.
 
-First take a look at $\mathfrak{C}'$. Let $\epsilon\in\left(0,\frac{\pi}{2}\right)$ be arbitrary and consider the sets $C_\epsilon=[0,\pi]\times\left[\frac{\pi}{2}-\epsilon,\frac{\pi}{2}+\epsilon\right]$ and $R_\epsilon=\left[\frac{1}{4}\pi,\frac{3}{4}\pi\right]\times\left[\frac{\pi}{2}-\epsilon,\frac{\pi}{2}+\epsilon\right]$. Let $\{R'_{n^{-1}}\}_{n\in\N}$ be with $R'_{n^{-1}}=(f^{-1}\circ O^{-1}\circ f)(R_{n^{-1}})$ and let the sequence $\{C'_{n^{-1}}\}_{n\in\N}$ be with $C'_{n^{-1}}=(f^{-1}\circ O^{-1}\circ f)(C_{n^{-1}})$. Since $R_{n^{-1}},C_{n^{-1}}\in\mathfrak{C}$ holds for all $n\in\N$, we get $\{R'_{n^{-1}}\}_{n\in\N},\{C'_{n^{-1}}\}_{n\in\N}\subset\mathfrak{C'}$. Furthermore, $f^{-1}\circ O^{-1}\circ f$ has determinant $1$ since $O$ is a rotation and $f$ is almost surely a bijection on $F$, resulting to
+First take a look at $\mathfrak{C}'$. Let $\epsilon\in\left(0,\frac{\pi}{2}\right)$ be arbitrary and consider the sets $C_\epsilon=[0,\pi]\times\left[\frac{\pi}{2}-\epsilon,\frac{\pi}{2}+\epsilon\right]$ and $R_\epsilon=\left[\frac{1}{4}\pi,\frac{3}{4}\pi\right]\times\left[\frac{\pi}{2}-\epsilon,\frac{\pi}{2}+\epsilon\right]$. Let $\{R'_{n^{-1}}\}_{n\in\N}$ be with $R'_{n^{-1}}=(f^{-1}\circ O^{-1}\circ f)(R_{n^{-1}})$ and let the sequence $\{C'_{n^{-1}}\}_{n\in\N}$ be with $C'_{n^{-1}}=(f^{-1}\circ O^{-1}\circ f)(C_{n^{-1}})$. Since $R_{n^{-1}},C_{n^{-1}}\in\mathfrak{C}$ holds for all $n\in\N$, we get $\{R'_{n^{-1}}\}_{n\in\N},\{C'_{n^{-1}}\}_{n\in\N}\subset\mathfrak{C'}$. Furthermore, $f^{-1}\circ O^{-1}\circ f$ has determinant~$1$ since $O$ is a rotation and $f$ is almost surely a bijection on $F$, resulting to
 \begin{align}
 \P[R'_\epsilon|C'_\epsilon]&=\frac{\P[R'_\epsilon]}{\P[C'_\epsilon]}=\frac{\iint_{R'_\epsilon}\sin\psi d\psi d\phi}{\iint_{C'_\epsilon} \sin\psi d\psi d\phi}=\frac{\iint_{R_\epsilon}g(\sin\psi)\cdot1 d\psi d\phi}{\iint_{C_\epsilon}g(\sin\psi)\cdot1d\psi d\phi}\\
-&=\frac{\int_{\frac{1}{4}\pi}^{\frac{3}{4}\pi}\int_{\frac{\pi}{2}-\epsilon}^{\frac{\pi}{2}+\epsilon}g(\sin\psi)\cdot1 d\psi d\phi}{\int_{0}^{\pi}\int_{\frac{\pi}{2}-\epsilon}^{\frac{\pi}{2}+\epsilon}g(\sin\psi)\cdot1d\psi d\phi}=\frac{\frac{3}{4}\pi-\frac{1}{4}\pi}{\pi}=\frac{1}{2}
+&=\frac{\int_{\frac{1}{4}\pi}^{\frac{3}{4}\pi}\int_{\frac{\pi}{2}-\epsilon}^{\frac{\pi}{2}+\epsilon}\sin (g(\psi))\cdot1 d\psi d\phi}{\int_{0}^{\pi}\int_{\frac{\pi}{2}-\epsilon}^{\frac{\pi}{2}+\epsilon}\sin (g(\psi))\cdot1d\psi d\phi}=\frac{\frac{3}{4}\pi-\frac{1}{4}\pi}{\pi}=\frac{1}{2}
 \end{align}
-where $g(x)$ is the result of the transformation $f^{-1}\circ O^{-1}\circ f$ on the integrand. The function $g$ is not written out explicitly, as the integral can be split up as a multiplication of integrals and the resulting integrals in the numerator en denominator with $g$ in the integrand are equal, thus cancel out. The result is $\P[R'_0|C'_0]=\frac{1}{2}$, as $\P[R'_\epsilon|C'_\epsilon]$ is constant in $\epsilon$. The sequence $\{R'_{n^{-1}}\}_{n\in\N}$ converges to $E$ and the sequence $\{C'_{n^{-1}}\}_{n\in\N}$ converges to $F$, thus we have $\P[E|F]=\frac{1}{2}$ as well.
+where $g$ is the result of the transformation $f^{-1}\circ O^{-1}\circ f$ on the integrand. The result is $\P[R'_0|C'_0]=\frac{1}{2}$, as $\P[R'_\epsilon|C'_\epsilon]$ is constant in $\epsilon$. The sequence $\{R'_{n^{-1}}\}_{n\in\N}$ converges to $E$ and the sequence $\{C'_{n^{-1}}\}_{n\in\N}$ converges to $F$, thus we have $\P[E|F]=\frac{1}{2}$ as well.
 
 For $\mathfrak{M}$ we will use Proposition~\ref{prop:BorelMerBayes}. Let $x=\pi$ and $\epsilon\in(0,\pi)$, then we have $M_\epsilon\in\mathfrak{M}$ and $R_\epsilon=[\pi-\epsilon,\pi+\epsilon]\times\left[\frac{1}{4}\pi,\frac{3}{4}\pi\right]\subset M_\epsilon$. Furthermore, the sequence $\{M_{n^{-1}}\}_{n\in\N}$ converges to $F$ and $\{R_{n^{-1}}\}_{n\in\N}$ converges to $E$, thus Proposition~\ref{prop:BorelMerBayes} states that
 \begin{equation}
@@ -1947,11 +1941,11 @@ be a set of probability distributions on $\Omega$. Let $\Psafe$ be a probability
 Furthermore, distribution $\Psafe$ is not safe for $U|[V]$.
 \end{propositionSafeDice}
 \begin{proof}
-Here we will abbreviate $\Psafe[U=u|V=v]$ to $\Psafe[u|v]$ for all $(u,v)\in\Omega$. We will start with the implication from 1 to 2. Take an arbitrary $\Psafe\in\tilde{\mathcal{P}}$. We then have
+Here we will abbreviate $\Psafe[U=u|V=v]$ to $\Psafe[u|v]$ for all $(u,v)\in\Omega$. Let $\P\in\Pmod$ be arbitrary. We will start with the implication from 1 to 2. Firstly we have
 \begin{equation}
 \E_{\P}[U]=\sum_{u=1}^6 u\P[U=u]=\frac{7}{2}.
 \end{equation}
-Consider $y_1$ first. Writing $\Psafe[u|y_1]$ in terms of $\Psafe[1|y_1]$ for all $u\in\{2,3,4\}$ gives
+Take an arbitrary $\Psafe\in\tilde{\mathcal{P}}$ and consider $y_1$ first. Writing $\Psafe[u|y_1]$ in terms of $\Psafe[1|y_1]$ for all $u\in\{2,3,4\}$ gives
 \begin{align}
 \E_{\Psafe}[U|V=y_1]&=\Psafe[1|y_1]+2\Psafe[1|y_1]+3\left(\frac{1}{2}-5\Psafe[1|y_1]\right)+4\left(3\Psafe[1|y_1]+\frac{1}{2}\right)\\
 &=\frac{7}{2}+15\Psafe[1|y_1]-15\Psafe[1|y_1]=\frac{7}{2}.
@@ -1960,8 +1954,7 @@ The same calculation holds for $V=y_2$ as well. Therefore we have the equality $
 
 The implication from 2 to 3 follows from Proposition~\ref{prop:SafeImply}.
 
-Lastly, we will prove the implication from 3 to 1. Let $\Psafe$ be safe for $\langle U\rangle|\langle V\rangle$. Let $\P\in\Pmod$ be arbitrary and take $p,q\in[0,1]$ with $\P[V=y_2|U=3]=p$ and $\P[V=y_2|U=4]=q$.\\
-Definition~\ref{def:SafeProp} states that we need $\E_{\P}[\E_{\Psafe}[U|V]]=\E_{\P}[U]$. The right-hand side is already computed as $\E_{\P}[U]=\frac{7}{2}$. For $\E_{\P}[\E_{\Psafe}[U|V]]$, we first focus on $V=y_1$. Conditioning on $U$ yields
+Lastly, we will prove the implication from 3 to 1. Let $\Psafe$ be safe for $\langle U\rangle|\langle V\rangle$. Take $p,q\in[0,1]$ with $\P[V=y_2|U=3]=p$ and $\P[V=y_2|U=4]=q$. Definition~\ref{def:SafeProp} states that we need $\E_{\P}[\E_{\Psafe}[U|V]]=\E_{\P}[U]$. The right-hand side is already computed as $\E_{\P}[U]=\frac{7}{2}$. For $\E_{\P}[\E_{\Psafe}[U|V]]$, we first focus on $V=y_1$. Conditioning on $U$ yields
 \begin{equation}
 \P[V=y_1]=\sum_{u=1}^6\P[V=y_1|U=u]\P[U=u]=\frac{1}{6}\sum_{u=1}^6\P[V=y_1|U=u].
 \end{equation}
@@ -1988,11 +1981,7 @@ When this condition is satisfied, we need
 \begin{equation}
 \sum_{u=1}^4\frac{2u}{3}\Psafe[u|y_1]+\sum_{u=3}^6\frac{u}{3}\Psafe[u|y_2]=\frac{7}{2}
 \end{equation}
-for $\Psafe$ to be safe for $\langle U\rangle|\langle V\rangle$. We impose one further assumption on our safe probability to reduce the amount of possible safe probabilities. Suppose the die shows $5$ or $6$, the game master has to tell $y_2$. Thus it is logical to assume that $\Psafe[5|y_2]=\Psafe[6|y_2]$ and $\Psafe[1|y_1]=\Psafe[2|y_1]$, as when an $y_2$ is revealed there is no reason why $5$ is preferred more than $6$. As the game master cannot lie,
-\begin{equation}
-\Psafe[5|y_1]=\Psafe[6|y_1]=\Psafe[1|y_2]=\Psafe[2|y_2]=0
-\end{equation}
-can be assumed. Luckily, these assumptions are made mandatory by the proposition. This all results into the following system of equations:
+for $\Psafe$ to be safe for $\langle U\rangle|\langle V\rangle$. Impose lastly the conditions $\Psafe[5|y_2]=\Psafe[6|y_2]$, $\Psafe[1|y_1]=\Psafe[2|y_1]$ and $\Psafe[U\in y|V=y]=1$ to ensure the game master never lies and there is no preference between $1$ and $2$ and between $5$ and $6$ to make $\Psafe$ more realistic. This all results into the following system of equations:
 \begin{equation}\label{eq:SafeDiceSystem}
 \begin{pmatrix}
 \frac{2}{3}&\frac{4}{3}&2&\frac{8}{3}&1&\frac{4}{3}&\frac{5}{3}&2\\
@@ -2074,9 +2063,5 @@ Let now $\P\in\Pmod$ again be arbitrary, then the requirement in Equation~\ref{e
 \end{equation}
 Therefore $\Psafe[u|v]=p_{u}$ for all $v\in\Y$ is required for $\Psafe$ when $\Psafe$ is safe for $\langle\GeneralInd\rangle|\langle V\rangle$, thus 3 implies 1.
 \end{proof}
-
-\newpage
-
-\printindex
 
 \end{document}
