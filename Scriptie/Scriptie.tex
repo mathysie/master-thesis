@@ -1020,7 +1020,7 @@ In this section we first give a repetition of the arguments of \cite{Grunwald13}
 \subsubsection{Traditional and measure-theoretic conditional probability}
 Let us start with the viewpoint that results in a probability of $\frac{1}{2}$ of obtaining the car after switching. This viewpoint takes $\Omega'=\{a,b,c\}$ as sample space. Let $U'$ be an $\Omega'$-valued random variable denoting the cars location. Equip $\Omega'$ with the uniform distribution $\P$ such that $\P[U'=u]=\frac{1}{3}$. Traditional conditional probability and Bayes' rule then give
 \begin{align}
-\P[U'=a|U'\in\{a,b\}]&=\frac{\P[U'\in\{a,b\}|U'=a]\P[U'=a]}{\sum_{u\in\Omega}\P[U'\in\{a,b\}|U'=u]\P[U'=u]}\\
+\P[U'=a|U'\in\{a,b\}]&=\frac{\P[U'\in\{a,b\}|U'=a]\P[U'=a]}{\sum_{u\in\Omega}\P[U'\in\{a,b\}|U'=u]\P[U'=u]}\label{eq:DiscMontyWrong}\\
 &=\frac{1\cdot\frac{1}{3}}{\frac{1}{3}\left(1+0+1\right)}=\frac{1}{2}.
 \end{align}
 
@@ -1036,10 +1036,26 @@ We can now calculate the resulting conditional probabilities. Let $\P\in\Pmod$, 
 \P[U=a|V=b]=\frac{\P[V=b|U=a]\P[U=a]}{\sum_{u\in\Omega}\P[V=b|U=u]\P[U=u]}=\frac{p}{p+1},\label{eq:DiscMontyDilate}\\
 \P[U=a|V=c]=\frac{\P[V=c|U=a]\P[U=a]}{\sum_{u\in\Omega}\P[V=c|U=u]\P[U=u]}=\frac{1-p}{2-p}.
 \end{align}
-In both cases the probability of door $a$ having the car is dilated from $0$ to $\frac{1}{2}$. Furthermore, the answer of $\frac{1}{2}$ disregarding which door is opened cannot be true, as the probability of $\frac{1}{2}$ after opening door $v\in\Y$ is only achieved when $p=\1_{\{b\}}(v)$ which is dependent on door $v$. This is a strategy that is not possible to deploy.\\
+In both cases the probability of door $a$ having the car is dilated from~$0$ to~$\frac{1}{2}$. Furthermore, the answer of $\frac{1}{2}$ disregarding which door is opened cannot be true, as the probability of $\frac{1}{2}$ after opening door $v\in\Y$ is only achieved when $p=\1_{\{b\}}(v)$ which is dependent on door $v$. This is a strategy that is not possible to deploy.\\
 The player is advised to switch no matter the strategy of the game master. However, we cannot pin down a single probability of door $a$ having the car given the game master's statement. We can put a prior on $\P[V=b|U=a]$, however we do need more information to apply such priors wisely.
 
 This subsection shows another example of why when doing conditional probability one always needs to provide the accompanying sub-$\sigma$-algebra. Unlike the Borel-Kolmogorov paradox in Chapter~\ref{chap:BorelKolmogorov}, here the measure-theoretic conditional expectation defines a unique probability measure. However, most people use $\Omega'=\{a,b,c\}$ as sample space and without taking the accompanying $\sigma$-algebra in account when conditioning, one could not find a reason not to do this. Only when correctly applying conditional probability and noticing that both $\{a,b\}$ and $\{a,c\}$ are possible options, one finds out that $\Omega'=\{a,b,c\}$ is insufficient as sample space and paradoxical results will rise when continuing to use $\Omega'$.
+
+\begin{remark}[Three prisoners problem]
+Consider again the measure-theoretic approach taken at the Monty Hall problem in Equation~\ref{eq:DiscMontyDilate} with now $p=\frac{1}{2}$. This case is called the \emph{three prisoners problem} which is first described by Martin Gardner in 1959 \cite{Gardner59}. We will take a brief look at this paradox using the version posed on the problem's Wikipedia page \cite{WikiPrisoners}.
+
+There are three prisoners conveniently called $a$, $b$ and $c$ on death row and located in separate cells. One prisoner however will be pardoned and the warden knows which one. Prisoner~$a$ is able to gain some information from the warden. If $a$ will not be pardoned, he hears the name of either prisoner $b$ or $c$ and that prisoner will not be pardoned as well. If $a$ will be pardoned, the warden flips a fair coin to decide whether to declare $b$ or $c$'s name.\\
+After hearing prisoner~$b$'s name, prisoner $a$ believes his chance of survival rises from $\frac{1}{3}$ to $\frac{1}{2}$. However, when $a$ tells this news to $c$, prisoner~$c$ argues that $a$'s chance of survival is still $\frac{1}{3}$ but his is risen to $\frac{2}{3}$. Prisoner $c$'s answer is as we will soon see correct.
+
+The only difference between this problem and Monty Hall's is that we now have full information on how the player, in this case prisoner~$a$, obtains his observation. In the Monty Hall problem the game master could deploy any strategy of either opening door $b$ or $c$ when the car is behind door $a$. Here prisoner~$b$ or $c$'s name is called after the flip of a fair coin if prisoner~$a$ will be pardoned. Therefore, adopting the Monty Hall problem's mathematical terminology, ${\P[V=b|U=a]=\frac{1}{2}}$ must hold here instead of ${\P[V=b|U=a]\in[0,1]}$. If $U$ is distributed uniformly on $\{a,b,c\}$ and the warden is not allowed to lie, then now our model for the three prisoners problem $\Pmod=\{\P\}$ only contains one single distribution.
+
+The resulting chance of prisoner~$a$ being pardoned remains $\frac{1}{3}$ regardless of which prisoner's name is called:
+\begin{align}
+\P[U=a|V=b]=\frac{\P[V=b|U=a]\P[U=a]}{\sum_{u\in\Omega}\P[V=b|U=u]\P[U=u]}=\frac{\frac{1}{2}\cdot\frac{1}{3}}{\frac{1}{3}\left(\frac{1}{2}+0+1\right)}=\frac{1}{3},\\
+\P[U=a|V=c]=\frac{\P[V=c|U=a]\P[U=a]}{\sum_{u\in\Omega}\P[V=c|U=u]\P[U=u]}=\frac{\frac{1}{2}\cdot\frac{1}{3}}{\frac{1}{3}\left(\frac{1}{2}+1+0\right)}=\frac{1}{3}.
+\end{align}
+The statement of prisoner $c$ is therefore correct. The reason why people first claim that $\frac{1}{2}$ is correct is the same as in the Monty Hall problem. They first take $\Omega'=\{a,b,c\}$ as sample space and then condition only on the event $\{U\in\{a,c\}\}$, which will result in the answer of $\frac{1}{2}$ after following the logic of Equation~\ref{eq:DiscMontyWrong}. The fact that the warden could also have flipped a coin before declaring a name is ignored when $\frac{1}{2}$ is declared as an answer. This mistake can easily be avoided by applying conditional probability with more care, taking all information stated in the problem into account.
+\end{remark}
 
 \subsubsection{Safe probability}
 Using safe probability it is possible to find a pragmatic distribution $\Psafe$ on $\Omega$ that is safe against all $\P\in\Pmod$. We only need to apply Theorem~\ref{thm:DiscMainThm}.
